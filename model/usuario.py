@@ -1,7 +1,4 @@
 from model.enum import *
-from model.pessoa import pessoa
-
-
 class usuario(object):
 
     def __init__(self):
@@ -11,7 +8,6 @@ class usuario(object):
         self._situacao = situacaoUsuario.Bloqueado
         self._dtRegistro = ""
         self._superUser = False
-        self._pessoa = pessoa()
 
     @property
     def id(self):
@@ -60,11 +56,3 @@ class usuario(object):
     @superUser.setter
     def isSuperUser(self, value):
         self._superUser = value
-
-    @property
-    def pessoa(self):
-        return self._pessoa
-
-    @pessoa.setter
-    def pessoa(self, value):
-        self._pessoa = value
