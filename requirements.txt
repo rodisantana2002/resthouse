@@ -1,4 +1,4 @@
 flask
 gunicorn
 jinja2
-mysql.connector
+mysql.connector=mysql=2.2.9
