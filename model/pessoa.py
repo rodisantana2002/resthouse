@@ -5,6 +5,8 @@ from app import db
 class pessoa(db.Model):
     __tablename__ = 'pessoa'
 
+    db = SQLAlchemy(app)
+
     _id = db.Column(db.Integer, primary_key=True)
     _situacao = db.Column(db.String())
     _nomeCompleto = db.Column(db.String())

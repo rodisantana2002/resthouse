@@ -7,3 +7,4 @@ dj-database-url
 flask_script
 flask_migrate
 flask_sqlalchemy
+app
