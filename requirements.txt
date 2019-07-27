@@ -1,4 +1,8 @@
 flask
 gunicorn
+requests
 jinja2
-
+psycopg2-binary
+dj-database-url
+flask_script
+flask_migrate

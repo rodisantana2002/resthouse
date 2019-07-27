@@ -1,9 +1,18 @@
 from model.enum import *
+from app import db
 
 
-class pessoa(object):
+class pessoa(db.Model):
+    __tablename__ = 'pessoa'
+
+    _id = db.Column(db.Integer, primary_key=True)
+    _situacao = db.Column(db.String())
+    _nomeCompleto = db.Column(db.String())
+    _apelido = db.Column(db.String())
+    _tipo = db.Column(db.String())
+    _genero = db.Column(db.String())
+
     def __init__(self, nomeCompleto, apelido, tipo, genero):
-        self._id = None  # default
         self._situacao = situacaoPessoa.Ativa
         self._nomeCompleto = nomeCompleto
         self._apelido = apelido
@@ -49,6 +58,16 @@ class pessoa(object):
     @genero.setter
     def genero(self, value):
         self._genero = value
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'situacao': self._situacao,
+            'nomeCompleto': self._nomeCompleto,
+            'apelido': self._apelido,
+            'tipo': self._tipo,
+            'genero': self._genero
+        }
 
     def __str__(self):
         return self.nomeCompleto + "\n{}".format(self.tipo.value) + "\n{}".format(self.genero.value) + "\n{}".format(self.situacao.value)

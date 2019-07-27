@@ -1,24 +1,16 @@
-# from model.pessoa import pessoa
-# from model.enum import *
-
-
-# pessoa = pessoa("rodolfo", "jose", tipo.Fisica, genero.Masculino)
-
-# print(pessoa.__str__())
-from flask import Flask
+from model import pessoa
+from model.enum import *
+from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def index():
-    return '<h1>Hello World!</h1>'
-
-
-@app.route('/user/<name>')
-def user(name):
-    return '<h1>Hello, %s!</h1>' % name
+app.config.from_pyfile('config.cfg')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route("/")
+def hello():
+    return "Hello World!"
