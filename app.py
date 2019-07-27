@@ -1,5 +1,5 @@
-from app.model.pessoa import pessoa
-from app.model.enum import *
+from model import pessoa
+from model.enum import *
 
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
