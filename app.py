@@ -6,7 +6,6 @@
 
 # print(pessoa.__str__())
 from flask import Flask
-import mysql.connector
 
 app = Flask(__name__)
 
@@ -25,13 +24,7 @@ def user(name):
         database="resthouse"
     )
 
-    mycursor = mydb.cursor()
-    mycursor.execute("SHOW TABLES")
-
-    for x in mycursor:
-        print(x)
-
-    return '<h1>Hello, %s!</h1>' % x
+    return '<h1>Hello, %s!</h1>' % name
 
 
 if __name__ == '__main__':
