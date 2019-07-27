@@ -6,6 +6,8 @@
 
 # print(pessoa.__str__())
 from flask import Flask
+import mysql.connector
+
 app = Flask(__name__)
 
 
@@ -16,7 +18,20 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    return '<h1>Hello, %s!</h1>' % name
+    mydb = mysql.connector.connect(
+        host="db4free.net",
+        user="resthouse",
+        passwd="123Perkons",
+        database="resthouse"
+    )
+
+    mycursor = mydb.cursor()
+    mycursor.execute("SHOW TABLES")
+
+    for x in mycursor:
+        print(x)
+
+    return '<h1>Hello, %s!</h1>' % x
 
 
 if __name__ == '__main__':
