@@ -1,5 +1,5 @@
 from model.enum import *
-from app import db
+from resthouse import db
 
 
 class pessoa(db.Model):
