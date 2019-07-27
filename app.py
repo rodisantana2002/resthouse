@@ -17,13 +17,6 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    mydb = mysql.connector.connect(
-        host="db4free.net",
-        user="resthouse",
-        passwd="123Perkons",
-        database="resthouse"
-    )
-
     return '<h1>Hello, %s!</h1>' % name
 
 
