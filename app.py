@@ -1,3 +1,6 @@
+from model import pessoa
+from model.enum import *
+
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -14,3 +17,20 @@ db = SQLAlchemy(app)
 @app.route("/")
 def hello():
     return "Hello World!"
+
+
+@app.route("/add")
+def add_book():
+    situacao = situacaoPessoa.Ativa
+    nomeCompleto = "mane "
+    apelido = "as"
+    tipo = tipo.Fisica
+    genero = genero.Masculino
+
+    try:
+        pessoa = pessoa(nomeCompleto, apelido, tipo, genero)
+        db.session.add(pessoa)
+        db.session.commit()
+        return "Book added. Pessoa id={}".format(pessoa.id)
+    except Exception as e:
+        return(str(e))
