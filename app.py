@@ -1,5 +1,5 @@
-from model.pessoa import pessoa
-from model.enum import *
+from resthouse.model.pessoa import pessoa
+from resthouse.model.enum import *
 
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
