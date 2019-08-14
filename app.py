@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from model.usuario import User
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
