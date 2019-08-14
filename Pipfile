@@ -16,6 +16,8 @@ flask-sqlalchemy = "*"
 "psycopg2" = "*"
 gunicorn = "*"
 flask-bootstrap="*"
+Jinja2 = "*"
+
 
 
 [requires]
