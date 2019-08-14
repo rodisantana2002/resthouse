@@ -6,7 +6,6 @@ from flask_sqlalchemy import SQLAlchemy
 from model.usuario import User
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
 
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
@@ -31,4 +30,5 @@ def user():
 if __name__ == '__main__':
     db.create_all()
     port = int(os.environ.get('PORT', 5000))
+    Bootstrap(app)
     app.run(host='0.0.0.0', port=port, debug=True)
