@@ -13,9 +13,11 @@ flask-bootstrap="*"
 
 flask = "*"
 flask-sqlalchemy = "*"
+flask-bootstrap="*"
+flask-wtf="*"
+
 "psycopg2" = "*"
 gunicorn = "*"
-flask-bootstrap="*"
 Jinja2 = "*"
 
 
