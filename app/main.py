@@ -12,16 +12,11 @@ HOME_DIR = os.environ.get('OPENSHIFT_HOMEDIR', os.getcwd())
 log = logging.getLogger(__name__)
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
-    return jsonify({
-        'host_name': HOST_NAME,
-        'app_name': APP_NAME,
-        'ip': IP,
-        'port': PORT,
-        'home_dir': HOME_DIR,
-        'host': socket.gethostname()
-    })
+    return "hello world"
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT)
