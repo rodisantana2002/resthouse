@@ -6,6 +6,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=2, shrink-to-fit=no">
+    
   </head>
 
   <body>
@@ -23,18 +24,18 @@
                     <form id="loginform" class="form-horizontal" style="align:center" role="form">     
                         <div style="margin-bottom: 25px" class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="usuário ou email">                                        
+                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="usuário ou email" required>                                        
                         </div>
                             
                         <div style="margin-bottom: 25px" class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="password" placeholder="senha">
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="senha" required>
                         </div>
                             
                         <div style="margin-top:10px; text-align:center" class="form-group ">
                             <!-- Button -->
                             <div class="col-12">
-                                <a id="btn-login" href="#" class="btn btn-warning btn-lg">Entrar  </a>
+                                <button id="btn-login" type="submit" href="#" class="btn btn-warning btn-lg">Entrar  </button>
                             </div>
                         </div>
 
@@ -57,10 +58,11 @@
             </div>          
         </div>
         
-        <div id="signupbox" style="display:none; margin-top:40px;margin-left:30px;margin-right:30px" class="col-12">                    
+        <div id="signupbox" style="display:none; margin-top:20px;margin-left:30px;margin-right:30px" class="col-12">                    
             <div class="panel panel-primary">
+
                 <div class="panel-heading">
-                    <div class="panel-title">Registro</div>
+                    <div class="panel-title">Informe os dados para o registro </div>
                 </div>  
 
                 <div class="panel-body" >
@@ -70,44 +72,76 @@
                             <p>Error:</p>
                             <span></span>
                         </div>
-                            
+                                                        
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="nomecompleto" placeholder="Nome Completo" required>
+                        </div>
+
                         <div class="col-12 control">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="email" placeholder="Email">
-                        </div>
-                            
-                        <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="firstname" placeholder="Nome">
+                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" name="email" placeholder="Email" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="lastname" placeholder="Last Name">
+                            <input type="Telefone" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" placeholder="Telefone Celular" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" name="passwd" placeholder="Senha">
+                            <input type="date" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" placeholder="Data Nascimento" required>
+                        </div>                        
+                        
+                        <div class="col-12">
+                            <select id="inputState" class="form-control" style="margin-bottom: 15px; color=gray " required>
+                                <option selected>Sexo</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                                <option value="3">Outro</option>
+                            </select>
+                        </div>                                                
+
+                        <div class="col-12">
+                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" name="senha" placeholder="Senha" required>
                         </div>
                             
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="icode" placeholder="Confir a senha">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="resenha" placeholder="Digite novamente a senha" required>
                         </div>
 
                         <div class="form-group" style="text-align:right; padding-right:15px">
                             <!-- Button -->                                        
                             <div class="col-12">
-                                <button id="btn-voltar" type="button" class="btn btn-link" onclick="$('#signupbox').hide(); $('#loginbox').show()">Voltar para login</button>                            
-                                <button id="btn-signup" type="button" class="btn btn-primary" ><i class="icon-hand-right"></i> Enviar </button>
+                                <button id="btn-voltar" type="button" class="btn btn-link" style="margin-right: 20px" onclick="$('#signupbox').hide(); $('#loginbox').show()">Voltar para login</button>                                                
+                                <button id="btn-signup" type="submit" class="btn btn-primary" ><i class="icon-hand-right"></i> Enviar </button>
                             </div>
-                        </div>                        
-                                                                    
-                    </form>                   
+                        </div>    
+
+                    </form>             
+
                 </div>
-            </div>
-                
+            </div>                
          </div> 
-    </div>
-    
+    </div>    
   </body>
 </html>
 
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('form-horizontal');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 
 
