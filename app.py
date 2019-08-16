@@ -8,7 +8,8 @@ from model.usuario import User
 app = Flask(__name__, template_folder='templates')
 bootstrap = Bootstrap(app)
 
-DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
+DATABASE_URL = os.environ.get(
+    'DATABASE_URL', 'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/bd/flask_app.db')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
