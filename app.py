@@ -27,7 +27,7 @@ def index():
     # db.session.commit()
     # return redirect(url_for('index'))
 
-
+5
 if __name__ == '__main__':
     db.create_all()
     port = int(os.environ.get('PORT', 5000))
