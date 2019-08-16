@@ -16,16 +16,17 @@ db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET'])
 def index():
-    # return render_template('login.html', users=User.query.all())
-    return render_template('login.html')
+    return render_template('login.html', users=User.query.all())
+    # return render_template('login.html')
 
 
-# @app.route('/user', methods=['POST'])
-# def user():
-    # u = User(request.form['name'], request.form['email'])
-    # db.session.add(u)
-    # db.session.commit()
-    # return redirect(url_for('index'))
+@app.route('/user', methods=['POST'])
+def user():
+    u = User(request.form['name'], request.form['email'])
+    db.session.add(u)
+    db.session.commit()
+    return redirect(url_for('index'))
+
 
 5
 if __name__ == '__main__':

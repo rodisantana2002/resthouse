@@ -2,10 +2,17 @@
 
 <html lang="pt">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+  	<meta charset="UTF-8">
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>    
+  	<script type="text/javascript">
+    	jQuery(function($) { });
+	</script>
   </head>
 
   <body>
@@ -23,7 +30,7 @@
                     <form id="loginform" class="form-horizontal" style="align:center" role="form">     
                         <div style="margin-bottom: 25px" class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="usuário ou email" required>                                        
+                            <input id="login-username" type="email" class="form-control" name="username" value="" placeholder="email" required>                                        
                         </div>
                             
                         <div style="margin-bottom: 25px" class="input-group input-group-lg">
@@ -43,11 +50,10 @@
                         </div>
 
                         <div class="col-12">
-                            <div style="border-top: 1px solid#888; padding-top:15px" >
+                            <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
                             <h5>
-                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()" style="text; font-weight:bold; color:brown; text-align:left " > Crie uma conta gratuitamente!                                         
-                                    Registre-se agora
-                                </a>
+                                <label>Crie sua conta gratuitamente!  </label>                            
+                                <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()" style="text; font-weight:bold; color:brown; text-align:left " > Registre-se agora </a>
                             </h5>
                             </div>
                         </div>
@@ -58,38 +64,42 @@
         </div>
         
         <div id="signupbox" style="display:none; margin-top:20px;margin-left:30px;margin-right:30px" class="col-12">                    
-            <div class="panel panel-primary">
-
-                <div class="panel-heading">
-                    <div class="panel-title">Informe os dados para o registro </div>
-                </div>  
+        
+            <div class="panel panel-primary" style="border-color:brown">
 
                 <div class="panel-body" >
                     <form id="signupform" class="form-horizontal" role="form">
-                                                
-                        <div id="signupalert" style="display:none" class="alert alert-danger">
+
+                        <div id="alert" style="display:none" class="alert alert-danger">
                             <p>Error:</p>
                             <span></span>
                         </div>
-                                                        
-                        <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="nomecompleto" placeholder="Nome Completo" required>
-                        </div>
 
-                        <div class="col-12 control">
-                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" name="email" placeholder="Email" required>
+                        <div class="col-12">
+                            <label style="color:brown"> Identificação </label>
+                            <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
                         </div>
 
                         <div class="col-12">
-                            <input type="Telefone" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" placeholder="Telefone Celular" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" id="nomecompleto" placeholder="Nome Completo" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="date" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" placeholder="Data Nascimento" required>
-                        </div>                        
-                        
+                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" id="email" placeholder="Email" required>
+                        </div>
+
                         <div class="col-12">
-                            <select id="inputState" class="form-control" style="margin-bottom: 15px; color=gray " required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" id="celular" placeholder="Telefone Celular" required>
+                            <script type="text/javascript">$("#celular").mask("(99) 99999-9999");</script>
+                        </div>
+
+                        <div style="margin-bottom: 15px" class="input-group">
+                            <span class="input-group-addon">Data Nascimento</span>
+                            <input type="date" class="form-control" id="dtnascimento" placeholder="Data Nascimento" required>
+                        </div>
+
+                        <div class="col-12">
+                            <select id="sexo" class="form-control" style="margin-bottom: 15px; color=gray " required>
                                 <option selected>Sexo</option>
                                 <option value="1">Masculino</option>
                                 <option value="2">Feminino</option>
@@ -98,50 +108,92 @@
                         </div>                                                
 
                         <div class="col-12">
-                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" name="senha" placeholder="Senha" required>
+                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" id="senha" placeholder="Senha" required>
                         </div>
                             
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="resenha" placeholder="Digite novamente a senha" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" id="resenha" placeholder="Digite novamente a senha" required>
                         </div>
 
-                        <div class="form-group" style="text-align:right; padding-right:15px">
-                            <!-- Button -->                                        
+                        <!-- Endereço --> 
+                        <div class="col-12">
+                            <label style="color:brown"> Endereço </label>
+                            <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cep" id="cep" placeholder="Cep" required>
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="logradouro" id="logradouro" placeholder="Logradouro" required>
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="numero" id="numero" placeholder="Número" required>
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="complemento" id="complemento" placeholder="Complemento">
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="bairro" id="bairro" placeholder="Bairro" required>
+                        </div>
+
+                        <div class="col-12">
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cidade" id="cidade" placeholder="Cidade" required>
+                        </div>
+
+                        <div class="col-12">
+                            <select id="estado" class="form-control" style="margin-bottom: 15px; color=gray " required>
+                                <option selected>Estado</option>
+                                <option value="PR">Paraná</option>
+                            </select>
+                        </div>
+
+                        <!-- comandos --> 
+                        <div class="form-group" style="text-align:center; padding-right:15px; margin-bottom:-1px">                                       
                             <div class="col-12">
-                                <button id="btn-voltar" type="button" class="btn btn-link" style="margin-right: 20px" onclick="$('#signupbox').hide(); $('#loginbox').show()">Voltar para login</button>                                                
-                                <button id="btn-signup" type="submit" class="btn btn-primary" ><i class="icon-hand-right"></i> Enviar </button>
+                                <button id="btn-signup" type="submit" class="btn btn-warning" ><i class="icon-hand-right"></i> Enviar </button>                            
                             </div>
                         </div>    
 
+                        <div class="form-group" style="text-align:right; padding-right:15px; margin-bottom:-1px">                                       
+                            <button id="btn-voltar" type="button" class="btn btn-link" style="text-align:right; margin-right: 20px" onclick="$('#signupbox').hide(); $('#loginbox').show()">Voltar para login</button>                                                
+                        </div>
+
                     </form>             
 
+                    <!-- comandos --> 
+                    <script type="text/javascript">
+                        jQuery(function ($) {
+                            $("#cep").change(function () {
+                                var cep_code = $(this).val();
+                                if (cep_code.length <= 0) return;
+                                $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
+                                    function (result) {
+                                        if (result.status != 1) {
+                                            alert(result.message || "Houve um erro desconhecido");
+                                            return;
+                                        }
+                                        $("#cep").val(result.code);
+                                        $("#logradouro").val(result.address);
+                                        $("#bairro").val(result.district);
+                                        $("#cidade").val(result.city);
+                                        $("#estado").val(result.state);
+                                        //alert("Dados recebidos e alterados");
+                                    });
+                            });
+                        });
+
+                        $("#cep").mask("99999-999");                
+                    </script>
                 </div>
             </div>                
          </div> 
     </div>    
   </body>
-
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('form-horizontal');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-
 </html>
 
 
