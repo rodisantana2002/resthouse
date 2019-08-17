@@ -21,18 +21,19 @@ $(document).ready(function () {
     $("#cep").change(function () {
         var cep_code = $(this).val();
         if (cep_code.length <= 0) return;
-        $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
+        $.get("https://viacep.com.br/ws/" + cep_code + "/json/",
             function (result) {
-                if (result.status != 1) {
-                    alert(result.message || "Houve um erro desconhecido");
+                if (("erro" in result)) {
+                    alert("CEP informado não foi encontrado!");
                     return;
+                } else {
+                    $("#cep").val(result.cep);
+                    $("#logradouro").val(result.logradouro);
+                    $("#bairro").val(result.bairro);
+                    $("#cidade").val(result.localidade);
+                    $("#estado").val(result.uf);
+                    $("#numero").focus();
                 }
-                $("#cep").val(result.code);
-                $("#logradouro").val(result.address);
-                $("#bairro").val(result.district);
-                $("#cidade").val(result.city);
-                $("#estado").val(result.state);
-                $("#numero").focus();
             });
     });
     $("#cep").mask("99999-999");
