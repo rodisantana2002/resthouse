@@ -1,13 +1,13 @@
-DROP TABLE Usuario;
+DROP TABLE usuario;
 -- -- 
 -- -- SQLLite
-CREATE TABLE Usuario (  id INTEGER NOT NULL PRIMARY KEY,
+CREATE TABLE usuario (  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                         situacao VARCHAR(30) NULL,
                         email VARCHAR(100) NULL UNIQUE,
-                        nomeCompleto VARCHAR(100) NULL,
+                        nomecompleto VARCHAR(100) NULL,
                         sexo VARCHAR(30) NULL,
-                        foneCelular VARCHAR(12) NULL UNIQUE,
-                        dtNascimento VARCHAR(10) NULL,
+                        fonecelular VARCHAR(12) NULL UNIQUE,
+                        dtnascimento VARCHAR(10) NULL,
                         logradouro VARCHAR(100) NULL,
                         numero VARCHAR(10) NULL,
                         complemento VARCHAR(50) NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Usuario (  id INTEGER NOT NULL PRIMARY KEY,
                         estado VARCHAR(30) NULL,
                         cep VARCHAR(12) NULL,
                         senha VARCHAR(30) NULL,
-                        dtRegistro VARCHAR(30)  NULL,
-                        superUser VARCHAR(12) NULL);
-CREATE INDEX idx_Usuario_nomeCompleto ON Usuario (nomeCompleto);
+                        dtregistro VARCHAR(30)  NULL,
+                        superuser VARCHAR(12) NULL);
+CREATE INDEX idx_Usuario_nomeCompleto ON usuario (nomecompleto);
 

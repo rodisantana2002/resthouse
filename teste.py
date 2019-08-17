@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 def Main():
         # db.create_all()
     user = Usuario()
-    user.nomeCompleto = "rodolfo"
+    user.nomecompleto = "rodolfo"
     user.email = "jose441d4d"
     user.situacao = "Ativo"
 

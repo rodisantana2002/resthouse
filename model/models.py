@@ -19,10 +19,10 @@ class Usuario(db.Model):
 
     situacao = db.Column(db.String(30), default="Ativo")
     email = db.Column(db.String(100))
-    nomeCompleto = db.Column(db.String(100))
+    nomecompleto = db.Column(db.String(100))
     sexo = db.Column(db.String(30))
-    foneCelular = db.Column(db.String(12))
-    dtNascimento = db.Column(db.String(10))
+    fonecelular = db.Column(db.String(12))
+    dtnascimento = db.Column(db.String(10))
 
     # endereço
     logradouro = db.Column(db.String(100))
@@ -35,15 +35,15 @@ class Usuario(db.Model):
 
     # acesso
     senha = db.Column(db.String(30))
-    dtRegistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    superUser = db.Column(db.Boolean, default=False)
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    superuser = db.Column(db.Boolean, default=False)
 
     def serialize(self):
         return {
             'id': self.id,
             'situacao': self.situacao,
             'email': self.email,
-            'nomeCompleto': self.nomeCompleto
+            'nomeCompleto': self.nomecompleto
         }
 
     def __repr__(self):
