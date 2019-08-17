@@ -3,7 +3,7 @@ import os
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from model.usuario import User
+from model.models import Usuario
 
 app = Flask(__name__, template_folder='templates')
 bootstrap = Bootstrap(app)
@@ -23,7 +23,8 @@ def index():
 @app.route('/login', methods=['POST'])
 def user():
     error = None
-    user = User(request.form['username'], request.form['password'])
+    # users = User(request.form['username'], request.form['password'])
+    users = Usuario().query.all()
 
     if request.method == 'POST':
         print(request.form['username'])
@@ -31,7 +32,7 @@ def user():
         return render_template('index.html', users=users)
     else:
         error = 'Invalid username/password'
-        return render_template('index.html', users=user)
+        return render_template('index.html', users=users)
 
 
 if __name__ == '__main__':

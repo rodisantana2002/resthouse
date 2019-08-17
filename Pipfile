@@ -14,6 +14,8 @@ flask-bootstrap="*"
 flask = "*"
 flask-sqlalchemy = "*"
 flask-bootstrap="*"
+flask-email="*"
+flask-moment="*"
 flask-wtf="*"
 
 "psycopg2" = "*"
@@ -23,5 +25,4 @@ Jinja2 = "*"
 
 
 [requires]
-
 python_version = "3.6"
