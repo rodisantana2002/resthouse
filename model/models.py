@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 
 # Usuario
 class Usuario(db.Model):
-    __tablename__ = "Usuario"
+    __tablename__ = "usuario"
 
     # dados pessoais
     id = db.Column(db.Integer, primary_key=True)
