@@ -23,21 +23,21 @@
                         <img src="{{ url_for('static', filename='img/logo.jpg') }}" width=280 ></img>
                     </div>
 
-                    <form id="loginform" class="form-horizontal" style="align:center" role="form">     
-                        <div style="margin-bottom: 25px" class="input-group input-group-lg">
+                    <form id="loginform" class="form-horizontal" style="align:center" role="form" action="/login" method="post">     
+                        <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="email" class="form-control" name="username" value="" placeholder="email" required>                                        
+                            <input id="username" type="email" class="form-control" name="username" value="" placeholder="Email*" required>                                        
                         </div>
                             
-                        <div style="margin-bottom: 25px" class="input-group input-group-lg">
+                        <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="password" placeholder="senha" required>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="Senha*" required>
                         </div>
                             
                         <div style="margin-top:10px; text-align:center" class="form-group ">
                             <!-- Button -->
                             <div class="col-12">
-                                <button id="btn-login" type="submit" href="#" class="btn btn-warning btn-lg">Entrar  </button>
+                                <button id="btn-login" type="submit" href="/login" class="btn btn-warning">Entrar  </button>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" id="email-recuperar" placeholder="Email" required>
+                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" id="email-recuperar" placeholder="Email*" required>
                         </div>
                         <!-- comandos --> 
                         <div class="form-group" style="text-align:center; padding-right:15px; margin-bottom:-1px">                                       
@@ -121,26 +121,26 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" id="nomecompleto" placeholder="Nome Completo" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" id="nomecompleto" placeholder="Nome Completo*" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" id="email" placeholder="Email" required>
+                            <input type="email" style="margin-bottom: 15px" class="form-control form-control-lg" id="email" placeholder="Email*" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" id="celular" placeholder="Telefone Celular" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="celular" id="celular" placeholder="Telefone Celular*" required>
                             <script type="text/javascript">$("#celular").mask("(99) 99999-9999");</script>
                         </div>
 
                         <div style="margin-bottom: 15px" class="input-group">
                             <span class="input-group-addon">Data Nascimento</span>
-                            <input type="date" class="form-control" id="dtnascimento" placeholder="Data Nascimento" required>
+                            <input type="date" class="form-control" id="dtnascimento" placeholder="Data Nascimento*" required>
                         </div>
 
                         <div class="col-12">
                             <select id="sexo" class="form-control" style="margin-bottom: 15px; color=gray " required>
-                                <option selected>Sexo</option>
+                                <option selected>Sexo*</option>
                                 <option value="1">Masculino</option>
                                 <option value="2">Feminino</option>
                                 <option value="3">Outro</option>
@@ -148,11 +148,11 @@
                         </div>                                                
 
                         <div class="col-12">
-                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" id="senha" placeholder="Senha" required>
+                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" id="senha" placeholder="Senha*" required>
                         </div>
                             
                         <div class="col-12">
-                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" id="resenha" placeholder="Digite novamente a senha" required>
+                            <input type="password" style="margin-bottom: 15px" class="form-control form-control-lg" id="resenha" placeholder="Digite novamente a senha*" required>
                         </div>
 
                         <!-- Endereço --> 
@@ -162,15 +162,15 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cep" id="cep" placeholder="Cep" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cep" id="cep" placeholder="Cep*" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="logradouro" id="logradouro" placeholder="Logradouro" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="logradouro" id="logradouro" placeholder="Logradouro*" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="numero" id="numero" placeholder="Número" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="numero" id="numero" placeholder="Número*" required>
                         </div>
 
                         <div class="col-12">
@@ -178,11 +178,11 @@
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="bairro" id="bairro" placeholder="Bairro" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="bairro" id="bairro" placeholder="Bairro*" required>
                         </div>
 
                         <div class="col-12">
-                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cidade" id="cidade" placeholder="Cidade" required>
+                            <input type="text" style="margin-bottom: 15px" class="form-control form-control-lg" name="cidade" id="cidade" placeholder="Cidade*" required>
                         </div>
 
                         <div class="col-12">

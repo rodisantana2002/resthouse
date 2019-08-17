@@ -21,6 +21,7 @@ $(document).ready(function () {
     $("#cep").change(function () {
         var cep_code = $(this).val();
         if (cep_code.length <= 0) return;
+
         $.get("https://viacep.com.br/ws/" + cep_code + "/json/",
             function (result) {
                 if (("erro" in result)) {

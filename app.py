@@ -15,22 +15,25 @@ app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 db = SQLAlchemy(app)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('login.html', users=User.query.all())
-    # return render_template('login.html')
+    return render_template('login.html')
 
 
-@app.route('/user', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def user():
-    u = User(request.form['name'], request.form['email'])
-    db.session.add(u)
-    db.session.commit()
-    return redirect(url_for('index'))
+    error = None
+    user = User(request.form['username'], request.form['password'])
+
+    if request.method == 'POST':
+        print(request.form['username'])
+
+        return render_template('index.html', users=users)
+    else:
+        error = 'Invalid username/password'
+        return render_template('index.html', users=user)
 
 
-5
 if __name__ == '__main__':
-    db.create_all()
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
