@@ -1,1 +1,1 @@
-web: gunicorn -b 0.0.0.0:$PORT app:runner
+web: gunicorn -b 0.0.0.0:$PORT runner:app
