@@ -4,8 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from app.main.views import views
 from flask_bootstrap import Bootstrap
 
-db = SQLAlchemy()
-
 
 def create_app():
     app = Flask(__name__)
@@ -19,6 +17,7 @@ def create_app():
     app.register_blueprint(views)
     bootstrap = Bootstrap(app)
 
-    db.init_app(app)
+    db = SQLAlchemy(app)
+    # db.init_app(app)
 
     return app
