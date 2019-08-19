@@ -10,16 +10,15 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config.from_mapping(
-        SECRET_KEY=os.environ.get('SECRET_KEY') or 'dev_key',
-        SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL') or
-        'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/app/bd/flask_app.db',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False
-    )
+        SECRET_KEY=os.environ.get('SECRET_KEY') or 'dev_key')
 
+    DATABASE_URL = os.environ.get(
+        'DATABASE_URL', 'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/app/bd/flask_app.db')
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     app.register_blueprint(views)
     bootstrap = Bootstrap(app)
 
     db.init_app(app)
-    migrate.init_app(app, db)
 
     return app
