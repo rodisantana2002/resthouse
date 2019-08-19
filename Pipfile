@@ -10,11 +10,11 @@ flask-bootstrap="*"
 
 
 [packages]
-
 flask = "*"
 flask-sqlalchemy = "*"
 flask-bootstrap="*"
 flask-email="*"
+flask-views="*"
 flask-moment="*"
 flask-wtf="*"
 
