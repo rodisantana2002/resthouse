@@ -1,12 +1,10 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from app.main.views import views
 from flask_bootstrap import Bootstrap
 
 db = SQLAlchemy()
-migrate = Migrate()
 
 
 def create_app():
