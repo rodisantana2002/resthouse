@@ -1,26 +1,32 @@
 import os
 
 from flask import Flask, Blueprint, render_template, request, redirect, url_for
-from app.model.models import Usuario
+from app.controls.auth import Autenticacao
+from app.model.models import *
 
 views = Blueprint("views", __name__)
 
 
 @views.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('login.html')
+    return render_template('login.html', page=None)
+
+
+@views.route('/home', methods=['GET', 'POST'])
+def home():
+    return render_template('index.html')
 
 
 @views.route('/login', methods=['POST'])
 def user():
-    error = None
-    # users = User(request.form['username'], request.form['password'])
-    users = Usuario().query.all()
+    auth = Autenticacao()
+    result = auth.autenticarUsuario(
+        request.form['email-login'], request.form['password'])
 
     if request.method == 'POST':
-        print(request.form['username'])
-
-        return render_template('index.html', users=users)
+        if result.get("code") == "200":
+            return redirect(url_for('views.home'))
+        else:
+            return render_template('login.html', page=result)
     else:
-        error = 'Invalid username/password'
-        return render_template('index.html', users=users)
+        return render_template('login.html', page=None)

@@ -2,9 +2,11 @@ import os
 import datetime
 
 from enum import Enum
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
+
+models = Blueprint("models", __name__)
 
 app = Flask(__name__)
 db = SQLAlchemy(app)

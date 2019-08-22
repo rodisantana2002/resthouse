@@ -17,7 +17,15 @@
     }, false);
 })();
 
+
 $(document).ready(function () {
+
+    // load da pagina
+    if ($("#login-alerta").html() === "") {
+        $("#login-alerta").hide();
+    };
+
+
     $("#cep").change(function () {
         var cep_code = $(this).val();
         if (cep_code.length <= 0) return;
@@ -37,38 +45,28 @@ $(document).ready(function () {
                 }
             });
     });
+
     $("#cep").mask("99999-999");
-});
 
-$(document).ready(function () {
     $('#btn-registrar').click(function () {
         $("#loginbox").hide();
         $("#signupbox").show();
     });
-});
 
-$(document).ready(function () {
     $('#btn-registrar').click(function () {
         $("#loginbox").hide();
         $("#signupbox").show();
     });
-});
-
-$(document).ready(function () {
     $('#btn-voltar').click(function () {
         $("#loginbox").show();
         $("#signupbox").hide();
     });
-});
 
-$(document).ready(function () {
     $('#btn-recuperasenha').click(function () {
         $("#loginbox").hide();
         $("#recuperabox").show();
     });
-});
 
-$(document).ready(function () {
     $('#btn-voltar-login').click(function () {
         $("#recuperabox").hide();
         $("#loginbox").show();

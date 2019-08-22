@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-
+{% import "bootstrap/wtf.html" as wtf %}
 <html lang="pt">
   <head>
   	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
-
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">       
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}" type='text/javascript'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>    
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">   
+  
+    <script src="{{ url_for('static', filename='js/main.js') }}" type='text/javascript'></script>
   </head>
 
   <body >
     <div class="row" style="margin-top:10px;margin-left:10px;margin-right:10px">       
         <div id="loginbox" style="margin-top:20px;margin-left:20px;margin-right:20px" class="col-12">                    
-            <div class="panel panel-warning" style="border-color:brown">                           
+            <div class="panel panel-warning" style="border-color:#563A2D">                           
                 <div style="padding-top:20px; text-align:left" class="panel-body">
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-12"></div>
                     
+                    {% block content %}
+                        <div class="alert alert-warning" id="login-alerta" style="display:none; text-align:center">{{ page.msg }}</div>
+                    {% endblock %}
+
                     <div class="col-12" style="padding-bottom: 20px; text-align:center">
-                        <img src="{{ url_for('static', filename='img/logo.jpg') }}" width=280 ></img>
+                        <img src="{{ url_for('static', filename='img/logo.jpg') }}" width=300  ></img>
                     </div>
 
                     <form id="loginform" class="form-horizontal" style="align:center" role="form" action="/login" method="post">     
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="username" type="email" class="form-control" name="username" value="" placeholder="Email*" required>                                        
+                            <input id="email-login" type="email" class="form-control" name="email-login" value="" placeholder="Email*" required>                                        
                         </div>
                             
                         <div style="margin-bottom: 25px" class="input-group">
@@ -37,7 +41,7 @@
                         <div style="margin-top:10px; text-align:center" class="form-group ">
                             <!-- Button -->
                             <div class="col-12">
-                                <button id="btn-login" type="submit" href="/login" class="btn btn-warning">Entrar  </button>
+                                <button id="btn-login" type="submit" href="/login" class="btn btn-warning" style="background-color:#F58634">Entrar  </button>
                             </div>
                         </div>
 
@@ -47,7 +51,7 @@
 
                         <div class="col-12">
                             <div style="border-top: 1px solid#888; text-align:center">
-                                <a href="#" id="btn-registrar" style="text; font-weight:bold; color:brown; text-align:left "><h4>Criar Conta</h4></a>
+                                <a href="#" id="btn-registrar" style="text; font-weight:bold; color:#F58634; text-align:left "><h4>Criar Conta</h4></a>
                             </div>
                         </div>
                     </form>                                                        
@@ -59,11 +63,11 @@
     <div class="row" style="margin-top:5px;margin-left:10px;margin-right:10px">       
         <!-- recupera senha -->
         <div id="recuperabox" style="display:none; margin-top:5px;margin-left:10px;margin-right:10px" class="col-12">                            
-            <div class="panel panel-default" style="border-color:brown">
-                <div class="panel-heading"><h4>Recuperar senha</h4>
+            <div class="panel panel-default" style="border-color:#563A2D">
+                <div class="panel-heading" style="color:#F58634"><h4>Recuperar senha</h4>
                         <h5>
                             <div style="float:right; position: relative; top:-20px">
-                                <button id="btn-voltar-login" style="text" type="button" class="btn btn-link">Efetuar login</button>                                                
+                                <button id="btn-voltar-login" style="text" type="button btn-warning" class="btn btn-link">Efetuar login</button>                                                
                             </div>
                         </h5>
                 </div>
@@ -75,7 +79,7 @@
                         </div>
 
                         <div class="col-12">
-                            <label style="color:brown"> Informe o email que foi registrado na sua conta </label>
+                            <label style="color:#563A2D"> Informe o email que foi registrado na sua conta </label>
                             <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
                         </div>
 
@@ -85,7 +89,7 @@
                         <!-- comandos --> 
                         <div class="form-group" style="text-align:center; padding-right:15px; margin-bottom:-1px">                                       
                             <div class="col-12">
-                                <button id="btn-enviar-email" type="submit" class="btn btn-warning" ><i class="icon-hand-right"></i> Enviar </button>                            
+                                <button id="btn-enviar-email" type="submit" class="btn btn-warning" style="background-color:#F58634" ><i class="icon-hand-right"></i> Enviar </button>                            
                             </div>
                         </div>    
                     </form>             
@@ -98,8 +102,8 @@
     <div class="row" style="margin-top:5px;margin-left:10px;margin-right:10px">       
         <!-- registro -->
         <div id="signupbox" style="display:none; margin-top:1px;margin-left:5px;margin-right:5px" class="col-12">                            
-            <div class="panel panel-default" style="border-color:brown">        
-                <div class="panel-heading" ><h4>Informe seus dados</h4>
+            <div class="panel panel-default" style="border-color:#563A2D">        
+                <div class="panel-heading" style="color:#F58634" ><h4>Informe seus dados</h4>
                         <h5>
                             <div style="float:right; position: relative; top:-20px">
                                 <button id="btn-voltar" style="text" type="button" class="btn btn-link">Efetuar login</button>                                                
@@ -116,7 +120,7 @@
                         </div>
 
                         <div class="col-12">
-                            <label style="color:brown"> Identificação </label>
+                            <label style="color:#563A2D"> Identificação </label>
                             <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
                         </div>
 
@@ -157,7 +161,7 @@
 
                         <!-- Endereço --> 
                         <div class="col-12">
-                            <label style="color:brown"> Endereço </label>
+                            <label style="color:#563A2D"> Endereço </label>
                             <div style="border-top: 1px solid#888; padding-top:15px; text-align:center" >
                         </div>
 
@@ -195,7 +199,7 @@
                         <!-- comandos --> 
                         <div class="form-group" style="text-align:center; padding-right:15px; margin-bottom:-1px">                                       
                             <div class="col-12">
-                                <button id="btn-signup" type="submit" class="btn btn-warning" ><i class="icon-hand-right"></i> Enviar </button>                            
+                                <button id="btn-signup" type="submit" class="btn btn-warning" style="background-color:#F58634" ><i class="icon-hand-right"></i> Enviar </button>                            
                             </div>
                         </div>    
                     </form>             
