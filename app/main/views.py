@@ -25,7 +25,7 @@ def user():
 
     if request.method == 'POST':
         if result.get("code") == "200":
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.home', page=None))
         else:
             return render_template('login.html', page=result)
     else:

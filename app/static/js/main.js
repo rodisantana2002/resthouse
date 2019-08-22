@@ -23,6 +23,8 @@ $(document).ready(function () {
     // load da pagina
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
+    } else {
+        $("#login-alerta").show();
     };
 
 
