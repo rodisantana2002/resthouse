@@ -56,15 +56,18 @@ $(document).ready(function () {
     });
 
     $('#btn-registrar').click(function () {
+        $("#login-alerta").hide();
         $("#loginbox").hide();
         $("#signupbox").show();
     });
+
     $('#btn-voltar').click(function () {
         $("#loginbox").show();
         $("#signupbox").hide();
     });
 
     $('#btn-recuperasenha').click(function () {
+        $("#login-alerta").hide();
         $("#loginbox").hide();
         $("#recuperabox").show();
     });

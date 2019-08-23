@@ -19,8 +19,12 @@ class Autenticacao():
                 self.authentic["code"] = "404"
                 self.authentic["msg"] = "Email não foi localizado!"
             else:
-                self.authentic["code"] = "200"
-                self.authentic["msg"] = "OK"
+                if user.senha != password:
+                    self.authentic["code"] = "404"
+                    self.authentic["msg"] = "Senha informada esta incorreta!"
+                else:
+                    self.authentic["code"] = "200"
+                    self.authentic["msg"] = "OK"
 
         except:
             self.authentic.code = "500"
