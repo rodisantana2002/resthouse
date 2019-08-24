@@ -28,8 +28,8 @@ class Autenticacao():
 
         except:
             authentic = {"code": "", "msg": "", "email": ""}
-            self.authentic.code = "500"
-            self.authentic.msg = "Erro desconhecido"
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
 
         return self.authentic
 
