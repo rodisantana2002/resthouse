@@ -15,7 +15,7 @@ CREATE TABLE usuario (  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                         cidade VARCHAR(60) NULL,
                         estado VARCHAR(30) NULL,
                         cep VARCHAR(12) NULL,
-                        senha VARCHAR(30) NULL,
+                        senha VARCHAR(300) NULL,
                         dtregistro VARCHAR(30)  NULL,
                         superuser VARCHAR(12) NULL);
 CREATE INDEX idx_Usuario_nomeCompleto ON usuario (nomecompleto);

@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, Blueprint, render_template, request, redirect, url_for
+from flask import Flask, Blueprint, render_template, session, request, redirect, url_for
+from flask_login import login_required, login_user, current_user, logout_user
 from app.controls.auth import Autenticacao
 from app.model.models import *
 
@@ -17,6 +18,16 @@ def home():
     return render_template('index.html')
 
 
+@views.route('/registro', methods=['GET'])
+def cadastro():
+    return render_template('registro.html', page=None)
+
+
+@views.route('/recuperasenha', methods=['GET'])
+def recuperar_senha():
+    return render_template('recuperasenha.html', page=None)
+
+
 @views.route('/login', methods=['POST'])
 def user():
     auth = Autenticacao()
@@ -25,8 +36,33 @@ def user():
 
     if request.method == 'POST':
         if result.get("code") == "200":
-            return redirect(url_for('views.home', page=None))
+            session['email'] = result.get("email")
+            return redirect(url_for('views.home'))
         else:
             return render_template('login.html', page=result)
     else:
-        return render_template('login.html', page=None)
+        return render_template('login.html', page=result)
+
+
+@views.route('/sendregistro', methods=['POST'])
+def registrar():
+    usuario = Usuario()
+
+    usuario.nomecompleto = request.form["nomecompleto"]
+    usuario.email = request.form["email"]
+    usuario.fonecelular = request.form["celular"]
+    usuario.sexo = request.form["sexo"]
+    usuario.dtnascimento = request.form["dtnascimento"]
+    usuario.cep = request.form["cep"]
+    usuario.logradouro = request.form["logradouro"]
+    usuario.numero = request.form["numero"]
+    usuario.complemento = request.form["complemento"]
+    usuario.bairro = request.form["bairro"]
+    usuario.cidade = request.form["cidade"]
+    usuario.estado = request.form["estado"]
+    usuario.set_password(request.form["senha"])
+
+    auth = Autenticacao()
+    result = auth.registrarUsuario(usuario)
+
+    return render_template('registro.html', page=result)

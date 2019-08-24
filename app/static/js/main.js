@@ -17,16 +17,21 @@
     }, false);
 })();
 
-
 $(document).ready(function () {
 
-    // load da pagina
+    // load da pagina - login
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
         $("#login-alerta").show();
     };
 
+    // exibe alerta regsitro
+    if ($("#registro-alerta").html() === "") {
+        $("#registro-alerta").hide();
+    } else {
+        $("#registro-alerta").show();
+    };
 
     $("#cep").change(function () {
         var cep_code = $(this).val();
@@ -50,30 +55,4 @@ $(document).ready(function () {
 
     $("#cep").mask("99999-999");
 
-    $('#btn-registrar').click(function () {
-        $("#loginbox").hide();
-        $("#signupbox").show();
-    });
-
-    $('#btn-registrar').click(function () {
-        $("#login-alerta").hide();
-        $("#loginbox").hide();
-        $("#signupbox").show();
-    });
-
-    $('#btn-voltar').click(function () {
-        $("#loginbox").show();
-        $("#signupbox").hide();
-    });
-
-    $('#btn-recuperasenha').click(function () {
-        $("#login-alerta").hide();
-        $("#loginbox").hide();
-        $("#recuperabox").show();
-    });
-
-    $('#btn-voltar-login').click(function () {
-        $("#recuperabox").hide();
-        $("#loginbox").show();
-    });
 });
