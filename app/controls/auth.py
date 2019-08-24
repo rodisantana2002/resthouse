@@ -27,14 +27,12 @@ class Autenticacao():
                     self.authentic["msg"] = "Senha informada esta incorreta!"
 
         except:
-            authentic = {"code": "", "msg": "", "email": ""}
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"
 
         return self.authentic
 
     def registrarUsuario(self, usuario):
-        self.authentic = {"code": "", "msg": "", "email": ""}
         try:
             # validar se usuario já existe
             user = self.usuario.query.filter_by(email=usuario.email).first()

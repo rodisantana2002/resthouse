@@ -18,8 +18,14 @@ flask-views="*"
 flask-moment="*"
 flask-wtf="*"
 flask-login="*"
-werkzeug="*"
+Flask-Migrate="*"
+Flask-Script="*"
 
+itsdangerous="*"
+python-dateutil="*"
+SQLAlchemy="*"
+Werkzeug="*"
+WTForms="*"
 "psycopg2" = "*"
 gunicorn = "*"
 Jinja2 = "*"
@@ -28,3 +34,4 @@ Jinja2 = "*"
 
 [requires]
 python_version = "3.6"
+
