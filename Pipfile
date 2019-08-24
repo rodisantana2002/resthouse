@@ -17,6 +17,7 @@ flask-email="*"
 flask-views="*"
 flask-moment="*"
 flask-wtf="*"
+flask-login="*"
 
 "psycopg2" = "*"
 gunicorn = "*"
