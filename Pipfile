@@ -18,6 +18,7 @@ flask-views="*"
 flask-moment="*"
 flask-wtf="*"
 flask-login="*"
+werkzeug="*"
 
 "psycopg2" = "*"
 gunicorn = "*"
