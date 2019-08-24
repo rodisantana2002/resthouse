@@ -52,7 +52,8 @@ class Autenticacao():
             self.usuario.add(usuario)
             self.authentic["code"] = "200"
             self.authentic["msg"] = "Registro efetuado com sucesso!"
-            return authentic
+
+            return self.authentic
 
         except:
             self.authentic["code"] = "500"
