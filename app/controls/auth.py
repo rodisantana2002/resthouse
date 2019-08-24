@@ -33,12 +33,11 @@ class Autenticacao():
         return self.authentic
 
     def registrarUsuario(self, usuario):
-        # try:
-            # validar se usuario já existe
+        # validar se usuario já existe
         user = self.usuario.query.filter_by(email=usuario.email).first()
         if user != None:
             self.authentic["code"] = "500"
-            self.authentic["msg"] = "Email já esta registrado para outro usuário!"
+            self.authentic["msg"] = "Ops! Não foi possível efetivar o registro, pois o Email já esta registrado para outro usuário!"
             return self.authentic
 
         # validar se celular já existe
@@ -46,15 +45,10 @@ class Autenticacao():
             fonecelular=usuario.fonecelular).first()
         if user != None:
             self.authentic["code"] = "500"
-            self.authentic["msg"] = "Telefone celular já esta registrado para outro usuário!"
+            self.authentic["msg"] = "Ops! Não foi possível efetivar o registro, pois o Telefone celular já esta registrado para outro usuário!"
             return self.authentic
 
         self.usuario.add(usuario)
         self.authentic["code"] = "200"
         self.authentic["msg"] = "Registro efetuado com sucesso!"
         return self.authentic
-
-        # except:
-        #     self.authentic["code"] = "500"
-        #     self.authentic["msg"] = "deu pau"
-        #     return self.authentic
