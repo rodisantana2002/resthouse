@@ -52,3 +52,35 @@ class Autenticacao():
         self.authentic["code"] = "200"
         self.authentic["msg"] = "Registro efetuado com sucesso!"
         return self.authentic
+
+    def validar_email(self, email):
+        try:
+            user = self.usuario.query.filter_by(email=email).first()
+            if user != None:
+                self.authentic["code"] = "404"
+                self.authentic["msg"] = "Email foi localizado!"
+            else:
+                self.authentic["code"] = "200"
+                self.authentic["msg"] = "Email não foi localizado"
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
+
+        return self.authentic
+
+    def validar_celular(self, celular):
+        try:
+            user = self.usuario.query.filter_by(fonecelular=celular).first()
+            if user != None:
+                self.authentic["code"] = "404"
+                self.authentic["msg"] = "Celular foi localizado!"
+            else:
+                self.authentic["code"] = "200"
+                self.authentic["msg"] = "Celular não foi localizado"
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
+
+        return self.authentic

@@ -19,6 +19,8 @@
 
 
 $(document).ready(function () {
+    // var url_base = "http://localhost:5000/";
+    var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
     if ($("#login-alerta").html() === "") {
@@ -67,6 +69,40 @@ $(document).ready(function () {
         return re.test(String(email).toLowerCase());
     }
 
+    function email_exist(email) {
+        $.get("validaremail/" + email,
+            function (result) {
+                if (("erro" in result)) {
+                    return false;
+                } else {
+                    if (result.code === "404") {
+                        $("#registro-alerta").html("Ops! Esse email já esta sendo utilizado por outro usuário!");
+                        $("#registro-alerta").show();
+                        $("#email").focus();
+                        return true;
+                    };
+                    return false;
+                }
+            });
+    }
+
+    function celular_exist(celular) {
+        $.get("validarfone/" + celular,
+            function (result) {
+                if (("erro" in result)) {
+                    return false;
+                } else {
+                    if (result.code === "404") {
+                        $("#registro-alerta").html("Ops! Esse telefone celular já esta sendo utilizado por outro usuário!");
+                        $("#registro-alerta").show();
+                        $("#celular").focus();
+                        return true;
+                    };
+                    return false;
+                }
+            });
+    }
+
     function validar() {
         var msg = "O campo deve ser informado!"
 
@@ -98,6 +134,14 @@ $(document).ready(function () {
             return false;
         }
 
+        if (celular_exist($("#celular").val())) {
+            return false;
+        }
+
+        if (email_exist($("#email").val())) {
+            return false;
+        }
+
         if ($("#dtnascimento").val().trim().length == 0) {
             $("#registro-alerta").html(msg);
             $("#registro-alerta").show();
@@ -113,6 +157,12 @@ $(document).ready(function () {
         }
         if ($("#senha").val().trim().length == 0) {
             $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#senha").focus();
+            return false;
+        }
+        if ($("#senha").val().trim().length < 5) {
+            $("#registro-alerta").html("A senha informada deve ter ao menos 5 caracteres");
             $("#registro-alerta").show();
             $("#senha").focus();
             return false;

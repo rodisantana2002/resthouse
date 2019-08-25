@@ -23,6 +23,20 @@ def cadastro():
     return render_template('registro.html', page=None)
 
 
+@views.route('/validaremail/<email>')
+def validar_email(email):
+    auth = Autenticacao()
+    result = auth.validar_email(email=email)
+    return result
+
+
+@views.route('/validarfone/<celular>')
+def validar_celular(celular):
+    auth = Autenticacao()
+    result = auth.validar_celular(celular)
+    return result
+
+
 @views.route('/recuperasenha', methods=['GET'])
 def recuperar_senha():
     return render_template('recuperasenha.html', page=None)
