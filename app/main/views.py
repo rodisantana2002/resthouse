@@ -27,14 +27,14 @@ def cadastro():
 def validar_email(email):
     auth = Autenticacao()
     result = auth.validar_email(email=email)
-    return result
+    return result.get("code")
 
 
 @views.route('/validarfone/<celular>')
 def validar_celular(celular):
     auth = Autenticacao()
     result = auth.validar_celular(celular)
-    return result
+    return result.get("code")
 
 
 @views.route('/recuperasenha', methods=['GET'])

@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    // var url_base = "http://localhost:5000/";
-    var url_base = "http://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    //var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
     if ($("#login-alerta").html() === "") {
@@ -72,34 +72,26 @@ $(document).ready(function () {
     function email_exist(email) {
         $.get("validaremail/" + email,
             function (result) {
-                if (("erro" in result)) {
-                    return false;
-                } else {
-                    if (result.code === "404") {
-                        $("#registro-alerta").html("Ops! Esse email já esta sendo utilizado por outro usuário!");
-                        $("#registro-alerta").show();
-                        $("#email").focus();
-                        return true;
-                    };
-                    return false;
-                }
+                if (result === "404") {
+                    $("#registro-alerta").html("Ops! Esse email já esta sendo utilizado por outro usuário!");
+                    $("#registro-alerta").show();
+                    $("#email").focus();
+                    return true;
+                };
+                return false;
             });
     }
 
     function celular_exist(celular) {
         $.get("validarfone/" + celular,
             function (result) {
-                if (("erro" in result)) {
-                    return false;
-                } else {
-                    if (result.code === "404") {
-                        $("#registro-alerta").html("Ops! Esse telefone celular já esta sendo utilizado por outro usuário!");
-                        $("#registro-alerta").show();
-                        $("#celular").focus();
-                        return true;
-                    };
-                    return false;
-                }
+                if (result === "404") {
+                    $("#registro-alerta").html("Ops! Esse telefone celular já esta sendo utilizado por outro usuário!");
+                    $("#registro-alerta").show();
+                    $("#celular").focus();
+                    return true;
+                };
+                return false;
             });
     }
 
