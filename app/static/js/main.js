@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
+    //ar url_base = "http://localhost:5000/";
     var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
