@@ -4,6 +4,7 @@ from flask import Flask, Blueprint, render_template, session, request, redirect,
 from flask_login import login_required, login_user, current_user, logout_user
 from app.controls.auth import Autenticacao
 from app.model.models import *
+from flask_mail import Mail, Message
 
 views = Blueprint("views", __name__)
 
