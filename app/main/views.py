@@ -53,8 +53,8 @@ def enviar_senha():
         # enviar email
         # result = auth.enviar_senha(request.form['email-recuperar'])
         resul = Utils()
-        resul.send_mail(
-            current_app, "New Feedback", current_app.config['MAIL_DEFAULT_SENDER'], 'feedback.html', )
+        resul.send_mail(current_app, "New Feedback",
+                        current_app.config['MAIL_DEFAULT_SENDER'], 'feedback.html', )
         return render_template('recuperasenha.html', page=result)
     else:
         return render_template('recuperasenha.html', page=result)
