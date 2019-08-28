@@ -47,15 +47,13 @@ def recuperar_senha():
 @views.route('/recuperaemail', methods=['POST'])
 def enviar_senha():
     auth = Autenticacao()
-
     result = auth.validar_email(request.form['email-recuperar'])
+    
     if result.get("code") != "200":
         # enviar email
-        # result = auth.enviar_senha(request.form['email-recuperar'])
-        resul = Utils()
-        resul.send_mail(current_app, "New Feedback",
-                        current_app.config['MAIL_DEFAULT_SENDER'], 'feedback.html', )
-        return render_template('recuperasenha.html', page=result)
+        send = Utils()
+        send.send_mail(current_app, "Recuperação de Senha", request.form['email-recuperar'], 'sendemail.html')        
+        return render_template('recuperasenha.html', page=None)
     else:
         return render_template('recuperasenha.html', page=result)
 
