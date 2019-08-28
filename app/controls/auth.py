@@ -1,15 +1,18 @@
 import os
+import string
 
 from flask import Flask, Blueprint
 from app.model.models import Usuario
+from random import randrange
+from app.controls.utils import *
 
 auth = Blueprint("auth", __name__)
-
 
 class Autenticacao():
     def __init__(self):
         self.usuario = Usuario()
         self.authentic = {"code": "", "msg": "", "email": ""}
+        self.alphabets = string.digits + string.ascii_letters
 
     def autenticarUsuario(self, email, password):
         try:
@@ -54,8 +57,27 @@ class Autenticacao():
         return self.authentic
 
     def enviar_senha(self, email):
-        self.authentic["code"] = "200"
-        self.authentic["msg"] = "Email enviado com sucesso!"
+        try:
+            # localiza o usuario    
+            user = self.usuario.query.filter_by(email=email).first()                      
+            
+            # criar senha provisória e atualiza
+            senha = self.gerar_string(8)
+            user.set_password(senha)
+            user.update()
+
+            # envia senha criada
+            send = Utils()
+            send.send_mail(current_app, "Recuperação de Senha", email, 'send_email.html', user.nomecompleto, senha)        
+            
+            # prepara o retorn
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Email enviado com sucesso!"        
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
+            
         return self.authentic
 
     def validar_email(self, email):
@@ -73,7 +95,7 @@ class Autenticacao():
             self.authentic["msg"] = "Erro desconhecido"
 
         return self.authentic
-
+    
     def validar_celular(self, celular):
         try:
             user = self.usuario.query.filter_by(fonecelular=celular).first()
@@ -89,3 +111,6 @@ class Autenticacao():
             self.authentic["msg"] = "Erro desconhecido"
 
         return self.authentic
+
+    def gerar_string(self, n):
+        return ''.join(self.alphabets[randrange(len(self.alphabets))] for i in range(n))

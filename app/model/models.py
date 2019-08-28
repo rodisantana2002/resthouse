@@ -22,7 +22,7 @@ class Usuario(db.Model):
     # dados pessoais
     id = db.Column(db.Integer, primary_key=True)
 
-    situacao = db.Column(db.String(30), default="Ativo")
+    situacao = db.Column(db.String(30), default="Ativa")
     email = db.Column(db.String(100))
     nomecompleto = db.Column(db.String(100))
     sexo = db.Column(db.String(30))
@@ -52,6 +52,9 @@ class Usuario(db.Model):
     def add(self, usuario):
         db.session.add(usuario)
         db.session.commit()
+
+    def update(self):
+        db.session.commit()    
 
     def serialize(self):
         return {

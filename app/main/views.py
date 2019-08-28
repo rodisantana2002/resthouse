@@ -5,7 +5,6 @@ from flask_login import login_required, login_user, current_user, logout_user
 from app.controls.auth import *
 from app.controls.utils import *
 from app.model.models import *
-from flask_mail import Mail, Message
 
 views = Blueprint("views", __name__)
 
@@ -50,10 +49,9 @@ def enviar_senha():
     result = auth.validar_email(request.form['email-recuperar'])
     
     if result.get("code") != "200":
-        # enviar email
-        send = Utils()
-        send.send_mail(current_app, "Recuperação de Senha", request.form['email-recuperar'], 'sendemail.html')        
-        return render_template('recuperasenha.html', page=None)
+        # atualizar senha e enviar email
+        result = auth.enviar_senha(request.form['email-recuperar'])
+        return render_template('recuperasenha.html', page=result)
     else:
         return render_template('recuperasenha.html', page=result)
 
