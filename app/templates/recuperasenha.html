@@ -28,7 +28,7 @@
                 <div class="panel-body" >
 
                     {% block content_email %}
-                        <div class="alert alert-danger" name="recupera-senha" id="recupera-senha" style="display:none; text-align:center">{{ page.msg }}</div>        
+                        <div class="alert alert-warning" name="recupera-senha" id="recupera-senha" style="display:none; text-align:center">{{ page.msg }}</div>        
                     {% endblock %}     
 
                     <form id="recuperaform" class="form-horizontal" role="form"  action="/recuperaemail" method="POST">

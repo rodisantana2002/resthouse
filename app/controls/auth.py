@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 class Autenticacao():
     def __init__(self):
         self.usuario = Usuario()
-        self.authentic = {"code": "", "msg": "", "email": ""}
+        self.authentic = {"code": "", "msg": "", "email": "", "token":""}
         self.alphabets = string.digits + string.ascii_letters
 
     def autenticarUsuario(self, email, password):
@@ -22,9 +22,13 @@ class Autenticacao():
                 self.authentic["msg"] = "Email não foi localizado!"
             else:
                 if user.check_password(password):
+                    # registra o token 
+                    user.token = self.gerar_string(50)
+                    user.update()
                     self.authentic["code"] = "200"
                     self.authentic["msg"] = "OK"
                     self.authentic["email"] = user.email
+                    self.authentic["token"] = user.token
                 else:
                     self.authentic["code"] = "404"
                     self.authentic["msg"] = "Senha informada esta incorreta!"
@@ -68,7 +72,7 @@ class Autenticacao():
 
             # envia senha criada
             send = Utils()
-            send.send_mail(current_app, "Recuperação de Senha", email, 'send_email.html', user.nomecompleto, senha)        
+            send.send_mail(current_app, "Recuperação de Senha", email, 'mails/send_email.html', user.nomecompleto, senha)        
             
             # prepara o retorn
             self.authentic["code"] = "200"
@@ -114,3 +118,6 @@ class Autenticacao():
 
     def gerar_string(self, n):
         return ''.join(self.alphabets[randrange(len(self.alphabets))] for i in range(n))
+    
+    def eferuar_logout(self):
+        pass

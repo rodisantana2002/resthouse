@@ -59,12 +59,12 @@ def enviar_senha():
 @views.route('/login', methods=['POST'])
 def user():
     auth = Autenticacao()
-    result = auth.autenticarUsuario(
-        request.form['email-login'], request.form['password'])
+    result = auth.autenticarUsuario(request.form['email-login'], request.form['password'])
 
     if request.method == 'POST':
         if result.get("code") == "200":
             session['email'] = result.get("email")
+            session['token'] = result.get("token")
             return redirect(url_for('views.home'))
         else:
             return render_template('login.html', page=result)

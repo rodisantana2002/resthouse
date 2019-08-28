@@ -42,6 +42,7 @@ class Usuario(db.Model):
     senha = db.Column(db.String(30))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     superuser = db.Column(db.Boolean, default=False)
+    token = db.Column(db.String(100))
 
     def set_password(self, password):
         self.senha = generate_password_hash(password)
@@ -62,7 +63,7 @@ class Usuario(db.Model):
             'situacao': self.situacao,
             'email': self.email,
             'nomeCompleto': self.nomecompleto,
-            'senha': self.senha
+            'token': self.token
         }
 
     def __repr__(self):

@@ -1,4 +1,4 @@
-DROP TABLE usuario;
+-- DROP TABLE usuario;
 -- -- 
 -- -- SQLLite
 CREATE TABLE usuario (  id SERIAL NOT NULL PRIMARY KEY,
@@ -17,6 +17,7 @@ CREATE TABLE usuario (  id SERIAL NOT NULL PRIMARY KEY,
                         cep VARCHAR(20) NULL,
                         senha VARCHAR(300) NULL,
                         dtregistro VARCHAR(30)  NULL,
+                        token VARCHAR(100) NULL,
                         superuser VARCHAR(12) NULL);
 CREATE INDEX idx_Usuario_nomeCompleto ON usuario (nomecompleto);
 
