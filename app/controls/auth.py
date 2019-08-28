@@ -53,6 +53,11 @@ class Autenticacao():
         self.authentic["msg"] = "Registro efetuado com sucesso!"
         return self.authentic
 
+    def enviar_senha(self, email):
+        self.authentic["code"] = "200"
+        self.authentic["msg"] = "Email enviado com sucesso!"
+        return self.authentic
+
     def validar_email(self, email):
         try:
             user = self.usuario.query.filter_by(email=email).first()

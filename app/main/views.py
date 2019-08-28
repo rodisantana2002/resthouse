@@ -2,7 +2,8 @@ import os
 
 from flask import Flask, Blueprint, render_template, session, request, redirect, url_for
 from flask_login import login_required, login_user, current_user, logout_user
-from app.controls.auth import Autenticacao
+from app.controls.auth import *
+from app.controls.utils import *
 from app.model.models import *
 from flask_mail import Mail, Message
 
@@ -41,6 +42,22 @@ def validar_celular(celular):
 @views.route('/recuperasenha', methods=['GET'])
 def recuperar_senha():
     return render_template('recuperasenha.html', page=None)
+
+
+@views.route('/recuperaemail', methods=['POST'])
+def enviar_senha():
+    auth = Autenticacao()
+
+    result = auth.validar_email(request.form['email-recuperar'])
+    if result.get("code") != "200":
+        # enviar email
+        # result = auth.enviar_senha(request.form['email-recuperar'])
+        resul = Utils()
+        resul.send_mail(
+            current_app, "New Feedback", current_app.config['MAIL_DEFAULT_SENDER'], 'feedback.html', )
+        return render_template('recuperasenha.html', page=result)
+    else:
+        return render_template('recuperasenha.html', page=result)
 
 
 @views.route('/login', methods=['POST'])

@@ -10,7 +10,7 @@ from app.controls.auth import auth
 from app.model.models import models
 
 db = SQLAlchemy()
-mail = Mail()
+app_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 def create_app():
@@ -28,13 +28,13 @@ def create_app():
     app.config['MAIL_PASSWORD'] = '12345Perkons'
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
+    app.config['MAIL_DEFAULT_SENDER'] = 'papersrs2002@gmail.com'
 
     app.register_blueprint(views)
     app.register_blueprint(auth)
     app.register_blueprint(models)
 
     bootstrap = Bootstrap(app)
-    mail = Mail(app)
     db.init_app(app)
 
     return app

@@ -36,6 +36,13 @@ $(document).ready(function () {
         $("#registro-alerta").show();
     };
 
+    // exibe alerta envioemail
+    if ($("#recupera-senha").html() === "") {
+        $("#recupera-senha").hide();
+    } else {
+        $("#recupera-senha").show();
+    };
+
     $("#cep").change(function () {
         var cep_code = $(this).val();
         if (cep_code.length <= 0) return;
@@ -63,6 +70,34 @@ $(document).ready(function () {
             $("#signupform").submit();
         }
     });
+
+    $("#btn-enviar-email").click(function () {
+        if (validaremail()) {
+            $("#recuperaform").submit();
+        }
+    });
+
+    // functions
+    function validaremail() {
+        var msg = "O campo deve ser informado!"
+
+        if ($("#email-recuperar").val().trim().length === 0) {
+            $("#recupera-senha").html(msg);
+            $("#recupera-senha").show();
+            $("#email-recuperar").focus();
+            return false;
+        }
+
+        if (!validateEmail($("#email-recuperar").val())) {
+            $("#recupera-senha").html("Email não esta no formato válido!");
+            $("#recupera-senha").show();
+            $("#email-recuperar").focus();
+            return false;
+        }
+
+        return true;
+    }
+
 
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
