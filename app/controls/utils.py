@@ -29,7 +29,7 @@ class Utils():
         # return thr
 
         msg = Message('Hello', sender='papersrs2002@gmail.com',
-                      recipients=['rodisantana2002@gmail.com'])
+                      recipients=['papersrs2002@gmail.com'])
         msg.body = "Hello Flask message sent from Flask-Mail"
         mail.send(msg)
         # with app.app_context():
