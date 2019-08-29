@@ -18,14 +18,14 @@
       <div class="container">
         <div class="navbar-header" >
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" style="border-color:white; background-color:#F58634">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Menu</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand"  href="{{ url_for('views.index') }}" style="color:white"><span class="glyphicon glyphicon-cutlery"></span> Resthouse</a>
+          <a class="navbar-brand"  href="{{ url_for('views.index') }}" style="color:white; text-align:left"><b><span class="glyphicon glyphicon-cutlery"></span> Resthouse</b></a></br>
         </div>
-
+        <h5 style="color:white; text-align:right">Olá, Rodolfo Santana</h5>
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav">
             <li><a href="{{ url_for('views.index') }}" style="color:white"><span class="glyphicon glyphicon-user"></span> Meus Dados</a></li>
@@ -35,9 +35,8 @@
       </div>      
     </div>
 
-    <div class="row" style="margin-top:-18px;margin-left:2px;margin-right:2px">           
-
-        <div style="margin-left:4px;margin-right:4px;  ">
+    <div class="row" style="margin-top:-15px;margin-left:8px;margin-right:8px">           
+        <div style="margin-left:2px;margin-right:2px;">
           <ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="home-tab-md" style="color:#F58634" data-toggle="tab" href="#home-md" role="tab" 
@@ -45,7 +44,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" id="profile-tab-md" style="color:#F58634" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" 
-                  aria-selected="false"><span class="glyphicon glyphicon-barcode"></span> Catálogo</a>
+                  aria-selected="false"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="contact-tab-md" style="color:#F58634" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md" 
@@ -54,101 +53,45 @@
           </ul>
         </div>
 
-        <div class="tab-content card pt-5" id="myTabContentMD" style="margin-top:3px;margin-left:4px;margin-right:4px;">
-          <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">     
-     
-            <div style="margin-top:3px;margin-left:4px;margin-right:4px; text-align:left">
+        <div class="tab-content card pt-5" id="myTabContentMD" style="margin-top:5px;margin-left:1px;margin-right:1px;">
+          <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">         
+              <div class="container">
+                    <div class="row">
+                      <div class="col-xs-18 col-sm-6 col-md-3">
+                        <div class="thumbnail" style="border-color:c0c0c0;">
+                          <img src="{{ url_for('static', filename='gallery/associados/1.png') }}">
+                            <div class="caption">
+                              <h4>Thumbnail label</h4>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
+                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="recomendar"><i class="glyphicon glyphicon-star"></i></a> 
+                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="favoritos"><i class="glyphicon glyphicon-heart"></i></a>
 
+                              <a href="#" class="btn btn-warning btn-sm" role="button" style="border-color:#F58634; background-color:#F58634"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a> 
 
+                          </div>
+                        </div>
+                      </div>                      
+                </div><!--/row-->
 
+                    <div class="row">
+                      <div class="col-xs-18 col-sm-6 col-md-3">
+                        <div class="thumbnail" style="border-color:c0c0c0;">
+                          <img src="{{ url_for('static', filename='gallery/associados/1.png') }}">
+                            <div class="caption">
+                              <h4>Thumbnail label</h4>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
+                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="recomendar"><i class="glyphicon glyphicon-star"></i></a> 
+                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="favoritos"><i class="glyphicon glyphicon-heart"></i></a>
 
+                              <a href="#" class="btn btn-warning btn-sm" role="button" style="border-color:#F58634; background-color:#F58634"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a> 
 
-<hr>
-<div class="container">
-      <div class="row">
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-xs-18 col-sm-6 col-md-3">
-          <div class="thumbnail">
-            <img src="http://placehold.it/500x250/EEE">
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a> <a href="#" class="btn btn-info btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a>
-            </div>
-          </div>
-        </div>
+                          </div>
+                        </div>
+                      </div>                      
+                </div><!--/row-->
 
-
-        
-  </div><!--/row-->
-</div><!--/container -->
-
-
-
-
-            </div>
-
-            
-
+              </div><!--/container -->
           </div>    
-
-
-
-
 
           <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
             <p>
