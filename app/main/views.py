@@ -7,12 +7,14 @@ from app.controls.utils import *
 from app.model.models import *
 
 views = Blueprint("views", __name__)
-
+auth = Autenticacao()
 
 @views.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('login.html', page=None)
-
+    if 'email' in session:
+        return redirect(url_for('views.home'))
+    else:    
+        return render_template('login.html', page=None)          
 
 @views.route('/home', methods=['GET', 'POST'])
 def home():
@@ -21,44 +23,50 @@ def home():
 
 @views.route('/registro', methods=['GET'])
 def cadastro():
-    return render_template('registro.html', page=None)
+    if 'email' in session:
+        return redirect(url_for('views.home'))
+    else:    
+        return render_template('registro.html', page=None)          
 
+@views.route('/logout', methods=['GET'])
+def sair():
+    session.pop('email', None)
+    return redirect(url_for('views.index'))
 
 @views.route('/validaremail/<email>')
 def validar_email(email):
-    auth = Autenticacao()
     result = auth.validar_email(email=email)
     return result.get("code")
 
 
 @views.route('/validarfone/<celular>')
 def validar_celular(celular):
-    auth = Autenticacao()
     result = auth.validar_celular(celular)
     return result.get("code")
 
 
 @views.route('/recuperasenha', methods=['GET'])
 def recuperar_senha():
-    return render_template('recuperasenha.html', page=None)
+    if 'email' in session:
+        return redirect(url_for('views.home'))
+    else:    
+        return render_template('recuperasenha.html', page=None)
 
 
 @views.route('/recuperaemail', methods=['POST'])
 def enviar_senha():
-    auth = Autenticacao()
     result = auth.validar_email(request.form['email-recuperar'])
     
     if result.get("code") != "200":
         # atualizar senha e enviar email
         result = auth.enviar_senha(request.form['email-recuperar'])
-        return render_template('recuperasenha.html', page=result)
+        return render_template('login.html', page=result)
     else:
         return render_template('recuperasenha.html', page=result)
 
 
 @views.route('/login', methods=['POST'])
 def user():
-    auth = Autenticacao()
     result = auth.autenticarUsuario(request.form['email-login'], request.form['password'])
 
     if request.method == 'POST':
@@ -90,7 +98,6 @@ def registrar():
     usuario.estado = request.form["estado"]
     usuario.set_password(request.form["senha"])
 
-    auth = Autenticacao()
     result = auth.registrarUsuario(usuario)
 
-    return render_template('registro.html', page=result)
+    return render_template('login.html', page=result)

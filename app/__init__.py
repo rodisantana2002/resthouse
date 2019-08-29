@@ -3,8 +3,6 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
-from flask_mail import Mail, Message
-
 from app.main.views import views
 from app.controls.auth import auth
 from app.model.models import models
@@ -15,11 +13,9 @@ app_dir = os.path.abspath(os.path.dirname(__file__))
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_mapping(
-        SECRET_KEY=os.environ.get('SECRET_KEY') or 'key hesthouse')
+    app.config.from_mapping(SECRET_KEY=os.environ.get('SECRET_KEY') or 'key hesthouse')
 
-    DATABASE_URL = os.environ.get(
-        'DATABASE_URL', 'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/app/bd/flask_app.db')
+    DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/app/bd/flask_app.db')
 
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'

@@ -15,7 +15,8 @@ data-toggle="collapse" data-target=".navbar-collapse">
 </div>
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav">
-<li><a href="/">Home</a></li>
+<li><a href="{{ url_for('views.index') }}">Home</a></li>
+<li><a href="{{ url_for('views.sair') }}">Sair</a></li>
 </ul>
 </div>
 </div>
