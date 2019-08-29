@@ -20,7 +20,7 @@
 
 $(document).ready(function () {
    // var url_base = "http://localhost:5000/";
-    var url_base = "http://resthouse.herokuapp.com/";
+   var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
     if ($("#login-alerta").html() === "") {

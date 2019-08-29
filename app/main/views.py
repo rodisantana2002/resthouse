@@ -57,47 +57,56 @@ def recuperar_senha():
 def enviar_senha():
     result = auth.validar_email(request.form['email-recuperar'])
     
-    if result.get("code") != "200":
-        # atualizar senha e enviar email
-        result = auth.enviar_senha(request.form['email-recuperar'])
-        return render_template('login.html', page=result)
+    if 'email' in session:
+        return redirect(url_for('views.home'))
     else:
-        return render_template('recuperasenha.html', page=result)
+        if result.get("code") != "200":
+            # atualizar senha e enviar email
+            result = auth.enviar_senha(request.form['email-recuperar'])
+            return render_template('login.html', page=result)
+        else:
+            return render_template('recuperasenha.html', page=result)
 
 
 @views.route('/login', methods=['POST'])
 def user():
     result = auth.autenticarUsuario(request.form['email-login'], request.form['password'])
 
-    if request.method == 'POST':
-        if result.get("code") == "200":
-            session['email'] = result.get("email")
-            session['token'] = result.get("token")
-            return redirect(url_for('views.home'))
+    if 'email' in session:
+        return redirect(url_for('views.home'))
+    else:    
+        if request.method == 'POST':
+            if result.get("code") == "200":
+                session['email'] = result.get("email")
+                session['token'] = result.get("token")
+                return redirect(url_for('views.home'))
+            else:
+                return render_template('login.html', page=result)
         else:
             return render_template('login.html', page=result)
-    else:
-        return render_template('login.html', page=result)
 
 
 @views.route('/sendregistro', methods=['POST'])
 def registrar():
-    usuario = Usuario()
+    if 'email' in session:
+        return redirect(url_for('views.home'))        
+    else:    
+        usuario = Usuario()
 
-    usuario.nomecompleto = request.form["nomecompleto"]
-    usuario.email = request.form["email"]
-    usuario.fonecelular = request.form["celular"]
-    usuario.sexo = request.form["sexo"]
-    usuario.dtnascimento = request.form["dtnascimento"]
-    usuario.cep = request.form["cep"]
-    usuario.logradouro = request.form["logradouro"]
-    usuario.numero = request.form["numero"]
-    usuario.complemento = request.form["complemento"]
-    usuario.bairro = request.form["bairro"]
-    usuario.cidade = request.form["cidade"]
-    usuario.estado = request.form["estado"]
-    usuario.set_password(request.form["senha"])
+        usuario.nomecompleto = request.form["nomecompleto"]
+        usuario.email = request.form["email"]
+        usuario.fonecelular = request.form["celular"]
+        usuario.sexo = request.form["sexo"]
+        usuario.dtnascimento = request.form["dtnascimento"]
+        usuario.cep = request.form["cep"]
+        usuario.logradouro = request.form["logradouro"]
+        usuario.numero = request.form["numero"]
+        usuario.complemento = request.form["complemento"]
+        usuario.bairro = request.form["bairro"]
+        usuario.cidade = request.form["cidade"]
+        usuario.estado = request.form["estado"]
+        usuario.set_password(request.form["senha"])
 
-    result = auth.registrarUsuario(usuario)
+        result = auth.registrarUsuario(usuario)
 
-    return render_template('login.html', page=result)
+        return render_template('registro.html', page=result)
