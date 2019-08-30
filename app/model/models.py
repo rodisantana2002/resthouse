@@ -6,6 +6,7 @@ from enum import Enum
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime
+from sqlalchemy.orm import relationship, backref
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -71,7 +72,6 @@ class Usuario(db.Model):
 
 
 # Classe Associado
-
 class Associado(db.Model):
     __tablename__ = "associado"
 
@@ -116,4 +116,41 @@ class Associado(db.Model):
     def __repr__(self):
         return self.serialize()
 
+
+# Classe associativa UsuarioxAssociadoxTags
+class TagAssociado(db.Model):
+    __tablename__ = "associado_usuario_tags"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+    
+    associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+    recomendo = db.Column(db.String(1))
+    favorito = db.Column(db.String(1))
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    
+    user = relationship(Usuario, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
+    
+    def add(self, associado):
+        db.session.add(associado)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()    
+        
+    def serialize(self):
+        return {
+            'id': self.id,
+            'usuario_id': self.usuario_id,
+            'nomeCompleto':self.user.nomecompleto,
+            'associado_id': self.associado_id,
+            'nomeFantasia': self.assoc.nomefantasia,
+            'favorito': self.favorito,
+            'recomendo': self.recomendo
+        }
+
+    def __repr__(self):
+        return self.serialize()
 

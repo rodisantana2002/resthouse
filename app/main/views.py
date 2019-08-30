@@ -125,5 +125,11 @@ def registrar():
 # ----------------------
 @views.route('/media/<path:filename>')
 def media(filename):
-    print(current_app.config.get('MEDIA_ROOT'), filename)
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
+
+
+@views.route('/tags')
+def obterTags():
+    tags = oper.obterTagsAssociado(1,1)
+    print(tags.__str__())
+    return "ok"

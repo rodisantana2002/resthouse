@@ -13,21 +13,8 @@ class Operacoes():
     def obterAssociados(self):
         obj = Associado()
         return obj.query.all()
-
-
-
-
-
-# obj = Associado()
-# obj.nomefantasia = "Pizzaria Don Ruan"
-# obj.email = "pizaria@gmail.com"
-# obj.tipopessoa = "Jurídica"
-# obj.resumo = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit"
-# obj.cep = "82-300-600"    
-# obj.logradouro = "Rua João Esmanhoto"
-# obj.numero = "35"
-# obj.bairro = "Santa Feleicidade"
-# obj.cidade = "Curitiba"
-# obj.estado = "Paraná"
-
-# obj.add(obj)
+    
+    
+    def obterTagsAssociado(self, associado_id, usuario_id):
+        obj = TagAssociado()        
+        return obj.query.filter_by(associado_id = associado_id, usuario_id=usuario_id).first()
