@@ -40,3 +40,6 @@ CREATE TABLE associado (id SERIAL NOT NULL PRIMARY KEY,
                         logo VARCHAR(100) NULL);
 CREATE INDEX idx_associado_nomefantasia ON associado (nomefantasia);
 
+
+INSERT INTO associado (situacao, email, nomefantasia, resumo, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+	VALUES ('Ativa', 'rodisantana@gmail.com', 'Lanches da Esquina', 'Produzimos lanches de primeira, tem para todos os gostos, pois somos fodas no que fazemos', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)

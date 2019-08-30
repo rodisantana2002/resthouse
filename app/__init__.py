@@ -17,7 +17,9 @@ def create_app():
     app.config.from_mapping(SECRET_KEY=os.environ.get('SECRET_KEY') or 'key hesthouse')
 
     DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////home/rodolfosantana/Documentos/projetos/resthouse/app/bd/flask_app.db')
-
+    
+    app.config['MEDIA_ROOT'] = os.path.join(app_dir, 'gallery/')
+    
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587

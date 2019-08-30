@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, Blueprint, render_template, session, request, redirect, url_for
+from flask import Flask, Blueprint, render_template, session, request, redirect, url_for, send_from_directory
 from flask_login import login_required, login_user, current_user, logout_user
 from app.controls.auth import *
 from app.controls.operacoes import *
@@ -123,3 +123,7 @@ def registrar():
 
 # Classes referentes a operações
 # ----------------------
+@views.route('/media/<path:filename>')
+def media(filename):
+    print(current_app.config.get('MEDIA_ROOT'), filename)
+    return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
