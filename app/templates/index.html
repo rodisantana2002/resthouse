@@ -25,7 +25,7 @@
           </button>
           <a class="navbar-brand"  href="{{ url_for('views.index') }}" style="color:white; text-align:left"><b><span class="glyphicon glyphicon-cutlery"></span> Resthouse</b></a></br>
         </div>
-        <h5 style="color:white; text-align:right">Olá, Rodolfo Santana</h5>
+        <h5 style="color:white; text-align:right">Olá, {{ nome }}</h5>
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav">
             <li><a href="{{ url_for('views.index') }}" style="color:white"><span class="glyphicon glyphicon-user"></span> Meus Dados</a></li>
@@ -39,58 +39,42 @@
         <div style="margin-left:2px;margin-right:2px;">
           <ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab-md" style="color:#F58634" data-toggle="tab" href="#home-md" role="tab" 
-                  aria-controls="home-md" aria-selected="true"><span class="glyphicon glyphicon-home"></span> Associados</a>
+                <a class="nav-link active" id="associado-tab-md" style="color:#563A2D" data-toggle="tab" href="#associado-md" role="tab" 
+                  aria-controls="associado-md" aria-selected="true"><span class="glyphicon glyphicon-home"></span> Associados</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab-md" style="color:#F58634" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" 
-                  aria-selected="false"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a>
+              <a class="nav-link" id="profile-tab-md" style="color:#563A2D" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" 
+                  aria-selected="false"><span class="glyphicon glyphicon-cutlery"></span> Cardápio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="contact-tab-md" style="color:#F58634" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md" 
+              <a class="nav-link" id="contact-tab-md" style="color:#563A2D" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md" 
                   aria-selected="false"><span class="glyphicon glyphicon-shopping-cart"></span> Meus Pedidos</a>
             </li>
           </ul>
         </div>
 
         <div class="tab-content card pt-5" id="myTabContentMD" style="margin-top:5px;margin-left:1px;margin-right:1px;">
-          <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">         
-              <div class="container">
+          <div class="tab-pane fade show active" name="associado-md" id="associado-md" role="tabpanel" aria-labelledby="associado-tab-md">         
+
+            {% for associado in associados %}
+              <div class="container" style="margin-bottom:-15px">
                     <div class="row">
                       <div class="col-xs-18 col-sm-6 col-md-3">
                         <div class="thumbnail" style="border-color:c0c0c0;">
-                          <img src="{{ url_for('static', filename='gallery/associados/1.png') }}">
+                          <img src="{{ url_for('static', filename=associado.logo)}}" >
                             <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="recomendar"><i class="glyphicon glyphicon-star"></i></a> 
-                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="favoritos"><i class="glyphicon glyphicon-heart"></i></a>
-
-                              <a href="#" class="btn btn-warning btn-sm" role="button" style="border-color:#F58634; background-color:#F58634"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a> 
-
+                              <h4 style="color:##563A2D">{{associado.nomefantasia}}</h4>
+                              <p style="color:gray">{{associado.resumo}}</p>
+                              <h6 style="text-align:right; color:#F58634">0 vendas  0 recomendações</h6>
+                              <a href="#" class="btn btn-link pull-right" role="button" style="margin-top:-3px; font-size:20px;color:gray" data-toggle="tooltip" data-placement="top" title="recomendar"><i class="glyphicon glyphicon-star"></i></a> 
+                              <a href="#" class="btn btn-link pull-right" role="button" style="margin-top:-3px; font-size:20px;color:gray" data-toggle="tooltip" data-placement="top" title="favoritos"><i class="glyphicon glyphicon-heart"></i></a>
+                              <a href="#" class="btn btn-warning btn-sm" role="button" style="border-color:#F58634; background-color:#F58634"><span class="glyphicon glyphicon-cutlery"></span> Cardápio</a> 
                           </div>
                         </div>
                       </div>                      
                 </div><!--/row-->
-
-                    <div class="row">
-                      <div class="col-xs-18 col-sm-6 col-md-3">
-                        <div class="thumbnail" style="border-color:c0c0c0;">
-                          <img src="{{ url_for('static', filename='gallery/associados/1.png') }}">
-                            <div class="caption">
-                              <h4>Thumbnail label</h4>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit</p>
-                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="recomendar"><i class="glyphicon glyphicon-star"></i></a> 
-                              <a href="#" class="btn btn-link btn-md pull-right" role="button" data-toggle="tooltip" data-placement="top" title="favoritos"><i class="glyphicon glyphicon-heart"></i></a>
-
-                              <a href="#" class="btn btn-warning btn-sm" role="button" style="border-color:#F58634; background-color:#F58634"><span class="glyphicon glyphicon-barcode"></span> Cardápio</a> 
-
-                          </div>
-                        </div>
-                      </div>                      
-                </div><!--/row-->
-
               </div><!--/container -->
+            {% endfor %}
           </div>    
 
           <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">

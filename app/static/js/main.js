@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-   // var url_base = "http://localhost:5000/";
+//    var url_base = "http://localhost:5000/";
    var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
@@ -42,6 +42,9 @@ $(document).ready(function () {
     } else {
         $("#recupera-senha").show();
     };
+
+    // ativa tab inicial home
+    $("#associado-tab-md").tab('show')
 
     $("#cep").change(function () {
         var cep_code = $(this).val();

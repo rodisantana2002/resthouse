@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from app.main.views import views
 from app.controls.auth import auth
+from app.controls.operacoes import operacoes
 from app.model.models import models
 
 db = SQLAlchemy()
@@ -29,6 +30,7 @@ def create_app():
     app.register_blueprint(views)
     app.register_blueprint(auth)
     app.register_blueprint(models)
+    app.register_blueprint(operacoes)
 
     bootstrap = Bootstrap(app)
     db.init_app(app)

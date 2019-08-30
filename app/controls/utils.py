@@ -1,7 +1,6 @@
 from flask import render_template, current_app, Blueprint
 from threading import Thread
 from flask_mail import Message, Mail
-from app.model.models import *
 
 
 class Utils():

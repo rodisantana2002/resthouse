@@ -3,12 +3,16 @@ import os
 from flask import Flask, Blueprint, render_template, session, request, redirect, url_for
 from flask_login import login_required, login_user, current_user, logout_user
 from app.controls.auth import *
+from app.controls.operacoes import *
 from app.controls.utils import *
 from app.model.models import *
 
 views = Blueprint("views", __name__)
 auth = Autenticacao()
+oper = Operacoes()
 
+# Classes referentes a autenticação e regsitro no sistema
+# ----------------------
 @views.route('/', methods=['GET', 'POST'])
 def index():
     if 'email' in session:
@@ -18,7 +22,9 @@ def index():
 
 @views.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    nome = session.get("nome")
+    associados = oper.obterAssociados()
+    return render_template('index.html', nome=nome, associados=associados)
 
 
 @views.route('/registro', methods=['GET'])
@@ -31,6 +37,8 @@ def cadastro():
 @views.route('/logout', methods=['GET'])
 def sair():
     session.pop('email', None)
+    session.pop('nome', None)
+    session.pop('associados', None)
     return redirect(url_for('views.index'))
 
 @views.route('/validaremail/<email>')
@@ -79,6 +87,7 @@ def user():
             if result.get("code") == "200":
                 session['email'] = result.get("email")
                 session['token'] = result.get("token")
+                session['nome'] = result.get("nome")
                 return redirect(url_for('views.home'))
             else:
                 return render_template('login.html', page=result)
@@ -110,3 +119,7 @@ def registrar():
         result = auth.registrarUsuario(usuario)
 
         return render_template('registro.html', page=result)
+
+
+# Classes referentes a operações
+# ----------------------

@@ -15,7 +15,7 @@ app = Flask(__name__)
 db = SQLAlchemy(app)
 
 
-# Usuario
+# Classe Usuario
 class Usuario(db.Model):
     __tablename__ = "usuario"
 
@@ -68,3 +68,52 @@ class Usuario(db.Model):
 
     def __repr__(self):
         return self.serialize()
+
+
+# Classe Associado
+
+class Associado(db.Model):
+    __tablename__ = "associado"
+
+    # dados essenciais
+    id = db.Column(db.Integer, primary_key=True)
+
+    situacao = db.Column(db.String(30), default="Ativa")
+    email = db.Column(db.String(100))
+    nomefantasia = db.Column(db.String(100))
+    resumo = db.Column(db.String(400))
+    tipopessoa = db.Column(db.String(30))
+
+    # endereço
+    logradouro = db.Column(db.String(100))
+    numero = db.Column(db.String(10))
+    complemento = db.Column(db.String(50))
+    bairro = db.Column(db.String(50))
+    cidade = db.Column(db.String(60))
+    estado = db.Column(db.String(30))
+    cep = db.Column(db.String(12))
+
+    # acesso
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    logo = db.Column(db.String(100))
+
+    def add(self, associado):
+        db.session.add(associado)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()    
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'situacao': self.situacao,
+            'email': self.email,
+            'nomeFantasia': self.nomefantasia,
+            'resumo': self.resumo
+        }
+
+    def __repr__(self):
+        return self.serialize()
+
+
