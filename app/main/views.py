@@ -33,15 +33,7 @@ def filtrar_associado():
     associados = oper.obterAssociadosByNomeResumo(request.form['txtAssociadoFiltrar'])
     tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
     return render_template('index.html', nome=nome, associados=associados, tags=tags)
-
-
-@views.route('/registro', methods=['GET'])
-def cadastro():
-    if 'email' in session:
-        return redirect(url_for('views.home'))
-    else:    
-        return render_template('registro.html', page=None)          
-
+  
 @views.route('/logout', methods=['GET'])
 def sair():
     session.pop('email', None)
@@ -70,7 +62,7 @@ def recuperar_senha():
         return render_template('recuperasenha.html', page=None)
 
 
-@views.route('/recuperaemail', methods=['POST'])
+@views.route('/recuperasenha/envio', methods=['POST'])
 def enviar_senha():
     result = auth.validar_email(request.form['email-recuperar'])
     
@@ -80,7 +72,7 @@ def enviar_senha():
         if result.get("code") != "200":
             # atualizar senha e enviar email
             result = auth.enviar_senha(request.form['email-recuperar'])
-            return render_template('login.html', page=result)
+            return redirect(url_for('views.recuperar_senha', page=result))
         else:
             return render_template('recuperasenha.html', page=result)
 
@@ -105,7 +97,14 @@ def user():
             return render_template('login.html', page=result)
 
 
-@views.route('/sendregistro', methods=['POST'])
+@views.route('/registro', methods=['GET'])
+def cadastro():
+    if 'email' in session:
+        return redirect(url_for('views.home'))
+    else:    
+        return render_template('registro.html', page=None)      
+
+@views.route('/registro/envio', methods=['POST'])
 def registrar():
     if 'email' in session:
         return redirect(url_for('views.home'))        
