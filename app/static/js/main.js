@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-//    var url_base = "http://localhost:5000/";
+   //var url_base = "http://localhost:5000/";
    var url_base = "http://resthouse.herokuapp.com/";
 
     // load da pagina - login
@@ -46,6 +46,18 @@ $(document).ready(function () {
     // ativa tab inicial home
     $("#associado-tab-md").tab('show')
 
+    // filtra associados
+    $("#btnAssociadoFiltrar").click(function () {
+        if ($("#txtAssociadoFiltrar").val().trim().length>0) {
+            $("#filtra-associado-form").submit();
+        }    
+        else{
+            $("#txtAssociadoFiltrar").focus();
+        }    
+    });
+
+
+    // carrega cep no formulario de registro usuario
     $("#cep").change(function () {
         var cep_code = $(this).val();
         if (cep_code.length <= 0) return;

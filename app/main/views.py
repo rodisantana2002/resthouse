@@ -24,7 +24,15 @@ def index():
 def home():
     nome = session.get("nome")
     associados = oper.obterAssociados()
-    return render_template('index.html', nome=nome, associados=associados)
+    tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
+    return render_template('index.html', nome=nome, associados=associados, tags=tags)
+
+@views.route('/home/filtrar', methods=['POST'])
+def filtrar_associado():
+    nome = session.get("nome")
+    associados = oper.obterAssociadosByNomeResumo(request.form['txtAssociadoFiltrar'])
+    tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
+    return render_template('index.html', nome=nome, associados=associados, tags=tags)
 
 
 @views.route('/registro', methods=['GET'])
@@ -37,8 +45,9 @@ def cadastro():
 @views.route('/logout', methods=['GET'])
 def sair():
     session.pop('email', None)
+    session.pop('id', None)
     session.pop('nome', None)
-    session.pop('associados', None)
+    session.pop('token', None)
     return redirect(url_for('views.index'))
 
 @views.route('/validaremail/<email>')
@@ -88,6 +97,7 @@ def user():
                 session['email'] = result.get("email")
                 session['token'] = result.get("token")
                 session['nome'] = result.get("nome")
+                session['id'] = result.get("id")                
                 return redirect(url_for('views.home'))
             else:
                 return render_template('login.html', page=result)
@@ -128,8 +138,25 @@ def media(filename):
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
 
 
-@views.route('/tags')
-def obterTags():
-    tags = oper.obterTagsAssociado(1,1)
-    print(tags.__str__())
-    return "ok"
+# @views.route('/tags')
+# def obterTags():
+#     tags = oper.obterTagsAssociado(1,1)
+#     print(tags.__str__())
+#     return "ok"
+
+# @views.route("/favorito", methods=['POST'])
+# def registrarFavorito():
+#     pass
+#     # result = oper.registrarFavorito(request.form['associado_id'], request.form['usuario_id'])
+        
+    # if request.method == 'POST':
+    #     if result.get("code") == "200":
+    #         session['email'] = result.get("email")
+    #         session['token'] = result.get("token")
+    #         session['nome'] = result.get("nome")
+    #         return redirect(url_for('views.home'))
+    #     else:
+    #         return render_template('login.html', page=result)
+    # else:
+    #     return render_template('login.html', page=result)
+    
