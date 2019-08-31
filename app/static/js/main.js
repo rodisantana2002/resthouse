@@ -56,7 +56,6 @@ $(document).ready(function () {
         }    
     });
 
-
     // carrega cep no formulario de registro usuario
     $("#cep").change(function () {
         var cep_code = $(this).val();

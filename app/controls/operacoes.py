@@ -11,6 +11,7 @@ operacoes = Blueprint("operacoes", __name__)
 class Operacoes():
     
     def __init__(self):
+        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": ""}
         self.associado = Associado()
         self.tags = TagAssociado() 
     
@@ -25,25 +26,28 @@ class Operacoes():
     
     def registrarFavorito(self, associado_id, usuario_id):      
         # validar se a Tag existe
-        try:
+        # try:
+            obj = TagAssociado() 
             obj = self.tags.query.filter_by(associado_id=associado_id, usuario_id=usuario_id).first()
-                        
+
             if obj != None:
                 obj.favorito = "S"
                 obj.update()
             else:
+                obj = TagAssociado()
                 obj.associado_id = associado_id
                 obj.usuario_id = usuario_id
                 obj.recomendo = "N"
                 obj.favorito = "S"
-                self.tags(obj)
+                              
+                self.tags.add(obj)
                 
             self.authentic["code"] = "200"
             self.authentic["msg"] = "Registro efetuado com sucesso!"
             return self.authentic
 
-        except:
-            self.authentic["code"] = "500"
-            self.authentic["msg"] = "Erro desconhecido"
+        # except:
+        #     self.authentic["code"] = "500"
+        #     self.authentic["msg"] = "Erro desconhecido"
 
             

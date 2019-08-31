@@ -35,9 +35,9 @@ class Autenticacao():
                     self.authentic["code"] = "404"
                     self.authentic["msg"] = "Senha informada esta incorreta!"
 
-        except:
+        except Exception as e:
             self.authentic["code"] = "500"
-            self.authentic["msg"] = "Erro desconhecido"
+            self.authentic["msg"] = "Erro desconhecido - {}".format(e)
 
         return self.authentic
 

@@ -72,7 +72,7 @@ def enviar_senha():
         if result.get("code") != "200":
             # atualizar senha e enviar email
             result = auth.enviar_senha(request.form['email-recuperar'])
-            return redirect(url_for('views.recuperar_senha', page=result))
+            return redirect(url_for('views.recuperar_senha'))
         else:
             return render_template('recuperasenha.html', page=result)
 
@@ -134,28 +134,11 @@ def registrar():
 # ----------------------
 @views.route('/media/<path:filename>')
 def media(filename):
+    print(current_app.config.get('MEDIA_ROOT'), filename)
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
 
 
-# @views.route('/tags')
-# def obterTags():
-#     tags = oper.obterTagsAssociado(1,1)
-#     print(tags.__str__())
-#     return "ok"
-
-# @views.route("/favorito", methods=['POST'])
-# def registrarFavorito():
-#     pass
-#     # result = oper.registrarFavorito(request.form['associado_id'], request.form['usuario_id'])
-        
-    # if request.method == 'POST':
-    #     if result.get("code") == "200":
-    #         session['email'] = result.get("email")
-    #         session['token'] = result.get("token")
-    #         session['nome'] = result.get("nome")
-    #         return redirect(url_for('views.home'))
-    #     else:
-    #         return render_template('login.html', page=result)
-    # else:
-    #     return render_template('login.html', page=result)
-    
+@views.route('/favorito/associado/<id>')
+def registrarFavorito(id):
+    result = oper.registrarFavorito(id, session.get("id"))
+    return result.get("msg")

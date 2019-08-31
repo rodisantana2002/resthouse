@@ -133,8 +133,8 @@ class TagAssociado(db.Model):
     user = relationship(Usuario, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
     assoc = relationship(Associado, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
     
-    def add(self, associado):
-        db.session.add(associado)
+    def add(self, tag):
+        db.session.add(tag)
         db.session.commit()
 
     def update(self):
