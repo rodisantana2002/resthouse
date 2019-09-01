@@ -134,7 +134,6 @@ def registrar():
 # ----------------------
 @views.route('/media/<path:filename>')
 def media(filename):
-    print(current_app.config.get('MEDIA_ROOT'), filename)
     return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
 
 
@@ -142,3 +141,8 @@ def media(filename):
 def registrarFavorito(id):
     result = oper.registrarFavorito(id, session.get("id"))
     return result.get("msg")
+
+
+@views.route('/associado/<associado_id>')
+def carregar_cardapio(associado_id):
+    return render_template('cardapio.html', associado_id=associado_id)

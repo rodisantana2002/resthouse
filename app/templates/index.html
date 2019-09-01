@@ -48,7 +48,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" id="contact-tab-md" style="color:#F58634" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md" 
-                  aria-selected="false"><i class="material-icons">shopping_cart</i> Meus Pedidos</a>
+                  aria-selected="false"><i class="material-icons">shopping_cart</i> Pedidos</a>
             </li>
           </ul>    
 
@@ -82,24 +82,20 @@
                               <h4 name="lblAssociadoID" id="lblAssociadoID" style="display:none">{{associado.id}}</h4>
                               <h4 style="color:#563A2D">{{associado.nomefantasia}}</h4>
                               <p style="color:gray">{{associado.resumo}}</p>
+                              <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;border-color:#563A2D; background-color:#563A2D"><i class="material-icons">fastfood</i> Cardápio</a> 
 
                                 {% for tag in tags%}
                                     {% if tag.associado_id == associado.id %}
                                         {% if tag.favorito =="S"%}
                                             <button class="btn btn-link pull-right" role="text" style="margin-top:1px; font-size:18px;color:#910c0c" data-toggle="tooltip" data-placement="top" title="favorito"><i class="material-icons">favorite</i></a>
-                                        {% else %}                                            
-                                            <button class="btn btn-link pull-right" role="text" style="margin-top:1px; font-size:18px;color:gray" data-toggle="tooltip" data-placement="top" title="favorito"><i class="material-icons">favorite_border</i></a>                                        
                                         {% endif %}     
 
                                         {% if tag.recomendo =="S"%}
                                             <button class="btn btn-link pull-right" role="text" style="margin-top:1px; font-size:18px;color:#b4b512" data-toggle="tooltip" data-placement="top" title="recomendo"><i class="material-icons">star</i></a> 
-                                        {% else %}                                            
-                                            <button class="btn btn-link pull-right" role="text" style="margin-top:1px; font-size:18px;color:gray" data-toggle="tooltip" data-placement="top" title="recomendo"><i class="material-icons">star_border</i></a>                                         
                                         {% endif %}     
                                     {% endif %}
                                 {% endfor %}
 
-                              <button id="btnAssociadoCardapio" class="btn btn-warning btn-sm" role="button" style="border-color:#563A2D; background-color:#563A2D"><i class="material-icons">fastfood</i> Cardápio</button> 
                             </div>
                         </div>
                       </div>                      
