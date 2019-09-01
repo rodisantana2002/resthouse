@@ -5,6 +5,7 @@
   	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">       
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -17,13 +18,12 @@
     <div class="row" style="margin-top:5px;margin-left:10px;margin-right:10px">       
         <!-- registro -->
         <div id="signupbox" style="display:true; margin-top:15px;margin-left:5px;margin-right:5px" class="col-12">                            
-            <div class="panel panel-default" style="border-color:#563A2D">        
-                <div class="panel-heading" style="color:#F58634" ><h4>Informe seus dados</h4>
-                        <h5>
-                            <div style="float:right; position: relative; top:-20px">
-                                <a id="btn-voltar" style="text" type="button" class="btn btn-link" href="{{ url_for('views.index') }}">Efetuar login</a>                                                
-                            </div>
-                        </h5>
+            <div class="panel panel-default" style="border-color:#563A2">        
+                <div class="panel-heading" style="color:#F58634" >
+                    <div class="input-group"> 
+                        <a id="btn-voltar" style="color:#F58634" type="link" class="btn btn-link" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back</i></a>                                                
+                        <label style="color:#F58634"><h4>Informe seus dados</h4></label>
+                    </div>                        
                 </div>
 
                 <div class="panel-body" >
