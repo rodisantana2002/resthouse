@@ -1,0 +1,27 @@
+
+/*#####################
+Additional Styles (required)
+######################*/
+#myCarousel .thumbnail {
+	margin-bottom:0;
+}
+.carousel-control {
+	color:#F58634;
+	top:44%;
+	bottom:auto;
+	opacity:1;
+}
+.carousel-control:hover {
+	color:#eee5e5;
+}
+.carousel-control.left, .carousel-control.right {
+	background-image:none !important;
+}
+.carousel-control.right {
+	left:auto;
+	right:2px;
+}
+.carousel-control.left {
+	right:auto;
+	left:2px;
+}
