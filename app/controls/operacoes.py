@@ -17,6 +17,9 @@ class Operacoes():
     
     def obterAssociados(self):        
         return self.associado.query.all()
+   
+    def obterAssociadoById(self, valor):        
+        return self.associado.query.filter_by(id=valor).first()    
     
     def obterAssociadosByNomeResumo(self, valor):        
         return self.associado.query.filter(Associado.nomefantasia.contains(valor) | Associado.resumo.contains(valor)).all()
@@ -26,7 +29,7 @@ class Operacoes():
     
     def registrarFavorito(self, associado_id, usuario_id):      
         # validar se a Tag existe
-        # try:
+        try:
             obj = TagAssociado() 
             obj = self.tags.query.filter_by(associado_id=associado_id, usuario_id=usuario_id).first()
 
@@ -46,8 +49,8 @@ class Operacoes():
             self.authentic["msg"] = "Registro efetuado com sucesso!"
             return self.authentic
 
-        # except:
-        #     self.authentic["code"] = "500"
-        #     self.authentic["msg"] = "Erro desconhecido"
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
 
             
