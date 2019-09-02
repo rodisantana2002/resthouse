@@ -16,27 +16,31 @@
   <body style="background:#fcf8ef">
       <!-- cabecalho Associado -->
       <div class="row" style="background:#F58634; border-color:#F58634; padding-top:5px;padding-left:5px">    
+        <a id="btn-voltar" style="color:white" type="link" class="btn btn-link" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back</i></a>                                                
+        <label style="color:white;margin-left:-10px"><h4><b>{{associado.nomefantasia}}</b></h4></label>
+        
         {% if associado.situacao == "Disponivel" %}
-            <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; margin-right:20px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                                
-            <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; margin-right:5px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>        
+            <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; margin-top:8px; margin-right:20px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                                
         {% else %}
-            <span class="badge badge-pill badge-light pull-right" style="color:gray; background:white; margin-right:20px" ><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
+            <span class="badge badge-pill badge-light pull-right" style="color:gray; background:white; margin-right:20px; margin-top:8px" ><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
         {% endif %}
 
         </br>
-        <a id="btn-voltar" style="color:white" type="link" class="btn btn-link" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back</i></a>                                                
-        <label style="color:white;margin-left:-10px"><h4><b>{{associado.nomefantasia}}</b></h4></label>
-        <h5 style="color:white;margin-top:-10px; margin-left:45px">{{associado.categoria}}<h5>
-        <label style="color:white; background:#F58634; margin-left:45px">
+        <h5 style="color:white;margin-top:-10px; margin-left:45px">
+          {{associado.categoria}}
+          <span class ="badge badge-pill badge-warning pull-right" style="color:white; background:#F58634; margin-top:-3px; text-align:right; margin-right:15px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
+        <h5>
+        
+        <label style="color:white; background:#F58634; margin-left:43px; font-size:1px">
           <i class="material-icons">star</i>
           <i class="material-icons">star</i>
           <i class="material-icons">star</i>
           <i class="material-icons">star_border</i>
           <i class="material-icons">star_border</i>
-        </label>        
+        </label>                
+        </br>
+        <label style="color:white; background:#F58634; margin-left:45px; font-size:10px"> Avaliação</label>                
         
-        
-
       </div>
 
 
