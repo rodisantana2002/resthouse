@@ -16,7 +16,7 @@
   </head>
 
   <!-- corpo -->
-  <body style="background:#fcf8ef">
+  <body style="background:white">
       <div class="container" style="background:#F58634; border-color:#F58634;">
         <div class="row">
           <div class="col-12" style="margin-left:-10px">
@@ -50,14 +50,13 @@
         </div>
       </div>
 
-      <div class="container">
+      <div class="container" >
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" >
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-
-                      <div class="item active">
-                          <div class="thumbnail">
+                  <div class="carousel-inner"  >
+                      <div class="item active" style="margin-bottom:-20px">
+                          <div class="thumbnail" style="border-color:white">
                             <img src="{{ url_for('static', filename='img/categorias/pizzas.jpg') }}" alt="Slide1">
                             <div class="caption">
                               <h3>Pizzas</h3>
@@ -66,8 +65,8 @@
                             </div>
                           </div>        
                       </div><!-- End Item -->
-                      <div class="item">
-                          <div class="thumbnail">
+                      <div class="item" style="margin-bottom:-20px">
+                          <div class="thumbnail" style="border-color:white">                          
                             <img src="{{ url_for('static', filename='img/categorias/refrigerantessucos.jpg') }}" alt="Slide2">
                             <div class="caption">
                               <h3>Refrigerantes e Sucos</h3>
@@ -76,8 +75,8 @@
                             </div>
                           </div>        
                       </div><!-- End Item -->
-                      <div class="item">
-                          <div class="thumbnail">
+                      <div class="item" style="margin-bottom:-20px">
+                          <div class="thumbnail" style="border-color:white">
                             <img src="{{ url_for('static', filename='img/categorias/lanches.jpg') }}" alt="Slide1">
                             <div class="caption">
                               <h3>Lanches</h3>
@@ -87,15 +86,15 @@
                           </div>        
                       </div><!-- End Item -->                                
                     </div><!-- End Carousel Inner -->
+
                     <div class="carousel-controls">
                       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
-
-
                   </div>
+
                 </div><!-- /.carousel -->
-            </div>
+            </div>            
 
         </div>
       </div>
