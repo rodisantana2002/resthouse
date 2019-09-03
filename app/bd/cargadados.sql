@@ -1,6 +1,6 @@
-DELETE FROM associado;
-DELETE FROM associado_usuario_tags;
-DELETE FROM categoria;
+-- DELETE FROM associado;
+-- DELETE FROM associado_usuario_tags;
+-- DELETE FROM categoria;
 
 -- Associados
 INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
@@ -25,17 +25,109 @@ INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcion
 
 
 
--- Categoria
+-- -- Categoria
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('BEBIDAS', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('CACHORROS-QUENTES', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('KITS FESTA', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('LANCHES', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PIZZAS', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PORÇÕES', NULL, 'categorias/300x200.jpg');
-
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('OUTROS', NULL, 'categorias/300x200.jpg');
+-- 
+--categoriaxassociado
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='PORÇÕES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='PIZZAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
+            '',    
+            '',
+            NULL);
+-- ********
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='PORÇÕES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='PIZZAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
+            '',    
+            '',
+            NULL);
+
+-- ********
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='CACHORROS-QUENTES'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
+            '',    
+            '',
+            NULL);
+
+
+-- ********
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='DOG OSTENTA'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='CACHORROS-QUENTES'), (SELECT ID FROM associado WHERE nomefantasia='DOG OSTENTA'),  
+            '',    
+            '',
+            NULL);
+
+
+-- ********
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
+            '',    
+            '',
+            NULL);
+
+INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
+    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
+            '',    
+            '',
+            NULL);
+
+

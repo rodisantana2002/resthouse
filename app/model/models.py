@@ -102,6 +102,8 @@ class Associado(db.Model):
     # acesso
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     logo = db.Column(db.String(100))
+    
+    categorias = relationship("Categoria", secondary='associado_categorias')
 
     def add(self, associado):
         db.session.add(associado)
@@ -160,3 +162,55 @@ class TagAssociado(db.Model):
     def __repr__(self):
         return self.serialize()
 
+
+# Classe Categorias
+class Categoria(db.Model):
+    __tablename__ = "categoria"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+    descricao = db.Column(db.String(60))
+    logo = db.Column(db.String(100))
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    
+    def serialize(self):
+        return {
+            'id': self.id,
+            'descricao': self.descricao,
+            'logo': self.logo,
+            'dtregistro': self.dtregistro
+        }
+
+    def __repr__(self):
+        return self.serialize()   
+
+
+# Classe associativa AssociadoxCategorias
+class AssociadoCategoria(db.Model):
+    __tablename__ = "associado_categorias"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+    
+    associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
+    categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'))
+    resumo = db.Column(db.String(60))
+    logo = db.Column(db.String(100))
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    
+    catego = relationship(Categoria, backref=backref("associado_categorias", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref("associado_categorias", cascade="all, delete-orphan"))
+            
+    def serialize(self):
+        return {
+            'id': self.id,
+            'associado_id': self.associado_id,
+            'nomeFantasia': self.assoc.nomefantasia,
+            'categoria_id':self.categoria_id,
+            'categoria': self.catego.descricao,
+            'resumo': self.resumo,
+            'logo': self.logo    
+        }
+
+    def __repr__(self):
+        return self.serialize()
