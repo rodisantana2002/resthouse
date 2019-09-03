@@ -78,9 +78,9 @@
                       <div class="col-xs-18 col-sm-6 col-md-3">
                         <div class="thumbnail" style="border-color:c0c0c0">
                         {% if associado.situacao == "Disponivel" %}
-                            <span class ="badge badge-pill badge-warning pull-left" style="background:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
+                            <span class ="badge badge-pill badge-warning pull-right" style="background-color:white;color:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
                         {% else %}
-                            <span class="badge badge-pill badge-light pull-left"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
+                            <span class="badge badge-pill badge-light pull-right"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
                         {% endif %}
                           </br></br>
                           <img src="{{ url_for('views.media', filename=associado.logo)}}" style="margin-top:-15px; margin-bottom:-15px" >

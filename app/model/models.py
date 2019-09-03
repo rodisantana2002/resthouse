@@ -89,7 +89,7 @@ class Associado(db.Model):
     funcionamentohorariotermino = db.Column(db.String(20))
     taxaentrega = db.Column(db.String(1), default="N")
     valortaxaentrega = db.Column(db.String(10), default="0,00")
-
+    
     # endereço
     logradouro = db.Column(db.String(100))
     numero = db.Column(db.String(10))
