@@ -55,6 +55,4 @@ CREATE TABLE associado_usuario_tags (id SERIAL NOT NULL PRIMARY KEY,
                                      favorito VARCHAR(1) NULL, 
                                      dtregistro VARCHAR(30)  NULL);  
 
--- Script de popular vendedores
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', 'rodisantana@gmail.com', 'Lanches da Esquina', 'Produzimos lanches de primeira, tem para todos os gostos, pois somos fodas no que fazemos', 'Restaurante', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/10.jpg');
+

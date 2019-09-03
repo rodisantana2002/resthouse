@@ -57,6 +57,3 @@ CREATE TABLE associado_usuario_tags (id INTEGER NOT NULL PRIMARY KEY AUTOINCREME
                                      favorito VARCHAR(1) NULL, 
                                      dtregistro VARCHAR(30)  NULL);  
 
-
-INSERT INTO associado (situacao, email, nomefantasia, resumo, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Ativa', 'rodisantana@gmail.com', 'Lanches da Esquina', 'Produzimos lanches de primeira, tem para todos os gostos, pois somos fodas no que fazemos', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
