@@ -1,6 +1,6 @@
 import os
 import datetime
-
+import sqlalchemy
 
 from enum import Enum
 from flask import Flask, Blueprint
@@ -103,7 +103,7 @@ class Associado(db.Model):
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     logo = db.Column(db.String(100))
     
-    categorias = relationship("Categoria", secondary='associado_categorias')
+    categorias_associado = relationship('AssociadoCategoria', backref='associado')
     
     def add(self, associado):
         db.session.add(associado)
@@ -205,7 +205,7 @@ class AssociadoCategoria(db.Model):
         return {
             'id': self.id,
             'associado_id': self.associado_id,
-            'nomeFantasia': self.assoc.nomefantasia,
+            'nomeFantasia': self.assocs.nomefantasia,
             'categoria_id':self.categoria_id,
             'categoria': self.catego.descricao,
             'resumo': self.resumo,

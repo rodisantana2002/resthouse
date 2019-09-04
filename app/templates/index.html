@@ -28,120 +28,83 @@
         <h5 style="color:white; text-align:right">Olá, {{ nome }}</h5>
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav">
-            <li><a href="{{ url_for('views.index') }}" style="color:white"><span class="glyphicon glyphicon-user"></span> Meus Dados</a></li>
-            <li><a href="{{ url_for('views.sair') }}" style="color:white"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+            <li><a href="{{ url_for('views.index') }}" style="color:white"><i class="material-icons">shopping_cart</i> Meus Pedidos</a></li>
+            <li><a href="{{ url_for('views.index') }}" style="color:white"><i class="material-icons">account_circle</i> Dados Pessoais</a></li>
+            <li><a href="{{ url_for('views.sair') }}" style="color:white"><i class="material-icons">exit_to_app</i> Sair</a></li>
           </ul>
         </div>
       </div>      
     </div>
 
-    <div class="row" style="margin-top:-15px;margin-left:8px;margin-right:8px;background:#fcf8ef">           
-        <div style="margin-left:2px;margin-right:2px">
-          <ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist"  >
-            <li class="nav-item">
-                <a class="nav-link active" id="associado-tab-md" style="color:#F58634" data-toggle="tab" href="#associado-md" role="tab" 
-                  aria-controls="associado-md" aria-selected="true"><i class="material-icons">store_mall_directory</i> Associados</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="profile-tab-md" style="color:#F58634" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" 
-                  aria-selected="false"><i class="material-icons">fastfood</i> Cardápio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="contact-tab-md" style="color:#F58634" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md" 
-                  aria-selected="false"><i class="material-icons">shopping_cart</i> Pedidos</a>
-            </li>
-          </ul>    
+    <div class="row" style="margin-top:-20px;margin-left:8px;margin-right:8px;background:#fcf8ef">           
 
-        <div class="tab-content card pt-5" id="myTabContentMD" style="margin-top:6px;margin-left:1px;margin-right:1px" >     
-          <div class="tab-pane fade show active" name="associado-md" id="associado-md" role="tabpanel" style="background:#fcf8ef" aria-labelledby="associado-tab-md">         
-
-            <div class="container" style="margin-top:5px; margin-bottom:5px; margin-left:15px; margin-right:15px">
-              <div class="row">
-                    <div class="col-12">
-                        <form id="filtra-associado-form" class="form-horizontal" role="form"  action="/home/filtrar" method="POST">
-                        <div id="custom-search-input">
-                            <div class="input-group col-12">
-                              <input type="text" name="txtAssociadoFiltrar" id="txtAssociadoFiltrar" class="form-control input"  placeholder="Filtrar" />
-                              <span class="input-group-btn">
-                                  <button style="color:white; background-color:#F58634; border-color:#F58634" class="btn btn-warning"  name="btnAssociadoFiltrar" id="btnAssociadoFiltrar" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                              </span>
-                            </div>
-                        </div>
-                        </form>  
-                    </div>
+      <div class="container" style="margin-top:5px; margin-bottom:5px; margin-left:15px; margin-right:15px">
+        <div class="row">
+              <div class="col-12">
+                  <form id="filtra-associado-form" class="form-horizontal" role="form"  action="/home/filtrar" method="POST">
+                  <div id="custom-search-input">
+                      <div class="input-group col-12">
+                        <input type="text" name="txtAssociadoFiltrar" id="txtAssociadoFiltrar" class="form-control input"  placeholder="Filtrar" />
+                        <span class="input-group-btn">
+                            <button style="color:white; background-color:#F58634; border-color:#F58634" class="btn btn-warning"  name="btnAssociadoFiltrar" id="btnAssociadoFiltrar" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                      </div>
+                  </div>
+                  </form>  
               </div>
-            </div> 
-
-            {% for associado in associados %}
-              <div class="container">
-                    <div class="row" style="margin-bottom:-15px">
-                      <div class="col-xs-18 col-sm-6 col-md-3">
-                        <div class="thumbnail" style="border-color:c0c0c0">
-                        {% if associado.situacao == "Disponivel" %}
-                            <span class ="badge badge-pill badge-warning pull-right" style="background-color:white;color:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
-                        {% else %}
-                            <span class="badge badge-pill badge-light pull-right"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
-                        {% endif %}
-                          </br></br>
-                          <img src="{{ url_for('views.media', filename=associado.logo)}}" style="margin-top:-15px; margin-bottom:-15px" >
-                          <div class="caption" style="margin-bottom:-20px">
-                            <h4 name="lblAssociadoID" id="lblAssociadoID" style="display:none">{{associado.id}}</h4>
-                            <h4 style="color:#563A2D">{{associado.nomefantasia}}</h4>
-                            <h5 style="color:#563A2D;margin-top:-8px">{{associado.categoria}}<h5>
-                            <h6><p style="color:gray;margin-top:-3px">{{associado.resumo}}</p></h6>
-
-                            {% if associado.taxaentrega == "S"%}
-                              <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega - R$ {{associado.valortaxaentrega}} </span>                                                            
-                            {% else %}
-                              <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega gratis {{associado.valortaxaentrega}} </span>                                                            
-                            {% endif %}
-                            <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>
-                            </br>
-                            <hr>
-                            
-                            <h5 style="text-align:center; margin-top:-20px;margin-bottom:7px">
-                              {% if associado.situacao == "Disponivel" %}
-                                <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:#563A2D;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></h5></a>                             
-                              {% else %}  
-                                <a id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:gray;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio </h5></a>                                                           
-                              {% endif %}
-                            </h5>
-                          </div>
-
-                        </div>
-                      </div>                      
-                </div><!--/row-->
-              </div><!--/container -->
-            {% else %}
-              <div class="container">
-                <div class="row" style="margin-top:60px">
-                  <h4 name="lblError" id="lblError" style="text-align:center; color:gray">Nenhum Associado foi localizado!</h4>
-                </div>                      
-              </div>                                            
-
-            {% endfor %}
-          </div>    
-
-          <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
-            <p>
-              Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-              Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-              farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip
-              jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna
-              delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan
-              fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
-              richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus
-              tattooed echo park.</p>
-          </div>
-          <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
-            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo
-              retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
-              iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-              Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles
-              pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of
-              them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-          </div>
         </div>
+      </div> 
+
+      {% for associado in associados %}
+        <div class="container">
+              <div class="row" style="margin-bottom:-15px">
+                <div class="col-xs-18 col-sm-6 col-md-3">
+                  <div class="thumbnail" style="border-color:c0c0c0">
+                  {% if associado.situacao == "Disponivel" %}
+                      <span class ="badge badge-pill badge-warning pull-right" style="background-color:white;color:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
+                  {% else %}
+                      <span class="badge badge-pill badge-light pull-right"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
+                  {% endif %}
+                    </br></br>
+                    <img src="{{ url_for('views.media', filename=associado.logo)}}" style="margin-top:-15px; margin-bottom:-15px" >
+                    <div class="caption" style="margin-bottom:-20px">
+                      <h4 name="lblAssociadoID" id="lblAssociadoID" style="display:none">{{associado.id}}</h4>
+                      <h4 style="color:#563A2D">{{associado.nomefantasia}}</h4>
+                      <h5 style="color:#563A2D;margin-top:-8px">{{associado.categoria}}<h5>
+                      <h6><p style="color:gray;margin-top:-3px">{{associado.resumo}}</p></h6>
+
+                      {% if associado.taxaentrega == "S"%}
+                        <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega - R$ {{associado.valortaxaentrega}} </span>                                                            
+                      {% else %}
+                        <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega gratis {{associado.valortaxaentrega}} </span>                                                            
+                      {% endif %}
+                      <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>
+                      </br>
+                      <hr>
+                      
+                      <h5 style="text-align:center; margin-top:-20px;margin-bottom:7px">
+                        {% if associado.situacao == "Disponivel" %}
+                          <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:#563A2D;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></h5></a>                             
+                        {% else %}  
+                          <a id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:gray;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio </h5></a>                                                           
+                        {% endif %}
+                      </h5>
+                    </div>
+
+                  </div>
+                </div>                      
+          </div><!--/row-->
+        </div><!--/container -->
+      {% else %}
+        <div class="container">
+          <div class="row" style="margin-top:60px">
+            <h4 name="lblError" id="lblError" style="text-align:center; color:gray">Nenhum Associado foi localizado!</h4>
+          </div>                      
+        </div>                                            
+
+      {% endfor %}
+    </div>    
+
     </div>
 
   </body>
