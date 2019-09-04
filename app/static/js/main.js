@@ -42,10 +42,7 @@ $(document).ready(function () {
     } else {
         $("#recupera-senha").show();
     };
-
-    // ativa tab inicial home
-    $("#associado-tab-md").tab('show')
-
+    
     // filtra associados
     $("#btnAssociadoFiltrar").click(function () {
         if ($("#txtAssociadoFiltrar").val().trim().length>0) {
