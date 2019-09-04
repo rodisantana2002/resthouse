@@ -145,7 +145,5 @@ def registrarFavorito(id):
 
 @views.route('/associado/<associado_id>')
 def carregar_cardapio(associado_id):
-    associado = oper.obterAssociadoById(associado_id)
-    for categoria in associado.categorias:
-        print(categoria.descricao)
+    associado = oper.obterAssociadoById(associado_id)   
     return render_template('cardapio.html', associado=associado)

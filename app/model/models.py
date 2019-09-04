@@ -104,7 +104,7 @@ class Associado(db.Model):
     logo = db.Column(db.String(100))
     
     categorias = relationship("Categoria", secondary='associado_categorias')
-
+    
     def add(self, associado):
         db.session.add(associado)
         db.session.commit()

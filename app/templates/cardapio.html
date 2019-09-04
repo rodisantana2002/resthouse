@@ -42,7 +42,7 @@
               </span>  
                         
               <span class="badge badge-pill badge-light pull-right" style="color:white; background:#F58634; margin-top:-9px; margin-right:10px">
-                  <a id="btn-voltar" style="color:white; font-size:30px" type="link" class="btn btn-link" href="{{ url_for('views.index') }} "><i class="glyphicon glyphicon-shopping-cart">0</i></a>                                                
+                  <a id="btn-voltar" style="color:white; font-size:30px" type="link" class="btn btn-link" href="{{ url_for('views.index') }} "><i class="glyphicon glyphicon-shopping-cart"></i></a>                                                
               </span>        
             </h5>
             <h5 >
@@ -59,14 +59,13 @@
          
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
                   <div class="carousel-inner" role="listbox"  >
-                      {% for catehoria in associado.categorias %}
-                          {% if categoria|first %}
+                      {% for categoria in associado.categorias %}
+                          {% if loop.index == 1 %}
                             <div class="item active" style="margin-bottom:-20px">
                                 <div class="thumbnail" style="border-color:white">
                                   <img src="{{ url_for('views.media', filename='categorias/300x200.jpg')}}" alt="Slide1">
                                   <div class="caption">
-                                    <h3>Pizzas</h3>
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                                    <h3 style="color:#F58634">{{categoria.descricao}}</h3>
                                     <p><a href="#" class="btn btn-primary" role="button">12,99 €</a> <a href="#" class="btn btn-default" role="button">Wishlist</a></p>
                                   </div>
                                 </div>        
@@ -77,8 +76,7 @@
                                 <div class="thumbnail" style="border-color:white">                          
                                   <img src="{{ url_for('views.media', filename='categorias/300x200.jpg')}}" alt="Slide2">
                                   <div class="caption">
-                                    <h3>Refrigerantes e Sucos</h3>
-                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
+                                    <h3 style="color:#F58634">{{categoria.descricao}}</h3>
                                     <p><a href="#" class="btn btn-primary" role="button">12,99 €</a> <a href="#" class="btn btn-default" role="button">Wishlist</a></p>
                                   </div>
                                 </div>        
