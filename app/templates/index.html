@@ -62,8 +62,9 @@
                   {% if associado.situacao == "Disponivel" %}
                       <span class ="badge badge-pill badge-warning pull-left" style="background-color:white;color:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
                   {% else %}
-                      <span class="badge badge-pill badge-light pull-left"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
+                      <span class="badge badge-pill badge-light pull-left"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>    
                   {% endif %}
+                    <span class ="badge badge-pill badge-warning pull-right" style="color:#2b76cd; background:white; margin-top:2px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>
                     </br></br>
                     <img src="{{ url_for('views.media', filename=associado.logo)}}" style="margin-top:-15px; margin-bottom:-15px" >
                     <div class="caption" style="margin-bottom:-20px">
@@ -77,7 +78,8 @@
                       {% else %}
                         <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega gratis {{associado.valortaxaentrega}} </span>                                                            
                       {% endif %}
-                      <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>
+
+                      <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634" ><i class="glyphicon glyphicon-star"></i> 4,7 </span>                                                                 
                       </br>
                       <hr>
                       
