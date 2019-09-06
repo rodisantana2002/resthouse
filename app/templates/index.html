@@ -25,7 +25,13 @@
           </button>
           <a class="navbar-brand"  href="{{ url_for('views.index') }}" style="color:white; text-align:left"><b><span class="glyphicon glyphicon-cutlery"></span> Resthouse</b></a></br>
         </div>
-        <h5 style="color:white; text-align:right">Olá, {{ nome }}</h5>
+
+        <span class="badge badge-pill badge-light pull-right" style="color:white; background:#F58634; margin-top:-5px; margin-right:-20px">                            
+            <a id="btn-carrinho" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">
+              Olá, {{ nome }} <i style="font-size:20px" class="glyphicon glyphicon-shopping-cart"></i>             
+            </a>                                                
+          </span>  
+
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav">
             <li><a href="{{ url_for('views.index') }}" style="color:white"><i class="material-icons">shopping_cart</i> Meus Pedidos</a></li>
