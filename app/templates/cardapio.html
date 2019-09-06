@@ -17,6 +17,7 @@
 
   <!-- corpo -->
   <body style="background:white">
+
       <div class="container" style="background:#F58634; border-color:#F58634">
         <div class="row">
           <div class="col-12">
@@ -29,7 +30,7 @@
             <h5 style="color:white; margin-left:45px; margin-top:-15px">
               {{associado.categoria}}
               <br>
-              <span class ="badge badge-pill badge-warning pull-left" style="color:white; background:#F58634; margin-top:3px; margin-left:-8px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
+              <span class ="badge badge-pill badge-warning pull-left" style="color:white; background:#F58634; margin-top:3px; margin-left:-8px; margin-bottom:3px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
                                                   
             <span class="badge badge-pill badge-light pull-right" style="color:white; background:#F58634; margin-top:-41px; margin-right:10px">                
               <a id="btn-carrinho" style="color:white; font-size:30px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">
@@ -45,16 +46,17 @@
         <div class="row">
             <div class="col-12" >
          
-                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false"  >
                   <div class="carousel-inner" >
                       {% for categoria in associado.categorias_associado  %}
                           {% if loop.index == 1 %}
                             <div class="item active" style="margin-bottom:-20px">
                                 <div class="thumbnail" style="border-color:white">
-                                  <img src="{{ url_for('views.media', filename='categorias/300x200.jpg')}}" alt="Slide1">
+                                  <img src="{{ url_for('views.media', filename=categoria.catego.logo)}}" alt="Slide1">
                                   <div class="caption">
-                                    <h3 style="color:#F58634">{{categoria.catego.descricao}}</h3>
-                                    <p style="color:#F58634; margin-top:-10px">{{categoria.resumo}}</p>
+                                    <h4 style="color:#F58634"><b>{{categoria.catego.descricao}}</b></h4>
+                                    <h6 style="color:#F58634; margin-top:-5px">{{categoria.resumo}}</h6>
+                                     <hr>
                                   </div>
                                 </div>        
                             </div><!-- End Item -->                          
@@ -62,16 +64,18 @@
                           {% else %}                                           
                             <div class="item" style="margin-bottom:-20px">
                                 <div class="thumbnail" style="border-color:white">                          
-                                  <img src="{{ url_for('views.media', filename='categorias/300x200.jpg')}}" alt="Slide2">
+                                  <img src="{{ url_for('views.media', filename=categoria.catego.logo)}}" alt="Slide2">
                                   <div class="caption">
-                                    <h3 style="color:#F58634">{{categoria.catego.descricao}}</h3>
-                                    <p style="color:#F58634; margin-top:-10px">{{categoria.resumo}}</p>
+                                    <h4 style="color:#F58634"><b>{{categoria.catego.descricao}}</b></h4>
+                                    <h6 style="color:#F58634; margin-top:-5px">{{categoria.resumo}}</h6>
+                                     <hr>
                                   </div>
+                                  
                                 </div>        
                             </div><!-- End Item -->
                           {% endif %}
                       {% endfor %}
-
+                     
                     </div><!-- End Carousel Inner -->
 
                     <div class="carousel-controls">              
@@ -84,6 +88,13 @@
             </div>            
 
         </div>
+
+        <div class="row">
+        </div>
+
+        <div class="row"> 
+        </div>
+
       </div>
 
     </div>      
