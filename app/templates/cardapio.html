@@ -19,17 +19,11 @@
   <body style="background:white">
       <div class="container" style="background:#F58634; border-color:#F58634;">
         <div class="row">
-          <div class="col-12" style="margin-left:-10px">
+          <div class="col-12"">
           <!-- cabecalho Associado -->
-            <a id="btn-voltar" style="color:white" type="link" class="btn btn-link" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back</i></a>                                                
+            <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634" type="link" class="btn btn-warning btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back_ios</i></a>                                                
             <label style="color:white;margin-left:-10px"><h4><b>{{associado.nomefantasia}}</b></h4></label>
             
-            {% if associado.situacao == "Disponivel" %}
-                <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; margin-top:8px; margin-right:10px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                                
-            {% else %}
-                <span class="badge badge-pill badge-light pull-right" style="color:gray; background:white; margin-right:10px; margin-top:8px" ><i class="glyphicon glyphicon-remove"></i> Indisponível</span>                            
-            {% endif %}
-
             <h5 style="color:white;margin-top:-10px; margin-left:45px">
               {{associado.categoria}}
               <span class ="badge badge-pill badge-warning pull-right" style="color:white; background:#F58634; margin-top:-3px; text-align:right; margin-right:5px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
