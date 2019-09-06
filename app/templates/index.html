@@ -59,39 +59,34 @@
               <div class="row" style="margin-bottom:-15px">
                 <div class="col-xs-18 col-sm-6 col-md-3">
                   <div class="thumbnail" style="border-color:c0c0c0">
-                  {% if associado.situacao == "Disponivel" %}
-                      <span class ="badge badge-pill badge-warning pull-left" style="background-color:white;color:#2b76cd; margin-top:2px; margin-left:2px" ><i class="glyphicon glyphicon-ok"></i> Disponível</span>                                                        
-                  {% else %}
-                      <span class="badge badge-pill badge-light pull-left"><i class="glyphicon glyphicon-remove"></i> Indisponível</span>    
-                  {% endif %}
-                    <span class ="badge badge-pill badge-warning pull-right" style="color:#2b76cd; background:white; margin-top:2px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>
-                    </br></br>
-                    <img src="{{ url_for('views.media', filename=associado.logo)}}" style="margin-top:-15px; margin-bottom:-15px" >
+                    <img src="{{ url_for('views.media', filename=associado.logo)}}" >
                     <div class="caption" style="margin-bottom:-20px">
-                      <h4 name="lblAssociadoID" id="lblAssociadoID" style="display:none">{{associado.id}}</h4>
-                      <h4 style="color:#563A2D">{{associado.nomefantasia}}</h4>
+                      <h4 style="color:#563A2D;margin-top: 1px">{{associado.nomefantasia}}</h4>
                       <h5 style="color:#563A2D;margin-top:-8px">{{associado.categoria}}<h5>
                       <h6><p style="color:gray;margin-top:-3px">{{associado.resumo}}</p></h6>
 
-                      {% if associado.taxaentrega == "S"%}
-                        <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega - R$ {{associado.valortaxaentrega}} </span>                                                            
-                      {% else %}
-                        <span class ="badge badge-pill badge-warning pull-left" style="background:#F58634" ><i class="glyphicon glyphicon-usd"></i> Entrega gratis {{associado.valortaxaentrega}} </span>                                                            
-                      {% endif %}
-
-                      <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634" ><i class="glyphicon glyphicon-star"></i> 4,7 </span>                                                                 
-                      </br>
-                      <hr>
+                      <h6>                      
+                        {% if associado.taxaentrega == "S"%}
+                          <i class="material-icons" style="font-size:17px">directions_bike</i> Entrega - R$ {{associado.valortaxaentrega}}
+                        {% else %}
+                          <i class="material-icons" style="font-size:17px">directions_bike</i> Entrega grátis
+                        {% endif %}
+                        <span class ="badge badge-pill badge-warning pull-right" style="background:#F58634; font-size:15px" ><i class="glyphicon glyphicon-star"></i> Novo<br><label style="font-size:9px;margin-top:5px">Avaliação</label> </span>                                                                 
+                        <br>
+                        <i style="margin-top:5px" class="glyphicon glyphicon-time"> </i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h
+                      </h6>
                       
-                      <h5 style="text-align:right; margin-top:-20px;margin-bottom:7px">
+                      <hr>        
+
+                      <h5 style="text-align:right; margin-top:-20px">
                         {% if associado.situacao == "Disponivel" %}
-                          <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:#563A2D;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></h5></a>                             
+                          <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="margin-right:-8px;text;color:#F58634;border-color:white; background-color:white"> <i class="material-icons">fastfood</i> Conhecer o Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></a>                             
                         {% else %}  
-                          <a id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="text;color:gray;border-color:white; background-color:white"> <h5> <i class="material-icons">fastfood</i> Conhecer o Cardápio </h5></a>                                                           
+                          <a id="btnAssociadoCardapio" class="btn btn-warning btn-sm" style="margin-right:-8px;text;color:gray;border-color:white; background-color:white"> <span class="glyphicon glyphicon-remove"></span> Indisponível</a>                                                           
                         {% endif %}
                       </h5>
-                    </div>
 
+               </div>
                   </div>
                 </div>                      
           </div><!--/row-->
