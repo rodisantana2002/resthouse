@@ -22,22 +22,27 @@
         <div class="row">
           <div class="col-12">
           <!-- cabecalho Associado -->
-            <h4 style="color:white; margin-top:1px" > 
+            <span class="pull-left" style="margin-top:13px">
               <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634", type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_back_ios</i></a>                                                
-              <b style="margin-left:-12px">{{associado.nomefantasia}}</b> 
+            </span>
+
+            <h4 style="color:white; margin-top:8px" > 
+              <b style="margin-left:-2px">{{associado.nomefantasia}}</b> 
             </h4>
             
-            <h5 style="color:white; margin-left:45px; margin-top:-15px">
+            <h5 style="color:white; margin-left:45px; margin-top:-20px">
+              <br>
               {{associado.categoria}}
               <br>
               <span class ="badge badge-pill badge-warning pull-left" style="color:white; background:#F58634; margin-top:3px; margin-left:-8px; margin-bottom:3px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
                                                   
-            <span class="badge badge-pill badge-light pull-right" style="background:white; margin-top:-49px; margin-right:5px">                           
-                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">     
-                <i style="font-size:24px" class="glyphicon glyphicon-shopping-cart"></i> <br>0 itens 
-              </a>                                                
-            </span>      
+              <span class="badge badge-pill badge-light pull-right" style="background:white; margin-top:-43px; margin-right:5px; margin-bottom:4px">                           
+                  <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">     
+                  <i style="font-size:24px" class="glyphicon glyphicon-shopping-cart"></i> <br>0 itens 
+                </a>                                                
+              </span>    
             <h5>
+
           </div>
         </div>
       </div>
@@ -51,9 +56,9 @@
                   <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
                     <div class="panel-body" >
                         <div class="media" >
-                            <h4 style="color:#F58634; margin-top:2px"><b>{{categoria.catego.descricao}}</b>
-                            <span class="pull-right" style="margin-top:-15px; margin-left:-5px; margin-right:-19px">
-                              <a id="btn-voltar" style="color:#F58634; background:white" type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">chevron_right</i></a>                                                                          
+                            <h4 style="color:#F58634; margin-top:5px"><b>{{categoria.catego.descricao}}</b>
+                            <span class="pull-right" style="margin-top:-14px; margin-left:-5px; margin-right:-19px">
+                              <a id="btn-voltar" style="color:#F58634; background:white" type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_forward_ios</i></a>                                                                          
                             </span>
                           </h4>
 
