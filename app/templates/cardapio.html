@@ -32,9 +32,9 @@
               <br>
               <span class ="badge badge-pill badge-warning pull-left" style="color:white; background:#F58634; margin-top:3px; margin-left:-8px; margin-bottom:3px" ><i class="glyphicon glyphicon-time"></i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h</span>                  
                                                   
-            <span class="badge badge-pill badge-light pull-right" style="background:white; margin-top:-50px; margin-right:5px">                           
+            <span class="badge badge-pill badge-light pull-right" style="background:white; margin-top:-49px; margin-right:5px">                           
                 <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">     
-                <i style="font-size:25px" class="glyphicon glyphicon-shopping-cart"></i> <br>0 itens 
+                <i style="font-size:24px" class="glyphicon glyphicon-shopping-cart"></i> <br>0 itens 
               </a>                                                
             </span>      
             <h5>
@@ -50,14 +50,16 @@
               {% for categoria in associado.categorias_associado  %}
                   <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
                     <div class="panel-body" >
+
                         <div class="media" >
+                          <h4 style="color:#F58634; margin-top:2px"><b>{{categoria.catego.descricao}}</b></h4>
                           <span class="pull-right" style="margin-top:30px; margin-left:-5px; margin-right:-19px">
                             <a id="btn-voltar" style="color:#F58634; background:white" type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_forward_ios</i></a>                                                                          
                           </span>
 
-                          <img class="pull-left" src="{{ url_for('views.media', filename=categoria.catego.logo)}}" >
+                          <img class="pull-right" src="{{ url_for('views.media', filename=categoria.catego.logo)}}" >
                           <div class="media-body">
-                            <h4 style="color:#F58634; margin-top:2px"><b>{{categoria.catego.descricao}}</b></h4>
+
                             <h6 style="color:#F58634; margin-top:5px; margin-right:5px">{{categoria.resumo}}</h6>                  
                           </div>
                         </div>                          
