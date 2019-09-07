@@ -42,19 +42,30 @@
         </div>
       </div>
 
-      <div class="container" style="margin-top:5px; margin-left:5px">
+      <div class="container">
         <div class="row">        
-          {% for categoria in associado.categorias_associado  %}
-            <div class="media">
-              <img class="pull-left " src="{{ url_for('views.media', filename=categoria.catego.logo)}}" >
-              <div class="media-body">
-                <h4 style="color:#F58634"><b>{{categoria.catego.descricao}}</b></h4>
-                <h6 style="color:#F58634; margin-top:-5px">{{categoria.resumo}}</h6>                  
-              </div>
-            </div>          
-            <hr>
-          {% endfor %}
+            
+            <div class="panel-group">
+            
+              {% for categoria in associado.categorias_associado  %}
+                  <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
+                    <div class="panel-body" >
+                        <div class="media" >
+                          <span class="pull-right" style="margin-top:30px; margin-left:-5px; margin-right:-19px">
+                            <a id="btn-voltar" style="color:#F58634; background:white" type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_forward_ios</i></a>                                                                          
+                          </span>
 
+                          <img class="pull-right" src="{{ url_for('views.media', filename=categoria.catego.logo)}}" >
+                          <div class="media-body">
+                            <h4 style="color:#F58634; margin-top:2px"><b>{{categoria.catego.descricao}}</b></h4>
+                            <h6 style="color:#F58634; margin-top:5px; margin-right:5px">{{categoria.resumo}}</h6>                  
+                          </div>
+                        </div>                          
+                    </div>
+                  </div>
+              {% endfor %}
+                        
+            </div>
         </div>
       </div>
 
