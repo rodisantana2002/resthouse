@@ -52,15 +52,16 @@
                     <div class="panel-body" >
 
                         <div class="media" >
-                          <h4 style="color:#F58634; margin-top:2px"><b>{{categoria.catego.descricao}}</b></h4>
-                          <span class="pull-right" style="margin-top:30px; margin-left:-5px; margin-right:-19px">
+                          <h4 style="color:#F58634; margin-top:8px"><b>{{categoria.catego.descricao}}</b>
+                          <span class="pull-right" style="margin-top:-15px; margin-left:-5px; margin-right:-19px">
                             <a id="btn-voltar" style="color:#F58634; background:white" type="link" class="btn btn-link btn-md" href="{{ url_for('views.index') }}"><i class="material-icons">arrow_forward_ios</i></a>                                                                          
                           </span>
 
+                          </h4>
+
                           <img class="pull-right" src="{{ url_for('views.media', filename=categoria.catego.logo)}}" >
                           <div class="media-body">
-
-                            <h6 style="color:#F58634; margin-top:5px; margin-right:5px">{{categoria.resumo}}</h6>                  
+                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{categoria.resumo}}</h6>                  
                           </div>
                         </div>                          
                     </div>
