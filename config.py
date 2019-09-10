@@ -7,9 +7,9 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'para sempre resthouse'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     FLASKY_MAIL_SUBJECT_PREFIX = '[RestHouse]'
-    FLASKY_MAIL_SENDER = 'papersrs2002@gmail.com'
-    FLASKY_MAIL_USERNAME = 'papersrs2002@gmail.com'
-    FLASKY_MAIL_PASSWORD = '12345Perkons'
+    FLASKY_MAIL_SENDER = 'resthouse.oficial@gmail.com'
+    FLASKY_MAIL_USERNAME = 'resthouse.oficial'
+    FLASKY_MAIL_PASSWORD = '12345Resthouse'
     FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
 
 
