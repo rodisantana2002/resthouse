@@ -23,8 +23,8 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
-    app.config['MAIL_USERNAME'] = os.environ.get('GMAIL_USER') or 'resthouse.oficial@gmail.com'
-    app.config['MAIL_PASSWORD'] = os.environ.get('GMAIL_PASSWORD') or '12345Resthouse'
+    app.config['MAIL_USERNAME'] = os.environ.get('GMAIL_USER') or 'papersrs2002@gmail.com'
+    app.config['MAIL_PASSWORD'] = os.environ.get('GMAIL_PASSWORD') or 'ujlatqnjwmprumxd'
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
     app.config['MAIL_DEFAULT_SENDER'] = 'resthouse.oficial@gmail.com'
