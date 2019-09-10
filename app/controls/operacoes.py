@@ -22,7 +22,7 @@ class Operacoes():
         return self.associado.query.filter_by(id=valor).first()    
     
     def obterAssociadosByNomeResumo(self, valor):        
-        return self.associado.query.filter(Associado.nomefantasia.like(valor) | Associado.resumo.like(valor)).all()
+        return self.associado.query.filter(Associado.nomefantasia.contains(valor.upper()) | Associado.resumo.contains(valor.lower())).all()
     
     def obterTagsAssociadoByUser(self, usuario_id):
         return self.tags.query.filter_by(usuario_id=usuario_id).all()
