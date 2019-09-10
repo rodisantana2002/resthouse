@@ -28,7 +28,7 @@
 
         <span class="badge badge-pill badge-light pull-right" style="color:white; background:#F58634; margin-top:-5px; margin-right:-10px">                            
             <a id="btn-carrinho" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">
-              Olá, {{ nome }} <i style="font-size:20px" class="glyphicon glyphicon-shopping-cart"></i>             
+              Olá, {{ nome }} <i style="font-size:20px" class="glyphicon glyphicon-bell"></i>             
             </a>                                                
           </span>  
 
@@ -86,9 +86,9 @@
 
                       <h4 style="text-align:right; margin-top:-20px">                      
                         {% if associado.situacao == "Disponivel" %}
-                          <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-md" style="margin-right:-8px;color:#F58634;border-color:white; background-color:white"> <i class="material-icons">fastfood</i> Ver Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></a>                             
+                          <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-lg" style="margin-right:-8px;color:#F58634;border-color:white; background-color:white"> <i class="material-icons">fastfood</i> Ver Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></a>                             
                         {% else %}  
-                          <a id="btnAssociadoCardapio" class="btn btn-warning btn-md" style="margin-right:-8px;text;color:gray;border-color:white; background-color:white"> <span class="glyphicon glyphicon-remove"></span> Indisponível</a>                                                           
+                          <a id="btnAssociadoCardapio" class="btn btn-warning btn-lg" style="margin-right:-8px;text;color:gray;border-color:white; background-color:white"> <span class="glyphicon glyphicon-remove"></span> Indisponível</a>                                                           
                         {% endif %}
                       </h4>
 
