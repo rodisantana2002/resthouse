@@ -14,12 +14,16 @@ class Operacoes():
         self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": ""}
         self.associado = Associado()
         self.tags = TagAssociado() 
+        self.associado_categoria = AssociadoCategoria()
     
     def obterAssociados(self):        
         return self.associado.query.all()
    
     def obterAssociadoById(self, valor):        
         return self.associado.query.filter_by(id=valor).first()    
+
+    def obterAssociadoCategoriaById(self, valor):        
+        return self.associado_categoria.query.filter_by(id=valor).first()    
     
     def obterAssociadosByNomeResumo(self, valor):        
         return self.associado.query.filter(Associado.nomefantasia.contains(valor.upper()) | Associado.resumo.contains(valor.lower())).all()
