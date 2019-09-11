@@ -56,7 +56,7 @@ class Usuario(db.Model):
         db.session.commit()
 
     def update(self):
-        db.session.commit()    
+        db.session.commit()
 
     def serialize(self):
         return {
@@ -89,7 +89,7 @@ class Associado(db.Model):
     funcionamentohorariotermino = db.Column(db.String(20))
     taxaentrega = db.Column(db.String(1), default="N")
     valortaxaentrega = db.Column(db.String(10), default="0,00")
-    
+
     # endereço
     logradouro = db.Column(db.String(100))
     numero = db.Column(db.String(10))
@@ -102,15 +102,16 @@ class Associado(db.Model):
     # acesso
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     logo = db.Column(db.String(100))
-    
-    categorias_associado = relationship('AssociadoCategoria', backref='associado')
-    
+
+    categorias_associado = relationship(
+        'AssociadoCategoria', backref='associado')
+
     def add(self, associado):
         db.session.add(associado)
         db.session.commit()
 
     def update(self):
-        db.session.commit()    
+        db.session.commit()
 
     def serialize(self):
         return {
@@ -131,28 +132,30 @@ class TagAssociado(db.Model):
 
     # dados essenciais
     id = db.Column('id', db.Integer, primary_key=True)
-    
+
     associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
     recomendo = db.Column(db.String(1))
     favorito = db.Column(db.String(1))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    
-    user = relationship(Usuario, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
-    assoc = relationship(Associado, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
-    
+
+    user = relationship(Usuario, backref=backref(
+        "associado_usuario_tags", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref(
+        "associado_usuario_tags", cascade="all, delete-orphan"))
+
     def add(self, tag):
         db.session.add(tag)
         db.session.commit()
 
     def update(self):
-        db.session.commit()    
-        
+        db.session.commit()
+
     def serialize(self):
         return {
             'id': self.id,
             'usuario_id': self.usuario_id,
-            'nomeCompleto':self.user.nomecompleto,
+            'nomeCompleto': self.user.nomecompleto,
             'associado_id': self.associado_id,
             'nomeFantasia': self.assoc.nomefantasia,
             'favorito': self.favorito,
@@ -172,7 +175,7 @@ class Categoria(db.Model):
     descricao = db.Column(db.String(60))
     logo = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    
+
     def serialize(self):
         return {
             'id': self.id,
@@ -182,7 +185,7 @@ class Categoria(db.Model):
         }
 
     def __repr__(self):
-        return self.serialize()   
+        return self.serialize()
 
 
 # Classe associativa AssociadoxCategorias
@@ -191,25 +194,62 @@ class AssociadoCategoria(db.Model):
 
     # dados essenciais
     id = db.Column('id', db.Integer, primary_key=True)
-    
+
     associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
     categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'))
     resumo = db.Column(db.String(60))
     logo = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    
-    catego = relationship(Categoria, backref=backref("associado_categorias", cascade="all, delete-orphan"))
-    assoc = relationship(Associado, backref=backref("associado_categorias", cascade="all, delete-orphan"))
-            
+
+    catego = relationship(Categoria, backref=backref(
+        "associado_categorias", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref(
+        "associado_categorias", cascade="all, delete-orphan"))
+
     def serialize(self):
         return {
             'id': self.id,
             'associado_id': self.associado_id,
             'nomeFantasia': self.assocs.nomefantasia,
-            'categoria_id':self.categoria_id,
+            'categoria_id': self.categoria_id,
             'categoria': self.catego.descricao,
             'resumo': self.resumo,
-            'logo': self.logo    
+            'logo': self.logo
+        }
+
+    def __repr__(self):
+        return self.serialize()
+
+# classe Produto
+
+
+class Produto(db.Model):
+    __tablename__ = "produto"
+
+    id = db.Column('id', db.Integer, primary_key=True)
+
+    descricao = db.Column(db.String(200))
+    valor = db.Column(db.String(30))
+    resumo = db.Column(db.String(400))
+    medida = db.Column(db.String(30))
+    logo = db.Column(db.String(100))
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+
+    def add(self, produto):
+        db.session.add(produto)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'descricao': self.descricao,
+            'valor': self.valor,
+            'resumo': self.resumo,
+            'medida': self.medida,
+            'logo': self.logo
         }
 
     def __repr__(self):
