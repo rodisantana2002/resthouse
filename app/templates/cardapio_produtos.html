@@ -7,6 +7,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>      
@@ -17,18 +18,64 @@
   <!-- corpo -->
   <body style="background:#fcf8ef">
 
-
       <div class="container" style="background:#F58634; border-color:#F58634">
         <div class="row">
           <div class="col-12">
-            {% for produto in associado_categoria.prods %}
-              {{produto.descricao}} <br>
-            {% endfor %}
+          <!-- cabecalho Associado -->
+            <span class="pull-left" style="margin-top:5px">
+              <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.carregar_cardapio', associado_id=associado_categoria.associado_id)}}"><i class="material-icons">arrow_back_ios</i></a>                                                
+            </span>
 
+            <h4 style="color:white; margin-left:45px; margin-top:15px">
+              <b>{{associado_categoria.catego.descricao}}</b>
+            <h4>           
+            <h6 style="color:white">12 opções</h6>      
+
+            <span class="badge badge-pill badge-light pull-right" style="background:#fcf8ef; margin-top:-63px; margin-right:5px; margin-bottom:4px">                           
+                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">     
+                    <i style="font-size:24px" class="glyphicon glyphicon-shopping-cart"></i> <br>0 itens 
+                </a>                                                
+            </span>    
+            
           </div>
         </div>
       </div>
 
+      <div class="container">
+        <div class="row">                    
+            <div class="panel-group">            
+            
+              {% for produto in associado_categoria.prods  %}
+                  <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
+                    <div class="panel-body" >
+                        <div class="media" >
+                            <h4 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h4>
+
+                          <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
+                          <div class="media-body">
+                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                        
+                            <h4 style="color:#563A2D; margin-top:-2px"><b>R$ {{produto.valor}}</b> </h4>      
+                            
+                            <span class="badge badge-pill pull-right " style="margin-top:-35px; margin-right:5px; color:white; background:#F58634">
+                              <a id="btn-adicionar" type="link" style="color:white" class="btn btn-link btn-xs" href="{{ url_for('views.index') }}"><i class="material-icons">add_shopping_cart</i></a>                                                                          
+                            </span>  
+
+                            <div class="def-number-input number-input safari_only" style="margin-top:5px">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                              <input class="quantity" min="0" name="quantity" value="1" type="number">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                            </div>                            
+
+                          </div>
+
+                        </div>                          
+                    </div>
+                  </div>
+              {% endfor %}
+                        
+            </div>
+        </div>
+      </div>      
 
   </body>
 </html>
