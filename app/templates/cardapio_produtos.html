@@ -29,7 +29,7 @@
             <h4 style="color:white; margin-left:45px; margin-top:15px">
               <b>{{associado_categoria.catego.descricao}}</b>
             <h4>           
-            <h6 style="color:white">12 opções</h6>      
+            <h6 style="color:white">{{associado_categoria.prods|length}} opções</h6>      
 
             <span class="badge badge-pill badge-light pull-right" style="background:#fcf8ef; margin-top:-63px; margin-right:5px; margin-bottom:4px">                           
                 <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">     
@@ -65,10 +65,15 @@
                               </span>                                                                                                                                         
 
                               <h5 style="color:#563A2D">
-                                <button type="button" class="btn btn-secondary btn-sm" style="border-color:gray;background:white"><i class="glyphicon glyphicon-minus"></i></button>
-                                <button type="button" class="btn btn-secondary btn-sm"  disabled>01</button>
-                                <button type="button" class="btn btn-secondary btn-sm" style="border-color:gray;background:white"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button id="btnMinus" type="button" class="btn btn-secondary btn-sm" style="border-color:gray;background:white">
+                                  <i class="glyphicon glyphicon-minus"></i>
+                                </button>
+                                
+                                <input class="quantity" min="1" name="quantity" value="1" type="number"  style="height:3rem; width: 3rem; text-align:center">
 
+                                <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:gray;background:white" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                  <i class="glyphicon glyphicon-plus" ></i>
+                                </button>
                               </h5>                            
                           </div>
 
