@@ -4,7 +4,7 @@
 -- DROP TABLE associado_caregorias;
 -- DROP TABLE associado;
 -- DROP TABLE categoria;
--- DROP TABLE produto
+-- DROP TABLE produto;
 -- -- 
 -- -- SQLLite
 -- CREATE TABLE usuario (  id SERIAL NOT NULL PRIMARY KEY,
@@ -81,4 +81,6 @@ CREATE TABLE produto (id SERIAL NOT NULL PRIMARY KEY,
                       medida VARCHAR(30) NULL,
                       logo VARCHAR(100) NULL,
                       associado_categoria_id INTEGER NOT NULL,                       
+                      tipo VARCHAR(30) NULL,
                       dtregistro VARCHAR(30)  NULL);  
+

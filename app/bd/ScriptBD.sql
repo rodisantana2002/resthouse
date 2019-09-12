@@ -82,6 +82,7 @@ CREATE TABLE produto (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                       medida VARCHAR(30) NULL,
                       logo VARCHAR(100) NULL, 
                       associado_categoria_id INTEGER NOT NULL,
+                      tipo VARCHAR(30) NULL,
                       dtregistro VARCHAR(30)  NULL);  
 
 
