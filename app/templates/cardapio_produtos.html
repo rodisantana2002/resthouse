@@ -57,22 +57,22 @@
                               <h4 style="color:#563A2D; margin-top:-3px"><b>R$ {{produto.valor}}</b> 
                               </h4>      
 
-                              <span class="badge badge-pill pull-right" style="font-size:10px;margin-top:-15px; ccolor:white;background:#F58634">
+                              <span class="badge badge-pill pull-right" style="font-size:12px;margin-top:-5px; ccolor:white;background:#F58634">
                                  <i class="material-icons">add_shopping_cart</i><br>                                            
                                 <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
                                   adicionar
                                 </a>       
                               </span>                                                                                                                                         
 
-                              <h5 style=" margin-top:-5px">
-                                <span class="badge badge-pill" style="color:#563A2D; background:#fcf8ef; border:1px solid gray">
-                                    <button id="btnMinus" type="button" class="btn btn-secondary btn-sm" style="border-color:#fcf8ef;background:#fcf8ef" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepDown()">
+                              <h5 style=" margin-top:-1px">
+                                <span class="badge badge-pill" style="color:#F58634; background:white; border:1px solid #F58634">
+                                    <button id="btnMinus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepDown()">
                                       <i class="glyphicon glyphicon-minus"></i>
                                     </button>                                
 
                                     <input class="quantity" min="1" name="txtQuantity" value="1" type="number"  style="color:#563A2D;height:3rem; width:3rem; text-align:center; background:white; border:1px solid gray" disabled>
-                                    
-                                    <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:#fcf8ef;background:#fcf8ef" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepUp()">
+
+                                    <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepUp()">
                                       <i class="glyphicon glyphicon-plus" ></i>
                                     </button>
                                 </span>
