@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
     <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
 
@@ -17,7 +17,6 @@
 
   <!-- corpo -->
   <body style="background:#fcf8ef">
-
       <div id="cabec" name="cabec" class="container" style="background:#F58634; border-color:#F58634">
         <div class="row">
           <div class="col-12">
@@ -45,46 +44,203 @@
         <div class="row">                    
 
             <div class="panel-group">            
-
-                {% for produto in associado_categoria.prods  %}
-                    <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
+                {% if associado_categoria.catego.descricao=='PIZZAS'%}
+                    <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">                    
                       <div class="panel-body" >
-                          <div class="media" >
-                              <h4 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h4>
 
-                              <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
-                              <div class="media-body">
-                                <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                                      
-                                <h4 style="color:#563A2D; margin-top:-3px"><b>R$ {{produto.valor}}</b> 
-                                </h4>      
+                          <select name="txtTamanho" id="txtTamanho" class="form-control" style="color=gray; margin-bottom:10px" required>
+                              <option selected>Escolha um tamanho</option>
+                              <option value="12">12 pedaços (big)</option>
+                              <option value="8">8 pedaços (grande)</option>
+                              <option value="6">6 pedaços (média)</option>
+                              <option value="4">4 pedaços (pequena)</option>
+                          </select>
 
-                                <span class="badge badge-pill pull-right" style="font-size:12px;margin-top:-5px; ccolor:white;background:#F58634">
-                                  <i class="material-icons">add_shopping_cart</i><br>                                            
-                                  <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
-                                    adicionar
-                                  </a>       
-                                </span>                                                                                                                                         
+                          <div class="panel panel-default">
+                            <!-- Default panel contents -->
 
-                                <h5 style=" margin-top:-1px">
-                                  <span class="badge badge-pill" style="color:#F58634; background:white; border:1px solid #F58634">
-                                      <button id="btnMinus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepDown()">
-                                        <i class="glyphicon glyphicon-minus"></i>
-                                      </button>                                
+                            <div class="panel-heading">Itens Selecionados
+                              <span class="badge badge-pill pull-right" style="font-size:10px; margin-right:-8px;margin-top:-6px; ccolor:white;background:#F58634">
+                                <i class="material-icons">add_shopping_cart</i>adicionar                                            
+                              </span>                                
+                            </div>
+                            
+                            <h5 style="text-align:center">Nenhum item selecionado</h5>
 
-                                      <input class="quantity" min="1" name="txtQuantity" value="1" type="number"  style="color:#563A2D;height:3rem; width:3rem; text-align:center; background:white; border:1px solid gray" disabled>
+                            <!-- List group -->
+                            <ul class="list-group">
+                              <li class="list-group-item">Cras justo odio</li>
+                              <li class="list-group-item">Dapibus ac facilisis in</li>
+                              <li class="list-group-item">Morbi leo risus</li>
+                            </ul>                                
 
-                                      <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepUp()">
-                                        <i class="glyphicon glyphicon-plus" ></i>
-                                      </button>
-                                  </span>
-                                  
-                                </h5>                            
+                            <div class="panel panel-footer" style="background:white"> Selecione o sabor desejado
+
+                                  <!--Accordion wrapper-->
+                                  <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true" >
+
+                                    <!-- Accordion card -->
+                                    <div class="card" >
+
+                                      <!-- Card header -->
+                                      <div class="card-header" role="tab" id="headingTwo1">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+                                          aria-expanded="false" aria-controls="collapseTwo1">
+                                          <h5 class="mb-0">
+                                            Tradicionais <i class="fas fa-angle-down rotate-icon"></i>
+                                          </h5>
+                                        </a>
+                                      </div>
+
+                                      <!-- Card body -->
+                                      <div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+                                        data-parent="#accordionEx1">
+                                        <div class="card-body">
+                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                          wolf
+                        
+
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- Accordion card -->
+
+                                    <!-- Accordion card -->
+                                    <div class="card">
+
+                                      <!-- Card header -->
+                                      <div class="card-header" role="tab" id="headingTwo2">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo21"
+                                          aria-expanded="false" aria-controls="collapseTwo21">
+                                          <h5 class="mb-0">
+                                            Especiais <i class="fas fa-angle-down rotate-icon"></i>
+                                          </h5>
+                                        </a>
+                                      </div>
+
+                                      <!-- Card body -->
+                                      <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+                                        data-parent="#accordionEx1">
+                                        <div class="card-body">
+                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                          wolf
+
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- Accordion card -->
+
+
+                                <!-- Accordion card -->
+                                    <div class="card">
+
+                                      <!-- Card header -->
+                                      <div class="card-header" role="tab" id="headingThree31">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseThree31"
+                                          aria-expanded="false" aria-controls="collapseThree31">
+                                          <h5 class="mb-0">
+                                            Premium <i class="fas fa-angle-down rotate-icon"></i>
+                                          </h5>
+                                        </a>
+                                      </div>
+
+                                      <!-- Card body -->
+                                      <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31"
+                                        data-parent="#accordionEx1">
+                                        <div class="card-body">
+                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                          wolf
+
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- Accordion card -->
+
+
+                                    <!-- Accordion card -->
+                                    <div class="card">
+
+                                      <!-- Card header -->
+                                      <div class="card-header" role="tab" id="headingThree32">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseThree32"
+                                          aria-expanded="false" aria-controls="collapseThree31">
+                                          <h5 class="mb-0">
+                                            Doces <i class="fas fa-angle-down rotate-icon"></i>
+                                          </h5>
+                                        </a>
+                                      </div>
+
+                                      <!-- Card body -->
+                                      <div id="collapseThree32" class="collapse" role="tabpanel" aria-labelledby="headingThree32"
+                                        data-parent="#accordionEx1">
+                                        <div class="card-body">
+                                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                                          wolf
+
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                    <!-- Accordion card -->
+
+            
+            
+            
+                                  </div>
+                                  <!-- Accordion wrapper -->
+
+
                             </div>
 
-                          </div>                          
-                      </div>
+
+                          </div>                                                                                                                                                                                                           
+                      </div>                                         
                     </div>
-                {% endfor %}
+                    
+
+                {% else %}
+                  {% for produto in associado_categoria.prods  %}
+                      <div class="panel panel-default"style="margin-top:5px; margin-left:5px; margin-right:5px">
+                        <div class="panel-body" >
+                            <div class="media" >
+                                <h4 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h4>
+
+                                <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
+                                <div class="media-body">
+                                  <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                                      
+                                  <h4 style="color:#563A2D; margin-top:-3px"><b>R$ {{produto.valor}}</b> 
+                                  </h4>      
+
+                                  <span class="badge badge-pill pull-right" style="font-size:12px;margin-top:-18px; ccolor:white;background:#F58634">
+                                    <i class="material-icons">add_shopping_cart</i><br>                                            
+                                    <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
+                                      adicionar ao <br> carrinho
+                                    </a>       
+                                  </span>                                                                                                                                         
+
+                                  <h5 style=" margin-top:-1px">
+                                    <span class="badge badge-pill" style="color:#F58634; background:white; border:1px solid #c0c0c0">
+                                        <button id="btnMinus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepDown()">
+                                          <i class="glyphicon glyphicon-minus"></i>
+                                        </button>                                
+
+                                        <input class="quantity" min="1" name="txtQuantity" value="1" type="number"  style="color:#563A2D;height:3rem; width:3rem; text-align:center; background:white; border:1px solid #c0c0c0" disabled>
+
+                                        <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepUp()">
+                                          <i class="glyphicon glyphicon-plus" ></i>
+                                        </button>
+                                    </span>
+                                    
+                                  </h5>                            
+                              </div>
+                            </div>                          
+                        </div>
+                      </div>
+                  {% endfor %}
+                {% endif %}
             </div>
         </div>
         </div>
