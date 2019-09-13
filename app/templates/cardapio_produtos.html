@@ -121,13 +121,13 @@
                                                           <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
                                                           <div class="media-body">
                                                             <h5 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h5>
-                                                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                               
+                                                            <h6 style="color:#F58634; margin-top:-5px; margin-right:2px">{{produto.resumo}}</h6>                                                               
 
                                                             {% for tamanho in produto.tamanhos %}
-                                                              <span class="badge badge-pill badge-xs pull-left" style="background:#fcf8ef; color:#F58634; font-size:16px; display:none" name="{{tamanho.tamanho}}" > R$ {{tamanho.valor}}</span>
+                                                              <span class="badge badge-pill badge-xs pull-left" style="margin-top:-5px; background:#fcf8ef; color:#F58634; font-size:16px; display:none" name="{{tamanho.tamanho}}" > R$ {{tamanho.valor}}</span>
                                                             {% endfor %}                
 
-                                                            <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-2px; color:white; background:#F58634">
+                                                            <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
                                                               <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
                                                                 adicionar <br>sabor
