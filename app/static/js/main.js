@@ -20,8 +20,29 @@
 
 $(document).ready(function () {
    //var url_base = "http://localhost:5000/";
-     var url_base = "http://resthouse.herokuapp.com/";
+    var url_base = "http://resthouse.herokuapp.com/";
+    
+    var numSabores = 0
 
+    //pagina CategoriasxProdutos
+    $("#txtTamanho").change(function (){
+        numSabores = $("#txtTamanho").val();
+    
+        if (numSabores != "Escolha um tamanho"){
+            $("#divSelecaoSabores").show();
+            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores +" sabor(es)</b>")
+        }
+        else{
+            $("#divSelecaoSabores").hide();            
+        }
+    });    
+
+
+
+
+
+    
+    // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();

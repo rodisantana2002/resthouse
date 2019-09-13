@@ -50,44 +50,41 @@
 
                           <select name="txtTamanho" id="txtTamanho" class="form-control" style="color=gray; margin-bottom:10px" required>
                               <option selected>Escolha um tamanho</option>
-                              <option value="12">Big (12 pedaços)</option>
-                              <option value="8">Grande (8 pedaços)</option>
-                              <option value="6">Média (6 pedaços)</option>
-                              <option value="4">Pequena (4 pedaços)</option>
+                              <option value="4">Big (12 pedaços)</option>
+                              <option value="3">Grande (8 pedaços)</option>
+                              <option value="2">Média (6 pedaços)</option>
+                              <option value="1">Pequena (4 pedaços)</option>
                           </select>
 
                           <div class="panel panel-default" >
                             <!-- itens \ -->
                             <div class="panel-heading" style="height:5rem; color:#F58634"><b>Sabores Selecionados</b>
-                              <span class="badge badge-pill pull-right" style="font-size:10px; margin-right:-8px;margin-top:-6px; color:white;background:#F58634">
+                              <span class="badge badge-pill pull-right" style="display:none; font-size:10px; margin-right:-8px;margin-top:-6px; color:white;background:#F58634">
                                 <i class="material-icons">add_shopping_cart</i><br>adicionar                                           
                               </span>                               
                             </div>
                             
                             <div class="panel-body">
-                              <h5 style="text-align:center">Nenhum sabor selecionado</h5>
+                              <h5 style="text-align:center; color:gray">Nenhum sabor selecionado</h5>
                             </div>
                             <!-- List group -->
-                            <ul class="list-group">
-                              <li class="list-group-item">Cras justo odio</li>
-                              <li class="list-group-item">Dapibus ac facilisis in</li>
-                              <li class="list-group-item">Morbi leo risus</li>
+                            <ul class="list-group" style="display:none">
+                              <li class="list-group-item"><i class="glyphicon glyphicon-remove-circle"></i> Cras justo odio</li>
+                              <li class="list-group-item"><i class="glyphicon glyphicon-remove-circle"></i> Dapibus ac facilisis in</li>
+                              <li class="list-group-item"><i class="glyphicon glyphicon-remove-circle"></i> Morbi leo risus</li>
                             </ul>      
 
-                            <div class="panel-footer" style="background:#fcf8ef; text-align:right; font-size:16px; color:#F58634">
+                            <div class="panel-footer" style="display:none; background:#fcf8ef; text-align:right; font-size:16px; color:#F58634">
                                 R$ 0,00
                             </div>
 
                           </div>                                                                                                                                                                                                           
 
-                          <div class="panel panel-default" >
-                            <div class="panel-heading" style="color:#F58634">
-                                <b>Selecione até 3 sabores</b> 
-                            </div>
-
+                          <div class="panel panel-default" style="display:none" id="divSelecaoSabores" >
+                            <div class="panel-heading" style="color:#F58634 " id="divSelecaoSaboresTitulo"> </div>
+                            
                             <div class="panel-body">
-
-                              <!--Accordion wrapper-->
+                               <!--Accordion wrapper-->
                               <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true" >
 
                                 {% for tipo in associado_categoria.tipos %}                                
@@ -96,9 +93,9 @@
                                     <div class="card" >
                                       <!-- Card header -->
                                       <div class="card-header" role="tab" id='head{{tipo}}'>
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse{{tipo}}"
-                                          aria-expanded="false" aria-controls="collapse{{tipo}}">
-                                          <h5 class="mb-0"  style="color:red">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse{{tipo}}" aria-expanded="false" aria-controls="collapse{{tipo}}">
+                                          <h5 class="mb-0"  style="color:#F58634">
+                                            <i class="glyphicon glyphicon-plus"></i>                                          
                                             {{tipo}} 
                                             {% set count = namespace(a=1) %}
                                             {% for produto in associado_categoria.prods %}
@@ -109,11 +106,11 @@
                                             - {{ count.a }} opções
                                           </h5>
                                         </a>
+                                                                         
                                       </div>
-
                                       <!-- Card body -->
-                                      <div id="collapse{{tipo}}" class="collapse" role="tabpanel" aria-labelledby='head{{tipo}}'
-                                        data-parent="#accordionEx1">
+                                      <div id="collapse{{tipo}}" class="collapse" role="tabpanel" aria-labelledby='head{{tipo}}' data-parent="#accordionEx1">
+
                                         <div class="card-body">
                                           {% for produto in associado_categoria.prods %}
                                              {% if produto.tipo == tipo %}
