@@ -19,18 +19,53 @@
 
 
 $(document).ready(function () {
-   //var url_base = "http://localhost:5000/";
-    var url_base = "http://resthouse.herokuapp.com/";
+   var url_base = "http://localhost:5000/";
+    // var url_base = "http://resthouse.herokuapp.com/";
     
-    var numSabores = 0
+    var numSabores = 0;
+    
 
     //pagina CategoriasxProdutos
     $("#txtTamanho").change(function (){
         numSabores = $("#txtTamanho").val();
-    
+        tipos = ["Tradicionais", "Especiais", "Premium", "Doces"];
+
         if (numSabores != "Escolha um tamanho"){
             $("#divSelecaoSabores").show();
             $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores +" sabor(es)</b>")
+
+            if(numSabores==='4'){
+                $("span[name='4']").show();
+                // 
+                $("span[name='3']").hide();
+                $("span[name='2']").hide();
+                $("span[name='1']").hide();
+                
+            }
+
+            if(numSabores==='3'){
+                $("span[name='3']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='2']").hide();
+                $("span[name='1']").hide();
+            }
+
+            if(numSabores==='2'){
+                $("span[name='2']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='3']").hide();
+                $("span[name='1']").hide();
+            }
+
+            if(numSabores==='1'){
+                $("span[name='1']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='3']").hide();
+                $("span[name='2']").hide();
+            }            
         }
         else{
             $("#divSelecaoSabores").hide();            

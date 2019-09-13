@@ -85,52 +85,56 @@
                             
                             <div class="panel-body">
                                <!--Accordion wrapper-->
-                              <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true" >
+                              <div class="accordion md-accordion" id="accordionCategoria" role="tablist" aria-multiselectable="true" >
+
 
                                 {% for tipo in associado_categoria.tipos %}                                
 
                                     <!-- Accordion card -->
                                     <div class="card" >
                                       <!-- Card header -->
-                                      <div class="card-header" role="tab" id='head{{tipo}}'>
+                                      <div class="card-header" role="tab" id='head{{tipo}}'>                                      
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse{{tipo}}" aria-expanded="false" aria-controls="collapse{{tipo}}">
                                           <h5 class="mb-0"  style="color:#F58634">
-                                            <spam class="glyphicon glyphicon-record"></spam>                                          
+                                            <spam class="glyphicon glyphicon-record" ></spam>                                          
                                             {{tipo}} 
-                                            {% set count = namespace(a=1) %}
+                                            {% set count = namespace(a=0) %}
                                             {% for produto in associado_categoria.prods %}
-                                                {% if produto.tipo == tipo %}
+                                                  {% if produto.tipo == tipo %}
                                                     {% set count.a = count.a + 1 %}                                             
-                                                  {% endif %} 
+                                                  {% endif %}
                                             {% endfor %}         
                                             - {{ count.a }} opções
                                             <hr>
                                           </h5>
-                                        </a>
-                                                                         
+                                        </a>                                                                         
                                       </div>
+
                                       <!-- Card body -->
                                       <div id="collapse{{tipo}}" class="collapse" role="tabpanel" aria-labelledby='head{{tipo}}' data-parent="#accordionEx1">
                                         <div class="card-body" >
                                           {% for produto in associado_categoria.prods %}
                                              {% if produto.tipo == tipo %}
-
-                                                <div class="panel panel-default" style="margin-top:1px; margin-left:1px; margin-right:1px">
+                                                <div class="panel panel-default" style="margin-top:7px; margin-left:1px; margin-right:1px">
                                                   <div class="panel-body" >
                                                       <div class="media" >
                                                           <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
                                                           <div class="media-body">
                                                             <h5 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h5>
-                                                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                                      
+                                                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                               
 
-                                                            <span class="badge badge-pill pull-left" style="font-size:10px;margin-top:-2px; ccolor:white;background:#F58634">
+                                                            {% for tamanho in produto.tamanhos %}
+                                                              <span class="badge badge-pill badge-xs pull-left" style="background:#fcf8ef; color:#F58634; font-size:16px; display:none" name="{{tamanho.tamanho}}" > R$ {{tamanho.valor}}</span>
+                                                            {% endfor %}                
+
+                                                            <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-2px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
                                                               <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
-                                                                adicionar sabor
+                                                                adicionar <br>sabor
                                                               </a>       
                                                             </span>                                                                                                                                         
+                                                          </div>
 
-                                                        </div>
                                                       </div>                          
                                                   </div>
                                                 </div>
