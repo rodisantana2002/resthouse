@@ -110,11 +110,30 @@
                                       </div>
                                       <!-- Card body -->
                                       <div id="collapse{{tipo}}" class="collapse" role="tabpanel" aria-labelledby='head{{tipo}}' data-parent="#accordionEx1">
-
-                                        <div class="card-body">
+                                        <div class="card-body" >
                                           {% for produto in associado_categoria.prods %}
                                              {% if produto.tipo == tipo %}
-                                                {{produto.descricao}}<br>                                            
+
+                                                <div class="panel panel-default" style="margin-top:5px; margin-left:1px; margin-right:1px">
+                                                  <div class="panel-body" >
+                                                      <div class="media" >
+                                                          <img class="pull-left" src="{{ url_for('views.media', filename=produto.logo)}}" >
+                                                          <div class="media-body">
+                                                            <h5 style="color:#F58634; margin-top:1px"><b>{{produto.descricao}}</b></h5>
+                                                            <h6 style="color:#F58634; margin-top:5px; margin-right:2px">{{produto.resumo}}</h6>                                                                      
+
+                                                            <span class="badge badge-pill pull-left" style="font-size:10px;margin-top:-2px; ccolor:white;background:#F58634">
+                                                              <i class="material-icons">add</i><br>                                            
+                                                              <a type="text" id="btn-adicionar"  style="color:white"  href="{{ url_for('views.index') }}">
+                                                                adicionar sabor
+                                                              </a>       
+                                                            </span>                                                                                                                                         
+
+                                                        </div>
+                                                      </div>                          
+                                                  </div>
+                                                </div>
+                                             
                                              {% endif %} 
                                           {% endfor %}                      
                                         </div>
@@ -125,8 +144,6 @@
                                 {% endfor %}
 
                               </div>
-
-
                             </div>
                           </div>
 
