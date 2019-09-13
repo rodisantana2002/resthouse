@@ -163,6 +163,8 @@ class AssociadoCategoria(db.Model):
     catego = relationship(Categoria, backref=backref("associado_categorias", cascade="all, delete-orphan"))
     assoc = relationship(Associado, backref=backref("associado_categorias", cascade="all, delete-orphan"))           
     prods = relationship("Produto", backref='associado_categorias', lazy=False)
+    
+    tipos = ["Tradicionais", "Especiais", "Premium", "Doces"]
 
     def serialize(self):
         return {
@@ -187,6 +189,7 @@ class Produto(db.Model):
     associado_categoria_id = db.Column(db.Integer, db.ForeignKey('associado_categorias.id'))
     descricao = db.Column(db.String(200))
     valor = db.Column(db.String(30))
+    tipo = db.Column(db.String(30))
     resumo = db.Column(db.String(400))
     medida = db.Column(db.String(30))
     logo = db.Column(db.String(100))
@@ -204,6 +207,7 @@ class Produto(db.Model):
             'id': self.id,
             'descricao': self.descricao,
             'valor': self.valor,
+            'tipo': self.tipo,
             'resumo': self.resumo,
             'medida': self.medida,
             'logo': self.logo
