@@ -194,7 +194,9 @@ class Produto(db.Model):
     medida = db.Column(db.String(30))
     logo = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-        
+    
+    tamanhos = relationship('ProdutoTamanho', backref='produto')
+            
     def add(self, produto):
         db.session.add(produto)
         db.session.commit()
@@ -215,6 +217,36 @@ class Produto(db.Model):
 
     def __repr__(self):
         return self.serialize()
+
+
+# classe Produto x Preco x Tamanho
+class ProdutoTamanho(db.Model):
+    __tablename__ = "produto_tamanho"
+
+    id = db.Column('id', db.Integer, primary_key=True)    
+    produto_id = db.Column(db.Integer, db.ForeignKey('produto.id'))
+    tamanho = db.Column(db.String(30))
+    valor = db.Column(db.String(30))
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    
+    def add(self, produto_tamanho):
+        db.session.add(produto_tamanho)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'produto_id': self.produto_id,
+            'tamanho': self.tamanho,
+            'valor': self.valor
+        }
+
+    def __repr__(self):
+        return self.serialize()
+
 
 
 # Classe associativa UsuarioxAssociadoxTags

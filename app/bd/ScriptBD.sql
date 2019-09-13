@@ -1,4 +1,5 @@
 -- DROP TABLE usuario;
+-- DROP TABLE produto_tamanho;
 -- DROP TABLE associado_usuario_tags;
 -- DROP TABLE associado_categorias;
 -- DROP TABLE associado;
@@ -75,14 +76,21 @@
 --                                    dtregistro VARCHAR(30)  NULL);  
 
 --Tabela Produtos
-CREATE TABLE produto (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                      descricao VARCHAR(200) NULL,
-                      valor VARCHAR(30) NULL,
-                      resumo VARCHAR(400) NULL,  
-                      medida VARCHAR(30) NULL,
-                      logo VARCHAR(100) NULL, 
-                      associado_categoria_id INTEGER NOT NULL,
-                      tipo VARCHAR(30) NULL,
-                      dtregistro VARCHAR(30)  NULL);  
+-- CREATE TABLE produto (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+--                       descricao VARCHAR(200) NULL,
+--                       valor VARCHAR(30) NULL,
+--                       resumo VARCHAR(400) NULL,  
+--                       medida VARCHAR(30) NULL,
+--                       logo VARCHAR(100) NULL, 
+--                       associado_categoria_id INTEGER NOT NULL,
+--                       tipo VARCHAR(30) NULL,
+--                       dtregistro VARCHAR(30)  NULL);  
 
+
+--Tabela ProdutoxTamanho
+CREATE TABLE produto_tamanho (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                              produto_id INTEGER NOT NULL,          
+                              tamanho VARCHAR(30) NULL,
+                              valor VARCHAR(30) NULL,
+                              dtregistro VARCHAR(30)  NULL);  
 

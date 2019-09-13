@@ -359,3 +359,17 @@ INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_
 INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
     VALUES('Chocolate Branco', 'não informado', '0.00', 'FR', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
 
+
+--PRECOS POR PRODUTO E TAMANHO
+INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
+    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela', 'Alho e Óleo', 'Alho e Óleo', 'Napolitano', 'Marguerita', 'Milho', 'Calabresa', 'Milho com Bacon');
+INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
+    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela', 'Alho e Óleo', 'Alho e Óleo', 'Napolitano', 'Marguerita', 'Milho', 'Calabresa', 'Milho com Bacon');
+INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
+    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela', 'Alho e Óleo', 'Alho e Óleo', 'Napolitano', 'Marguerita', 'Milho', 'Calabresa', 'Milho com Bacon');
+INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
+    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela', 'Alho e Óleo', 'Alho e Óleo', 'Napolitano', 'Marguerita', 'Milho', 'Calabresa', 'Milho com Bacon');
+
+
+
+    
