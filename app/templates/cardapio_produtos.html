@@ -83,17 +83,15 @@
                           <div class="panel panel-default" style="display:none" id="divSelecaoSabores" >
                             <div class="panel-heading" style="color:#F58634 " id="divSelecaoSaboresTitulo"> </div>
                             
-                            <div class="panel-body">
+                            <div class="panel-body" style="margin-top:-5px; margin-bottom:-20px">
                                <!--Accordion wrapper-->
                               <div class="accordion md-accordion" id="accordionCategoria" role="tablist" aria-multiselectable="true" >
 
-
                                 {% for tipo in associado_categoria.tipos %}                                
-
                                     <!-- Accordion card -->
                                     <div class="card" >
                                       <!-- Card header -->
-                                      <div class="card-header" role="tab" id='head{{tipo}}'>                                      
+                                      <div class="card-header" role="tab" id='head{{tipo}}' >                                      
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse{{tipo}}" aria-expanded="false" aria-controls="collapse{{tipo}}">
                                           <h5 class="mb-0"  style="color:#F58634">
                                             <spam class="glyphicon glyphicon-record" ></spam>                                          
@@ -105,7 +103,6 @@
                                                   {% endif %}
                                             {% endfor %}         
                                             - {{ count.a }} opções
-                                            <hr>
                                           </h5>
                                         </a>                                                                         
                                       </div>
@@ -143,8 +140,8 @@
                                           {% endfor %}                      
                                         </div>
                                       </div>
-
                                     </div>
+                                    <hr>
                                     <!-- Accordion card -->
                                 {% endfor %}
 
