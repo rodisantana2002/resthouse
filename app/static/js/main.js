@@ -19,18 +19,51 @@
 
 
 $(document).ready(function () {
-   //var url_base = "http://localhost:5000/";
-     var url_base = "http://resthouse.herokuapp.com/";
+   var url_base = "http://localhost:5000/";
+    //  var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
+    var numSaboresAdicionados = 0
     
 
     //pagina CategoriasxProdutos
     $("#txtTamanho").change(function (){
         numSabores = $("#txtTamanho").val();
-        tipos = ["Tradicionais", "Especiais", "Premium", "Doces"];
+        AlterarPrecos();
+    });    
 
+
+    $(".adicionaSabor").click(function() {
+        var produto = jQuery.parseJSON($(this).val());
+
+        $('#tblSaboresSelecionados').show();
+        $('#lblItensSelecionados').show();
+        $('#paneSubTotal').show();
+
+        $('#lblNenhumSaborSelecionado').hide();
+
+        if (numSaboresAdicionados<numSabores){    
+            $("#tblSaboresSelecionados tbody").append(
+                "<tr>"+
+                "<td style='color:#563A2D'>" + "<b>"+ produto.descricao + " </b> - " + produto.resumo + "</td>"+
+                "<td><button type='button' value="+produto.id+" class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
+                "</tr>");
+
+            $(".btnDelete").bind("click", Delete);
+            $('#txtTamanho').focus();
+
+            numSaboresAdicionados = numSaboresAdicionados + 1;
+        }
+        else{
+            bootbox.alert("A quantidade de sabores atingiu o limite permitido");
+            $('#txtTamanho').focus();
+        }
+
+    });
+
+    function AlterarPrecos(){
         if (numSabores != "Escolha um tamanho"){
+            LimparTabela();
             $("#divSelecaoSabores").show();
             $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores +" sabor(es)</b>")
 
@@ -68,12 +101,34 @@ $(document).ready(function () {
             }            
         }
         else{
+            LimparTabela();
             $("#divSelecaoSabores").hide();            
         }
-    });    
+    }
 
+    function Delete(){
+        var par = $(this).parent().parent(); //tr
+        par.remove();
 
+        numSaboresAdicionados = numSaboresAdicionados -1;        
+        if(numSaboresAdicionados===0){            
+            $('#tblSaboresSelecionados').hide();
+            $('#lblItensSelecionados').hide();
+            $('#paneSubTotal').hide();
 
+            $('#lblNenhumSaborSelecionado').show();    
+        }        
+    }
+
+    function LimparTabela(){
+        numSaboresAdicionados = 0;
+        $("#tblSaboresSelecionados tr").remove();        
+
+        $('#tblSaboresSelecionados').hide();
+        $('#lblItensSelecionados').hide();
+        $('#paneSubTotal').hide();        
+        $('#lblNenhumSaborSelecionado').show();            
+}
 
 
     
@@ -143,6 +198,8 @@ $(document).ready(function () {
             $("#recuperaform").submit();
         }
     });
+
+
 
     // functions
     function validaremail() {

@@ -15,6 +15,7 @@ class Operacoes():
         self.associado = Associado()
         self.tags = TagAssociado() 
         self.associado_categoria = AssociadoCategoria()
+        self.produtoTamanho = ProdutoTamanho()
     
     def obterAssociados(self):        
         return self.associado.query.all()
@@ -57,4 +58,5 @@ class Operacoes():
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"
 
-            
+    def obterPreco(self, produto_id, tamanho):
+        return self.produtoTamanho.query.filter_by(produto_id=produto_id, tamanho=tamanho).first()        
