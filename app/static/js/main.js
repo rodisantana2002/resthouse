@@ -19,13 +19,13 @@
 
 
 $(document).ready(function () {
-   var url_base = "http://localhost:5000/";
-    //  var url_base = "http://resthouse.herokuapp.com/";
+   //var url_base = "http://localhost:5000/";
+     var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var numSaboresAdicionados = 0
+    var lstProdutos = []
     
-
     //pagina CategoriasxProdutos
     $("#txtTamanho").change(function (){
         numSabores = $("#txtTamanho").val();
@@ -48,11 +48,11 @@ $(document).ready(function () {
                 "<td style='color:#563A2D'>" + "<b>"+ produto.descricao + " </b> - " + produto.resumo + "</td>"+
                 "<td><button type='button' value="+produto.id+" class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
                 "</tr>");
-
-            $(".btnDelete").bind("click", Delete);
-            $('#txtTamanho').focus();
-
+            // popula array com produtos adicionados
+            lstProdutos.push(produto);          
             numSaboresAdicionados = numSaboresAdicionados + 1;
+            $(".btnDelete").bind("click", Delete);
+            $('#txtTamanho').focus();            
         }
         else{
             bootbox.alert("A quantidade de sabores atingiu o limite permitido");
@@ -60,6 +60,24 @@ $(document).ready(function () {
         }
 
     });
+
+    // function CalcularSubTotal(){
+        
+        // $.get(url_base+"produto/" ,
+        // function (result) {
+            // if (("erro" in result)) {
+            //     alert("CEP informado não foi encontrado!");
+            //     return;
+            // } else {
+            //     $("#cep").val(result.cep);
+            //     $("#logradouro").val(result.logradouro);
+            //     $("#bairro").val(result.bairro);
+            //     $("#cidade").val(result.localidade);
+            //     $("#estado").val(result.uf);
+            //     $("#numero").focus();
+            // }
+        // });        
+    // }
 
     function AlterarPrecos(){
         if (numSabores != "Escolha um tamanho"){
@@ -122,6 +140,7 @@ $(document).ready(function () {
 
     function LimparTabela(){
         numSaboresAdicionados = 0;
+        lstProdutos = []
         $("#tblSaboresSelecionados tr").remove();        
 
         $('#tblSaboresSelecionados').hide();
@@ -129,6 +148,8 @@ $(document).ready(function () {
         $('#paneSubTotal').hide();        
         $('#lblNenhumSaborSelecionado').show();            
 }
+
+
 
 
     

@@ -69,8 +69,9 @@
                               </table> 
                             </div>
 
-                            <div id="paneSubTotal" class="panel-footer" style="display:none; background:#fcf8ef; text-align:right; font-size:16px; color:#F58634">
-                                R$ 0,00
+                            <div id="paneSubTotal" class="panel-footer" style="display:none; background:#fcf8ef; text-align:left">
+                                <span class="pull-right" style="margin-top:5px; font-size:16px; color:#F58634">R$ 0,00</span>
+                                <button id="btnAdicionarCarrinho" class="btn btn-link" style="color:#F58634"><i class="glyphicon glyphicon-shopping-cart"></i>Adicionar ao carrinho</button>
                             </div>                             
 
                           </div>                                                                                                                                                                                                           
@@ -121,7 +122,7 @@
 
                                                             <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
-                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}"}'>
+                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}" }'>
                                                                 adicionar <br>sabor
                                                               </button>       
                                                             </span>                                                                                                                                         
