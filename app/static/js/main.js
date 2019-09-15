@@ -19,12 +19,12 @@
 
 
 $(document).ready(function () {
-   //var url_base = "http://localhost:5000/";
-     var url_base = "http://resthouse.herokuapp.com/";
+    // var url_base = "http://localhost:5000/";
+    var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
-    var numSaboresAdicionados = 0
     var lstProdutos = []
+    var linha=0;
     
     //pagina CategoriasxProdutos
     $("#txtTamanho").change(function (){
@@ -42,21 +42,24 @@ $(document).ready(function () {
 
         $('#lblNenhumSaborSelecionado').hide();
 
-        if (numSaboresAdicionados<numSabores){    
+        if (numSabores > lstProdutos.length){    
             $("#tblSaboresSelecionados tbody").append(
                 "<tr>"+
                 "<td style='color:#563A2D'>" + "<b>"+ produto.descricao + " </b> - " + produto.resumo + "</td>"+
-                "<td><button type='button' value="+produto.id+" class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
+                "<td ><button type='button' style='color:#563A2D' class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
                 "</tr>");
             // popula array com produtos adicionados
             lstProdutos.push(produto);          
-            numSaboresAdicionados = numSaboresAdicionados + 1;
-            $(".btnDelete").bind("click", Delete);
-            $('#txtTamanho').focus();            
+            linha++;
+
+            $('#btnAdicionarCarrinho').focus();            
         }
         else{
-            bootbox.alert("A quantidade de sabores atingiu o limite permitido");
-            $('#txtTamanho').focus();
+            bootbox.alert({
+                message: "A quantidade de sabores atingiu o limite permitido",
+                size: 'small'
+            });
+            $('#btnAdicionarCarrinho').focus();
         }
 
     });
@@ -124,19 +127,21 @@ $(document).ready(function () {
         }
     }
 
-    function Delete(){
-        var par = $(this).parent().parent(); //tr
-        par.remove();
-
-        numSaboresAdicionados = numSaboresAdicionados -1;        
-        if(numSaboresAdicionados===0){            
+    $("#tblSaboresSelecionados").on('click', '.btnDelete', function () {
+           
+        if (lstProdutos.length>0){                
+            lstProdutos.pop($(this).closest('tr').index());
+            $(this).closest('tr').remove();
+        }    
+        else{
             $('#tblSaboresSelecionados').hide();
             $('#lblItensSelecionados').hide();
             $('#paneSubTotal').hide();
 
             $('#lblNenhumSaborSelecionado').show();    
-        }        
-    }
+        }    
+
+    });
 
     function LimparTabela(){
         numSaboresAdicionados = 0;
@@ -147,7 +152,7 @@ $(document).ready(function () {
         $('#lblItensSelecionados').hide();
         $('#paneSubTotal').hide();        
         $('#lblNenhumSaborSelecionado').show();            
-}
+    }
 
 
 
@@ -193,7 +198,7 @@ $(document).ready(function () {
         $.get("https://viacep.com.br/ws/" + cep_code + "/json/",
             function (result) {
                 if (("erro" in result)) {
-                    alert("CEP informado não foi encontrado!");
+                    bootbox.alert("CEP informado não foi encontrado!");
                     return;
                 } else {
                     $("#cep").val(result.cep);
