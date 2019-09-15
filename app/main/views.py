@@ -160,4 +160,4 @@ def obterProdutoPreco():
     tamanho = request.args.get('tamanho')    
     
     produto_tamanho = oper.obterPreco(id, tamanho)
-    return produto_tamanho.__str__()
+    return produto_tamanho.valor
