@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    // var url_base = "http://localhost:5000/";
-    var url_base = "http://resthouse.herokuapp.com/";
+    //var url_base = "http://localhost:5000/";
+     var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
@@ -49,6 +49,7 @@ $(document).ready(function () {
                 "<td ><button type='button' style='color:#563A2D' class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
                 "</tr>");
             // popula array com produtos adicionados
+            produto.valor = obterPreco(produto.id, numSabores);
             lstProdutos.push(produto);          
             linha++;
 
@@ -64,22 +65,21 @@ $(document).ready(function () {
 
     });
 
+    function obterPreco(id, tamanho){
+        $.get(url_base+"produto?id="+id+"&tamanho="+tamanho ,
+            function (result) {
+                if (("erro" in result)) {
+                    alert("Preço não foi encontrado!");
+                    return 0.00;
+                } else {
+                    alert(result.valor);
+                }
+        });        
+
+        return 0.00;
+    }
     // function CalcularSubTotal(){
         
-        // $.get(url_base+"produto/" ,
-        // function (result) {
-            // if (("erro" in result)) {
-            //     alert("CEP informado não foi encontrado!");
-            //     return;
-            // } else {
-            //     $("#cep").val(result.cep);
-            //     $("#logradouro").val(result.logradouro);
-            //     $("#bairro").val(result.bairro);
-            //     $("#cidade").val(result.localidade);
-            //     $("#estado").val(result.uf);
-            //     $("#numero").focus();
-            // }
-        // });        
     // }
 
     function AlterarPrecos(){
