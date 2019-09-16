@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    var url_base = "http://localhost:5000/";
-    //  var url_base = "https://resthouse.herokuapp.com/";
+   //  var url_base = "http://localhost:5000/";
+     var url_base = "https://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
