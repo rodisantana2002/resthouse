@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 class Autenticacao():
     def __init__(self):
         self.usuario = Usuario()
-        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": ""}
+        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": "", "value":""}
         self.alphabets = string.digits + string.ascii_letters
 
     def autenticarUsuario(self, email, password):

@@ -286,3 +286,48 @@ class TagAssociado(db.Model):
     def __repr__(self):
         return self.serialize()
     
+    
+# classe Carrinho
+class Carrinho(db.Model):
+    __tablename__ = "carrinho"
+    
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+
+    associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+    produto_id = db.Column(db.Integer, db.ForeignKey('produto.id'))
+
+    resumo = db.Column(db.String(1000))
+    tamanho = db.Column(db.String(30))
+    valor_unitario = db.Column(db.String(30))
+    quantidade = db.Column(db.String(30))      
+    ids = db.Column(db.String(100))      
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+
+    assoc = relationship(Associado, backref=backref("carrinho", cascade="all, delete-orphan"))
+    prods = relationship(Produto, backref=backref("carrinho", cascade="all, delete-orphan"))
+    
+    
+    def add(self, carrinho):
+        db.session.add(carrinho)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'usuario_id': self.usuario_id,
+            'associado_id': self.associado_id,
+            'produto_id': self.produto_id,
+            'resumo': self.resumo,
+            'tamanho': self.tamanho,
+            'valor_unitario': self.valor_unitario,
+            'quantidade':self.quantidade            
+        }
+
+    def __repr__(self):
+        return self.serialize()
+    

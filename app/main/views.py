@@ -161,3 +161,21 @@ def obterProdutoPreco():
     
     produto_tamanho = oper.obterPreco(id, tamanho)
     return produto_tamanho.valor
+
+
+@views.route('/carrinho', methods=['POST'])
+def registrarCarrinho():
+    carrinho = Carrinho();
+    
+    carrinho.usuario_id = session.get("id")
+    carrinho.produto_id = request.values.get('produto_id')
+    carrinho.associado_id = request.values.get('associado_id')
+    carrinho.resumo = request.values.get('resumo')
+    carrinho.quantidade = request.values.get('quantidade')
+    carrinho.tamanho = request.values.get('tamanho')
+    carrinho.valor_unitario = request.values.get('valor_unitario')
+    carrinho.ids = request.values.get('ids')
+
+    result = oper.registrarProdutoCarrinho(carrinho)           
+    
+    return result.get("code");

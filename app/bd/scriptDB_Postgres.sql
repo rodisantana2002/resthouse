@@ -1,5 +1,6 @@
 
 -- DROP TABLE usuario;
+-- DROP TABLE carrinho;
 -- DROP TABLE produto_tamanho;
 -- DROP TABLE associado_usuario_tags; 
 -- DROP TABLE associado_caregorias;
@@ -86,8 +87,20 @@
 --                       dtregistro VARCHAR(30)  NULL);  
 
 --Tabela ProdutoxTamanho
-CREATE TABLE produto_tamanho (id SERIAL NOT NULL PRIMARY KEY,
-                              produto_id INTEGER NOT NULL,          
-                              tamanho VARCHAR(30) NULL,
-                              valor VARCHAR(30) NULL,
-                              dtregistro VARCHAR(30)  NULL);  
+-- CREATE TABLE produto_tamanho (id SERIAL NOT NULL PRIMARY KEY,
+--                               produto_id INTEGER NOT NULL,          
+--                               tamanho VARCHAR(30) NULL,
+--                               valor VARCHAR(30) NULL,
+--                               dtregistro VARCHAR(30)  NULL);  
+
+--Tabela Carrinho
+CREATE TABLE carrinho (id SERIAL NOT NULL PRIMARY KEY,
+                       usuario_id INTEGER NOT NULL,
+                       produto_id INTEGER NOT NULL,          
+                       associado_id INTEGER NOT NULL,          
+                       resumo VARCHAR(1000) NULL,  
+                       tamanho VARCHAR(30) NULL,
+                       quantidade VARCHAR(30) NULL,
+                       valor_unitario VARCHAR(30) NULL,
+                       ids VARCHAR(100) NULL,                       
+                       dtregistro VARCHAR(30)  NULL);  

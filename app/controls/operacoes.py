@@ -11,11 +11,12 @@ operacoes = Blueprint("operacoes", __name__)
 class Operacoes():
     
     def __init__(self):
-        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": ""}
+        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": "", "value":""}
         self.associado = Associado()
         self.tags = TagAssociado() 
         self.associado_categoria = AssociadoCategoria()
         self.produtoTamanho = ProdutoTamanho()
+        self.carrinho= Carrinho()
     
     def obterAssociados(self):        
         return self.associado.query.all()
@@ -60,3 +61,21 @@ class Operacoes():
 
     def obterPreco(self, produto_id, tamanho):
         return self.produtoTamanho.query.filter_by(produto_id=produto_id, tamanho=tamanho).first()        
+    
+    
+    def registrarProdutoCarrinho(self, Produto):
+        try:
+            obj = Carrinho()
+            obj.add(Produto)        
+                
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Registro efetuado com sucesso!"
+            return self.authentic
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
+        
+    def obterTotalItensCarrinho(self, usuario_id):
+        # retorna total de itens 
+        return self.carrinho.query.filter_by(usuario_id=usuario_id).count()

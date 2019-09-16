@@ -73,7 +73,7 @@
                             <div id="paneSubTotal" class="panel-footer" style="display:none; background:#fcf8ef; text-align:right"><b>
                                 <span id="lblPreco" class="pull-left" style="margin-top:5px; font-size:16px; color:#F58634">0.00</span>
                               
-                                <button id="btnAdicionarCarrinho" type="text" class="btn btn-link btn-sm" style="background:#F58634; color:white">
+                                <button id="btnAdicionarPizzaCarrinho" type="text" class="btn btn-link btn-sm" style="background:#F58634; color:white">
                                    <i class="glyphicon glyphicon-shopping-cart"></i>Adicionar ao carrinho
                                 </button> </b>
                             </div>                             
@@ -123,10 +123,9 @@
                                                             {% for tamanho in produto.tamanhos %}
                                                               <span class="badge badge-pill badge-xs pull-left" style="margin-left:-1px;margin-top:-5px; background:white; color:#563A2D; font-size:16px; display:none" name="{{tamanho.tamanho}}" > R$ {{tamanho.valor}}</span>
                                                             {% endfor %}                
-
                                                             <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
-                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}" }'>
+                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
                                                                 adicionar <br>sabor
                                                               </button>       
                                                             </span>                                                                                                                                         

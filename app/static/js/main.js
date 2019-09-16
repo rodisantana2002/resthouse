@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-   //  var url_base = "http://localhost:5000/";
-     var url_base = "https://resthouse.herokuapp.com/";
+    // var url_base = "http://localhost:5000/";
+    var url_base = "https://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
@@ -31,7 +31,6 @@ $(document).ready(function () {
         numSabores = $("#txtTamanho").val();
         ExibirPrecos();
     });    
-
 
     $(".adicionaSabor").click(function() {
         var produto = jQuery.parseJSON($(this).val());
@@ -137,6 +136,35 @@ $(document).ready(function () {
 
     });
 
+    $("#btnAdicionarPizzaCarrinho").click(function(){
+        var resumo = "";
+        var ids = "";
+
+        for (var i=0; i<lstProdutos.length;i++){
+            resumo = resumo + lstProdutos[i].descricao + " - " + lstProdutos[i].resumo + "\n";
+            ids = ids + ", " + lstProdutos[i].id 
+        }        
+
+        $.ajax({
+            type: "POST",
+            data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids},
+            url: url_base + "carrinho",
+            success: function(data) { //Se a requisição retornar com sucesso, 
+            //ou seja, se o arquivo existe, entre outros
+                if (data==="200"){
+                    bootbox.alert({
+                        message: "Produto adicionado ao carrinho com sucesso!",
+                        size: 'small'
+                    });
+                }
+            }
+            });    
+        LimparTabela();     
+        $("#divSelecaoSabores").hide();                   
+        $("#txtTamanho").val("Escolha um tamanho");
+        $("#txtTamanho").focus();    
+    });
+
     function LimparTabela(){
         numSaboresAdicionados = 0;
         lstProdutos = []
@@ -146,7 +174,7 @@ $(document).ready(function () {
         $('#tblSaboresSelecionados').hide();
         $('#lblItensSelecionados').hide();
         $('#paneSubTotal').hide();        
-        $('#lblNenhumSaborSelecionado').show();            
+        $('#lblNenhumSaborSelecionado').show();        
     }
 
     function AtualizarPreco(){
@@ -159,6 +187,9 @@ $(document).ready(function () {
         }
         $("#lblPreco").html("R$ " + maxValor);
     }
+
+
+
 
 
 
