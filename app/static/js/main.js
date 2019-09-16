@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
-     var url_base = "http://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    // var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
@@ -35,6 +35,7 @@ $(document).ready(function () {
 
     $(".adicionaSabor").click(function() {
         var produto = jQuery.parseJSON($(this).val());
+        var script = "";
 
         $('#tblSaboresSelecionados').show();
         $('#lblItensSelecionados').show();
@@ -48,11 +49,21 @@ $(document).ready(function () {
                 "<td style='color:#563A2D'>" + "<b>"+ produto.descricao + " </b> - " + produto.resumo + "</td>"+
                 "<td ><button type='button' style='color:#563A2D' class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
                 "</tr>");
-            // popula array com produtos adicionados
-            produto.valor = obterPreco(produto.id, numSabores);
-            lstProdutos.push(produto);          
-            linha++;
 
+            // popula array com produtos adicionados
+            script = url_base+"produto?id="+produto.id+"&tamanho="+numSabores ;
+
+            $.ajax({
+                url: script,
+                type:'get',
+                dataType:'html',
+                async: false,
+                success: function(data){
+                    produto.valor = data;
+                }
+            });
+        
+            lstProdutos.push(produto);          
             $('#btnAdicionarCarrinho').focus();            
         }
         else{
@@ -64,23 +75,6 @@ $(document).ready(function () {
         }
 
     });
-
-    function obterPreco(id, tamanho){
-        $.get(url_base+"produto?id="+id+"&tamanho="+tamanho ,
-            function (result) {
-                if (("erro" in result)) {
-                    alert("Preço não foi encontrado!");
-                    return 0.00;
-                } else {
-                    alert(result.valor);
-                }
-        });        
-
-        return 0.00;
-    }
-    // function CalcularSubTotal(){
-        
-    // }
 
     function AlterarPrecos(){
         if (numSabores != "Escolha um tamanho"){
