@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    var url_base = "http://localhost:5000/";
-    // var url_base = "http://resthouse.herokuapp.com/";
+    //var url_base = "http://localhost:5000/";
+     var url_base = "http://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
@@ -29,7 +29,7 @@ $(document).ready(function () {
     //pagina CategoriasxProdutos
     $("#txtTamanho").change(function (){
         numSabores = $("#txtTamanho").val();
-        AlterarPrecos();
+        ExibirPrecos();
     });    
 
 
@@ -64,6 +64,7 @@ $(document).ready(function () {
             });
         
             lstProdutos.push(produto);          
+            AtualizarPreco();
             $('#btnAdicionarCarrinho').focus();            
         }
         else{
@@ -76,7 +77,7 @@ $(document).ready(function () {
 
     });
 
-    function AlterarPrecos(){
+    function ExibirPrecos(){
         if (numSabores != "Escolha um tamanho"){
             LimparTabela();
             $("#divSelecaoSabores").show();
@@ -122,12 +123,11 @@ $(document).ready(function () {
     }
 
     $("#tblSaboresSelecionados").on('click', '.btnDelete', function () {
-           
-        if (lstProdutos.length>0){                
-            lstProdutos.pop($(this).closest('tr').index());
-            $(this).closest('tr').remove();
-        }    
-        else{
+        lstProdutos.splice($(this).closest('tr').index(), 1);
+        $(this).closest('tr').remove();
+        AtualizarPreco();            
+
+        if (lstProdutos.length===0){                       
             $('#tblSaboresSelecionados').hide();
             $('#lblItensSelecionados').hide();
             $('#paneSubTotal').hide();
@@ -141,6 +141,7 @@ $(document).ready(function () {
         numSaboresAdicionados = 0;
         lstProdutos = []
         $("#tblSaboresSelecionados tr").remove();        
+        $("#lblPreco").html("R$ 0.00");
 
         $('#tblSaboresSelecionados').hide();
         $('#lblItensSelecionados').hide();
@@ -148,6 +149,16 @@ $(document).ready(function () {
         $('#lblNenhumSaborSelecionado').show();            
     }
 
+    function AtualizarPreco(){
+        var maxValor= 0.00
+        for (var i=0; i<lstProdutos.length;i++){
+            var valor = lstProdutos[i].valor.replace(",", ".");
+            if (parseFloat(valor)>=maxValor){
+                 maxValor=valor;
+            } 
+        }
+        $("#lblPreco").html("R$ " + maxValor);
+    }
 
 
 
