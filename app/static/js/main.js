@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-    // var url_base = "http://localhost:5000/";
+    //var url_base = "http://localhost:5000/";
     var url_base = "https://resthouse.herokuapp.com/";
     
     var numSabores = 0;
@@ -65,16 +65,15 @@ $(document).ready(function () {
         
             lstProdutos.push(produto);          
             AtualizarPreco();
-            $('#btnAdicionarCarrinho').focus();            
         }
         else{
             bootbox.alert({
                 message: "A quantidade de sabores atingiu o limite permitido",
                 size: 'small'
             });
-            $('#btnAdicionarCarrinho').focus();
-        }
 
+        }
+        $("#btn-carrinho").focus();
     });
 
     // Atualiza precos conforme mudança de tamanho
@@ -154,14 +153,20 @@ $(document).ready(function () {
             type: "POST",
             data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids},
             url: url_base + "carrinho",
+            async: false,
             success: function(data) { 
                 if (data==="200"){
-                    alert("Produto adicionado ao carrinho com sucesso!");
+                    bootbox.alert({
+                        message: "Produto adicionado ao carrinho com sucesso!",
+                        size: 'small'
+                    });
                 }
             }
             });    
         LimparTabela();     
-        location.reload();
+        $("#divSelecaoSabores").hide();                   
+        $("#txtTamanho").val("Escolha um tamanho");
+        $("#btn-carrinho").focus();
     });
 
     //Adiciona produtos simples ao carrinho 
@@ -173,14 +178,19 @@ $(document).ready(function () {
             type: "POST",
             data: {produto_id:produto.id, resumo:produto.resumo, quantidade: quantidade, valor_unitario:produto.valor, tamanho:"", associado_id:produto.associado_id, ids:""},
             url: url_base + "carrinho",
+            async: false,
             success: function(data) { 
                 if (data==="200"){
-                    alert("Produto adicionado ao carrinho com sucesso!");
+                    bootbox.alert({
+                        message: "Produto adicionado ao carrinho com sucesso!",
+                        size: 'small'
+                    });
+                    
                 }
             }
         });    
         $("input[class=quantity"+produto.id +"]").val("1");      
-        location.reload();
+        $("#btn-carrinho").focus();        
     });
 
     // limpa a lista de opções
@@ -205,28 +215,12 @@ $(document).ready(function () {
                  maxValor=valor;
             } 
         }
-        $("#lblPreco").html("R$ " + maxValor);
+        $("#lblPreco").html("R$ " + maxValor.toString().replace(".", ","));
     }
-
-    function AtualizarCarrinho(){
-        $.ajax({
-            url: url_base + "carrinho/itens",
-            type:'get',
-            dataType:'html',
-            async: false,
-            success: function(data) { 
-                $("#btn-carrinho").html(data + " itens");                             
-            }
-        });    
-    }
-
-
-
     
     // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login
-   AtualizarCarrinho();
-
+   
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
