@@ -27,14 +27,14 @@
               <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.carregar_cardapio', associado_id=associado_categoria.associado_id)}}"><i class="material-icons">arrow_back_ios</i></a>                                                
             </span>
 
-            <h4 style="color:white; margin-left:45px; margin-top:15px">
+            <h4 id="lblCategoria" style="color:white; margin-left:45px; margin-top:15px">
               <b>{{associado_categoria.catego.descricao}}</b>
             <h4>           
             <h6 style="color:white">{{associado_categoria.prods|length}} opções</h6>      
 
             <span class="badge badge-pill badge-light pull-right" style="background:#fcf8ef; margin-top:-63px; margin-right:5px; margin-bottom:4px">   
                 <i style="font-size:24px; color:#F58634" class="glyphicon glyphicon-shopping-cart"></i> <br>                        
-                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">                         
+                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
                     ver itens 
                 </a>                                                
             </span>    
@@ -72,7 +72,7 @@
                             </div>
 
                             <div id="paneSubTotal" class="panel-footer" style="display:none; background:#fcf8ef; text-align:right"><b>
-                                <span id="lblPreco" class="pull-left" style="margin-top:10px; font-size:20px; color:#F58634">0.00</span>
+                                <span id="lblPreco" class="pull-left" style="margin-top:12px; font-size:20px; color:#F58634">0.00</span>
                               
                                 <button id="btnAdicionarPizzaCarrinho" type="text" class="btn btn-link btn-xs" style="background:#F58634; color:white">
                                   <i class="material-icons">add_shopping_cart</i> <br>Adicionar ao carrinho

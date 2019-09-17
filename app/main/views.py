@@ -179,6 +179,7 @@ def registrarCarrinho():
         carrinho.usuario_id = session.get("id")
         carrinho.produto_id = request.values.get('produto_id')
         carrinho.associado_id = request.values.get('associado_id')
+        carrinho.categoria = request.values.get('categoria')
         carrinho.resumo = request.values.get('resumo')
         carrinho.quantidade = request.values.get('quantidade')
         carrinho.tamanho = request.values.get('tamanho')
@@ -193,10 +194,10 @@ def registrarCarrinho():
 
 
 @views.route('/carrinho/itens', methods=['GET'])
-def obterTotalItensCarrinho():
+def obterCarrinho():
     if 'email' in session:  
-        totalItens = oper.obterTotalItensCarrinho(session.get("id"));
-        return str(totalItens)
+        carrinho = oper.obterCarrinho(session.get("id"));
+        return render_template('carrinho.html', carrinho=carrinho)   
     else:    
         return render_template('login.html', page=None)        
 

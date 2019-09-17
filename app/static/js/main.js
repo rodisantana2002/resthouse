@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    //var url_base = "https://resthouse.herokuapp.com/";
     
     var numSabores = 0;
     var lstProdutos = []
@@ -140,18 +140,19 @@ $(document).ready(function () {
 
 
     // Adiciona Pizzas ao Carrinho
-    $("#btnAdicionarPizzaCarrinho").click(function(){
+    $("#btnAdicionarPizzaCarrinho").click(function(){        
         var resumo = "";
+        var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
         var ids = "";
 
         for (var i=0; i<lstProdutos.length;i++){
-            resumo = resumo + lstProdutos[i].descricao + " - " + lstProdutos[i].resumo + "\n";
+            resumo = resumo + lstProdutos[i].descricao + " - " + lstProdutos[i].resumo + "<br>";
             ids = ids + ", " + lstProdutos[i].id 
         }        
 
         $.ajax({
             type: "POST",
-            data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids},
+            data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids, categoria:categoria},
             url: url_base + "carrinho",
             async: false,
             success: function(data) { 
@@ -172,11 +173,12 @@ $(document).ready(function () {
     //Adiciona produtos simples ao carrinho 
     $(".btnAdicionarProdutoCarrinho").click(function(){
         var produto = jQuery.parseJSON($(this).val());
+        var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
         var quantidade = $("input[class=quantity"+produto.id +"]").val();
 
         $.ajax({
             type: "POST",
-            data: {produto_id:produto.id, resumo:produto.resumo, quantidade: quantidade, valor_unitario:produto.valor, tamanho:"", associado_id:produto.associado_id, ids:""},
+            data: {produto_id:produto.id, resumo: produto.descricao, quantidade: quantidade, valor_unitario:"R$ "+ produto.valor, tamanho:"", associado_id:produto.associado_id, ids:"", categoria:categoria},
             url: url_base + "carrinho",
             async: false,
             success: function(data) { 

@@ -76,6 +76,5 @@ class Operacoes():
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"
         
-    def obterTotalItensCarrinho(self, usuario_id):
-        # retorna total de itens 
-        return self.carrinho.query.filter_by(usuario_id=usuario_id).count()
+    def obterCarrinho(self, usuario_id):
+        return self.carrinho.query.filter_by(usuario_id=usuario_id).all()

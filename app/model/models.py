@@ -300,6 +300,7 @@ class Carrinho(db.Model):
 
     resumo = db.Column(db.String(1000))
     tamanho = db.Column(db.String(30))
+    categoria = db.Column(db.String(100))
     valor_unitario = db.Column(db.String(30))
     quantidade = db.Column(db.String(30))      
     ids = db.Column(db.String(100))      

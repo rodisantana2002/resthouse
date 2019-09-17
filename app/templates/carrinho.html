@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>      
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type='text/javascript'></script>
+  </head>
+
+  <!-- corpo -->
+  <body style="background:#fcf8ef">
+
+      <div id="cabec" name="cabec" class="container" style="background:#F58634; border-color:#F58634">
+        <div class="row">
+          <div class="col-12">
+          <!-- cabecalho Carrinho -->
+            <h5 style="color:white; margin-left:5px; margin-left:1px">
+              <span class="pull-left" style="margin-top:-5px">     
+                <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">arrow_back_ios</i></a>                                                
+              <b style=" margin-left:-20px">Continua comprando</b></span>
+            <h5>           
+          </div>
+        </div>
+      </div> 
+
+      <div class="panel panel-default"style="display:none; margin-top:5px; margin-left:5px; margin-right:5px">
+        <div class="panel-body" >
+          <h5  id="lblNenhumSaborSelecionado" style="text-align:center; color:gray">Seu carrinho esta vazio</h5>
+        </div>
+      </div>                
+
+      <div class="container">
+        <div class="row">             
+            <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right:5px">
+                <div class="panel-heading">
+                    <h4 style="color:#F58634; text-align:center;margin-top:1px">Itens disponíveis em seu carrinho</h4>                        
+                    <h6 style="color:#F58634; text-align:center;margin-bottom:-5px">{{carrinho|length}} produto(s) </h6>                                            
+                </div>                  
+
+                <div class="panel-body" style="margin-bottom:-10px" >
+                    <div class="panel-group"> 
+
+                      <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px">
+                          <tbody style='color:#F58634' >
+                            {% for produto in carrinho  %}        
+                              <tr>                              
+                                <td style='color:#F58634; font-size:11px'><h5><b>{{produto.prods.descricao}}</b> - {{produto.prods.resumo}}</h5>
+                                    <img class="pull-left" src="{{ url_for('views.media', filename=produto.prods.logo)}}"> 
+                                    &nbsp {{produto.categoria}} &nbsp {{produto.tamanho}}
+                                    <br> &nbsp {{produto.valor_unitario}} 
+                                    <br> &nbsp {{produto.quantidade}} {{produto.prods.medida}}
+                                    <br> &nbsp {{produto.assoc.nomefantasia}}
+                                 </td>
+                                <td ><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link'> <i class='material-icons'>cancel</i><br></button></td>
+                              </tr>
+                              <tr><td</tr>
+                            {% endfor %}                      
+                          </tbody>
+                      </table>                       
+
+                    <div>
+      
+                    <hr>                    
+                    <span class="badge badge-pill badge-light pull-right" style="background:#fcf8ef; margin-top:-10px; margin-right:-5px; margin-bottom:4px">                                 
+                        <a id="btnFinalizarCompra" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
+                        <i class="material-icons" style="color:#F58634">shopping_basket</i> <br>
+                            Finalizar <br>Compra 
+                        </a>                                                
+                    </span>  
+                    <span class="badge badge-pill badge-light pull-right" style="background:#c0c0c0; margin-top:-10px; margin-right:5px">                                 
+                        <a id="btnLimparCarrinho" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
+                        <i class="material-icons">remove_shopping_cart</i> <br>
+                            Limpar <br>Carrinho
+                        </a>                                                
+                    </span>  
+                </div>                    
+        
+          </div>
+          </div>     
+
+        </div>
+      </div>
+  </body>
+  </html
