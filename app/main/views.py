@@ -144,38 +144,62 @@ def registrarFavorito(id):
 
 @views.route('/associado/<associado_id>')
 def carregar_cardapio(associado_id):
-    associado = oper.obterAssociadoById(associado_id)  
-    return render_template('cardapio.html', associado=associado)
+    if 'email' in session:  
+        associado = oper.obterAssociadoById(associado_id)  
+        return render_template('cardapio.html', associado=associado)
+    else:    
+        return render_template('login.html', page=None)        
 
 
 @views.route('/associado/categoria/<associado_categoria_id>')
 def carregar_cardapio_produtos(associado_categoria_id):
-    associado_categoria = oper.obterAssociadoCategoriaById(associado_categoria_id)
-    return render_template('cardapio_produtos.html', associado_categoria=associado_categoria)   
+    if 'email' in session:  
+        associado_categoria = oper.obterAssociadoCategoriaById(associado_categoria_id)
+        return render_template('cardapio_produtos.html', associado_categoria=associado_categoria)   
+    else:    
+        return render_template('login.html', page=None)        
 
 
 @views.route('/produto', methods=['GET'])
 def obterProdutoPreco():
-    id = request.args.get('id')    
-    tamanho = request.args.get('tamanho')    
+    if 'email' in session:  
+        id = request.args.get('id')    
+        tamanho = request.args.get('tamanho')    
     
-    produto_tamanho = oper.obterPreco(id, tamanho)
-    return produto_tamanho.valor
-
+        produto_tamanho = oper.obterPreco(id, tamanho)
+        return produto_tamanho.valor    
+    else:    
+        return render_template('login.html', page=None)        
 
 @views.route('/carrinho', methods=['POST'])
 def registrarCarrinho():
-    carrinho = Carrinho();
-    
-    carrinho.usuario_id = session.get("id")
-    carrinho.produto_id = request.values.get('produto_id')
-    carrinho.associado_id = request.values.get('associado_id')
-    carrinho.resumo = request.values.get('resumo')
-    carrinho.quantidade = request.values.get('quantidade')
-    carrinho.tamanho = request.values.get('tamanho')
-    carrinho.valor_unitario = request.values.get('valor_unitario')
-    carrinho.ids = request.values.get('ids')
+    if 'email' in session:  
+        carrinho = Carrinho();
+        
+        carrinho.usuario_id = session.get("id")
+        carrinho.produto_id = request.values.get('produto_id')
+        carrinho.associado_id = request.values.get('associado_id')
+        carrinho.resumo = request.values.get('resumo')
+        carrinho.quantidade = request.values.get('quantidade')
+        carrinho.tamanho = request.values.get('tamanho')
+        carrinho.valor_unitario = request.values.get('valor_unitario')
+        carrinho.ids = request.values.get('ids')
 
-    result = oper.registrarProdutoCarrinho(carrinho)           
+        result = oper.registrarProdutoCarrinho(carrinho)                   
+        return result.get("code");
+
+    else:    
+        return render_template('login.html', page=None)        
+
+
+@views.route('/carrinho/itens', methods=['GET'])
+def obterTotalItensCarrinho():
+    if 'email' in session:  
+        totalItens = oper.obterTotalItensCarrinho(session.get("id"));
+        return str(totalItens)
+    else:    
+        return render_template('login.html', page=None)        
+
+
     
-    return result.get("code");
+    

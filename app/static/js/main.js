@@ -32,6 +32,7 @@ $(document).ready(function () {
         ExibirPrecos();
     });    
 
+    // adiciona sabora da pizza para a lista de opçoes
     $(".adicionaSabor").click(function() {
         var produto = jQuery.parseJSON($(this).val());
         var script = "";
@@ -76,6 +77,7 @@ $(document).ready(function () {
 
     });
 
+    // Atualiza precos conforme mudança de tamanho
     function ExibirPrecos(){
         if (numSabores != "Escolha um tamanho"){
             LimparTabela();
@@ -121,6 +123,7 @@ $(document).ready(function () {
         }
     }
 
+    // exclui um sabor adicionado a lista de opçoes
     $("#tblSaboresSelecionados").on('click', '.btnDelete', function () {
         lstProdutos.splice($(this).closest('tr').index(), 1);
         $(this).closest('tr').remove();
@@ -136,6 +139,8 @@ $(document).ready(function () {
 
     });
 
+
+    // Adiciona Pizzas ao Carrinho
     $("#btnAdicionarPizzaCarrinho").click(function(){
         var resumo = "";
         var ids = "";
@@ -149,22 +154,36 @@ $(document).ready(function () {
             type: "POST",
             data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids},
             url: url_base + "carrinho",
-            success: function(data) { //Se a requisição retornar com sucesso, 
-            //ou seja, se o arquivo existe, entre outros
+            success: function(data) { 
                 if (data==="200"){
-                    bootbox.alert({
-                        message: "Produto adicionado ao carrinho com sucesso!",
-                        size: 'small'
-                    });
+                    alert("Produto adicionado ao carrinho com sucesso!");
                 }
             }
             });    
         LimparTabela();     
-        $("#divSelecaoSabores").hide();                   
-        $("#txtTamanho").val("Escolha um tamanho");
-        $("#txtTamanho").focus();    
+        location.reload();
     });
 
+    //Adiciona produtos simples ao carrinho 
+    $(".btnAdicionarProdutoCarrinho").click(function(){
+        var produto = jQuery.parseJSON($(this).val());
+        var quantidade = $("input[class=quantity"+produto.id +"]").val();
+
+        $.ajax({
+            type: "POST",
+            data: {produto_id:produto.id, resumo:produto.resumo, quantidade: quantidade, valor_unitario:produto.valor, tamanho:"", associado_id:produto.associado_id, ids:""},
+            url: url_base + "carrinho",
+            success: function(data) { 
+                if (data==="200"){
+                    alert("Produto adicionado ao carrinho com sucesso!");
+                }
+            }
+        });    
+        $("input[class=quantity"+produto.id +"]").val("1");      
+        location.reload();
+    });
+
+    // limpa a lista de opções
     function LimparTabela(){
         numSaboresAdicionados = 0;
         lstProdutos = []
@@ -177,6 +196,7 @@ $(document).ready(function () {
         $('#lblNenhumSaborSelecionado').show();        
     }
 
+    // define eexibe o maior valor entre as opções selecionadas
     function AtualizarPreco(){
         var maxValor= 0.00
         for (var i=0; i<lstProdutos.length;i++){
@@ -188,14 +208,25 @@ $(document).ready(function () {
         $("#lblPreco").html("R$ " + maxValor);
     }
 
-
-
+    function AtualizarCarrinho(){
+        $.ajax({
+            url: url_base + "carrinho/itens",
+            type:'get',
+            dataType:'html',
+            async: false,
+            success: function(data) { 
+                $("#btn-carrinho").html(data + " itens");                             
+            }
+        });    
+    }
 
 
 
     
     // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login
+   AtualizarCarrinho();
+
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
