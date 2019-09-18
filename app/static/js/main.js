@@ -21,19 +21,19 @@
 $(document).ready(function () {
     //var url_base = "http://localhost:5000/";
     var url_base = "https://resthouse.herokuapp.com/";
-    
+
     var numSabores = 0;
     var lstProdutos = []
-    var linha=0;
-    
+    var linha = 0;
+
     //pagina CategoriasxProdutos
-    $("#txtTamanho").change(function (){
+    $("#txtTamanho").change(function () {
         numSabores = $("#txtTamanho").val();
         ExibirPrecos();
-    });    
+    });
 
     // adiciona sabora da pizza para a lista de opçoes
-    $(".adicionaSabor").click(function() {
+    $(".adicionaSabor").click(function () {
         var produto = jQuery.parseJSON($(this).val());
         var script = "";
 
@@ -43,30 +43,30 @@ $(document).ready(function () {
 
         $('#lblNenhumSaborSelecionado').hide();
 
-        if (numSabores > lstProdutos.length){    
+        if (numSabores > lstProdutos.length) {
             $("#tblSaboresSelecionados tbody").append(
-                "<tr>"+
-                "<td style='color:#563A2D'>" + "<b>"+ produto.descricao + " </b> - " + produto.resumo + "</td>"+
-                "<td ><button type='button' style='color:#563A2D' class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>"+
+                "<tr>" +
+                "<td style='color:#563A2D'>" + "<b>" + produto.descricao + " </b> - " + produto.resumo + "</td>" +
+                "<td ><button type='button' style='color:#563A2D' class='btnDelete btn-link'> <i class='material-icons'>cancel</i> </button></td>" +
                 "</tr>");
 
             // popula array com produtos adicionados
-            script = url_base+"produto?id="+produto.id+"&tamanho="+numSabores ;
+            script = url_base + "produto?id=" + produto.id + "&tamanho=" + numSabores;
 
             $.ajax({
                 url: script,
-                type:'get',
-                dataType:'html',
+                type: 'get',
+                dataType: 'html',
                 async: false,
-                success: function(data){
+                success: function (data) {
                     produto.valor = data;
                 }
             });
-        
-            lstProdutos.push(produto);          
+
+            lstProdutos.push(produto);
             AtualizarPreco();
         }
-        else{
+        else {
             bootbox.alert({
                 message: "A quantidade de sabores atingiu o limite permitido",
                 size: 'small'
@@ -77,22 +77,22 @@ $(document).ready(function () {
     });
 
     // Atualiza precos conforme mudança de tamanho
-    function ExibirPrecos(){
-        if (numSabores != "Escolha um tamanho"){
+    function ExibirPrecos() {
+        if (numSabores != "Escolha um tamanho") {
             LimparTabela();
             $("#divSelecaoSabores").show();
-            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores +" sabor(es)</b>")
+            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores + " sabor(es)</b>")
 
-            if(numSabores==='4'){
+            if (numSabores === '4') {
                 $("span[name='4']").show();
                 // 
                 $("span[name='3']").hide();
                 $("span[name='2']").hide();
                 $("span[name='1']").hide();
-                
+
             }
 
-            if(numSabores==='3'){
+            if (numSabores === '3') {
                 $("span[name='3']").show();
                 // 
                 $("span[name='4']").hide();
@@ -100,7 +100,7 @@ $(document).ready(function () {
                 $("span[name='1']").hide();
             }
 
-            if(numSabores==='2'){
+            if (numSabores === '2') {
                 $("span[name='2']").show();
                 // 
                 $("span[name='4']").hide();
@@ -108,17 +108,17 @@ $(document).ready(function () {
                 $("span[name='1']").hide();
             }
 
-            if(numSabores==='1'){
+            if (numSabores === '1') {
                 $("span[name='1']").show();
                 // 
                 $("span[name='4']").hide();
                 $("span[name='3']").hide();
                 $("span[name='2']").hide();
-            }            
+            }
         }
-        else{
+        else {
             LimparTabela();
-            $("#divSelecaoSabores").hide();            
+            $("#divSelecaoSabores").hide();
         }
     }
 
@@ -126,104 +126,104 @@ $(document).ready(function () {
     $("#tblSaboresSelecionados").on('click', '.btnDelete', function () {
         lstProdutos.splice($(this).closest('tr').index(), 1);
         $(this).closest('tr').remove();
-        AtualizarPreco();            
+        AtualizarPreco();
 
-        if (lstProdutos.length===0){                       
+        if (lstProdutos.length === 0) {
             $('#tblSaboresSelecionados').hide();
             $('#lblItensSelecionados').hide();
             $('#paneSubTotal').hide();
 
-            $('#lblNenhumSaborSelecionado').show();    
-        }    
+            $('#lblNenhumSaborSelecionado').show();
+        }
 
     });
 
 
     // Adiciona Pizzas ao Carrinho
-    $("#btnAdicionarPizzaCarrinho").click(function(){        
+    $("#btnAdicionarPizzaCarrinho").click(function () {
         var resumo = "";
         var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
         var tamanho = $('#txtTamanho option:selected').text();
         var ids = "";
 
-        for (var i=0; i<lstProdutos.length;i++){
+        for (var i = 0; i < lstProdutos.length; i++) {
             resumo = resumo + lstProdutos[i].descricao + "(" + lstProdutos[i].tipo + "), ";
-            ids = ids + ", " + lstProdutos[i].id 
-        }        
+            ids = ids + ", " + lstProdutos[i].id
+        }
 
         $.ajax({
             type: "POST",
-            data: {produto_id:lstProdutos[0].id, resumo:resumo.substr(0,resumo.length-1), quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:tamanho, associado_id:lstProdutos[0].associado_id, ids:ids, categoria:categoria},
+            data: { produto_id: lstProdutos[0].id, resumo: resumo.substr(0, resumo.length - 2), quantidade: "01", valor_unitario: $("#lblPreco").html(), tamanho: tamanho, associado_id: lstProdutos[0].associado_id, ids: ids, categoria: categoria },
             url: url_base + "carrinho",
             async: false,
-            success: function(data) { 
-                if (data==="200"){
+            success: function (data) {
+                if (data === "200") {
                     bootbox.alert({
                         message: "Produto adicionado ao carrinho com sucesso!",
                         size: 'small'
                     });
                 }
             }
-            });    
-        LimparTabela();     
-        $("#divSelecaoSabores").hide();                   
+        });
+        LimparTabela();
+        $("#divSelecaoSabores").hide();
         $("#txtTamanho").val("Escolha um tamanho");
         $("#btn-carrinho").focus();
     });
 
     //Adiciona produtos simples ao carrinho 
-    $(".btnAdicionarProdutoCarrinho").click(function(){
+    $(".btnAdicionarProdutoCarrinho").click(function () {
         var produto = jQuery.parseJSON($(this).val());
         var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
-        var quantidade = $("input[class=quantity"+produto.id +"]").val();
+        var quantidade = $("input[class=quantity" + produto.id + "]").val();
 
         $.ajax({
             type: "POST",
-            data: {produto_id:produto.id, resumo: produto.descricao, quantidade: quantidade, valor_unitario:"R$ "+ produto.valor, tamanho:"", associado_id:produto.associado_id, ids:"", categoria:categoria},
+            data: { produto_id: produto.id, resumo: produto.descricao, quantidade: quantidade, valor_unitario: "R$ " + produto.valor, tamanho: "", associado_id: produto.associado_id, ids: "", categoria: categoria },
             url: url_base + "carrinho",
             async: false,
-            success: function(data) { 
-                if (data==="200"){
+            success: function (data) {
+                if (data === "200") {
                     bootbox.alert({
                         message: "Produto adicionado ao carrinho com sucesso!",
                         size: 'small'
                     });
-                    
+
                 }
             }
-        });    
-        $("input[class=quantity"+produto.id +"]").val("1");      
-        $("#btn-carrinho").focus();        
+        });
+        $("input[class=quantity" + produto.id + "]").val("1");
+        $("#btn-carrinho").focus();
     });
 
     // limpa a lista de opções
-    function LimparTabela(){
+    function LimparTabela() {
         numSaboresAdicionados = 0;
         lstProdutos = []
-        $("#tblSaboresSelecionados tr").remove();        
+        $("#tblSaboresSelecionados tr").remove();
         $("#lblPreco").html("R$ 0.00");
 
         $('#tblSaboresSelecionados').hide();
         $('#lblItensSelecionados').hide();
-        $('#paneSubTotal').hide();        
-        $('#lblNenhumSaborSelecionado').show();        
+        $('#paneSubTotal').hide();
+        $('#lblNenhumSaborSelecionado').show();
     }
 
     // define eexibe o maior valor entre as opções selecionadas
-    function AtualizarPreco(){
-        var maxValor= 0.00
-        for (var i=0; i<lstProdutos.length;i++){
+    function AtualizarPreco() {
+        var maxValor = 0.00
+        for (var i = 0; i < lstProdutos.length; i++) {
             var valor = lstProdutos[i].valor.replace(",", ".");
-            if (parseFloat(valor)>=maxValor){
-                 maxValor=valor;
-            } 
+            if (parseFloat(valor) >= maxValor) {
+                maxValor = valor;
+            }
         }
         $("#lblPreco").html("R$ " + maxValor.toString().replace(".", ","));
     }
-    
+
     // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login
-   
+
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
@@ -243,15 +243,15 @@ $(document).ready(function () {
     } else {
         $("#recupera-senha").show();
     };
-    
+
     // filtra associados
     $("#btnAssociadoFiltrar").click(function () {
-        if ($("#txtAssociadoFiltrar").val().trim().length>0) {
+        if ($("#txtAssociadoFiltrar").val().trim().length > 0) {
             $("#filtra-associado-form").submit();
-        }    
-        else{
+        }
+        else {
             $("#txtAssociadoFiltrar").focus();
-        }    
+        }
     });
 
     // carrega cep no formulario de registro usuario

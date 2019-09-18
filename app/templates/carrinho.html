@@ -63,11 +63,6 @@
                                           <br> &nbsp {{produto.quantidade}} {{produto.prods.medida}}
                                           <br> &nbsp {{produto.assoc.nomefantasia}}
                                           
-                                          <br><br>
-                                          <div style="margin-bottom: 1px;margin-top:-5px" class="col-12 input-group-sm ">
-                                              <input type="text" class="form-control" name="txtObservacao" placeholder="Insira observações para o item ">
-                                          </div>
-
                                       </td>
                                       <td><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link'> <i class='material-icons'>cancel</i></button></td>
                                     </tr>
@@ -82,13 +77,8 @@
                                           <br> &nbsp {{produto.quantidade}} {{produto.prods.medida}}
                                           <br> &nbsp {{produto.assoc.nomefantasia}}
 
-                                          <br><br>
-                                          <div style="margin-bottom: 1px;margin-top:-5px" class="col-12 input-group-sm ">
-                                              <input type="text" class="form-control" name="txtObservacao" placeholder="Insira observações para o item ">
-                                          </div>
-
                                       </td>
-                                      <td><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link'> <i class='material-icons'>cancel</i></button></td>
+                                      <td><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link'> <i class='material-icons'>cancel</i></button></td>
                                     </tr>
                                     <tr><td></td><td></td></tr>
                                  {% endif %}                                  
@@ -96,7 +86,12 @@
                             </tbody>
                         </table>                       
                       <div>
-        
+                      
+                      <span id="lblTotalizadorCarrinho" class="badge badge-pill badge-light pull-left" style="text-align:left;font-size:15px; color:#563A2D; background:#fcf8ef; margin-top: 4px; margin-right:-5px; margin-bottom:4px"> 
+                          <h5 id="lblTotalEntrega">(+) Taxa Entrega: </h5>
+                          <h5 id="lblTotalProdutos">(+) Produtos: </h5>
+                          <h5 id="lblTotalCarrinho">(=) Total:<b> R$ 0,00</b> </h5> 
+                      </span>
                       <span class="badge badge-pill badge-light pull-right" style="background:#F58634; margin-top: 4px; margin-right:-5px; margin-bottom:4px">                                 
                           <a id="btnFinalizarCompra" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
                           <i class="material-icons" style="color:white">shopping_basket</i> <br>
