@@ -143,16 +143,17 @@ $(document).ready(function () {
     $("#btnAdicionarPizzaCarrinho").click(function(){        
         var resumo = "";
         var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
+        var tamanho = $('#txtTamanho option:selected').text();
         var ids = "";
 
         for (var i=0; i<lstProdutos.length;i++){
-            resumo = resumo + lstProdutos[i].descricao + " - " + lstProdutos[i].resumo + "<br>";
+            resumo = resumo + lstProdutos[i].descricao + "(" + lstProdutos[i].tipo + "), ";
             ids = ids + ", " + lstProdutos[i].id 
         }        
 
         $.ajax({
             type: "POST",
-            data: {produto_id:lstProdutos[0].id, resumo:resumo, quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:numSabores, associado_id:lstProdutos[0].associado_id, ids:ids, categoria:categoria},
+            data: {produto_id:lstProdutos[0].id, resumo:resumo.substr(0,resumo.length-1), quantidade:"01", valor_unitario:$("#lblPreco").html(), tamanho:tamanho, associado_id:lstProdutos[0].associado_id, ids:ids, categoria:categoria},
             url: url_base + "carrinho",
             async: false,
             success: function(data) { 
