@@ -26,16 +26,20 @@
           <a class="navbar-brand"  href="{{ url_for('views.index') }}" style="color:white; text-align:left"><b><span class="glyphicon glyphicon-cutlery"></span> Resthouse</b></a></br>
         </div>
 
-        <span class="badge badge-pill badge-light pull-right" style="color:white; background-color:#F58634; margin-top:-5px; margin-right:-10px">                            
-            <a id="btn-carrinho" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.index') }} ">
-              Olá, {{ nome }} <i style="font-size:25px" class="glyphicon glyphicon-bell"></i>             
+        <span class="badge badge-pill badge-light pull-right" style="color:white; background-color:#F58634; margin-top:5px; margin-right:-10px">                            
+            <a id="btn-perfil" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.atualizarPerfil') }} ">
+              Olá, {{ nome }}           
+            </a>                                                
+
+            <a id="btn-carrinho" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">  
+              <i style="font-size:25px" class="glyphicon glyphicon-shopping-cart"></i>             
             </a>                                                
           </span>  
 
         <div class="navbar-collapse collapse" >
           <ul class="nav navbar-nav">
-            <li><a href="{{ url_for('views.index') }}" style="color:white"><i class="material-icons">shopping_cart</i> Meus Pedidos</a></li>
-            <li><a href="{{ url_for('views.index') }}" style="color:white"><i class="material-icons">account_circle</i> Dados Pessoais</a></li>
+            <li><a href="{{ url_for('views.obterPedidos') }}" style="color:white"><i class="material-icons">shopping_basket</i> Meus Pedidos</a></li>
+            <li><a href="{{ url_for('views.atualizarPerfil') }}" style="color:white"><i class="material-icons">account_circle</i> Dados Pessoais</a></li>
             <li><a href="{{ url_for('views.sair') }}" style="color:white"><i class="material-icons">exit_to_app</i> Sair</a></li>
           </ul>
         </div>

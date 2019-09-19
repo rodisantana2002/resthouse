@@ -221,7 +221,7 @@ def deleteItemCarrinho():
 
     if 'email' in session:
         # remove item
-        result = oper.deleteItemCarrinho(id)
+        result = oper.deletarItemCarrinho(id)
         return "200"
 
     else:
@@ -234,9 +234,27 @@ def limparCarrinho():
         # limpa o carrinho
         itens = oper.obterCarrinho(session.get("id"))
         for item in itens:
-            result = oper.deleteItemCarrinho(item.id)
+            result = oper.deletarItemCarrinho(item.id)
 
         return "200"
 
     else:
         return render_template('login.html', page=None)
+
+@views.route('/perfil', methods=['GET'])
+def atualizarPerfil():
+    if 'email' in session:
+        return render_template('perfil.html', Usuario=None)
+
+    else:
+        return render_template('login.html', page=None)
+    
+@views.route('/pedido', methods=['GET'])
+def obterPedidos():
+    if 'email' in session:
+        Pedidos = oper.gerarPedidos(session.get('id'))
+        return render_template('pedidos.html', Pedido=Pedidos)
+
+    else:
+        return render_template('login.html', page=None)
+    

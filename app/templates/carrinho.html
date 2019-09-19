@@ -46,7 +46,7 @@
               <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right:5px">
                   <div class="panel-heading">
                       <h4 style="color:#F58634; text-align:center;margin-top:1px">Itens disponíveis no seu carrinho</h4>                        
-                      <h6 style="color:#F58634; text-align:center;margin-bottom:-5px">{{carrinho|length}} produto(s) </h6>                                            
+                      <h6 style="color:#F58634; text-align:center;margin-bottom:-5px; margin-top:-5px"> <span class="badge" style="background:#F58634">{{carrinho|length}} produto(s)</span> </h6>                                            
                   </div>                  
 
                   <div class="panel-body" style="margin-bottom:-10px" >
@@ -57,7 +57,7 @@
                               {% for produto in carrinho  %}     
                                  {% if produto.categoria == "PIZZAS" %}
                                     <tr>                              
-                                      <td style='background:#fcf8ef; color:#F58634; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.categoria}}</b> - {{produto.resumo}}</h5> 
+                                      <td style='background:#fcf8ef; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.categoria}}</b> - {{produto.resumo}}</h5> 
                                           <img class="pull-left" width="75rem" src="{{ url_for('views.media', filename=produto.prods.logo)}}"> 
                                           &nbsp {{produto.categoria}} - {{produto.tamanho}}
                                           <br> &nbsp {{produto.valor_unitario}} 
@@ -72,7 +72,7 @@
 
                                  {% else %}
                                     <tr>                              
-                                      <td style='background:#fcf8ef; color:#F58634; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.prods.descricao}}</b> - {{produto.prods.resumo}}</h5>
+                                      <td style='background:#fcf8ef; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.prods.descricao}}</b> - {{produto.prods.resumo}}</h5>
                                           <img class="pull-left" width="75rem" src="{{ url_for('views.media', filename=produto.prods.logo)}}"> 
                                           &nbsp {{produto.categoria}} 
                                           <br> &nbsp {{produto.valor_unitario}} 
@@ -91,14 +91,14 @@
                       <div>
                       
  
-                      <span class="badge badge-pill badge-light pull-right" style="background:#F58634; margin-top: 4px; margin-right:-5px; margin-bottom:4px">                                 
-                          <button id="btnFinalizarCompra" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
+                      <span class="badge badge-pill badge-light pull-right" style="background:#F58634; margin-top: 4px; margin-right:-1px; margin-bottom:5px">                                 
+                          <a id="btnFinalizarCompra" style="color:white; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterPedidos')}} ">                         
                           <i class="material-icons" style="color:white">shopping_basket</i> <br>
                               Finalizar <br>Compra 
-                          </button>                                                
+                          </a>                                                
                       </span>  
                       <span class="badge badge-pill badge-light pull-right" style="background:#c0c0c0; margin-top: 4px; margin-right:5px">                                 
-                          <button id="btnLimparCarrinho" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
+                          <button id="btnLimparCarrinho" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">                         
                           <i class="material-icons">remove_shopping_cart</i> <br>
                               Limpar <br>Carrinho
                           </button>                                                

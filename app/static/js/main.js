@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    //var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -202,11 +202,11 @@ $(document).ready(function () {
             message: "Confirma a remoção do item de seu Carrinho?",
             buttons: {
                 confirm: {
-                    label: 'Yes',
+                    label: 'Sim',
                     className: 'btn-success'
                 },
                 cancel: {
-                    label: 'No',
+                    label: 'Não',
                     className: 'btn-danger'
                 }
             },
@@ -229,14 +229,14 @@ $(document).ready(function () {
 
     $("#btnLimparCarrinho").click(function () {
         bootbox.confirm({
-            message: "Confirma a limpeza de seu Carrinho?",
+            message: "Confirma a remoção de todos os itens de seu Carrinho?",
             buttons: {
                 confirm: {
-                    label: 'Yes',
+                    label: 'Sim',
                     className: 'btn-success'
                 },
                 cancel: {
-                    label: 'No',
+                    label: 'Não',
                     className: 'btn-danger'
                 }
             },
@@ -255,6 +255,7 @@ $(document).ready(function () {
         });
 
     });
+  
 
     // limpa a lista de opções
     function LimparTabela() {

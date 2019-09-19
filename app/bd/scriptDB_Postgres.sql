@@ -1,6 +1,7 @@
-
--- DROP TABLE usuario;
+-- DROP TABLE pedido;
+-- DROP TABLE pedido_item;
 -- DROP TABLE carrinho;
+-- DROP TABLE usuario;
 -- DROP TABLE produto_tamanho;
 -- DROP TABLE associado_usuario_tags; 
 -- DROP TABLE associado_caregorias;
@@ -94,15 +95,32 @@
 --                               dtregistro VARCHAR(30)  NULL);  
 
 --Tabela Carrinho
-CREATE TABLE carrinho (id SERIAL NOT NULL PRIMARY KEY,
+-- CREATE TABLE carrinho (id SERIAL NOT NULL PRIMARY KEY,
+--                        usuario_id INTEGER NOT NULL,
+--                        produto_id INTEGER NOT NULL,          
+--                        associado_id INTEGER NOT NULL,          
+--                        categoria VARCHAR(100) NULL, 
+--                        resumo VARCHAR(1000) NULL,  
+--                        tamanho VARCHAR(30) NULL,
+--                        quantidade VARCHAR(30) NULL,
+--                        valor_unitario VARCHAR(30) NULL,
+--                        total_item VARCHAR(30) NULL,                       
+--                        ids VARCHAR(100) NULL,                       
+--                        dtregistro VARCHAR(30)  NULL);  
+
+--Tabela Pedido
+CREATE TABLE pedido (id SERIAL NOT NULL PRIMARY KEY,
+                       numero VARCHAR(30)  NULL,                      
+                       dtagendamento VARCHAR(30)  NULL,                          
+                       situacao VARCHAR(30)  NULL,                                                 
                        usuario_id INTEGER NOT NULL,
-                       produto_id INTEGER NOT NULL,          
                        associado_id INTEGER NOT NULL,          
-                       categoria VARCHAR(100) NULL, 
-                       resumo VARCHAR(1000) NULL,  
-                       tamanho VARCHAR(30) NULL,
-                       quantidade VARCHAR(30) NULL,
-                       valor_unitario VARCHAR(30) NULL,
-                       total_item VARCHAR(30) NULL,                       
-                       ids VARCHAR(100) NULL,                       
-                       dtregistro VARCHAR(30)  NULL);  
+                       total_itens VARCHAR(30) NULL,
+                       taxa_entrega VARCHAR(30) NULL,
+                       total_pedido VARCHAR(30) NULL,
+                       avaliacao_pontos VARCHAR(30) NULL,
+                       avaliacao_comentarios VARCHAR(150) NULL,
+                       observacao VARCHAR(150) NULL,
+                       motivo_cancelamento VARCHAR(150) NULL,
+                       dtregistro VARCHAR(30)  NULL);                          
+                      

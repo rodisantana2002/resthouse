@@ -4,6 +4,7 @@ import string
 from flask import Flask, Blueprint
 from app.model.models import *
 from app.controls.utils import *
+from sqlalchemy import DateTime
 
 
 operacoes = Blueprint("operacoes", __name__)
@@ -19,6 +20,7 @@ class Operacoes():
         self.associado_categoria = AssociadoCategoria()
         self.produtoTamanho = ProdutoTamanho()
         self.carrinho = Carrinho()
+        self.pedido = Pedido()
 
     def obterAssociados(self):
         return self.associado.query.all()
@@ -82,7 +84,35 @@ class Operacoes():
     def obterCarrinho(self, usuario_id):
         return self.carrinho.query.filter_by(usuario_id=usuario_id).all()
 
-    def deleteItemCarrinho(self, id):
+    def deletarItemCarrinho(self, id):
         obj = Carrinho()
         obj = self.carrinho.query.filter_by(id=id).first()
         obj.delete(obj)
+
+    def gerarPedidos(self, usuario_id):
+        # deve gerar 1 pedido por associado localizado no carrinho
+        associados = set()
+        pedidos=[]
+        carrinho_itens = []
+        date = datetime.datetime.now()
+        
+        carrinho_itens = self.carrinho.query.filter_by(usuario_id=usuario_id).all()
+        # verifica quando associados estao presentes nos produtos do carrinho
+        for item in carrinho_itens:
+            associados.add(item.associado_id)      
+        
+        for associado in associados:
+            pedido = Pedido()
+            pedido.numero = str(date.year) + str(date.month).zfill(2) + str(date.day).zfill(2) + "-" + str(associado) + "-" + str(usuario_id)
+            pedido.associado_id = associado
+            pedido.usuario_id = usuario_id
+            pedido.situacao = "Iniciado"
+            
+            pedido.total_itens = ""
+            
+            print(pedido.numero)
+                
+            pedidos.append(pedido)
+            
+        return pedidos    
+        

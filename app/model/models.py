@@ -342,3 +342,57 @@ class Carrinho(db.Model):
 
     def __repr__(self):
         return self.serialize()
+
+
+
+# classe Pedido
+class Pedido(db.Model):
+    __tablename__ = "pedido"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+
+    associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+
+    numero = db.Column(db.String(30))
+    dtagendamento = db.Column(db.String(30))
+    situacao = db.Column(db.String(30))
+    total_itens = db.Column(db.String(30))
+    taxa_entrega = db.Column(db.String(30))
+    total_pedido = db.Column(db.String(30))
+    avaliacao_pontos = db.Column(db.String(30))
+           
+    avaliacao_comentarios = db.Column(db.String(150))
+    motivo_cancelamento = db.Column(db.String(150))
+    observacao = db.Column(db.String(150))
+    
+    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+
+    assoc = relationship(Associado, backref=backref("pedido"))
+
+    def add(self, pedido):
+        db.session.add(pedido)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self, pedido):
+        db.session.delete(pedido)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'usuario_id': self.usuario_id,
+            'associado_id': self.associado_id,
+            'numero': self.numero,
+            'situacao': self.situacao,
+            'dtagendamento': self.dtagendamento,
+            'total_pedido': self.total_pedido,
+            'avaliacao_pontos': self.avaliacao_pontos
+        }
+
+    def __repr__(self):
+        return self.serialize()
