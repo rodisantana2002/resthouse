@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-    // var url_base = "http://localhost:5000/";
+    //var url_base = "http://localhost:5000/";
     var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
@@ -194,6 +194,66 @@ $(document).ready(function () {
         });
         $("input[class=quantity" + produto.id + "]").val("1");
         $("#btn-carrinho").focus();
+    });
+
+    $(".btnDeleteItemCarrinho").click(function () {
+        var id = $(this).val();
+        bootbox.confirm({
+            message: "Confirma a remoção do item de seu Carrinho?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        data: { id: id },
+                        url: url_base + "carrinho/item",
+                        async: false,
+                        success: function (data) { }
+                    });
+                    location.reload();
+                }
+            }
+        });
+    });
+
+
+    $("#btnLimparCarrinho").click(function () {
+        bootbox.confirm({
+            message: "Confirma a limpeza de seu Carrinho?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "carrinho/limpar",
+                        async: false,
+                        success: function (data) { }
+                    });
+                    location.reload();
+                }
+            }
+        });
+
     });
 
     // limpa a lista de opções

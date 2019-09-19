@@ -103,7 +103,8 @@ class Associado(db.Model):
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     logo = db.Column(db.String(100))
 
-    categorias_associado = relationship('AssociadoCategoria', backref='associado')
+    categorias_associado = relationship(
+        'AssociadoCategoria', backref='associado')
 
     def add(self, associado):
         db.session.add(associado)
@@ -160,10 +161,12 @@ class AssociadoCategoria(db.Model):
     logo = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
 
-    catego = relationship(Categoria, backref=backref("associado_categorias", cascade="all, delete-orphan"))
-    assoc = relationship(Associado, backref=backref("associado_categorias", cascade="all, delete-orphan"))           
+    catego = relationship(Categoria, backref=backref(
+        "associado_categorias", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref(
+        "associado_categorias", cascade="all, delete-orphan"))
     prods = relationship("Produto", backref='associado_categorias', lazy=False)
-    
+
     tipos = ["Tradicionais", "Especiais", "Premium", "Doces"]
 
     def serialize(self):
@@ -181,12 +184,15 @@ class AssociadoCategoria(db.Model):
         return self.serialize()
 
 # classe Produto
+
+
 class Produto(db.Model):
     __tablename__ = "produto"
 
     id = db.Column('id', db.Integer, primary_key=True)
-    
-    associado_categoria_id = db.Column(db.Integer, db.ForeignKey('associado_categorias.id'))
+
+    associado_categoria_id = db.Column(
+        db.Integer, db.ForeignKey('associado_categorias.id'))
     descricao = db.Column(db.String(200))
     valor = db.Column(db.String(30))
     tipo = db.Column(db.String(30))
@@ -194,9 +200,9 @@ class Produto(db.Model):
     medida = db.Column(db.String(30))
     logo = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    
+
     tamanhos = relationship('ProdutoTamanho', backref='produto')
-            
+
     def add(self, produto):
         db.session.add(produto)
         db.session.commit()
@@ -223,12 +229,12 @@ class Produto(db.Model):
 class ProdutoTamanho(db.Model):
     __tablename__ = "produto_tamanho"
 
-    id = db.Column('id', db.Integer, primary_key=True)    
+    id = db.Column('id', db.Integer, primary_key=True)
     produto_id = db.Column(db.Integer, db.ForeignKey('produto.id'))
     tamanho = db.Column(db.String(30))
     valor = db.Column(db.String(30))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    
+
     def add(self, produto_tamanho):
         db.session.add(produto_tamanho)
         db.session.commit()
@@ -248,7 +254,6 @@ class ProdutoTamanho(db.Model):
         return self.serialize()
 
 
-
 # Classe associativa UsuarioxAssociadoxTags
 class TagAssociado(db.Model):
     __tablename__ = "associado_usuario_tags"
@@ -262,8 +267,10 @@ class TagAssociado(db.Model):
     favorito = db.Column(db.String(1))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
 
-    user = relationship(Usuario, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
-    assoc = relationship(Associado, backref=backref("associado_usuario_tags", cascade="all, delete-orphan"))
+    user = relationship(Usuario, backref=backref(
+        "associado_usuario_tags", cascade="all, delete-orphan"))
+    assoc = relationship(Associado, backref=backref(
+        "associado_usuario_tags", cascade="all, delete-orphan"))
 
     def add(self, tag):
         db.session.add(tag)
@@ -285,12 +292,12 @@ class TagAssociado(db.Model):
 
     def __repr__(self):
         return self.serialize()
-    
-    
+
+
 # classe Carrinho
 class Carrinho(db.Model):
     __tablename__ = "carrinho"
-    
+
     # dados essenciais
     id = db.Column('id', db.Integer, primary_key=True)
 
@@ -302,20 +309,23 @@ class Carrinho(db.Model):
     tamanho = db.Column(db.String(30))
     categoria = db.Column(db.String(100))
     valor_unitario = db.Column(db.String(30))
-    quantidade = db.Column(db.String(30))      
+    quantidade = db.Column(db.String(30))
     total_item = db.Column(db.String(30))
-    ids = db.Column(db.String(100))      
+    ids = db.Column(db.String(100))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
 
-    assoc = relationship(Associado, backref=backref("carrinho", cascade="all, delete-orphan"))
-    prods = relationship(Produto, backref=backref("carrinho", cascade="all, delete-orphan"))
-    
-          
+    assoc = relationship(Associado, backref=backref("carrinho"))
+    prods = relationship(Produto, backref=backref("carrinho"))
+
     def add(self, carrinho):
         db.session.add(carrinho)
         db.session.commit()
 
     def update(self):
+        db.session.commit()
+
+    def delete(self, carrinho):
+        db.session.delete(carrinho)
         db.session.commit()
 
     def serialize(self):
@@ -327,9 +337,8 @@ class Carrinho(db.Model):
             'resumo': self.resumo,
             'tamanho': self.tamanho,
             'valor_unitario': self.valor_unitario,
-            'quantidade':self.quantidade            
+            'quantidade': self.quantidade
         }
 
     def __repr__(self):
         return self.serialize()
-    

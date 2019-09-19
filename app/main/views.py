@@ -17,8 +17,9 @@ oper = Operacoes()
 def index():
     if 'email' in session:
         return redirect(url_for('views.home'))
-    else:    
-        return render_template('login.html', page=None)          
+    else:
+        return render_template('login.html', page=None)
+
 
 @views.route('/home', methods=['GET', 'POST'])
 def home():
@@ -27,13 +28,16 @@ def home():
     tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
     return render_template('index.html', nome=nome, associados=associados, tags=tags)
 
+
 @views.route('/home/filtrar', methods=['POST'])
 def filtrar_associado():
     nome = session.get("nome")
-    associados = oper.obterAssociadosByNomeResumo(request.form['txtAssociadoFiltrar'])
+    associados = oper.obterAssociadosByNomeResumo(
+        request.form['txtAssociadoFiltrar'])
     tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
     return render_template('index.html', nome=nome, associados=associados, tags=tags)
-  
+
+
 @views.route('/logout', methods=['GET'])
 def sair():
     session.pop('email', None)
@@ -41,6 +45,7 @@ def sair():
     session.pop('nome', None)
     session.pop('token', None)
     return redirect(url_for('views.index'))
+
 
 @views.route('/validaremail/<email>')
 def validar_email(email):
@@ -58,14 +63,14 @@ def validar_celular(celular):
 def recuperar_senha():
     if 'email' in session:
         return redirect(url_for('views.home'))
-    else:    
+    else:
         return render_template('recuperasenha.html', page=None)
 
 
 @views.route('/recuperasenha/envio', methods=['POST'])
 def enviar_senha():
     result = auth.validar_email(request.form['email-recuperar'])
-    
+
     if 'email' in session:
         return redirect(url_for('views.home'))
     else:
@@ -79,17 +84,18 @@ def enviar_senha():
 
 @views.route('/login', methods=['POST'])
 def user():
-    result = auth.autenticarUsuario(request.form['email-login'], request.form['password'])
+    result = auth.autenticarUsuario(
+        request.form['email-login'], request.form['password'])
 
     if 'email' in session:
         return redirect(url_for('views.home'))
-    else:    
+    else:
         if request.method == 'POST':
             if result.get("code") == "200":
                 session['email'] = result.get("email")
                 session['token'] = result.get("token")
                 session['nome'] = result.get("nome")
-                session['id'] = result.get("id")                
+                session['id'] = result.get("id")
                 return redirect(url_for('views.home'))
             else:
                 return render_template('login.html', page=result)
@@ -101,14 +107,15 @@ def user():
 def cadastro():
     if 'email' in session:
         return redirect(url_for('views.home'))
-    else:    
-        return render_template('registro.html', page=None)      
+    else:
+        return render_template('registro.html', page=None)
+
 
 @views.route('/registro/envio', methods=['POST'])
 def registrar():
     if 'email' in session:
-        return redirect(url_for('views.home'))        
-    else:    
+        return redirect(url_for('views.home'))
+    else:
         usuario = Usuario()
 
         usuario.nomecompleto = request.form["nomecompleto"]
@@ -145,38 +152,40 @@ def registrarFavorito(id):
 
 @views.route('/associado/<associado_id>')
 def carregar_cardapio(associado_id):
-    if 'email' in session:  
-        associado = oper.obterAssociadoById(associado_id)  
+    if 'email' in session:
+        associado = oper.obterAssociadoById(associado_id)
         return render_template('cardapio.html', associado=associado)
-    else:    
-        return render_template('login.html', page=None)        
+    else:
+        return render_template('login.html', page=None)
 
 
 @views.route('/associado/categoria/<associado_categoria_id>')
 def carregar_cardapio_produtos(associado_categoria_id):
-    if 'email' in session:  
-        associado_categoria = oper.obterAssociadoCategoriaById(associado_categoria_id)
-        return render_template('cardapio_produtos.html', associado_categoria=associado_categoria)   
-    else:    
-        return render_template('login.html', page=None)        
+    if 'email' in session:
+        associado_categoria = oper.obterAssociadoCategoriaById(
+            associado_categoria_id)
+        return render_template('cardapio_produtos.html', associado_categoria=associado_categoria)
+    else:
+        return render_template('login.html', page=None)
 
 
 @views.route('/produto', methods=['GET'])
 def obterProdutoPreco():
-    if 'email' in session:  
-        id = request.args.get('id')    
-        tamanho = request.args.get('tamanho')    
-    
+    if 'email' in session:
+        id = request.args.get('id')
+        tamanho = request.args.get('tamanho')
+
         produto_tamanho = oper.obterPreco(id, tamanho)
-        return produto_tamanho.valor    
-    else:    
-        return render_template('login.html', page=None)        
+        return produto_tamanho.valor
+    else:
+        return render_template('login.html', page=None)
+
 
 @views.route('/carrinho', methods=['POST'])
 def registrarCarrinho():
-    if 'email' in session:  
-        carrinho = Carrinho();
-        
+    if 'email' in session:
+        carrinho = Carrinho()
+
         carrinho.usuario_id = session.get("id")
         carrinho.produto_id = request.values.get('produto_id')
         carrinho.associado_id = request.values.get('associado_id')
@@ -186,24 +195,48 @@ def registrarCarrinho():
         # ------------------------------------------------------------------
         carrinho.quantidade = request.values.get('quantidade')
         carrinho.valor_unitario = request.values.get('valor_unitario')
-        carrinho.total_item = str((int(request.values.get('quantidade')) * Decimal(request.values.get('valor_unitario')[3:].replace(",", ".")))).replace(".", ",")        
+        carrinho.total_item = str((int(request.values.get('quantidade')) * Decimal(
+            request.values.get('valor_unitario')[3:].replace(",", ".")))).replace(".", ",")
         carrinho.ids = request.values.get('ids')
 
-        result = oper.registrarProdutoCarrinho(carrinho)                   
-        return result.get("code");
+        result = oper.registrarProdutoCarrinho(carrinho)
+        return result.get("code")
 
-    else:    
-        return render_template('login.html', page=None)        
+    else:
+        return render_template('login.html', page=None)
 
 
 @views.route('/carrinho/itens', methods=['GET'])
 def obterCarrinho():
-    if 'email' in session:  
-        carrinho = oper.obterCarrinho(session.get("id"));
-        return render_template('carrinho.html', carrinho=carrinho)   
-    else:    
-        return render_template('login.html', page=None)        
+    if 'email' in session:
+        carrinho = oper.obterCarrinho(session.get("id"))
+        return render_template('carrinho.html', carrinho=carrinho)
+    else:
+        return render_template('login.html', page=None)
 
 
-    
-    
+@views.route('/carrinho/item', methods=['POST'])
+def deleteItemCarrinho():
+    id = request.values.get('id')
+
+    if 'email' in session:
+        # remove item
+        result = oper.deleteItemCarrinho(id)
+        return "200"
+
+    else:
+        return render_template('login.html', page=None)
+
+
+@views.route('/carrinho/limpar', methods=['POST'])
+def limparCarrinho():
+    if 'email' in session:
+        # limpa o carrinho
+        itens = oper.obterCarrinho(session.get("id"))
+        for item in itens:
+            result = oper.deleteItemCarrinho(item.id)
+
+        return "200"
+
+    else:
+        return render_template('login.html', page=None)
