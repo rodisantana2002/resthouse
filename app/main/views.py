@@ -5,6 +5,7 @@ from app.controls.auth import *
 from app.controls.operacoes import *
 from app.controls.utils import *
 from app.model.models import *
+from decimal import Decimal
 
 views = Blueprint("views", __name__)
 auth = Autenticacao()
@@ -181,9 +182,11 @@ def registrarCarrinho():
         carrinho.associado_id = request.values.get('associado_id')
         carrinho.categoria = request.values.get('categoria')
         carrinho.resumo = request.values.get('resumo')
-        carrinho.quantidade = request.values.get('quantidade')
         carrinho.tamanho = request.values.get('tamanho')
+        # ------------------------------------------------------------------
+        carrinho.quantidade = request.values.get('quantidade')
         carrinho.valor_unitario = request.values.get('valor_unitario')
+        carrinho.total_item = str((int(request.values.get('quantidade')) * Decimal(request.values.get('valor_unitario')[3:].replace(",", ".")))).replace(".", ",")        
         carrinho.ids = request.values.get('ids')
 
         result = oper.registrarProdutoCarrinho(carrinho)                   

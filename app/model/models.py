@@ -5,7 +5,7 @@ import sqlalchemy
 from enum import Enum
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, func
 from sqlalchemy.orm import relationship, backref
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -303,13 +303,14 @@ class Carrinho(db.Model):
     categoria = db.Column(db.String(100))
     valor_unitario = db.Column(db.String(30))
     quantidade = db.Column(db.String(30))      
+    total_item = db.Column(db.String(30))
     ids = db.Column(db.String(100))      
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
 
     assoc = relationship(Associado, backref=backref("carrinho", cascade="all, delete-orphan"))
     prods = relationship(Produto, backref=backref("carrinho", cascade="all, delete-orphan"))
     
-    
+          
     def add(self, carrinho):
         db.session.add(carrinho)
         db.session.commit()

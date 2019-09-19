@@ -103,5 +103,6 @@ CREATE TABLE carrinho (id SERIAL NOT NULL PRIMARY KEY,
                        tamanho VARCHAR(30) NULL,
                        quantidade VARCHAR(30) NULL,
                        valor_unitario VARCHAR(30) NULL,
+                       total_item VARCHAR(30) NULL,                       
                        ids VARCHAR(100) NULL,                       
                        dtregistro VARCHAR(30)  NULL);  
