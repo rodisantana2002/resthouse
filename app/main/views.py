@@ -256,9 +256,9 @@ def obterPedidos():
     if 'email' in session:
         Pedidos = oper.gerarPedidos(session.get('id'))
 
-        itens = oper.obterCarrinho(session.get("id"))
-        for item in itens:
-            result = oper.deletarItemCarrinho(item.id)
+        # itens = oper.obterCarrinho(session.get("id"))
+        # for item in itens:
+        #     result = oper.deletarItemCarrinho(item.id)
 
         return render_template('pedidos.html', Pedidos=Pedidos)
 
