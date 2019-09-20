@@ -196,7 +196,7 @@ def registrarCarrinho():
         carrinho.quantidade = request.values.get('quantidade')
         carrinho.valor_unitario = request.values.get('valor_unitario')
         carrinho.total_item = str((int(request.values.get('quantidade')) * Decimal(
-            request.values.get('valor_unitario')[3:].replace(",", ".")))).replace(".", ",")
+            request.values.get('valor_unitario')[3:].replace(",", "."))))
         carrinho.ids = request.values.get('ids')
 
         result = oper.registrarProdutoCarrinho(carrinho)
@@ -252,8 +252,14 @@ def atualizarPerfil():
 @views.route('/pedido', methods=['GET'])
 def obterPedidos():
     if 'email' in session:
-        Pedidos = oper.gerarPedidos(session.get('id'))
-        return render_template('pedidos.html', Pedido=Pedidos)
+        itens = oper.obterCarrinho(session.get("id"))
+        if len(itens)>0:
+            Pedidos = oper.gerarPedidos(session.get('id'))
+            limparCarrinho()
+                    
+            return render_template('pedidos.html', Pedidos=Pedidos)
+        else:
+            return redirect(url_for('views.home'))
 
     else:
         return render_template('login.html', page=None)

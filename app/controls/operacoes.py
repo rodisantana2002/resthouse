@@ -4,8 +4,8 @@ import string
 from flask import Flask, Blueprint
 from app.model.models import *
 from app.controls.utils import *
-from sqlalchemy import DateTime
-
+from sqlalchemy import DateTime, func
+from decimal import Decimal
 
 operacoes = Blueprint("operacoes", __name__)
 
@@ -103,16 +103,23 @@ class Operacoes():
         
         for associado in associados:
             pedido = Pedido()
+            assoc = self.associado.query.filter_by(id=associado).first()            
+            total_produtos = Decimal(db.session.query(func.sum(Carrinho.total_item)).filter(Carrinho.associado_id == associado)[0][0]).quantize(Decimal('.01'), rounding='ROUND_UP')
+            txEntrega = Decimal(assoc.valortaxaentrega.replace(",",".")).quantize(Decimal('.01'), rounding='ROUND_UP')
+            total_pedido = total_produtos + txEntrega
+            
             pedido.numero = str(date.year) + str(date.month).zfill(2) + str(date.day).zfill(2) + "-" + str(associado) + "-" + str(usuario_id)
             pedido.associado_id = associado
             pedido.usuario_id = usuario_id
-            pedido.situacao = "Iniciado"
-            
-            pedido.total_itens = ""
-            
-            print(pedido.numero)
-                
+            pedido.situacao = "Iniciado"            
+
+            pedido.total_itens = str(total_produtos)
+            pedido.taxa_entrega = str(txEntrega)
+            pedido.total_pedido = str(total_pedido)
+            pedido.add(pedido)
+                            
             pedidos.append(pedido)
+            print(pedido.__str__())
             
         return pedidos    
         
