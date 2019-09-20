@@ -127,6 +127,10 @@ class Operacoes():
             
             pedidos.append(pedido)
 
-            
+        # limpa dados do carrinho 
+        for item in carrinho_itens:
+            self.deletarItemCarrinho(item.id)
+        
+        # retorna a lista de pedidos gerados    
         return pedidos    
         
