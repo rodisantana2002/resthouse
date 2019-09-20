@@ -97,16 +97,20 @@ class Operacoes():
         date = datetime.datetime.now()
         
         carrinho_itens = self.carrinho.query.filter_by(usuario_id=usuario_id).all()
+
         # verifica quando associados estao presentes nos produtos do carrinho
         for item in carrinho_itens:           
             associados.add(self.associado.query.filter_by(id=item.associado_id).first())      
-            
-        # total_produtos = Decimal(db.session.query(func.sum(Carrinho.total_item)).filter(Carrinho.associado_id == associado)[0][0]).quantize(Decimal('.01'), rounding='ROUND_UP')
-                
+
+        #gerar pedido para cada associado encontrado
         for associado in associados:
             pedido = Pedido()
             total_produtos=0                            
 
+            for item in carrinho_itens:
+                if item.associado_id == associado.id:
+                    total_produtos = total_produtos + Decimal(item.total_item).quantize(Decimal('.01'), rounding='ROUND_UP')                
+                
             txEntrega = Decimal(associado.valortaxaentrega.replace(",",".")).quantize(Decimal('.01'), rounding='ROUND_UP')
             total_pedido = total_produtos + txEntrega
                         
