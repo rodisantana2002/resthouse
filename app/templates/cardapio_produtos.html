@@ -34,7 +34,7 @@
 
             <span class="badge badge-pill badge-light pull-right" style="background:#fcf8ef; margin-top:-68px; margin-right:5px; margin-bottom:4px">   
                 <i style="font-size:24px; color:#F58634" class="glyphicon glyphicon-shopping-cart"></i> <br>                        
-                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="link" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
+                <a id="btn-carrinho" style="color:#F58634; font-size:15px"  type="button" class="btn btn-link" href="{{ url_for('views.obterCarrinho') }} ">                         
                     ver itens 
                 </a>                                                
             </span>    
@@ -74,8 +74,8 @@
                             <div id="paneSubTotal" class="panel-footer" style="display:none; background:#fcf8ef; text-align:right"><b>
                                 <span id="lblPreco" class="pull-left" style="margin-top:12px; font-size:20px; color:#F58634">0.00</span>
                               
-                                <button id="btnAdicionarPizzaCarrinho" type="text" class="btn btn-link btn-xs" style="background:#F58634; color:white">
-                                  <i class="material-icons">add_shopping_cart</i> <br>Adicionar ao carrinho
+                                <button id="btnAdicionarPizzaCarrinho" type="button" class="btn btn-link btn-xs" style="background:#F58634; color:white">
+                                  <i class="material-icons">add_shopping_cart</i><br>Adicionar ao carrinho
                                 </button> </b>
                             </div>                             
 
@@ -167,9 +167,8 @@
                                   </h4>      
 
                                   <span class="badge badge-pill pull-right" style="font-size:12px;margin-top:-30px; ccolor:white;background:#F58634">
-
                                     <i class="material-icons">add_shopping_cart</i><br>                                            
-                                    <button type="text" class="btnAdicionarProdutoCarrinho btn btn-link btn-xs"  style="color:white"  value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
+                                    <button type="button" class="btnAdicionarProdutoCarrinho btn btn-link btn-xs"  style="color:white"  value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
                                       adicionar ao <br> carrinho
                                     </button>       
                                   </span>                                                                                                                                         

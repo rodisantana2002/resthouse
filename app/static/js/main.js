@@ -241,7 +241,6 @@ $(document).ready(function () {
                 }
             },
             callback: function (result) {
-
                 if (result) {
                     $.ajax({
                         type: "POST",
@@ -255,6 +254,34 @@ $(document).ready(function () {
         });
 
     });
+
+    $("#btnFinalizarCompra").click(function(){
+        bootbox.confirm({
+            message: "Confirma a compra dos produtos?",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "pedido/gerar",
+                        async: false,
+                        success: function (data) {}
+                    });
+                    $(location).attr('href', url_base+ 'pedido');
+                }
+            }
+        });
+    });
+
 
 
     // limpa a lista de opções
