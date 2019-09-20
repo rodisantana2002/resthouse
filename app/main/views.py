@@ -254,14 +254,13 @@ def atualizarPerfil():
 @views.route('/pedido', methods=['GET'])
 def obterPedidos():
     if 'email' in session:
-        itens = oper.obterCarrinho(session.get("id"))
-        # if len(itens)>0:
-        #     Pedidos = oper.gerarPedidos(session.get('id'))
-        #     limparCarrinho()
+        Pedidos = oper.gerarPedidos(session.get('id'))
 
-        #     return render_template('pedidos.html', Pedidos=Pedidos)
-        # else:
-        return redirect(url_for('views.home'))
+        itens = oper.obterCarrinho(session.get("id"))
+        for item in itens:
+            result = oper.deletarItemCarrinho(item.id)
+
+        return render_template('pedidos.html', Pedidos=Pedidos)
 
     else:
         return render_template('login.html', page=None)
