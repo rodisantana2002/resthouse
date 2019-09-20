@@ -255,7 +255,7 @@ def atualizarPerfil():
 def obterPedidos():
     if 'email' in session:
         Pedidos = oper.obterPedidos(session.get('id'))
-        return render_template('pedidos.html', Pedidos=Pedidos)
+        return render_template('pedidos.html', pedidos=Pedidos)
 
     else:
         return render_template('login.html', page=None)

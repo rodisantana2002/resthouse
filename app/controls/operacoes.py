@@ -99,7 +99,7 @@ class Operacoes():
             self.authentic["msg"] = "Erro desconhecido"        
 
     def obterPedidos(self, usuario_id):
-        return self.pedido.query.filter_by(usuario_id = usuario_id)    
+        return self.pedido.query.filter_by(usuario_id = usuario_id).all()    
 
     def gerarPedidos(self, usuario_id):
         # deve gerar 1 pedido por associado localizado no carrinho
