@@ -241,6 +241,7 @@ def limparCarrinho():
     else:
         return render_template('login.html', page=None)
 
+
 @views.route('/perfil', methods=['GET'])
 def atualizarPerfil():
     if 'email' in session:
@@ -248,19 +249,19 @@ def atualizarPerfil():
 
     else:
         return render_template('login.html', page=None)
-    
+
+
 @views.route('/pedido', methods=['GET'])
 def obterPedidos():
     if 'email' in session:
         itens = oper.obterCarrinho(session.get("id"))
-        if len(itens)>0:
-            Pedidos = oper.gerarPedidos(session.get('id'))
-            limparCarrinho()
-                    
-            return render_template('pedidos.html', Pedidos=Pedidos)
-        else:
-            return redirect(url_for('views.home'))
+        # if len(itens)>0:
+        #     Pedidos = oper.gerarPedidos(session.get('id'))
+        #     limparCarrinho()
+
+        #     return render_template('pedidos.html', Pedidos=Pedidos)
+        # else:
+        return redirect(url_for('views.home'))
 
     else:
         return render_template('login.html', page=None)
-    
