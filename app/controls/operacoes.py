@@ -98,18 +98,20 @@ class Operacoes():
         
         carrinho_itens = self.carrinho.query.filter_by(usuario_id=usuario_id).all()
         # verifica quando associados estao presentes nos produtos do carrinho
-        for item in carrinho_itens:
-            associados.add(item.associado_id)      
-        
+        for item in carrinho_itens:           
+            associados.add(self.associado.query.filter_by(id=item.associado_id).first())      
+            
+        # total_produtos = Decimal(db.session.query(func.sum(Carrinho.total_item)).filter(Carrinho.associado_id == associado)[0][0]).quantize(Decimal('.01'), rounding='ROUND_UP')
+                
         for associado in associados:
             pedido = Pedido()
-            assoc = self.associado.query.filter_by(id=associado).first()            
-            total_produtos = Decimal(db.session.query(func.sum(Carrinho.total_item)).filter(Carrinho.associado_id == associado)[0][0]).quantize(Decimal('.01'), rounding='ROUND_UP')
-            txEntrega = Decimal(assoc.valortaxaentrega.replace(",",".")).quantize(Decimal('.01'), rounding='ROUND_UP')
+            total_produtos=0                            
+
+            txEntrega = Decimal(associado.valortaxaentrega.replace(",",".")).quantize(Decimal('.01'), rounding='ROUND_UP')
             total_pedido = total_produtos + txEntrega
-            
-            pedido.numero = str(date.year) + str(date.month).zfill(2) + str(date.day).zfill(2) + "-" + str(associado) + "-" + str(usuario_id)
-            pedido.associado_id = associado
+                        
+            pedido.numero = str(date.year) + str(date.month).zfill(2) + str(date.day).zfill(2) + "-" + str(associado.id) + "-" + str(usuario_id)
+            pedido.associado_id = associado.id
             pedido.usuario_id = usuario_id
             pedido.situacao = "Iniciado"            
 
@@ -117,9 +119,10 @@ class Operacoes():
             pedido.taxa_entrega = str(txEntrega)
             pedido.total_pedido = str(total_pedido)
             pedido.add(pedido)
-                            
+            print(pedido.__str__())             
+            
             pedidos.append(pedido)
-            print(pedido.__str__())
+
             
         return pedidos    
         
