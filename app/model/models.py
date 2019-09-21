@@ -372,6 +372,7 @@ class Pedido(db.Model):
     dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
 
     assoc = relationship(Associado, backref=backref("pedido"))
+    user = relationship(Usuario, backref=backref("pedido"))
 
     def add(self, pedido):
         db.session.add(pedido)
@@ -383,7 +384,24 @@ class Pedido(db.Model):
     def delete(self, pedido):
         db.session.delete(pedido)
         db.session.commit()
+        
+    @property
+    def status(self):
+        if self.situacao =="1":
+            return "Iniciado" 
 
+        if self.situacao =="2":
+            return "Em Análise" 
+
+        if self.situacao =="3":
+            return "Entrega" 
+
+        if self.situacao =="4":
+            return "Finalizado" 
+
+        if self.situacao =="5":            
+           return "Cancelado"        
+       
     def serialize(self):
         return {
             'id': self.id,

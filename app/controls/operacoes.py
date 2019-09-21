@@ -129,7 +129,7 @@ class Operacoes():
                 pedido.numero = str(date.year)[2:] + str(date.month).zfill(2) + str(date.day).zfill(2) + str(date.hour) + str(date.minute) + str(date.second) + str(associado.id) + str(usuario_id)
                 pedido.associado_id = associado.id
                 pedido.usuario_id = usuario_id
-                pedido.situacao = "3"            
+                pedido.situacao = "1"            
 
                 pedido.total_itens = str(total_produtos)
                 pedido.taxa_entrega = str(txEntrega)
