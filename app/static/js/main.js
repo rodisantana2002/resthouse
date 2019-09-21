@@ -26,9 +26,8 @@ $(document).ready(function () {
     var lstProdutos = []
     var linha = 0;
 
-    //pagina CategoriasxProdutos
-    $("#txtTamanho").change(function () {
-        numSabores = $("#txtTamanho").val();
+    $("#ex19").change(function () {
+        numSabores = $("#ex19").val();
         ExibirPrecos();
     });
 
@@ -76,52 +75,6 @@ $(document).ready(function () {
         $("#btn-carrinho").focus();
     });
 
-    // Atualiza precos conforme mudança de tamanho
-    function ExibirPrecos() {
-        if (numSabores != "Escolha um tamanho") {
-            LimparTabela();
-            $("#divSelecaoSabores").show();
-            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores + " sabor(es)</b>")
-
-            if (numSabores === '4') {
-                $("span[name='4']").show();
-                // 
-                $("span[name='3']").hide();
-                $("span[name='2']").hide();
-                $("span[name='1']").hide();
-
-            }
-
-            if (numSabores === '3') {
-                $("span[name='3']").show();
-                // 
-                $("span[name='4']").hide();
-                $("span[name='2']").hide();
-                $("span[name='1']").hide();
-            }
-
-            if (numSabores === '2') {
-                $("span[name='2']").show();
-                // 
-                $("span[name='4']").hide();
-                $("span[name='3']").hide();
-                $("span[name='1']").hide();
-            }
-
-            if (numSabores === '1') {
-                $("span[name='1']").show();
-                // 
-                $("span[name='4']").hide();
-                $("span[name='3']").hide();
-                $("span[name='2']").hide();
-            }
-        }
-        else {
-            LimparTabela();
-            $("#divSelecaoSabores").hide();
-        }
-    }
-
     // exclui um sabor adicionado a lista de opçoes
     $("#tblSaboresSelecionados").on('click', '.btnDelete', function () {
         lstProdutos.splice($(this).closest('tr').index(), 1);
@@ -143,7 +96,7 @@ $(document).ready(function () {
     $("#btnAdicionarPizzaCarrinho").click(function () {
         var resumo = "";
         var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
-        var tamanho = $('#txtTamanho option:selected').text();
+        var tamanho = getTamanho($("#ex19").val());
         var ids = "";
 
         for (var i = 0; i < lstProdutos.length; i++) {
@@ -167,7 +120,7 @@ $(document).ready(function () {
         });
         LimparTabela();
         $("#divSelecaoSabores").hide();
-        $("#txtTamanho").val("Escolha um tamanho");
+        $('#ex19').slider('refresh');
         $("#btn-carrinho").focus();
     });
 
@@ -283,6 +236,68 @@ $(document).ready(function () {
     });
 
 
+    // Atualiza precos conforme mudança de tamanho
+    function ExibirPrecos() {
+        if (numSabores > 0) {
+            LimparTabela();
+            $("#divSelecaoSabores").show();
+            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores + " sabor(es)</b>")
+
+            if (numSabores === '4') {
+                $("span[name='4']").show();
+                // 
+                $("span[name='3']").hide();
+                $("span[name='2']").hide();
+                $("span[name='1']").hide();
+
+            }
+
+            if (numSabores === '3') {
+                $("span[name='3']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='2']").hide();
+                $("span[name='1']").hide();
+            }
+
+            if (numSabores === '2') {
+                $("span[name='2']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='3']").hide();
+                $("span[name='1']").hide();
+            }
+
+            if (numSabores === '1') {
+                $("span[name='1']").show();
+                // 
+                $("span[name='4']").hide();
+                $("span[name='3']").hide();
+                $("span[name='2']").hide();
+            }
+        }
+        else {
+            LimparTabela();
+            $("#divSelecaoSabores").hide();
+        }
+    }
+
+    //Retorna o tamanhos e Num de pedaços
+    function getTamanho(tamanho){
+        if (tamanho==="1"){
+            return "Pequena - 4 pedaços"
+        }
+        if (tamanho==="2"){
+            return "Pequena - 6 pedaços"
+        }
+        if (tamanho==="3"){
+            return "Pequena - 8 pedaços"
+        }
+        if (tamanho==="4"){
+            return "Pequena - 12 pedaços"
+        }
+
+    }
 
     // limpa a lista de opções
     function LimparTabela() {
@@ -308,6 +323,24 @@ $(document).ready(function () {
         }
         $("#lblPreco").html("R$ " + maxValor.toString().replace(".", ","));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login

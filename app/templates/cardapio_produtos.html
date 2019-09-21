@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.css" integrity="sha256-+bpMasWDxDlsVpNW3oZlL7L4RacwsP70u2fZt6Rxrmc=" crossorigin="anonymous" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
 
     <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js" integrity="sha256-oj52qvIP5c7N6lZZoh9z3OYacAIOjsROAcZBHUaJMyw=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>      
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -49,15 +51,21 @@
             <div class="panel-group">            
                 {% if associado_categoria.catego.descricao=='PIZZAS'%}
                     <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right:5px">                    
-                      <div class="panel-body" >
-
-                          <select name="txtTamanho" id="txtTamanho" class="form-control" style="color=gray; margin-bottom:10px" required>
-                              <option selected>Escolha um tamanho</option>
-                              <option value="4">Big (12 pedaços)</option>
-                              <option value="3">Grande (8 pedaços)</option>
-                              <option value="2">Média (6 pedaços)</option>
-                              <option value="1">Pequena (4 pedaços)</option>
-                          </select>
+                      <div class="panel-body">
+                          <h5 style="text-align:center; margin-top:-5px; margin-bottom:5px">Escolha um Tamanho</h5>
+                          
+                          <h5 style="text-align:center; margin-top:5px; margin-bottom:15px">
+                            <span id="ex18-label-1" class="hidden" ></span>
+                                    <input id="ex19" type="text" style="width:40rem"
+                                          data-provide="slider"
+                                          data-slider-ticks="[0, 1, 2, 3, 4]"
+                                          data-slider-ticks-labels='["Nenhuma", "Pequena", "Média", "Grande", "Big"]'
+                                          data-slider-min="0"
+                                          data-slider-max="4"
+                                          data-slider-step="1"
+                                          data-slider-value="0"
+                                          data-slider-tooltip="show" />
+                          </h5>
 
                           <div class="panel panel-default" style="margin-top:-5px" >
                             
