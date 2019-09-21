@@ -367,7 +367,9 @@ class Pedido(db.Model):
     motivo_cancelamento = db.Column(db.String(150))
     observacao = db.Column(db.String(150))
     
-    dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
+    date = datetime.datetime.now()
+    
+    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
 
     assoc = relationship(Associado, backref=backref("pedido"))
 

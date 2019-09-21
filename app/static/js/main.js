@@ -100,7 +100,7 @@ $(document).ready(function () {
         var ids = "";
 
         for (var i = 0; i < lstProdutos.length; i++) {
-            resumo = resumo + lstProdutos[i].descricao + "(" + lstProdutos[i].tipo + "), ";
+            resumo = resumo + lstProdutos[i].descricao + " (" + lstProdutos[i].tipo + "), ";
             ids = ids + ", " + lstProdutos[i].id
         }
 
@@ -344,7 +344,12 @@ $(document).ready(function () {
 
     // ----------------------------------------------------------------------------------------------------------------------
     // load da pagina - login
+    $("#ex20").slider('disable');
 
+
+    // Select first tab
+    $("a[name='status']").tab('show')
+    
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
