@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-   // var url_base = "http://localhost:5000/";
+    // var url_base = "http://localhost:5000/";
     var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
@@ -208,7 +208,7 @@ $(document).ready(function () {
 
     });
 
-    $("#btnFinalizarCompra").click(function(){
+    $("#btnFinalizarCompra").click(function () {
         bootbox.confirm({
             message: "Confirma a compra dos produtos?",
             buttons: {
@@ -227,9 +227,9 @@ $(document).ready(function () {
                         type: "POST",
                         url: url_base + "pedido/gerar",
                         async: false,
-                        success: function (data) {}
+                        success: function (data) { }
                     });
-                    $(location).attr('href', url_base+ 'pedido');
+                    $(location).attr('href', url_base + 'pedido');
                 }
             }
         });
@@ -283,17 +283,17 @@ $(document).ready(function () {
     }
 
     //Retorna o tamanhos e Num de pedaços
-    function getTamanho(tamanho){
-        if (tamanho==="1"){
+    function getTamanho(tamanho) {
+        if (tamanho === "1") {
             return "Pequena - 4 pedaços"
         }
-        if (tamanho==="2"){
+        if (tamanho === "2") {
             return "Pequena - 6 pedaços"
         }
-        if (tamanho==="3"){
+        if (tamanho === "3") {
             return "Pequena - 8 pedaços"
         }
-        if (tamanho==="4"){
+        if (tamanho === "4") {
             return "Pequena - 12 pedaços"
         }
 
@@ -349,7 +349,7 @@ $(document).ready(function () {
 
     // Select first tab
     $("a[name='status']").tab('show')
-    
+
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();
     } else {
