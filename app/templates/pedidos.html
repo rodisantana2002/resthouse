@@ -49,7 +49,10 @@
                     {% for pedido in pedidos %}
 
                         <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right:5px">
-                          <div class="panel-heading" style="color:gray"><i class="glyphicon glyphicon-flag"></i><b> {{pedido.numero}}</b>
+                        
+                          <div class="panel-heading" style="color:gray; margin-top:-10px; height:7rem" >
+                            <h6><i class="glyphicon glyphicon-flag" style="margin-bottom:-10px"> </i> Pedido</h6>  
+                            <h5><b> {{pedido.numero}}</b></h5>
                           </div>
 
                           <div class="panel-body"  style="margin-top:3px; margin-bottom:-15px">
@@ -121,7 +124,7 @@
                                   </span>  
                                   <span class="badge badge-pill badge-light pull-right" style="background:#c0c0c0; margin-top: -5px; margin-right:5px; margin-bottom:10px">
                                       <button id="btnLimparCarrinho" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">                         
-                                      <i class="material-icons">remove_shopping_cart</i><br>Cancelar<br>Pedido
+                                      <i class="material-icons">clear</i><br>Cancelar<br>Pedido
                                       </button>                                                
                                   </span>                                
                               </div>
