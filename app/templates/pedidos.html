@@ -55,22 +55,16 @@
                           </div>
 
                           <div class="panel-body"  style="margin-top:3px; margin-bottom:-15px">
-                            <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px; margin-top:-15px">
-                                <thead style="font-size:11px; color:#563A2D">
-                                  <tr>
-                                    <th style="text-align:left" >{{pedido.assoc.nomefantasia}}</th>
-                                    <th style="text-align:center" ></th>
-                                    <th style="text-align:center" ></th>
-                                    <th style="text-align:center" ></th>
-                                  <tr>
-                                </thead>
 
+                            <h6 style="margin-top:-10px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}}</h6>
+
+                            <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px; margin-top:-5px">
                                 <tbody style='color:#563A2D; font-size:11px'>
                                   <tr>
-                                    <td style="text-align:left" >Data Pedido</td>
-                                    <td style="text-align:center" >Taxa entrega</td>
-                                    <td style="text-align:center" >Total Produtos</td>
-                                    <td style="text-align:center" >Total Pedido</td>
+                                    <td style="text-align:left" >Data<br>Pedido</td>
+                                    <td style="text-align:center" >Taxa<br>Entrega</td>
+                                    <td style="text-align:center" >Total<br>Produtos</td>
+                                    <td style="text-align:center" >Total<br>Pedido</td>
                                   </tr>
                                   <tr>
                                       <td style="text-align:left">{{pedido.dtregistro}}</td>
@@ -152,15 +146,15 @@
                                           </tbody>
                                       </table>
 
-                                      <h6 style="text-align:right; margin-top:-20px"> 
-                                        <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
+                                      <h5 style="text-align:right; margin-top:-20px"> 
+                                        <span class="badge badge-pill pull-right" style="font-size:12px; margin-top:5px; color:white; background:#F58634">
                                             <i class="glyphicon glyphicon-retweet"></i>                                      
                                             <button type="button" class="atualizarEndereco btn-link"  style="color:white" name="atualizarEndereco">
                                               Atualizar
                                             </button>       
                                         </span>  
-                                      </h6>
-                                      <br>
+                                      </h5>
+                                      <br><br>
                                 </div>
 
                                 <div class="tab-pane fade" id="produtos{{pedido.id}}" role="tabpanel" aria-labelledby="produtos{{pedido.id}}-tab">
