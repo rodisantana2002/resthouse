@@ -57,7 +57,7 @@
                               {% for produto in carrinho  %}     
                                  {% if produto.categoria == "PIZZAS" %}
                                     <tr>                              
-                                      <td style='background:#fcf8ef; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.categoria}}</b> - {{produto.resumo}}</h5> 
+                                      <td style='background:#f9f9f9; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.categoria}}</b> - {{produto.resumo}}</h5> 
                                           <img class="pull-left" width="75rem" src="{{ url_for('views.media', filename=produto.prods.logo)}}"> 
                                           &nbsp {{produto.categoria}} - {{produto.tamanho}}
                                           <br> &nbsp {{produto.valor_unitario}} 
@@ -66,13 +66,13 @@
                                           <br> &nbsp {{produto.assoc.nomefantasia}}
                                           
                                       </td>
-                                      <td style='background:#fcf8ef'><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link' value="{{produto.id}}"> <i class='material-icons'>cancel</i></button></td>
+                                      <td style='background:#f9f9f9'><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link' value="{{produto.id}}"> <i class='material-icons'>cancel</i></button></td>
                                     </tr>
                                     <tr><td></td><td></td></tr>
 
                                  {% else %}
                                     <tr>                              
-                                      <td style='background:#fcf8ef; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.prods.descricao}}</b> - {{produto.prods.resumo}}</h5>
+                                      <td style='background:#f9f9f9; color:#563A2D; font-size:11px'><h5 style="margin-top:1px; margin-bottom:8px"><b>{{produto.prods.descricao}}</b> - {{produto.prods.resumo}}</h5>
                                           <img class="pull-left" width="75rem" src="{{ url_for('views.media', filename=produto.prods.logo)}}"> 
                                           &nbsp {{produto.categoria}} 
                                           <br> &nbsp {{produto.valor_unitario}} 
@@ -81,7 +81,7 @@
                                           <br> &nbsp {{produto.assoc.nomefantasia}}
 
                                       </td>
-                                      <td style='background:#fcf8ef'><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link' value="{{produto.id}}"> <i class='material-icons'>cancel</i></button></td>
+                                      <td style='background:#f9f9f9'><br><br><button type='button' style='color:#563A2D' class='btnDeleteItemCarrinho btn-link' value="{{produto.id}}"> <i class='material-icons'>cancel</i></button></td>
                                     </tr>
                                     <tr><td> </td><td></td></tr>
                                  {% endif %}                                  
