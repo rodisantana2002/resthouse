@@ -66,36 +66,13 @@
 
                 <div class="panel-group" style="margin-top:10px">            
                     {% for pedido in pedidos %}
-                        <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-top: 8px; margin-left:5px; margin-right:5px; height:10rem" value='28'>                                                  
+                        <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-top: 8px; margin-left:5px; margin-right:5px">                                                  
                           <div class="panel-body" style="margin-top:3px; margin-bottom:-15px">
-                            <span class="pull-right" style="margin-top:-5px">     
-                              <a style="color:#F58634; background:white" type="button" name="btn-expandir-pedido" class="btn-expandir-pedido btn-link btn-md" ><i class="material-icons">more_vert</i></a>                                                
-                            </span>
 
                             <h6 style="color:gray; margin-top:-10px"><i class="glyphicon glyphicon-flag" > </i> Pedido </h6>  
-                            <h5 style="color:#F58634"><b> {{pedido.numero}} - {{pedido.dtregistro}}</b></h5>
-
-                            <hr style="margin-top:10px">
-                            <h6 style="margin-top:10px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}}</h6>
-
-                            <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px; margin-top:-5px">
-                                <tbody style='color:#563A2D; font-size:11px'>
-                                  <tr>
-                                    <td style="text-align:left" >Data<br>Pedido</td>
-                                    <td style="text-align:center" >Taxa<br>Entrega</td>
-                                    <td style="text-align:center" >Total<br>Produtos</td>
-                                    <td style="text-align:center" >Total<br>Pedido</td>
-                                  </tr>
-                                  <tr>
-                                      <td style="text-align:left">{{pedido.dtregistro}}</td>
-                                      <td style="text-align:center">R$ {{pedido.taxa_entrega}}</td>
-                                      <td style="text-align:center">R$ {{pedido.total_itens}}</td>
-                                      <td style="text-align:center"><b>R$ {{pedido.total_pedido}}</b></td>
-                                  </tr>
-                                </tbody>
-                            </table>    
-
-                            <hr style="margin-top:8px">
+                            <h5 style="color:#F58634; margin-top:-5px"><b> {{pedido.numero}}</b></h5>
+                            <h6 style="margin-top:-5px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}} - {{pedido.dtregistro}}</h6>  
+                            <hr style="margin-top:-1px">
 
                             {% if pedido.situacao != "1" %}
                                 <h5 style="text-align:center; margin-top:-5px; margin-bottom:5px; color:gray;">Status do pedido</h5>            
@@ -118,7 +95,7 @@
 
                             <ul  class="nav nav-tabs" name="myTab" role="tablist" style="margin-top:-10px; font-size:11px">
                               <li class="nav-item" >
-                                <a class="nav-link" style="color:#F58634" name="status" id="status{{pedido.id}}-tab" data-toggle="tab" href="#status{{pedido.id}}" role="tab" aria-controls="status{{pedido.id}}" aria-selected="true"><i class="glyphicon glyphicon-flash"> </i> Ações</a>
+                                <a class="nav-link" style="color:#F58634" name="status" id="status{{pedido.id}}-tab" data-toggle="tab" href="#observacao{{pedido.id}}" role="tab" aria-controls="observacao{{pedido.id}}" aria-selected="true"><i class="glyphicon glyphicon-flash"> </i> Observações</a>
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link"  style="color:#F58634" name="entrega" id="entrega{{pedido.id}}-tab" data-toggle="tab" href="#entrega{{pedido.id}}" role="tab" aria-controls="entrega{{pedido.id}}" aria-selected="false"><i class="glyphicon glyphicon-send"> </i> Entrega</a>
@@ -127,27 +104,22 @@
                                 <a class="nav-link" style="color:#F58634" name="produtos" id="produtos{{pedido.id}}-tab" data-toggle="tab" href="#produtos{{pedido.id}}" role="tab" aria-controls="produtos{{pedido.id}}"aria-selected="false"><i class="glyphicon glyphicon-tags"> </i> Produtos</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" style="color:#F58634" name="avaliacao" id="avaliacao{{pedido.id}}-tab" data-toggle="tab" href="#produtos{{pedido.id}}" role="tab" aria-controls="avaliacao{{pedido.id}}" aria-selected="false"><i class="glyphicon glyphicon-star"> </i> Avaliação</a>
+                                <a class="nav-link" style="color:#F58634; display:none" name="avaliacao" id="avaliacao{{pedido.id}}-tab" data-toggle="tab" href="#produtos{{pedido.id}}" role="tab" aria-controls="avaliacao{{pedido.id}}" aria-selected="false"><i class="glyphicon glyphicon-star"> </i> Avaliação</a>
                               </li>
                             </ul>
                             
-                            <!-- dados Status -->
+                            <!-- dados observacao -->
                             <div class="tab-content" id="myTabContent">             
-                                <div class="tab-pane fade active" id="status{{pedido.id}}" role="tabpanel" aria-labelledby="status{{pedido.id}}-tab">     
-                                    <span class="badge badge-pill badge-light pull-right" style="background:#F58634; margin-top:10px; margin-right:-1px; margin-bottom:10px">                                 
-                                        <button id="btnFinalizarCompra" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">
-                                          <i class="material-icons" style="color:white">shopping_basket</i><br>Finalizar<br>Compra
-                                        </button>                                                
-                                    </span>  
-                                    <span class="badge badge-pill badge-light pull-right" style="background:#c0c0c0; margin-top:10px; margin-right:5px; margin-bottom:10px">
-                                        <button id="btnLimparCarrinho" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">                         
-                                          <i class="material-icons">clear</i><br>Cancelar<br>Pedido
-                                        </button>                                                
-                                    </span>
+                                <div class="tab-pane fade active" id="observacao{{pedido.id}}" role="tabpanel" aria-labelledby="observacao{{pedido.id}}-tab">     
+                                sd
                                 </div>
-
+ 
                                 <!-- dados Entrega -->
                                 <div class="tab-pane fade" id="entrega{{pedido.id}}" role="tabpanel" aria-labelledby="entrega{{pedido.id}}-tab">
+                                      <h5 style="text-align:center; margin-top:10px; color:gray;">Agendamento</h5>                                                                    
+                                      <h6 style="text-align:right; margin-top:5px">            
+                                      </h6>
+                                      <hr>
                                       <h5 style="text-align:center; margin-top:10px; color:gray;">Local de Entrega</h5>                                                                    
                                       <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:5px; margin-top:5px">
                                           <tbody style='color:#563A2D; font-size:10px'>
@@ -188,8 +160,25 @@
 
                                 </div>
                             </div>            
-                          
-                         
+
+                            <hr >                         
+                            <span class="badge badge-pill badge-light pull-right" style="background:#F58634; margin-top:-10px; margin-right:-1px; margin-bottom:10px">                                 
+                                  <button id="btnFinalizarCompra" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">
+                                    <i class="material-icons" style="color:white">shopping_basket</i><br>Finalizar<br>Compra
+                                  </button>                                                
+                              </span>  
+                              <span class="badge badge-pill badge-light pull-right" style="background:#c0c0c0; margin-top:-10px; margin-right:5px; margin-bottom:10px">
+                                  <button id="btnLimparCarrinho" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">                         
+                                    <i class="material-icons">clear</i><br>Cancelar<br>Pedido
+                                  </button>                                                
+                              </span>
+                              <span class="badge badge-pill badge-light pull-left" style="background:#c0c0c0; margin-top:-10px; margin-right:5px; margin-bottom:10px">                              
+                                
+                                <h6 style="text-align:right">Taxa Entrega: R$ {{pedido.taxa_entrega}}</h6>
+                                <h6 style="text-align:right">Total Produtos: R$ {{pedido.total_itens}}</h6>
+                                <h6 style="text-align:right">Total Pedido: R$ {{pedido.total_pedido}}</h6>
+                              </span>
+
                           </div> 
                         </div> 
 

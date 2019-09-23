@@ -124,3 +124,16 @@
 --                        motivo_cancelamento VARCHAR(150) NULL,
 --                        dtregistro VARCHAR(30)  NULL);                          
                       
+
+-- tabela PedidoItem
+CREATE TABLE pedido_item (id SERIAL NOT NULL PRIMARY KEY,
+                          pedido_id INTEGER NOT NULL,
+                          produto_id INTEGER NOT NULL,          
+                          categoria VARCHAR(100) NULL, 
+                          resumo VARCHAR(1000) NULL,  
+                          tamanho VARCHAR(30) NULL,
+                          quantidade VARCHAR(30) NULL,
+                          valor_unitario VARCHAR(30) NULL,
+                          total_item VARCHAR(30) NULL,
+                          ids VARCHAR(100) NULL,
+                          dtregistro VARCHAR(30) NULL);  

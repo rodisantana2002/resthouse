@@ -327,16 +327,6 @@ $(document).ready(function () {
 
 
 
-    // Funcoes para controle de pedidos
-
-    $(".btn-expandir-pedido").click(function () {
-        var id = "28"
-        alert(id);
-        $("#pane-pedido-" + id).hide();
-    });
-
-
-
 
 
 
