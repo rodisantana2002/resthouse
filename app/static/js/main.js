@@ -338,11 +338,6 @@ $(document).ready(function () {
 
 
 
-    // ----------------------------------------------------------------------------------------------------------------------
-    // load da pagina - login
-    $("#ex20").slider('disable');
-
-
     // Select first tab
     $("a[name='status']").tab('show')
 

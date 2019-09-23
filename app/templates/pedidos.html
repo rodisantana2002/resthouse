@@ -40,7 +40,7 @@
         </div>
       </div> 
 
-      <div id="body" name="cabec" class="container" >
+      <div id="body" name="body" class="container" >
         <div class="row">
           <div class="col-12">
               <div class="panel panel-default" style="display:none; margin-top:5px; margin-bottom: 1px; margin-left:5px; margin-right:5px">
@@ -64,34 +64,15 @@
                 </div>                
               {% else %}
 
-                <div class="panel-group" style="margin-top:10px">            
+                <div class="panel-group" style="margin-top:5px">            
                     {% for pedido in pedidos %}
-                        <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-top: 8px; margin-left:5px; margin-right:5px">                                                  
+                        <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-bottom:15px; margin-left:5px; margin-right:5px; border-color:#da9b62">                                                  
                           <div class="panel-body" style="margin-top:3px; margin-bottom:-15px">
-
-                            <h6 style="color:gray; margin-top:-10px"><i class="glyphicon glyphicon-flag" > </i> Pedido </h6>  
-                            <h5 style="color:#F58634; margin-top:-5px"><b> {{pedido.numero}}</b></h5>
+                            <span class="badge pull-right" style="color:white; background:gray; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            <h6 style="color:gray; margin-top:-10px"><i class="glyphicon glyphicon-flag"> </i> Pedido </h6>  
+                            <h5 style="color:#563A2D; margin-top:-5px"><b> {{pedido.numero}}</b></h5>
                             <h6 style="margin-top:-5px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}} - {{pedido.dtregistro}}</h6>  
                             <hr style="margin-top:-1px">
-
-                            {% if pedido.situacao != "2" %}
-                                <h5 style="text-align:center; margin-top:-5px; margin-bottom:5px; color:gray;">Status do pedido</h5>            
-                                <h6 style="text-align:center; margin-top:15px; margin-bottom:15px;color:#563A2D; font-size:10px">
-                                      <b> <span id="ex18-label-1" class="hidden" ></span>
-                                              <input id="ex20" type="text" style="width:35rem"
-                                                    data-provide="slider"
-                                                    data-slider-ticks="[1, 2, 3, 4]"
-                                                    data-slider-ticks-labels='["Iniciado", "Em Análise", "Em Processamento", "Finalizado"]'
-                                                    data-slider-min="1"
-                                                    data-slider-max="4"
-                                                    data-slider-step="1"
-                                                    data-slider-value={{pedido.situacao}}
-                                                    data-slider-tooltip="hide"/></b>
-
-
-                                </h6>
-                                <hr style="margin-top:8px">                                
-                            {% endif %}                                                                             
 
                             <ul  class="nav nav-tabs" name="myTab" role="tablist" style="margin-top:-10px; font-size:11px">
                               <li class="nav-item" >
@@ -111,21 +92,19 @@
                             <!-- dados observacao -->
                             <div class="tab-content" id="myTabContent">             
                                 <div class="tab-pane fade active" id="observacao{{pedido.id}}" role="tabpanel" aria-labelledby="observacao{{pedido.id}}-tab">     
-                                    <span class="badge badge-pill pull-right" style="font-size:8px; margin-top:-5px; color:white; background:#F58634">                                       
-                                        <button type="button" class="btnAdicionarComentario btn-link btn-xs" style="color:white" name="btnAdicionarComentarioPedido-{{pedido.id}}"><i class="material-icons">post_add</i></button>       
+                                    <span class="badge badge-pill pull-right" style="font-size:8px; margin-top:-5px; background:white">                                       
+                                        <button type="button" class="btnAdicionarComentario btn-link btn-xs" style="background:white; color:#563A2D" name="btnAdicionarComentarioPedido-{{pedido.id}}"><i class="material-icons">post_add</i></button>       
                                     </span>                                 
-                                    <h5 style="text-align:left; margin-top:10px; color:gray;">Adicione comentários e observações ao seu pedido</h5>     
-                                    <h5 name="lblComentario-pedido-{{pedido.id}}" style="color:#563A2D"></h5>                              
+                                    <h6 style="text-align:left; margin-top:10px; color:gray;">Adicione comentários e observações ao seu pedido</h6>     
+                                    <h6 name="lblComentario-pedido-{{pedido.id}}" style="color:#563A2D"></h6>                              
                                     <br>  
                                 </div>
  
                                 <!-- dados Entrega -->
                                 <div class="tab-pane fade" id="entrega{{pedido.id}}" role="tabpanel" aria-labelledby="entrega{{pedido.id}}-tab">
-                                      <h5 style="text-align:left; margin-top:10px; color:gray;">Agendamento</h5>                                                                    
-                                      <h6 style="text-align:right; margin-top:5px">            
-                                      </h6>
-                                      <hr>
-                                      <h5 style="text-align:left; margin-top:10px; color:gray;">Local de Entrega</h5>                                                                    
+                                      <h5 style="text-align:center; margin-top:10px; color:gray; display:none">Agendamento</h5>                                                                    
+                                     
+                                      <h5 style="text-align:center; margin-top:10px; color:gray;">Local de Entrega</h5>                                                                    
                                       <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:5px; margin-top:5px">
                                           <tbody style='color:#563A2D; font-size:10px'>
                                             <tr>
@@ -145,8 +124,7 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="produtos{{pedido.id}}" role="tabpanel" aria-labelledby="produtos{{pedido.id}}-tab">
-                                      <h5 style="text-align:left; margin-top:10px; color:gray;">Produtos</h5>     
-                                      <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px">
+                                      <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-top:10px; margin-bottom:-10px">
                                           <tbody style='color:#F58634' >
                                             {% for produto in pedido.itens  %}     
                                               {% if produto.categoria == "PIZZAS" %}
@@ -188,7 +166,7 @@
                             <hr >                         
                             <span class="badge badge-pill badge-light pull-left" style="background:#F58634; margin-top:-10px; margin-right:-1px; margin-bottom:10px">                                 
                                   <button id="btnFinalizarCompra" style="color:white; font-size:15px"  type="button" class="btn btn-link" href="#">
-                                    <i class="material-icons" style="color:white">shopping_basket</i><br>Finalizar<br>Compra
+                                    <i class="material-icons" style="color:white">done</i><br>Finalizar<br>Compra
                                   </button>                                                
                               </span>  
                               <span class="badge badge-pill badge-light pull-left" style="background:#c0c0c0; margin-top:-10px; margin-left:5px; margin-bottom:10px">
@@ -196,7 +174,7 @@
                                     <i class="material-icons">clear</i><br>Cancelar<br>Pedido
                                   </button>                                                
                               </span>
-                              <span class="badge badge-pill badge-light pull-right" style="background:white; color:#F58634; margin-top:-10px; margin-right:-5px; margin-bottom:10px">                                                             
+                              <span class="badge badge-pill badge-light pull-right" style="background:white; color:#563A2D; margin-top:-10px; margin-right:-5px; margin-bottom:10px">                                                             
                                   <h6 style="text-align:right">Taxa Entrega (R$):  {{pedido.taxa_entrega}}</h6>
                                   <h6 style="text-align:right">Total Produtos (R$): {{pedido.total_itens}}</h6>
                                   <hr style="margin-top:-1px; margin-bottom:-1px">
