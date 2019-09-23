@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    // var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    // var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -327,7 +327,13 @@ $(document).ready(function () {
 
 
 
+    // Funcoes para controle de pedidos
 
+    $(".btn-expandir-pedido").click(function () {
+        var id = "28"
+        alert(id);
+        $("#pane-pedido-" + id).hide();
+    });
 
 
 

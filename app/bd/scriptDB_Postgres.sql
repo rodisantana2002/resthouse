@@ -109,18 +109,18 @@
 --                        dtregistro VARCHAR(30)  NULL);  
 
 --Tabela Pedido
-CREATE TABLE pedido (id SERIAL NOT NULL PRIMARY KEY,
-                       numero VARCHAR(30)  NULL,                      
-                       dtagendamento VARCHAR(30)  NULL,                          
-                       situacao VARCHAR(30)  NULL,                                                 
-                       usuario_id INTEGER NOT NULL,
-                       associado_id INTEGER NOT NULL,          
-                       total_itens VARCHAR(30) NULL,
-                       taxa_entrega VARCHAR(30) NULL,
-                       total_pedido VARCHAR(30) NULL,
-                       avaliacao_pontos VARCHAR(30) NULL,
-                       avaliacao_comentarios VARCHAR(150) NULL,
-                       observacao VARCHAR(150) NULL,
-                       motivo_cancelamento VARCHAR(150) NULL,
-                       dtregistro VARCHAR(30)  NULL);                          
+-- CREATE TABLE pedido (id SERIAL NOT NULL PRIMARY KEY,
+--                        numero VARCHAR(30)  NULL,                      
+--                        dtagendamento VARCHAR(30)  NULL,                          
+--                        situacao VARCHAR(30)  NULL,                                                 
+--                        usuario_id INTEGER NOT NULL,
+--                        associado_id INTEGER NOT NULL,          
+--                        total_itens VARCHAR(30) NULL,
+--                        taxa_entrega VARCHAR(30) NULL,
+--                        total_pedido VARCHAR(30) NULL,
+--                        avaliacao_pontos VARCHAR(30) NULL,
+--                        avaliacao_comentarios VARCHAR(150) NULL,
+--                        observacao VARCHAR(150) NULL,
+--                        motivo_cancelamento VARCHAR(150) NULL,
+--                        dtregistro VARCHAR(30)  NULL);                          
                       

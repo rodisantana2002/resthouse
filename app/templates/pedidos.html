@@ -28,8 +28,13 @@
           <!-- cabecalho Carrinho -->
             <h5 style="color:white; margin-left:5px; margin-left:1px">
               <span class="pull-left" style="margin-top:-5px">     
-                <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">arrow_back_ios</i></a>                                                
+                <a id="btn-voltar" style="color:white; background:#F58634; border-color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">arrow_back_ios</i></a>                                                
               <b style=" margin-left:-20px">PEDIDOS</b></span>
+
+              <span class="pull-right" style="margin-top:-5px">     
+                <a id="btn-pesquisar" style="color:white; background:#F58634; border-color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">search</i></a>                                                
+              </span>
+
             <h5>           
           </div>
         </div>
@@ -38,25 +43,40 @@
       <div id="body" name="cabec" class="container" >
         <div class="row">
           <div class="col-12">
+              <div class="panel panel-default" style="display:none; margin-top:5px; margin-bottom: 1px; margin-left:5px; margin-right:5px">
+                <div class="panel-body" >
+                  <span class="pull-right" >     
+                    <a id="btn-fechar-pesquisa" style="color:#F58634; background:white; border-color:white", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">cancel</i></a>                                                
+                  </span>
+
+                  <span class="pull-left" style="margin-top:-8px">  
+                    <h6>filtrar</h6>   
+                  </span>
+
+                </div>
+              </div>                
+
               {% if pedidos|length == 0 %}
-                <div class="panel panel-default"style="display:true; margin-top:5px; margin-left:5px; margin-right:5px">
+                <div class="panel panel-default"style="display:true; margin-top: 8px; margin-left:5px; margin-right:5px">
                   <div class="panel-body" >
                     <h5  id="lblNenhumPedidoSelecionado" style="text-align:center; color:gray">Nenhum pedido foi localizado!</h5>
                   </div>
                 </div>                
               {% else %}
 
-                <div class="panel-group">            
+                <div class="panel-group" style="margin-top:10px">            
                     {% for pedido in pedidos %}
-                        <div class="panel panel-default" style="margin-top:8px; margin-left:5px; margin-right:5px">                        
-                          <div class="panel-heading" style="color:gray; margin-top:-10px; height:9rem" >
-                            <h6 style="color:gray"><iclass="glyphicon glyphicon-flag" style="margin-bottom:-10px"> </i> Pedido </h6>  
-                            <h5 style="color:#F58634"><b> {{pedido.numero}} - {{pedido.status}}</b></h5>
-                          </div>
+                        <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-top: 8px; margin-left:5px; margin-right:5px; height:10rem" value='28'>                                                  
+                          <div class="panel-body" style="margin-top:3px; margin-bottom:-15px">
+                            <span class="pull-right" style="margin-top:-5px">     
+                              <a style="color:#F58634; background:white" type="button" name="btn-expandir-pedido" class="btn-expandir-pedido btn-link btn-md" ><i class="material-icons">more_vert</i></a>                                                
+                            </span>
 
-                          <div class="panel-body"  style="margin-top:3px; margin-bottom:-15px">
+                            <h6 style="color:gray; margin-top:-10px"><i class="glyphicon glyphicon-flag" > </i> Pedido </h6>  
+                            <h5 style="color:#F58634"><b> {{pedido.numero}} - {{pedido.dtregistro}}</b></h5>
 
-                            <h6 style="margin-top:-10px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}}</h6>
+                            <hr style="margin-top:10px">
+                            <h6 style="margin-top:10px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}}</h6>
 
                             <table class="table table-striped" id="tblSaboresSelecionados" style="display:true; margin-bottom:-10px; margin-top:-5px">
                                 <tbody style='color:#563A2D; font-size:11px'>

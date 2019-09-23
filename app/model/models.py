@@ -344,7 +344,6 @@ class Carrinho(db.Model):
         return self.serialize()
 
 
-
 # classe Pedido
 class Pedido(db.Model):
     __tablename__ = "pedido"
@@ -362,15 +361,17 @@ class Pedido(db.Model):
     taxa_entrega = db.Column(db.String(30))
     total_pedido = db.Column(db.String(30))
     avaliacao_pontos = db.Column(db.String(30))
-           
+
     avaliacao_comentarios = db.Column(db.String(150))
     motivo_cancelamento = db.Column(db.String(150))
     observacao = db.Column(db.String(150))
-    
-    date = datetime.datetime.now()
-    
-    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
 
+    date = datetime.datetime.now()
+
+    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(
+        date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
+
+    itens = relationship('PedidoItem', backref=backref("pedido"))
     assoc = relationship(Associado, backref=backref("pedido"))
     user = relationship(Usuario, backref=backref("pedido"))
 
@@ -384,24 +385,24 @@ class Pedido(db.Model):
     def delete(self, pedido):
         db.session.delete(pedido)
         db.session.commit()
-        
+
     @property
     def status(self):
-        if self.situacao =="1":
-            return "Iniciado" 
+        if self.situacao == "1":
+            return "Iniciado"
 
-        if self.situacao =="2":
-            return "Em Análise" 
+        if self.situacao == "2":
+            return "Em Análise"
 
-        if self.situacao =="3":
-            return "Entrega" 
+        if self.situacao == "3":
+            return "Entrega"
 
-        if self.situacao =="4":
-            return "Finalizado" 
+        if self.situacao == "4":
+            return "Finalizado"
 
-        if self.situacao =="5":            
-           return "Cancelado"        
-       
+        if self.situacao == "5":
+            return "Cancelado"
+
     def serialize(self):
         return {
             'id': self.id,
@@ -414,6 +415,54 @@ class Pedido(db.Model):
             'taxa_entrega': self.taxa_entrega,
             'total_pedido': self.total_pedido,
             'avaliacao_pontos': self.avaliacao_pontos
+        }
+
+    def __repr__(self):
+        return self.serialize()
+
+
+class PedidoItem(db.Model):
+    __tablename__ = "pedido_item"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+
+    pedido_id = db.Column(db.Integer, db.ForeignKey('pedido.id'))
+    produto_id = db.Column(db.Integer, db.ForeignKey('produto.id'))
+
+    categoria = db.Column(db.String(100))
+    resumo = db.Column(db.String(100))
+    tamanho = db.Column(db.String(30))
+    quantidade = db.Column(db.String(30))
+    valor_unitario = db.Column(db.String(30))
+    total_item = db.Column(db.String(30))
+    ids = db.Column(db.String(100))
+
+    prods = relationship('Produto', backref=backref("pedido_item"))
+
+    def add(self, pedido_item):
+        db.session.add(pedido_item)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+
+    def delete(self, pedido_item):
+        db.session.delete(pedido_item)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'pedido_id': self.pedido_id,
+            'produto_id': self.produto_id,
+            'categoria': self.categoria,
+            'resumo': self.resumo,
+            'tamanho': self.tamanho,
+            'quantidade': self.quantidade,
+            'valor_unitario': self.valor_unitario,
+            'total_item': self.total_item,
+            'ids': self.ids
         }
 
     def __repr__(self):
