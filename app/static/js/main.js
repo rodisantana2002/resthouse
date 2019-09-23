@@ -72,7 +72,6 @@ $(document).ready(function () {
             });
 
         }
-        $("#btn-carrinho").focus();
     });
 
     // exclui um sabor adicionado a lista de opçoes
@@ -121,7 +120,6 @@ $(document).ready(function () {
         LimparTabela();
         $("#divSelecaoSabores").hide();
         $('#ex19').slider('refresh');
-        $("#btn-carrinho").focus();
     });
 
     //Adiciona produtos simples ao carrinho 
@@ -146,7 +144,6 @@ $(document).ready(function () {
             }
         });
         $("input[class=quantity" + produto.id + "]").val("1");
-        $("#btn-carrinho").focus();
     });
 
     $(".btnDeleteItemCarrinho").click(function () {
