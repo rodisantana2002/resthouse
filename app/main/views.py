@@ -265,6 +265,24 @@ def obterPedidos(status=None):
         return render_template('login.html', page=None)
 
 
+@views.route('/pedido/atualizar', methods=['POST'])
+def atualizarObservacao():
+    id = request.args.get('id')
+    observacao = request.args.get('observacao')
+    
+    if 'email' in session:
+        pedido = oper.obterPedidoById(id)
+        print(id)
+        # pedido.observacao = observacao
+        # result = oper.atualizarPedido(pedido)
+
+        return "" # return "" result.get("code")
+
+
+    else:
+        return render_template('login.html', page=None)
+
+
 @views.route('/pedido/gerar', methods=['POST'])
 def gerarPedidos():
     if 'email' in session:

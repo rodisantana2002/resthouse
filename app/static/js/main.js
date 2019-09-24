@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+    var url_base = "http://localhost:5000/";
+    //var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -150,6 +150,7 @@ $(document).ready(function () {
         var id = $(this).val();
         bootbox.confirm({
             message: "Confirma a remoção do item de seu Carrinho?",
+            size: "small",
             buttons: {
                 confirm: {
                     label: 'Sim',
@@ -180,6 +181,7 @@ $(document).ready(function () {
     $("#btnLimparCarrinho").click(function () {
         bootbox.confirm({
             message: "Confirma a remoção de todos os itens de seu Carrinho?",
+            size: "small",
             buttons: {
                 confirm: {
                     label: 'Sim',
@@ -208,6 +210,7 @@ $(document).ready(function () {
     $("#btnFinalizarCompra").click(function () {
         bootbox.confirm({
             message: "Confirma a compra dos produtos?",
+            size: "small",
             buttons: {
                 confirm: {
                     label: 'Sim',
@@ -234,19 +237,71 @@ $(document).ready(function () {
 
     //Funcoes referentes aos pedidos
     $("#btn-pesquisar").click(function () {
-        $("#panePesquisa").show()
-    });
-
-    $("#btn-fechar-pesquisa").click(function () {
-        $("#panePesquisa").hide()
+        bootbox.prompt({
+            title: "Filtrar pedidos",
+            size: "small",
+            message: '<p>Selecine os status desejados</p>',
+            inputType: 'checkbox',
+            inputOptions: [
+                {
+                    text: 'Iniciado',
+                    value: '1',
+                },
+                {
+                    text: 'Em Anãlise',
+                    value: '2',
+                },
+                {
+                    text: 'Entrega',
+                    value: '3',
+                },
+                {
+                    text: 'Finalizado',
+                    value: '4',
+                },
+                {
+                    text: 'Cancelado',
+                    value: '5',
+                },
+                {
+                    text: 'Todos',
+                    value: '0',
+                },
+            ],
+            callback: function (result) {
+                if (result != null && result != '0') {
+                    $(location).attr('href', url_base + 'pedido/' + result);
+                }
+                else {
+                    $(location).attr('href', url_base + 'pedido/')
+                }
+            }
+        });
     });
 
     $(".btnAdicionarComentario").click(function () {
-        var id = $(this).val();
-        alert(id);
+        var pedido = jQuery.parseJSON($(this).val());
+        bootbox.prompt({
+            size: "small",
+            title: "Adicione comentários e observações ao seu pedido:",
+            value: pedido.observacao,
+            callback: function (result) {
+                if (result != null) {
+                    $.ajax({
+                        type: "POST",
+                        data: { id: pedido.id, observacao: pedido.observacao },
+                        url: url_base + "pedido/atualizar",
+                        async: false,
+                        success: function (data) { }
+                    });
+                }
+            }
+        });
+        $(location).reload();
+
     });
 
-    // Atualiza precos conforme mudança de tamanho
+    // Atualiza precos conforme mudança de tamanh
     function ExibirPrecos() {
         if (numSabores > 0) {
             LimparTabela();

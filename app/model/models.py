@@ -364,7 +364,7 @@ class Pedido(db.Model):
 
     avaliacao_comentarios = db.Column(db.String(150))
     motivo_cancelamento = db.Column(db.String(150))
-    observacao = db.Column(db.String(150))
+    observacao = db.Column(db.String(150), default="")
 
     date = datetime.datetime.now()
 

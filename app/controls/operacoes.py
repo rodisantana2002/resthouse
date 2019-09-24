@@ -103,7 +103,26 @@ class Operacoes():
         return self.pedido.query.filter_by(usuario_id=usuario_id).order_by(Pedido.numero.desc()).all()
 
     def obterPedidosByStatus(self, usuario_id, status):
-        return self.pedido.query.filter_by(usuario_id=usuario_id, situacao=status).order_by(Pedido.numero.desc()).all()
+        lst = []
+        lst.append(usuario_id)
+        return self.pedido.query.filter(Pedido.usuario_id.in_(lst), Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
+
+    def obterPedidoById(self, id):
+        return self.pedido.query.filter_by(id=id).first()
+
+    def atualizarPedido(self, pedido):
+        try:
+            self.pedido = pedido
+            print(self.pedido.__str__())
+            self.pedido.update()
+
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Registro deletado com sucesso!"
+            return self.authentic
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"
 
     def gerarPedidos(self, usuario_id):
         # deve gerar 1 pedido por associado localizado no carrinho
