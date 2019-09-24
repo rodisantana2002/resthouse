@@ -20,7 +20,7 @@
 
 $(document).ready(function () {
     //var url_base = "http://localhost:5000/";
-     var url_base = "https://resthouse.herokuapp.com/";
+    var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -226,12 +226,25 @@ $(document).ready(function () {
                         async: false,
                         success: function (data) { }
                     });
-                    $(location).attr('href', url_base + 'pedido');
+                    $(location).attr('href', url_base + 'pedido/1');
                 }
             }
         });
     });
 
+    //Funcoes referentes aos pedidos
+    $("#btn-pesquisar").click(function () {
+        $("#panePesquisa").show()
+    });
+
+    $("#btn-fechar-pesquisa").click(function () {
+        $("#panePesquisa").hide()
+    });
+
+    $(".btnAdicionarComentario").click(function () {
+        var id = $(this).val();
+        alert(id);
+    });
 
     // Atualiza precos conforme mudança de tamanho
     function ExibirPrecos() {
@@ -285,13 +298,13 @@ $(document).ready(function () {
             return "Pequena - 4 pedaços"
         }
         if (tamanho === "2") {
-            return "Pequena - 6 pedaços"
+            return "Mẽdia - 6 pedaços"
         }
         if (tamanho === "3") {
-            return "Pequena - 8 pedaços"
+            return "Grande - 8 pedaços"
         }
         if (tamanho === "4") {
-            return "Pequena - 12 pedaços"
+            return "Big - 12 pedaços"
         }
 
     }
@@ -308,6 +321,9 @@ $(document).ready(function () {
         $('#paneSubTotal').hide();
         $('#lblNenhumSaborSelecionado').show();
     }
+
+
+
 
     // define eexibe o maior valor entre as opções selecionadas
     function AtualizarPreco() {
@@ -334,9 +350,8 @@ $(document).ready(function () {
 
 
 
-
     // Select first tab
-    $("a[name='status']").tab('show')
+    $("a[name='observacao']").tab('show')
 
     if ($("#login-alerta").html() === "") {
         $("#login-alerta").hide();

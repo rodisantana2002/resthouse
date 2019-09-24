@@ -100,7 +100,10 @@ class Operacoes():
             self.authentic["msg"] = "Erro desconhecido"
 
     def obterPedidos(self, usuario_id):
-        return self.pedido.query.filter_by(usuario_id=usuario_id).all()
+        return self.pedido.query.filter_by(usuario_id=usuario_id).order_by(Pedido.numero.desc()).all()
+
+    def obterPedidosByStatus(self, usuario_id, status):
+        return self.pedido.query.filter_by(usuario_id=usuario_id, situacao=status).order_by(Pedido.numero.desc()).all()
 
     def gerarPedidos(self, usuario_id):
         # deve gerar 1 pedido por associado localizado no carrinho
@@ -142,7 +145,6 @@ class Operacoes():
                 pedido.taxa_entrega = str(txEntrega)
                 pedido.total_pedido = str(total_pedido)
                 pedido.add(pedido)
-                print(pedido.__str__())
 
                 # grava os itens do pedido
                 for item in carrinho_itens:
@@ -159,7 +161,6 @@ class Operacoes():
                         pedidoItem.ids = item.ids
 
                         pedidoItem.add(pedidoItem)
-                        print(pedidoItem.__str__())
 
             # limpa dados do carrinho
             for item in carrinho_itens:

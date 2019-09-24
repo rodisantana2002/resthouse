@@ -32,7 +32,7 @@
               <b style=" margin-left:-20px">PEDIDOS</b></span>
 
               <span class="pull-right" style="margin-top:-5px">     
-                <a id="btn-pesquisar" style="color:white; background:#F58634; border-color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">search</i></a>                                                
+                <a id="btn-pesquisar" style="color:white; background:#F58634; border-color:#F58634" type="link" class="btn btn-link btn-md" ><i class="material-icons">search</i></a>                                                
               </span>
 
             <h5>           
@@ -43,10 +43,10 @@
       <div id="body" name="body" class="container" >
         <div class="row">
           <div class="col-12">
-              <div class="panel panel-default" style="display:none; margin-top:5px; margin-bottom: 1px; margin-left:5px; margin-right:5px">
+              <div id="panePesquisa" class="panel panel-default" style="display:none; margin-top:5px; margin-bottom: 1px; margin-left:5px; margin-right:5px">
                 <div class="panel-body" >
                   <span class="pull-right" >     
-                    <a id="btn-fechar-pesquisa" style="color:#F58634; background:white; border-color:white", type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">cancel</i></a>                                                
+                    <a id="btn-fechar-pesquisa" style="color:#F58634; background:white; border-color:white", type="link" class="btn btn-link btn-md"  ><i class="material-icons">cancel</i></a>                                                
                   </span>
 
                   <span class="pull-left" style="margin-top:-8px">  
@@ -64,19 +64,30 @@
                 </div>                
               {% else %}
 
-                <div class="panel-group" style="margin-top:5px">            
+                <div class="panel-group" style="margin-top:8px">            
                     {% for pedido in pedidos %}
                         <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-bottom:15px; margin-left:5px; margin-right:5px; border-color:#da9b62">                                                  
                           <div class="panel-body" style="margin-top:3px; margin-bottom:-15px">
-                            <span class="badge pull-right" style="color:white; background:gray; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% if pedido.situacao=="1" %}
+                                <span name="lblStatus" class="badge pull-right" style="color:white; background:gray; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% elif pedido.situacao=="2"%}
+                                <span name="lblStatus" class="badge pull-right" style="color:white; background:#a59332; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% elif pedido.situacao=="3"%}
+                                <span name="lblStatus" class="badge pull-right" style="color:white; background:#1c6222; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% elif pedido.situacao=="4"%}
+                                <span name="lblStatus" class="badge pull-right" style="color:white; background:#720fa3; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% elif pedido.situacao=="5"%}
+                                <span name="lblStatus" class="badge pull-right" style="color:white; background:black; margin-top:-5px"><i class="material-icons" style="color:white">room</i><br><b>{{pedido.status}}</b></span>
+                            {% endif %}
+
                             <h6 style="color:gray; margin-top:-10px"><i class="glyphicon glyphicon-flag"> </i> Pedido </h6>  
                             <h5 style="color:#563A2D; margin-top:-5px"><b> {{pedido.numero}}</b></h5>
                             <h6 style="margin-top:-5px; font-size:11px; color:#563A2D">{{pedido.assoc.nomefantasia}} - {{pedido.dtregistro}}</h6>  
-                            <hr style="margin-top:-1px">
+                            <hr style="border-color:#da9b62; margin-top:-1px">
 
                             <ul  class="nav nav-tabs" name="myTab" role="tablist" style="margin-top:-10px; font-size:11px">
                               <li class="nav-item" >
-                                <a class="nav-link" style="color:#F58634" name="status" id="status{{pedido.id}}-tab" data-toggle="tab" href="#observacao{{pedido.id}}" role="tab" aria-controls="observacao{{pedido.id}}" aria-selected="true"><i class="glyphicon glyphicon-flash"> </i> Observações</a>
+                                <a class="nav-link" style="color:#F58634" name="observacao" id="observacao{{pedido.id}}-tab" data-toggle="tab" href="#observacao{{pedido.id}}" role="tab" aria-controls="observacao{{pedido.id}}" aria-selected="true"><i class="glyphicon glyphicon-flash"> </i> Observação</a>
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link"  style="color:#F58634" name="entrega" id="entrega{{pedido.id}}-tab" data-toggle="tab" href="#entrega{{pedido.id}}" role="tab" aria-controls="entrega{{pedido.id}}" aria-selected="false"><i class="glyphicon glyphicon-send"> </i> Entrega</a>
@@ -84,16 +95,13 @@
                               <li class="nav-item">
                                 <a class="nav-link" style="color:#F58634" name="produtos" id="produtos{{pedido.id}}-tab" data-toggle="tab" href="#produtos{{pedido.id}}" role="tab" aria-controls="produtos{{pedido.id}}"aria-selected="false"><i class="glyphicon glyphicon-tags"> </i> Produtos</a>
                               </li>
-                              <li class="nav-item">
-                                <a class="nav-link" style="color:#F58634; display:none" name="avaliacao" id="avaliacao{{pedido.id}}-tab" data-toggle="tab" href="#produtos{{pedido.id}}" role="tab" aria-controls="avaliacao{{pedido.id}}" aria-selected="false"><i class="glyphicon glyphicon-star"> </i> Avaliação</a>
-                              </li>
                             </ul>
                             
                             <!-- dados observacao -->
                             <div class="tab-content" id="myTabContent">             
                                 <div class="tab-pane fade active" id="observacao{{pedido.id}}" role="tabpanel" aria-labelledby="observacao{{pedido.id}}-tab">     
                                     <span class="badge badge-pill pull-right" style="font-size:8px; margin-top:-5px; background:white">                                       
-                                        <button type="button" class="btnAdicionarComentario btn-link btn-xs" style="background:white; color:#563A2D" name="btnAdicionarComentarioPedido-{{pedido.id}}"><i class="material-icons">post_add</i></button>       
+                                        <button type="button" class="btnAdicionarComentario btn-link btn-xs" style="background:white; color:#563A2D" value="{{pedido.id}}"><i class="material-icons">post_add</i></button>       
                                     </span>                                 
                                     <h6 style="text-align:left; margin-top:10px; color:gray;">Adicione comentários e observações ao seu pedido</h6>     
                                     <h6 name="lblComentario-pedido-{{pedido.id}}" style="color:#563A2D"></h6>                              
@@ -154,11 +162,6 @@
                                             {% endfor %}                      
                                           </tbody>
                                       </table>                       
-
-                                </div>
-                                <div class="tab-pane fade" id="avaliacao{{pedido.id}}" role="tabpanel" aria-labelledby="avaliacao{{pedido.id}}-tab">
-                                      <h5>Status do pedido</h5>                              
-                                      <h6> </h6>
 
                                 </div>
                             </div>            

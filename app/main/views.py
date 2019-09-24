@@ -251,20 +251,25 @@ def atualizarPerfil():
         return render_template('login.html', page=None)
 
 
-@views.route('/pedido', methods=['GET'])
-def obterPedidos():
+@views.route('/pedido/', methods=['GET'])
+@views.route('/pedido/<status>', methods=['GET'])
+def obterPedidos(status=None):
     if 'email' in session:
-        Pedidos = oper.obterPedidos(session.get('id'))
+        if status==None:
+            Pedidos = oper.obterPedidos(session.get('id'))
+        else: 
+            Pedidos = oper.obterPedidosByStatus(session.get('id'), status)    
         return render_template('pedidos.html', pedidos=Pedidos)
 
     else:
         return render_template('login.html', page=None)
 
+
 @views.route('/pedido/gerar', methods=['POST'])
 def gerarPedidos():
     if 'email' in session:
         result = oper.gerarPedidos(session.get('id'))
-        
+
         return result.get("code")
 
     else:
