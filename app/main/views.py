@@ -267,17 +267,45 @@ def obterPedidos(status=None):
 
 @views.route('/pedido/atualizar', methods=['POST'])
 def atualizarObservacao():
-    id = request.args.get('id')
-    observacao = request.args.get('observacao')
+    id = request.values.get('id')
+    observacao = request.values.get('observacao')[:149]
+
+    if 'email' in session:
+        pedido = oper.obterPedidoById(id)
+        pedido.observacao = observacao
+        result = oper.atualizarPedido(pedido)
+
+        return result.get("code")
+
+    else:
+        return render_template('login.html', page=None)
+
+@views.route('/pedido/cancelar', methods=['POST'])
+def atualizarSituacaoCancelado():
+    id = request.values.get('id')
+
+    if 'email' in session:
+        pedido = oper.obterPedidoById(id)
+        pedido.situacao = "5"
+        result = oper.atualizarPedido(pedido)
+
+        return result.get("code")
+
+    else:
+        return render_template('login.html', page=None)
+
+@views.route('/pedido/finalizar', methods=['POST'])
+def atualizarSituacaoFinalizado():
+    id = request.values.get('id')
+    dtagendamento = request.values.get('dtagendamento')
     
     if 'email' in session:
         pedido = oper.obterPedidoById(id)
-        print(id)
-        # pedido.observacao = observacao
-        # result = oper.atualizarPedido(pedido)
-
-        return "" # return "" result.get("code")
-
+        pedido.situacao = "2"
+        pedido.dtagendamento = dtagendamento
+        
+        result = oper.atualizarPedido(pedido)
+        return result.get("code")
 
     else:
         return render_template('login.html', page=None)

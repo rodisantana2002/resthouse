@@ -89,6 +89,7 @@ class Associado(db.Model):
     funcionamentohorariotermino = db.Column(db.String(20))
     taxaentrega = db.Column(db.String(1), default="N")
     valortaxaentrega = db.Column(db.String(10), default="0,00")
+    agenda_entrega = db.Column(db.String(1), default="N")     
 
     # endereço
     logradouro = db.Column(db.String(100))
@@ -414,7 +415,8 @@ class Pedido(db.Model):
             'total_itens': self.total_itens,
             'taxa_entrega': self.taxa_entrega,
             'total_pedido': self.total_pedido,
-            'avaliacao_pontos': self.avaliacao_pontos
+            'avaliacao_pontos': self.avaliacao_pontos,
+            'observacao': self.observacao
         }
 
     def __repr__(self):

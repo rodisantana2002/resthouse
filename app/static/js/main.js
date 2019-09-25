@@ -154,10 +154,12 @@ $(document).ready(function () {
             buttons: {
                 confirm: {
                     label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',                    
                     className: 'btn-success'
                 },
                 cancel: {
                     label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',                                        
                     className: 'btn-danger'
                 }
             },
@@ -185,10 +187,12 @@ $(document).ready(function () {
             buttons: {
                 confirm: {
                     label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',                    
                     className: 'btn-success'
                 },
                 cancel: {
                     label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',                    
                     className: 'btn-danger'
                 }
             },
@@ -214,10 +218,12 @@ $(document).ready(function () {
             buttons: {
                 confirm: {
                     label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
                     className: 'btn-success'
                 },
                 cancel: {
                     label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',                    
                     className: 'btn-danger'
                 }
             },
@@ -273,7 +279,7 @@ $(document).ready(function () {
                     $(location).attr('href', url_base + 'pedido/' + result);
                 }
                 else {
-                    $(location).attr('href', url_base + 'pedido/')
+                    $(location).attr('href', url_base + 'pedido/');
                 }
             }
         });
@@ -281,6 +287,7 @@ $(document).ready(function () {
 
     $(".btnAdicionarComentario").click(function () {
         var pedido = jQuery.parseJSON($(this).val());
+
         bootbox.prompt({
             size: "small",
             title: "Adicione comentários e observações ao seu pedido:",
@@ -289,17 +296,123 @@ $(document).ready(function () {
                 if (result != null) {
                     $.ajax({
                         type: "POST",
-                        data: { id: pedido.id, observacao: pedido.observacao },
+                        data: { id: pedido.id, observacao: result},
                         url: url_base + "pedido/atualizar",
                         async: false,
-                        success: function (data) { }
+                        success: function (data) { 
+                            $(location).attr('href', url_base + 'pedido');
+                        }
                     });
                 }
             }
         });
-        $(location).reload();
-
+       
     });
+
+    $(".btnCancelarPedido").click(function () {
+        var pedido = jQuery.parseJSON($(this).val());
+
+        bootbox.confirm({
+            message: "Confirma o cancelamento do Pedido?",
+            size: "small",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "pedido/cancelar",
+                        data:{id: pedido.id},
+                        async: false,
+                        success: function (data) { 
+                            $(location).attr('href', url_base + 'pedido/5');
+                        }
+                    });
+                }
+            }
+           
+        });
+    });
+
+    $(".btnFinalizarPedido").click(function () {
+        var pedido = jQuery.parseJSON($(this).val());
+        if (pedido.agenda_entrega==="S") {
+           bootbox.prompt({
+                title: "Informe a Data de Agendamento para o pedido:",
+                inputType: 'date',
+                callback: function (result) {
+                    if (result!=null && result!=''){
+                        if (result) {
+                            $.ajax({
+                                type: "POST",
+                                url: url_base + "pedido/finalizar",
+                                data:{id: pedido.id, dtagendamento: result},
+                                async: false,
+                                success: function (data) { 
+                                    $(location).attr('href', url_base + 'pedido/2');
+                                },
+                                error: function (data) { 
+                                    $(location).attr('href', url_base + 'pedido/');
+                                }                           
+                            });
+                        }
+                    }
+                    else{
+                        bootbox.alert({
+                            message: "Deve ser informada uma Data de Agendamento para o pedido",
+                            size: 'small'
+                        });                        
+                    }
+                }
+            });
+        }
+        else{
+            bootbox.confirm({
+                message: "Confirma a finalização do Pedido?",
+                size: "small",
+                buttons: {
+                    confirm: {
+                        label: 'Sim',
+                        label: '<i class="fa fa-check"></i> Confirm',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'Não',
+                        label: '<i class="fa fa-times"></i> Cancel',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.ajax({
+                            type: "POST",
+                            url: url_base + "pedido/finalizar",
+                            data:{id: pedido.id, dtagendamento:''},
+                            async: false,
+                            success: function (data) { 
+                                $(location).attr('href', url_base + 'pedido/2');
+                            }
+                        });
+                    }
+                }
+            });        
+        }
+    });
+
+
+
+
+
 
     // Atualiza precos conforme mudança de tamanh
     function ExibirPrecos() {
@@ -391,18 +504,6 @@ $(document).ready(function () {
         }
         $("#lblPreco").html("R$ " + maxValor.toString().replace(".", ","));
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // Select first tab

@@ -113,7 +113,6 @@ class Operacoes():
     def atualizarPedido(self, pedido):
         try:
             self.pedido = pedido
-            print(self.pedido.__str__())
             self.pedido.update()
 
             self.authentic["code"] = "200"
