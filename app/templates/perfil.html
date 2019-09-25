@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>      
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>  
+    <script src="{{ url_for('static', filename='js/main.js') }}" type='text/javascript'></script>
+  </head>
+
+  <!-- corpo -->
+  <body style="background:#fcf8ef">
+
+        <div id="cabec" name="cabec" class="container" style="background:#F58634; border-color:#F58634">
+            <div class="row">
+                <div class="col-12">
+                <h3 style="text-align:center; color:white">{{Usuario.nomecompleto}}</h3>                    
+                <h6 style="text-align:center; color:white">{{Usuario.email}}</h6>                    
+                </div>
+            </div>
+        </div> 
+
+        <div id="cabec" name="cabec" class="container" >
+            <div class="row">
+                <div class="col-12">
+                    <h5 style="color:white; margin-left:5px; margin-left:1px; text-align:center">
+                        <span class="pull-center" style="margin-top:-5px">     
+                            <a id="btn-voltar" style="color:white; background:#fcf8ef; border-color:#fcf8ef; color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">person_pin</i><br>Alterar Dados Pessoais</a>                                                
+                        </span>
+                    </h5>
+                    <hr style="margin-left:40px; margin-right:40px">    
+                    <h5 style="color:white; margin-left:5px; margin-left:1px; text-align:center">
+                        <span class="pull-center" style="margin-top:-5px">     
+                            <a id="btn-voltar" style="color:white; background:#fcf8ef; border-color:#fcf8ef; color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">lock</i><br>Alterar Senha</a>                                                
+                        </span>
+                    </h5> 
+                    <hr style="margin-left:40px; margin-right:40px">
+                    <h5 style="color:white; margin-left:5px; margin-left:1px; text-align:center">
+                        <span class="pull-center" style="margin-top:-5px">     
+                            <a id="btn-voltar" style="color:white; background:#fcf8ef; border-color:#fcf8ef; color:#F58634" type="link" class="btn btn-link btn-md"  href="{{ url_for('views.index')}}"><i class="material-icons">arrow_back_ios</i><br>Voltar para Início</a>                                                
+                        </span>
+                    </h5> 
+                    <hr style="margin-left:40px; margin-right:40px">
+
+               </div> 
+            </div> 
+        </div>  
+
+
+  </body>

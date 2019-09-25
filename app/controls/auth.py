@@ -62,6 +62,9 @@ class Autenticacao():
         self.authentic["msg"] = "Registro efetuado com sucesso!"
         return self.authentic
 
+    def obterUsuario(self, id):
+        return self.usuario.query.filter_by(id=id).first()
+
     def enviar_senha(self, email):
         try:
             # localiza o usuario    

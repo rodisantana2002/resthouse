@@ -570,7 +570,47 @@ $(document).ready(function () {
 
     $("#btn-signup").click(function () {
         if (validar()) {
-            $("#signupform").submit();
+            $.ajax({
+                type: "POST",
+                url: url_base + "registro/envio",
+                data:{nomecompleto: $("#nomecompleto").val(),
+                      email: $("#email").val(),
+                      celular: $("#celular").val(),
+                      dtnascimento: $("#dtnascimento").val(),
+                      sexo: $("#sexo").val(),
+                      senha: $("#senha").val(),
+                      cep: $("#cep").val(),
+                      logradouro: $("#logradouro").val(),
+                      numero: $("#numero").val(),
+                      complemento: $("#complemento").val(),
+                      bairro: $("#bairro").val(),
+                      cidade: $("#cidade").val(),
+                      estado: $("#estado").val()
+                    },
+                async: false,
+                success: function (data) { 
+                    bootbox.alert({
+                        message: "Registro efetuado com sucesso",
+                        size: 'small'
+                    });    
+
+                    $("#nomecompleto").val("");
+                    $("#email").val("");
+                    $("#celular").val("");
+                    $("#dtnascimento").val("");
+                    $("#sexo").val("Sexo *");
+                    $("#senha").val("");
+                    $("#resenha").val("");
+                    $("#cep").val("");
+                    $("#logradouro").val("");
+                    $("#numero").val("");
+                    $("#complemento").val("");
+                    $("#bairro").val("");
+                    $("#cidade").val("");
+                    $("#estado").val("Estado *");
+
+                }
+            });            
         }
     });
 
@@ -579,8 +619,6 @@ $(document).ready(function () {
             $("#recuperaform").submit();
         }
     });
-
-
 
     // functions
     function validaremail() {

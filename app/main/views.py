@@ -32,8 +32,7 @@ def home():
 @views.route('/home/filtrar', methods=['POST'])
 def filtrar_associado():
     nome = session.get("nome")
-    associados = oper.obterAssociadosByNomeResumo(
-        request.form['txtAssociadoFiltrar'])
+    associados = oper.obterAssociadosByNomeResumo(request.values.get('txtAssociadoFiltrar'))    
     tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
     return render_template('index.html', nome=nome, associados=associados, tags=tags)
 
@@ -117,24 +116,25 @@ def registrar():
         return redirect(url_for('views.home'))
     else:
         usuario = Usuario()
+        print(request.values.get('senha'))
 
-        usuario.nomecompleto = request.form["nomecompleto"]
-        usuario.email = request.form["email"]
-        usuario.fonecelular = request.form["celular"]
-        usuario.sexo = request.form["sexo"]
-        usuario.dtnascimento = request.form["dtnascimento"]
-        usuario.cep = request.form["cep"]
-        usuario.logradouro = request.form["logradouro"]
-        usuario.numero = request.form["numero"]
-        usuario.complemento = request.form["complemento"]
-        usuario.bairro = request.form["bairro"]
-        usuario.cidade = request.form["cidade"]
-        usuario.estado = request.form["estado"]
-        usuario.set_password(request.form["senha"])
+        usuario.nomecompleto = request.values.get('nomecompleto')
+        usuario.email = request.values.get('email')
+        usuario.fonecelular = request.values.get('celular')
+        usuario.sexo = request.values.get('sexo')
+        usuario.dtnascimento = request.values.get('dtnascimento')
+        usuario.cep = request.values.get('cep')
+        usuario.logradouro = request.values.get('logradouro')
+        usuario.numero = request.values.get('numero')
+        usuario.complemento = request.values.get('complemento')
+        usuario.bairro = request.values.get('bairro')
+        usuario.cidade = request.values.get('cidade')
+        usuario.estado = request.values.get('estado')
+        usuario.set_password(request.values.get('senha'))
 
         result = auth.registrarUsuario(usuario)
 
-        return render_template('registro.html', page=result)
+        return result.get("code");
 
 
 # Classes referentes a operações
@@ -245,7 +245,8 @@ def limparCarrinho():
 @views.route('/perfil', methods=['GET'])
 def atualizarPerfil():
     if 'email' in session:
-        return render_template('perfil.html', Usuario=None)
+        Usuario = auth.obterUsuario(session.get('id'))
+        return render_template('perfil.html', Usuario=Usuario)
 
     else:
         return render_template('login.html', page=None)
