@@ -296,16 +296,30 @@ def atualizarSituacaoCancelado():
 
 @views.route('/pedido/finalizar', methods=['POST'])
 def atualizarSituacaoFinalizado():
-    id = request.values.get('id')
-    dtagendamento = request.values.get('dtagendamento')
-    
+    id = request.values.get('id')    
+    dtagendamento = request.values.get('dtagendamento')[8:10] + "/" + request.values.get('dtagendamento')[5:7] + "/" + request.values.get('dtagendamento')[0:4]
+    dtatual = datetime.datetime.now()
+    agenda_entrega = request.values.get('agenda_entrega')
+
     if 'email' in session:
         pedido = oper.obterPedidoById(id)
         pedido.situacao = "2"
         pedido.dtagendamento = dtagendamento
-        
-        result = oper.atualizarPedido(pedido)
-        return result.get("code")
+
+        if agenda_entrega=="S":            
+            # ano/mes/dia
+            d1 = datetime.datetime(int(request.values.get('dtagendamento')[0:4]), int(request.values.get('dtagendamento')[5:7]), int(request.values.get('dtagendamento')[8:10])) 
+            d2 = datetime.datetime(dtatual.year, dtatual.month, dtatual.day)         
+            
+            # dtagendamento deve ser maior que a data atual     
+            if d1 > d2:
+                result = oper.atualizarPedido(pedido)
+                return result.get("code")            
+            else:    
+                return "Data de Agendamento deve ser maior que a Data Atual"
+        else:
+            result = oper.atualizarPedido(pedido)
+            return result.get("code")                            
 
     else:
         return render_template('login.html', page=None)

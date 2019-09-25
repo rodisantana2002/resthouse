@@ -369,8 +369,7 @@ class Pedido(db.Model):
 
     date = datetime.datetime.now()
 
-    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(
-        date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
+    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
 
     itens = relationship('PedidoItem', backref=backref("pedido"))
     assoc = relationship(Associado, backref=backref("pedido"))

@@ -254,7 +254,7 @@ $(document).ready(function () {
                     value: '1',
                 },
                 {
-                    text: 'Em Anãlise',
+                    text: 'Em Análise',
                     value: '2',
                 },
                 {
@@ -346,6 +346,7 @@ $(document).ready(function () {
 
     $(".btnFinalizarPedido").click(function () {
         var pedido = jQuery.parseJSON($(this).val());
+        
         if (pedido.agenda_entrega==="S") {
            bootbox.prompt({
                 title: "Informe a Data de Agendamento para o pedido:",
@@ -356,10 +357,18 @@ $(document).ready(function () {
                             $.ajax({
                                 type: "POST",
                                 url: url_base + "pedido/finalizar",
-                                data:{id: pedido.id, dtagendamento: result},
+                                data:{id: pedido.id, dtagendamento: result, agenda_entrega:pedido.agenda_entrega},
                                 async: false,
                                 success: function (data) { 
-                                    $(location).attr('href', url_base + 'pedido/2');
+                                    if (data==="200"){
+                                        $(location).attr('href', url_base + 'pedido/2');
+                                    }
+                                    else{
+                                        bootbox.alert({
+                                            message: data,
+                                            size: 'small'
+                                        });                                          
+                                    }
                                 },
                                 error: function (data) { 
                                     $(location).attr('href', url_base + 'pedido/');
@@ -397,7 +406,7 @@ $(document).ready(function () {
                         $.ajax({
                             type: "POST",
                             url: url_base + "pedido/finalizar",
-                            data:{id: pedido.id, dtagendamento:''},
+                            data:{id: pedido.id, dtagendamento:"", agenda_entrega:pedido.agenda_entrega},
                             async: false,
                             success: function (data) { 
                                 $(location).attr('href', url_base + 'pedido/2');
@@ -408,9 +417,6 @@ $(document).ready(function () {
             });        
         }
     });
-
-
-
 
 
 
