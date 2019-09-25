@@ -246,7 +246,7 @@ def limparCarrinho():
 def atualizarPerfil():
     if 'email' in session:
         Usuario = auth.obterUsuario(session.get('id'))
-        return render_template('perfil.html', Usuario=Usuario)
+        return render_template('perfil.html', Usuario=Usuario, page=None)
 
     else:
         return render_template('login.html', page=None)
