@@ -320,6 +320,34 @@ def atualizarSituacaoFinalizado():
     else:
         return render_template('login.html', page=None)
 
+@views.route('/pedido/avaliar/<id>', methods=['GET'])
+def avaliarPedido(id):
+    if 'email' in session:
+        pedido = oper.obterPedidoById(id)
+        return render_template('pedido_avaliacao.html', pedido=pedido)
+    
+    else:
+        return render_template('login.html', page=None)
+     
+    
+    
+    # id = request.values.get('id')    
+    # nota = request.values.get('nota')
+    # comentario = request.values.get('comentario')
+
+    # if 'email' in session:
+    #     pedido = oper.obterPedidoById(id)
+    #     pedido.avaliacao_pontos = nota
+    #     pedido.avaliacao_comentarios = comentario
+ 
+    #     result = oper.atualizarPedido(pedido)
+    #     return result.get("code")                            
+
+    # else:
+    #     return render_template('login.html', page=None)
+ 
+    
+
 
 @views.route('/pedido/gerar', methods=['POST'])
 def gerarPedidos():
@@ -385,4 +413,5 @@ def atualizarAcesso():
     
     else:
         return render_template('login.html', page=None)
-        
+
+

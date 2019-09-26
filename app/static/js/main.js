@@ -19,8 +19,8 @@
 
 
 $(document).ready(function () {
-   // var url_base = "http://localhost:5000/";
-   var url_base = "https://resthouse.herokuapp.com/";
+   var url_base = "http://localhost:5000/";
+  // var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -494,10 +494,18 @@ $(document).ready(function () {
         });        
     });
 
-    $(".btnAvaliarPedido").click(function () {
-        var pedido = jQuery.parseJSON($(this).val());                
-        alert(pedido.id);
-    });
+    // $(".btnAvaliarPedido").click(function () {
+    //     var pedido = jQuery.parseJSON($(this).val());             
+    //     $.ajax({
+    //         type: "POST",
+    //         url: url_base + "pedido/avaliar",
+    //         data:{},
+    //         async: false,
+    //         success: function (data) {
+    //         }
+    //     });     
+    //     $(location).attr('href', url_base + 'home');
+    // });
 
 
     // Atualiza precos conforme mudança de tamanh
