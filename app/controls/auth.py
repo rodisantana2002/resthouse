@@ -61,6 +61,19 @@ class Autenticacao():
         self.authentic["code"] = "200"
         self.authentic["msg"] = "Registro efetuado com sucesso!"
         return self.authentic
+    
+    def atualizarUsuario(self, usuario):
+        try:
+            self.usuario = usuario
+            self.usuario.update()
+
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Registro atualizado com sucesso!"
+            return self.authentic
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"    
 
     def obterUsuario(self, id):
         return self.usuario.query.filter_by(id=id).first()

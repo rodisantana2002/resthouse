@@ -20,7 +20,7 @@
 
 $(document).ready(function () {
     //var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+   var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
     var lstProdutos = []
@@ -419,6 +419,74 @@ $(document).ready(function () {
     });
 
 
+    $("#btn-dados").click(function(){
+        $("#paneDados").show();
+        $("#paneSenha").hide();
+        $("#paneMenu").hide();
+    });
+    
+    $("#btn-senha").click(function(){
+        $("#paneDados").hide();
+        $("#paneSenha").show();
+        $("#paneMenu").hide();        
+    });
+
+
+    $("#btnSalvarDados").click(function(){
+        if (validarDados()){
+            $.ajax({
+                type: "POST",
+                url: url_base + "perfil/atualizar",
+                data:{nomecompleto: $("#nomecompleto").val(),
+                      celular: $("#celular").val(),
+                      dtnascimento: $("#dtnascimento").val(),
+                      sexo: $("#sexo").val(),
+                      cep: $("#cep").val(),
+                      logradouro: $("#logradouro").val(),
+                      numero: $("#numero").val(),
+                      complemento: $("#complemento").val(),
+                      bairro: $("#bairro").val(),
+                      cidade: $("#cidade").val(),
+                      estado: $("#estado").val()
+                    },
+                async: false,
+                success: function (data) { 
+                    $(location).attr('href', url_base + 'perfil');
+                }
+            });     
+        }        
+    });
+
+
+    $("#btnSalvarSenha").click(function(){
+        if(validarSenha()){
+            $.ajax({
+                type: "POST",
+                url: url_base + "perfil/acesso",
+                data:{senhaAtual: $("#senhaAtual").val(), senha: $("#senha").val()},
+                async: false,
+                success: function (data) {
+                    if (data==="403"){
+                        bootbox.alert({
+                            message: "Senha atual não confere!",
+                            size: 'small'
+                        });                        
+                        $("#senhaAtual").focus();                        
+                    }
+                    else{
+                        bootbox.alert({
+                            message: "Senha alterada com sucesso!",
+                            size: 'small'
+                        });                        
+                        $("#senhaAtual").val("");
+                        $("#senha").val(""),
+                        $("#resenha").val("");
+                    }
+                }
+            });     
+        }        
+    });
+
 
     // Atualiza precos conforme mudança de tamanh
     function ExibirPrecos() {
@@ -495,9 +563,6 @@ $(document).ready(function () {
         $('#paneSubTotal').hide();
         $('#lblNenhumSaborSelecionado').show();
     }
-
-
-
 
     // define eexibe o maior valor entre as opções selecionadas
     function AtualizarPreco() {
@@ -672,6 +737,118 @@ $(document).ready(function () {
                 return false;
             });
     }
+
+
+    function validarSenha(){
+        var msg = "O campo deve ser informado!"        
+
+        if ($("#senhaAtual").val().trim().length == 0) {
+            $("#registro-alerta-senha").html(msg);
+            $("#registro-alerta-senha").show();
+            $("#senhaAtual").focus();
+            return false;
+        }
+
+        if ($("#senha").val().trim().length == 0) {
+            $("#registro-alerta-senha").html(msg);
+            $("#registro-alerta-senha").show();
+            $("#senha").focus();
+            return false;
+        }
+        if ($("#senha").val().trim().length < 5) {
+            $("#registro-alerta-senha").html("A senha informada deve ter ao menos 5 caracteres");
+            $("#registro-alerta-senha").show();
+            $("#senha").focus();
+            return false;
+        }
+        if ($("#resenha").val().trim().length == 0) {
+            $("#registro-alerta-senha").html(msg);
+            $("#registro-alerta-senha").show();
+            $("#resenha").focus();
+            return false;
+        }
+        if ($("#senha").val().trim() != $("#resenha").val().trim()) {
+            $("#registro-alerta-senha").html("O valor não confere com a senha informada");
+            $("#registro-alerta-senha").show();
+            $("#resenha").focus();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    function validarDados() {
+        var msg = "O campo deve ser informado!"
+
+        if ($("#nomecompleto").val().trim().length === 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#nomecompleto").focus();
+            return false;
+        }
+
+        if ($("#celular").val().trim().length === 0 || $("#celular").val().trim() === "() -") {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#celular").focus();
+            return false;
+        }
+
+        if ($("#dtnascimento").val().trim().length == 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#dtnascimento").focus();
+            return false;
+        }
+
+        if ($("#sexo").val() === "Sexo *") {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#sexo").focus();
+            return false;
+        }
+
+        if ($("#cep").val().trim().length == 0 || $("#cep").val().trim() === "-") {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#cep").focus();
+            return false;
+        }
+        if ($("#logradouro").val().trim().length == 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#logradouro").focus();
+            return false;
+        }
+        if ($("#numero").val().trim().length == 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#numero").focus();
+            return false;
+        }
+        if ($("#bairro").val().trim().length == 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#bairro").focus();
+            return false;
+        }
+        if ($("#cidade").val().trim().length == 0) {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#cidade").focus();
+            return false;
+        }
+        if ($("#estado").val() === "Estado *") {
+            $("#registro-alerta").html(msg);
+            $("#registro-alerta").show();
+            $("#estado").focus();
+            return false;
+        }
+
+        return true;
+    }
+
 
     function validar() {
         var msg = "O campo deve ser informado!"

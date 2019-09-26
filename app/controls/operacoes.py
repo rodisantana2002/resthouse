@@ -116,7 +116,7 @@ class Operacoes():
             self.pedido.update()
 
             self.authentic["code"] = "200"
-            self.authentic["msg"] = "Registro deletado com sucesso!"
+            self.authentic["msg"] = "Registro atualizado com sucesso!"
             return self.authentic
 
         except:
