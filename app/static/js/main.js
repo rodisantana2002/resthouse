@@ -70,7 +70,6 @@ $(document).ready(function () {
                 message: "A quantidade de sabores atingiu o limite permitido",
                 size: 'small'
             });
-
         }
     });
 
@@ -87,7 +86,6 @@ $(document).ready(function () {
 
             $('#lblNenhumSaborSelecionado').show();
         }
-
     });
 
 
@@ -305,8 +303,7 @@ $(document).ready(function () {
                     });
                 }
             }
-        });
-       
+        });       
     });
 
     $(".btnCancelarPedido").click(function () {
@@ -339,8 +336,7 @@ $(document).ready(function () {
                         }
                     });
                 }
-            }
-           
+            }           
         });
     });
 
@@ -431,7 +427,6 @@ $(document).ready(function () {
         $("#paneMenu").hide();        
     });
 
-
     $("#btnSalvarDados").click(function(){
         if (validarDados()){
             $.ajax({
@@ -456,7 +451,6 @@ $(document).ready(function () {
             });     
         }        
     });
-
 
     $("#btnSalvarSenha").click(function(){
         if(validarSenha()){
@@ -486,6 +480,20 @@ $(document).ready(function () {
             });     
         }        
     });
+
+    // filtra associados
+    $("#btnAssociadoFiltrar").click(function () {
+        bootbox.prompt({
+            size: "small",
+            title: "Informe um valor para ser pesquisado",
+            callback: function (result) {
+                if (result != null) {
+                    $(location).attr('href', url_base + 'associado/' + result);
+                }
+            }
+        });        
+    });
+
 
 
     // Atualiza precos conforme mudança de tamanh
@@ -548,7 +556,6 @@ $(document).ready(function () {
         if (tamanho === "4") {
             return "Big - 12 pedaços"
         }
-
     }
 
     // limpa a lista de opções
@@ -600,16 +607,6 @@ $(document).ready(function () {
         $("#recupera-senha").show();
     };
 
-    // filtra associados
-    $("#btnAssociadoFiltrar").click(function () {
-        if ($("#txtAssociadoFiltrar").val().trim().length > 0) {
-            $("#filtra-associado-form").submit();
-        }
-        else {
-            $("#txtAssociadoFiltrar").focus();
-        }
-    });
-
     // carrega cep no formulario de registro usuario
     $("#cep").change(function () {
         var cep_code = $(this).val();
@@ -620,7 +617,8 @@ $(document).ready(function () {
                 if (("erro" in result)) {
                     bootbox.alert("CEP informado não foi encontrado!");
                     return;
-                } else {
+                } 
+                else {
                     $("#cep").val(result.cep);
                     $("#logradouro").val(result.logradouro);
                     $("#bairro").val(result.bairro);
@@ -628,7 +626,8 @@ $(document).ready(function () {
                     $("#estado").val(result.uf);
                     $("#numero").focus();
                 }
-            });
+            }
+        );
     });
 
     $("#cep").mask("99999-999");
@@ -702,7 +701,6 @@ $(document).ready(function () {
             $("#email-recuperar").focus();
             return false;
         }
-
         return true;
     }
 
