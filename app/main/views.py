@@ -23,9 +23,12 @@ def index():
 
 @views.route('/home', methods=['GET', 'POST'])
 def home():
-    nome = session.get("nome")
-    return render_template('index.html', nome=nome)
-    
+    if 'email' in session:    
+        nome = session.get("nome")
+        pedidos = oper.obterPedidosSemAvaliacao(session.get('id'))
+        return render_template('index.html', nome=nome, pedidos=pedidos)
+    else:
+        return render_template('login.html', page=None)
 
 @views.route('/logout', methods=['GET'])
 def sair():
@@ -136,17 +139,6 @@ def media(filename):
 def registrarFavorito(id):
     result = oper.registrarFavorito(id, session.get("id"))
     return result.get("msg")
-
-
-# @views.route('/home/filtrar', methods=['POST'])
-# def filtrar_associado():
-#     nome = session.get("nome")
-#     associados = oper.obterAssociadosByNomeResumo(request.values.get('txtAssociadoFiltrar'))    
-#     tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
-# #     return render_template('index.html', nome=nome, associados=associados, tags=tags)
-# @views.route('/pedido/', methods=['GET'])
-# @views.route('/pedido/<status>', methods=['GET'])
-
 
 @views.route('/associado', methods=['GET'])
 @views.route('/associado/<valor>', methods=['GET'])

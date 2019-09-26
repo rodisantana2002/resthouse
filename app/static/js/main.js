@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
+   // var url_base = "http://localhost:5000/";
    var url_base = "https://resthouse.herokuapp.com/";
 
     var numSabores = 0;
@@ -487,13 +487,17 @@ $(document).ready(function () {
             size: "small",
             title: "Informe um valor para ser pesquisado",
             callback: function (result) {
-                if (result != null) {
+                if (result != null && result.trim() !="") {
                     $(location).attr('href', url_base + 'associado/' + result);
                 }
             }
         });        
     });
 
+    $(".btnAvaliarPedido").click(function () {
+        var pedido = jQuery.parseJSON($(this).val());                
+        alert(pedido.id);
+    });
 
 
     // Atualiza precos conforme mudança de tamanh

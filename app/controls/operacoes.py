@@ -107,6 +107,9 @@ class Operacoes():
         lst.append(usuario_id)
         return self.pedido.query.filter(Pedido.usuario_id.in_(lst), Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
 
+    def obterPedidosSemAvaliacao(self, usuario_id):
+        return self.pedido.query.filter_by(usuario_id=usuario_id, situacao='4', avaliacao_pontos=None).order_by(Pedido.numero.desc()).all()
+
     def obterPedidoById(self, id):
         return self.pedido.query.filter_by(id=id).first()
 
