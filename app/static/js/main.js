@@ -291,11 +291,11 @@ $(document).ready(function () {
                 },
             ],
             callback: function (result) {
-                if (result != null && result != '0') {
+                if (result != null && result != '0'&& result.length>0) {
                     $(location).attr('href', url_base + 'pedido/' + result);
                 }
                 else {
-                    $(location).attr('href', url_base + 'pedido/');
+                    $(location).attr('href', url_base + 'pedido');
                 }
             }
         });
@@ -385,7 +385,7 @@ $(document).ready(function () {
                                     }
                                 },
                                 error: function (data) { 
-                                    $(location).attr('href', url_base + 'pedido/');
+                                    $(location).attr('href', url_base + 'pedido');
                                 }                           
                             });
                         }

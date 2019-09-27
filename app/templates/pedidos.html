@@ -56,7 +56,7 @@
                         <div class="panel panel-default" id="pane-pedido-{{pedido.id}}" style="margin-bottom:15px; margin-left:5px; margin-right:5px; border-color:gray">                                                  
                           <div class="panel-body" style="margin-top:3px; margin-bottom:-15px">
                             {% if pedido.situacao=="1" %}
-                                <span name="lblStatus" class="badge pull-right" style="color:gray; background:white; margin-top:1px"><i class="material-icons" style="color:gray">timeline</i><br><b>{{pedido.status}}</b></span>
+                                <span name="lblStatus" class="badge pull-right" style="color:gray; background:white; margin-top:1px"><i class="material-icons" style="color:gray">flag</i><br><b>{{pedido.status}}</b></span>
                             {% elif pedido.situacao=="2"%}
                                 <span name="lblStatus" class="badge pull-right" style="color:#a59332; background:white; margin-top:1px"><i class="material-icons" style="color:#a59332">assignment</i><br><b>{{pedido.status}}</b></span>
                             {% elif pedido.situacao=="3"%}
@@ -90,7 +90,7 @@
                                     <h6 style="color:#563A2D; margin-bottom:35px">
                                         <textarea class="form-control form-control-xs" style="font-size:10px; background:white" rows="2" name="txtObservacao" id="txtObservacao{{pedido.id}}" placeholder="Observação para o pedido" readonly>{{pedido.observacao}}</textarea>
                                         {% if pedido.situacao == "1" or pedido.situacao == "2" %}
-                                          <button type="button" class="btnAdicionarComentario btn-link btn-xs pull-right" style="background:white; color:#563A2D" value='{"id":"{{pedido.id}}", "observacao":"{{pedido.observacao}}"}'><i class="material-icons">post_add</i></button>       
+                                          <button type="button" class="btnAdicionarComentario btn-link btn-xs pull-right" style="background:white; color:#563A2D" value='{"id":"{{pedido.id}}", "observacao":"{{pedido.observacao}}"}'><i class="material-icons">add_comment</i></button>       
                                         {% endif %}
                                     </h6>                                                                  
                                 </div>

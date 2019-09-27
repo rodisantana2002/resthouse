@@ -147,7 +147,7 @@ class Associado(db.Model):
             soma = (soma_nota1+soma_nota2+soma_nota3+soma_nota4+soma_nota5)
             avaliacao = (soma_nota1+soma_nota2+soma_nota3+soma_nota4+soma_nota5)/(count_nota1+count_nota2+count_nota3+count_nota4+count_nota5)
                 
-            return round(avaliacao, 2)
+            return round(avaliacao, 1)
         
 
     def add(self, associado):

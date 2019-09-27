@@ -26,7 +26,7 @@ INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcion
             'Pizzaria, Lanches, Porções', 'Seg a Dom', '19:00', '23:59', 'S', '2,50','Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
 INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '6@gmail.com', 'ART NY – ATELIÊ DE Doces', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
+	VALUES ('Disponivel', '6@gmail.com', 'ART NY – ATELIÊ DE DOCES', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
             'Doces, Bolos, Sobremesas', 'Seg a Sáb', '08:00', '21:00', 'S', '3,00','Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/art_ny.jpg');
 
 INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
@@ -40,7 +40,7 @@ INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('BOLOS', NULL, 'cat
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('SOBREMESAS', NULL, 'categorias/sobremesas.jpg');
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('HAMBURGUER', NULL, 'categorias/hamburguer.jpg');
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('CACHORROS-QUENTES', NULL, 'categorias/hotdogs.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('KITS FESTA', NULL, 'categorias/Doces.jpg');
+INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('KITS FESTA', NULL, 'categorias/doces.jpg');
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('LANCHES', NULL, 'categorias/lanches.jpg');
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PIZZAS', NULL, 'categorias/pizzas.jpg');
 INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PORÇÕES', NULL, 'categorias/porcoes.jpg');
@@ -136,13 +136,13 @@ INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtreg
 
 -- ********
 INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='GISA Doces'),  
+    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
             'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
             '',
             NULL);
 
 INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='GISA Doces'),  
+    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
             'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
             '',
             NULL);
@@ -151,19 +151,19 @@ INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtreg
 
 -- ********
 INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE Doces'),  
+    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
             'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
             '',
             NULL);
 
 INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='SOBREMESAS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE Doces'),  
+    VALUES((SELECT ID FROM categoria WHERE descricao='SOBREMESAS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
             'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
             '',
             NULL);
 
 INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BOLOS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE Doces'),  
+    VALUES((SELECT ID FROM categoria WHERE descricao='BOLOS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
             'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
             '',
             NULL);

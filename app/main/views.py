@@ -146,12 +146,10 @@ def carregarAssociados(valor=None):
     if 'email' in session:
         if valor==None:
             associados = oper.obterAssociados()
-            tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
         else:    
             associados = oper.obterAssociadosByNomeResumo(valor)    
-            tags = oper.obterTagsAssociadoByUser(usuario_id=session.get("id"))
         
-        return render_template('associado.html', associados=associados, tags=tags)
+        return render_template('associado.html', associados=associados)
 
     else:
         return render_template('login.html', page=None)
@@ -247,7 +245,7 @@ def limparCarrinho():
     else:
         return render_template('login.html', page=None)
 
-@views.route('/pedido/', methods=['GET'])
+@views.route('/pedido', methods=['GET'])
 @views.route('/pedido/<status>', methods=['GET'])
 def obterPedidos(status=None):
     if 'email' in session:
