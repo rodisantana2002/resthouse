@@ -409,10 +409,7 @@ class Pedido(db.Model):
     avaliacao_comentarios = db.Column(db.String(150))
     motivo_cancelamento = db.Column(db.String(150))
     observacao = db.Column(db.String(150), default="")
-
-    date = datetime.datetime.now()
-
-    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
+    dtregistro = db.Column(db.String(30))
 
     itens = relationship('PedidoItem', backref=backref("pedido"))
     assoc = relationship(Associado, backref=backref("pedido"))
@@ -527,7 +524,7 @@ class PedidoAvaliacao(db.Model):
     nota = db.Column(db.Integer)
 
     date = datetime.datetime.now()
-    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
+    dtregistro = db.Column(db.String(30))
 
     def add(self, pedidoAvaliacao):
         db.session.add(pedidoAvaliacao)

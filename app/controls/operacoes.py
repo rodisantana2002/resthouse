@@ -157,8 +157,9 @@ class Operacoes():
                     ",", ".")).quantize(Decimal('.01'), rounding='ROUND_UP')
                 total_pedido = total_produtos + txEntrega
 
-                pedido.numero = str(date.year)[2:] + str(date.month).zfill(2) + str(date.day).zfill(2) + str(
-                    date.hour) + str(date.minute) + str(date.second) + str(associado.id) + str(usuario_id)
+                pedido.numero = str(date.year)[2:] + str(date.month).zfill(2) + str(date.day).zfill(2) + str(date.hour) + str(date.minute) + str(date.second) + str(associado.id) + str(usuario_id)
+                pedido.dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year)[4:] + " " + str(date.hour) + str(date.minute) + str(date.second)
+                
                 pedido.associado_id = associado.id
                 pedido.usuario_id = usuario_id
                 pedido.situacao = "1"
@@ -198,14 +199,14 @@ class Operacoes():
             self.authentic["msg"] = "Erro desconhecido"
             
     def registrarAvaliacao(self, pedidoAvaliacao):
-        # try:
-        obj = PedidoAvaliacao()
-        obj.add(pedidoAvaliacao)
+        try:
+            obj = PedidoAvaliacao()
+            obj.add(pedidoAvaliacao)
 
-        self.authentic["code"] = "200"
-        self.authentic["msg"] = "Registro efetuado com sucesso!"
-        return self.authentic
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Registro efetuado com sucesso!"
+            return self.authentic
 
-        # except:
-        #     self.authentic["code"] = "500"
-        #     self.authentic["msg"] = "Erro desconhecido"        
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"        

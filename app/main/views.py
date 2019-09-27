@@ -333,9 +333,12 @@ def avaliarPedido(id):
     
 @views.route('/pedido/concluir', methods=['POST'])
 def concluirPedido():   
+    date = datetime.datetime.now()    
+    
     id = request.values.get('id')    
     nota = request.values.get('nota')
     comentario = request.values.get('comentario')
+    dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year)[4:] + " " + str(date.hour) + str(date.minute) + str(date.second)
 
     if 'email' in session:
         # registra a avalicao no pedido
