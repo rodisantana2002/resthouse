@@ -156,7 +156,7 @@ def carregarAssociados(valor=None):
     else:
         return render_template('login.html', page=None)
 
-@views.route('/associado/<associado_id>')
+@views.route('/associado/cardapio/<associado_id>')
 def carregar_cardapio(associado_id):
     if 'email' in session:
         associado = oper.obterAssociadoById(associado_id)
@@ -280,7 +280,7 @@ def atualizarObservacao():
 def atualizarSituacaoCancelado():
     id = request.values.get('id')
 
-    if 'email' in session:
+    if 'email' in session:      
         pedido = oper.obterPedidoById(id)
         pedido.situacao = "5"
         result = oper.atualizarPedido(pedido)
@@ -330,21 +330,22 @@ def avaliarPedido(id):
         return render_template('login.html', page=None)
      
     
-    
-    # id = request.values.get('id')    
-    # nota = request.values.get('nota')
-    # comentario = request.values.get('comentario')
+@views.route('/pedido/concluir', methods=['POST'])
+def concluirPedido():   
+    id = request.values.get('id')    
+    nota = request.values.get('nota')
+    comentario = request.values.get('comentario')
 
-    # if 'email' in session:
-    #     pedido = oper.obterPedidoById(id)
-    #     pedido.avaliacao_pontos = nota
-    #     pedido.avaliacao_comentarios = comentario
+    if 'email' in session:
+        pedido = oper.obterPedidoById(id)
+        pedido.avaliacao_pontos = nota
+        pedido.avaliacao_comentarios = comentario
  
-    #     result = oper.atualizarPedido(pedido)
-    #     return result.get("code")                            
+        result = oper.atualizarPedido(pedido)
+        return result.get("code")                            
 
-    # else:
-    #     return render_template('login.html', page=None)
+    else:
+        return render_template('login.html', page=None)
  
     
 

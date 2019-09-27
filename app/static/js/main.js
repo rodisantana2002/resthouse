@@ -19,9 +19,11 @@
 
 
 $(document).ready(function () {
-   var url_base = "http://localhost:5000/";
-  // var url_base = "https://resthouse.herokuapp.com/";
+//    var url_base = "http://localhost:5000/";
+    var url_base = "https://resthouse.herokuapp.com/";
 
+
+    var $star_rating = $('.star-rating .fa');
     var numSabores = 0;
     var lstProdutos = []
     var linha = 0;
@@ -31,6 +33,22 @@ $(document).ready(function () {
         ExibirPrecos();
     });
 
+
+    var SetRatingStar = function() {
+        return $star_rating.each(function() {
+            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+            return $(this).removeClass('fa-star-o').addClass('fa-star');
+            } else {
+            return $(this).removeClass('fa-star').addClass('fa-star-o');
+            }
+        });
+    };
+    
+    $star_rating.on('click', function() {
+        $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+            return SetRatingStar();
+    });
+    
     // adiciona sabora da pizza para a lista de opçoes
     $(".adicionaSabor").click(function () {
         var produto = jQuery.parseJSON($(this).val());
@@ -494,19 +512,30 @@ $(document).ready(function () {
         });        
     });
 
-    // $(".btnAvaliarPedido").click(function () {
-    //     var pedido = jQuery.parseJSON($(this).val());             
-    //     $.ajax({
-    //         type: "POST",
-    //         url: url_base + "pedido/avaliar",
-    //         data:{},
-    //         async: false,
-    //         success: function (data) {
-    //         }
-    //     });     
-    //     $(location).attr('href', url_base + 'home');
-    // });
+    $("#btnAvaliarPedido").click(function () {
+        id = $(this).val();
+        nota = $("#txtAvaliacao").val();
+        comentario = $("#txtAvaliacaoComentario").val();
 
+        if (nota==0){
+            bootbox.alert({
+                message: "Selecione uma nota para o pedido",
+                size: 'small'
+            });    
+            ("#txtAvaliacaoComentario").focus();
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                url: url_base + "pedido/concluir",
+                data:{id:id, nota:nota, comentario:comentario},
+                async: false,
+                success: function (data) {
+                    $(location).attr('href', url_base + 'home');
+                }
+            });     
+        }
+    });
 
     // Atualiza precos conforme mudança de tamanh
     function ExibirPrecos() {

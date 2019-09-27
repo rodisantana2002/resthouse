@@ -54,3 +54,11 @@ button:hover {
   background: #444;
   color: #fff;
 }
+
+
+.star-rating {
+  line-height:32px;
+  font-size:5.25em;
+}
+
+.star-rating .fa-star{color: yellow;}
