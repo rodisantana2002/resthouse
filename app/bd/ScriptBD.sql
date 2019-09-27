@@ -1,5 +1,6 @@
--- DROP TABLE pedido;
+-- DROP TABLE pedido_avaliacao;
 -- DROP TABLE pedido_item;
+-- DROP TABLE pedido;
 -- DROP TABLE carrinho;
 -- DROP TABLE usuario;
 -- DROP TABLE produto_tamanho;
@@ -143,3 +144,11 @@ CREATE TABLE pedido_item (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                           total_item VARCHAR(30) NULL,
                           ids VARCHAR(100) NULL,
                           dtregistro VARCHAR(30) NULL);  
+
+-- tabela PedidoAvaliacao
+CREATE TABLE pedido_avaliacao (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                               pedido_id INTEGER NOT NULL,
+                               associado_id INTEGER NOT NULL,          
+                               nota INTEGER NULL,
+                               comentario VARCHAR(150) NULL,
+                               dtregistro VARCHAR(30) NULL);  

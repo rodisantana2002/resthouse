@@ -50,7 +50,7 @@
     <body style="background-color:white">
         <div id="paneMenu" class="container" >
             <div class="row">
-                <div class="col-12" style="margin-top:5px; text-align:center">
+                <div class="col-12" style="margin-top:-15px; text-align:center">
                     <img src="{{ url_for('static', filename='img/logo.jpg') }}" width=200  ></img>
                 </div>
 
@@ -58,7 +58,7 @@
                     <div class="panel-group"> 
                         <div class="panel panel-default" id="pane" style="margin-bottom:15px; margin-left:30px; margin-right:30px; background:#fcf8ef">                                                  
                           <div class="panel-body" style="margin-top:-20px">
-                              <h6 style="color:#F58634; text-align:center; margin-top:20px">conheça os produtos e serviços dos vendedores cadastrados</h6>
+                              <h6 style="color:#F58634; text-align:center; margin-top:20px">conheça os produtos e serviços dos parceiros cadastrados</h6>
                               <h4 style="color:white; text-align:center">
                                   <span class="pull-center" >     
                                       <a id="btn-vendedores" style="font-size:18px; color:white; color:#F58634" href="{{ url_for('views.carregarAssociados')}}" type="link" class="btn btn-link btn-lg" ><i class="material-icons" style="font-size:45px">storefront</i><br>Vendedores/Estabelecimentos</a>                                                
@@ -94,7 +94,7 @@
                                                     <td>
                                                     <tb>
                                                         <br>
-                                                        <a href="{{ url_for('views.avaliarPedido', id=pedido.id)}}" type="button" class="btnAvaliarPedido btn-link btn-xs pull-right" style="font-size:13px; background:white; color:#F58634" ><i class="glyphicon glyphicon-star-empty"></i>Avaliar</a>                                                                                                       
+                                                        <a href="{{ url_for('views.avaliarPedido', id=pedido.id)}}" type="button" class="btnAvaliarPedido btn-link btn-xs pull-right" style="font-size:13px; background:#fcf8ef; color:#F58634" ><i class="glyphicon glyphicon-star-empty"></i>Avaliar</a>                                                                                                       
                                                     </td>                                                  
                                                   </tr>
                                               {% endfor %}  

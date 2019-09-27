@@ -251,6 +251,7 @@ def limparCarrinho():
 @views.route('/pedido/<status>', methods=['GET'])
 def obterPedidos(status=None):
     if 'email' in session:
+        print(status)
         if status==None:
             Pedidos = oper.obterPedidos(session.get('id'))
         else: 
@@ -337,19 +338,29 @@ def concluirPedido():
     comentario = request.values.get('comentario')
 
     if 'email' in session:
+        # registra a avalicao no pedido
         pedido = oper.obterPedidoById(id)
+        associado_id = pedido.associado_id
         pedido.avaliacao_pontos = nota
         pedido.avaliacao_comentarios = comentario
  
         result = oper.atualizarPedido(pedido)
+        
+        # registra a avaliacao do pedido na tabela de avaliacoes      
+        pedidoAvaliacao = PedidoAvaliacao()
+        pedidoAvaliacao.associado_id = associado_id
+        pedidoAvaliacao.pedido_id = id
+        pedidoAvaliacao.nota = nota
+        pedidoAvaliacao.comentario = comentario
+        
+        valor = oper.registrarAvaliacao(pedidoAvaliacao)
+        
         return result.get("code")                            
 
     else:
         return render_template('login.html', page=None)
  
     
-
-
 @views.route('/pedido/gerar', methods=['POST'])
 def gerarPedidos():
     if 'email' in session:

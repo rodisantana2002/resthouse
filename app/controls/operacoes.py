@@ -22,6 +22,7 @@ class Operacoes():
         self.carrinho = Carrinho()
         self.pedido = Pedido()
         self.pedido_item = PedidoItem()
+        self.pedido_avaliacao = PedidoAvaliacao()
 
     def obterAssociados(self):
         return self.associado.query.all()
@@ -195,3 +196,16 @@ class Operacoes():
         except:
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"
+            
+    def registrarAvaliacao(self, pedidoAvaliacao):
+        # try:
+        obj = PedidoAvaliacao()
+        obj.add(pedidoAvaliacao)
+
+        self.authentic["code"] = "200"
+        self.authentic["msg"] = "Registro efetuado com sucesso!"
+        return self.authentic
+
+        # except:
+        #     self.authentic["code"] = "500"
+        #     self.authentic["msg"] = "Erro desconhecido"        

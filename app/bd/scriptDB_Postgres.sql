@@ -1,3 +1,4 @@
+-- DROP TABLE pedido_avaliacao;
 -- DROP TABLE pedido_item;
 -- DROP TABLE pedido;
 -- DROP TABLE carrinho;
@@ -139,3 +140,11 @@ CREATE TABLE pedido_item (id SERIAL NOT NULL PRIMARY KEY,
                           total_item VARCHAR(30) NULL,
                           ids VARCHAR(100) NULL,
                           dtregistro VARCHAR(30) NULL);  
+
+-- tabela PedidoAvaliacao
+CREATE TABLE pedido_avaliacao (id SERIAL NOT NULL PRIMARY KEY,
+                               pedido_id INTEGER NOT NULL,
+                               associado_id INTEGER NOT NULL,          
+                               nota INTEGER NULL,
+                               comentario VARCHAR(150) NULL,
+                               dtregistro VARCHAR(30) NULL);  

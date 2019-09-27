@@ -104,8 +104,51 @@ class Associado(db.Model):
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
     logo = db.Column(db.String(100))
 
-    categorias_associado = relationship(
-        'AssociadoCategoria', backref='associado')
+    categorias_associado = relationship('AssociadoCategoria', backref='associado')
+    avaliacoes = relationship('PedidoAvaliacao', backref='associado')
+    
+    
+    def avaliacao(self):
+        count_nota1 = 0
+        count_nota2 = 0
+        count_nota3 = 0
+        count_nota4 = 0
+        count_nota5 = 0
+
+        soma_nota1 = 0
+        soma_nota2 = 0
+        soma_nota3 = 0
+        soma_nota4 = 0
+        soma_nota5 = 0
+        
+        if len(self.avaliacoes) == 0:
+            return "Novo"
+        else:
+            # encontra o total de avaliacoes por nota
+            for avaliacao in self.avaliacoes:
+                if avaliacao.nota ==1:
+                    count_nota1 = count_nota1+1
+                if avaliacao.nota ==2:
+                    count_nota2 = count_nota2+1
+                if avaliacao.nota ==3:
+                    count_nota3 = count_nota3+1
+                if avaliacao.nota ==4:
+                    count_nota4 = count_nota4+1
+                if avaliacao.nota ==5:
+                    count_nota5 = count_nota5+1           
+                             
+            # multiplica as notas pelos totais encontrados
+            soma_nota1 = count_nota1 * 1
+            soma_nota2 = count_nota2 * 2
+            soma_nota3 = count_nota3 * 3
+            soma_nota4 = count_nota4 * 4
+            soma_nota5 = count_nota5 * 5
+            
+            soma = (soma_nota1+soma_nota2+soma_nota3+soma_nota4+soma_nota5)
+            avaliacao = (soma_nota1+soma_nota2+soma_nota3+soma_nota4+soma_nota5)/(count_nota1+count_nota2+count_nota3+count_nota4+count_nota5)
+                
+            return round(avaliacao, 2)
+        
 
     def add(self, associado):
         db.session.add(associado)
@@ -464,6 +507,40 @@ class PedidoItem(db.Model):
             'valor_unitario': self.valor_unitario,
             'total_item': self.total_item,
             'ids': self.ids
+        }
+
+    def __repr__(self):
+        return self.serialize()
+
+
+
+# Classe PedidoAvaliacao
+class PedidoAvaliacao(db.Model):
+    __tablename__ = "pedido_avaliacao"
+
+    # dados essenciais
+    id = db.Column('id', db.Integer, primary_key=True)
+
+    pedido_id = db.Column(db.Integer, db.ForeignKey('pedido.id'))
+    associado_id = db.Column(db.Integer, db.ForeignKey('associado.id'))
+    comentario = db.Column(db.String(150))
+    nota = db.Column(db.Integer)
+
+    date = datetime.datetime.now()
+    dtregistro = db.Column(db.String(30), default=(str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + ":" + str(date.minute).zfill(2) + ":" + str(date.second).zfill(2)))
+
+    def add(self, pedidoAvaliacao):
+        db.session.add(pedidoAvaliacao)
+        db.session.commit()
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'pedido_id': self.pedido_id,
+            'associado_id': self.associado_id,
+            'comentario': self.comentario,
+            'nota': self.nota,
+            'dtregistro': self.dtregistro            
         }
 
     def __repr__(self):

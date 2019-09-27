@@ -57,13 +57,13 @@
                         {% else %}
                           <i class="material-icons" style="font-size:17px">directions_bike</i> Entrega grátis
                         {% endif %}
-                        <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; font-size:15px" ><i class="glyphicon glyphicon-star"></i> Novo<br><label style="font-size:9px;margin-top:5px">Avaliação</label> </span>                                                                 
+
+                        <span class ="badge badge-pill badge-warning pull-right" style="color:#F58634; background:white; font-size:15px" ><i class="glyphicon glyphicon-star"></i> {{associado.avaliacao()}}<br><label style="font-size:9px;margin-top:5px">Avaliação</label> </span>                                                                 
                         <br>
                         <i style="margin-top:5px" class="glyphicon glyphicon-time"> </i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h
                       </h6>
-                      
+                     
                       <hr>        
-
                       <h4 style="text-align:right; margin-top:-20px">                      
                         {% if associado.situacao == "Disponivel" %}
                           <a href="{{ url_for('views.carregar_cardapio', associado_id=associado.id)}}" id="btnAssociadoCardapio" class="btn btn-warning btn-lg" style="margin-right:-10px;color:#F58634;border-color:white; background-color:white"> <i class="material-icons">fastfood</i> Ver Cardápio <i class="glyphicon glyphicon-chevron-right">  </i></a>                             
