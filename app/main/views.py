@@ -338,7 +338,7 @@ def concluirPedido():
     id = request.values.get('id')    
     nota = request.values.get('nota')
     comentario = request.values.get('comentario')
-    dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + str(date.minute).zfill(2) + str(date.second)
+    dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + str(date.minute).zfill(2)
 
     if 'email' in session:
         # registra a avalicao no pedido
