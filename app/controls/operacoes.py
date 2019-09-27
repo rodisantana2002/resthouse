@@ -158,7 +158,7 @@ class Operacoes():
                 total_pedido = total_produtos + txEntrega
 
                 pedido.numero = str(date.year)[2:] + str(date.month).zfill(2) + str(date.day).zfill(2) + str(date.hour) + str(date.minute) + str(date.second) + str(associado.id) + str(usuario_id)
-                pedido.dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2) + str(date.minute).zfill(2) 
+                pedido.dtregistro = str(date.day).zfill(2) + "/" + str(date.month).zfill(2) + "/" + str(date.year) + " " + str(date.hour).zfill(2)  + ":" + str(date.minute).zfill(2) 
                 
                 pedido.associado_id = associado.id
                 pedido.usuario_id = usuario_id
