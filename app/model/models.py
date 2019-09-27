@@ -42,7 +42,7 @@ class Usuario(db.Model):
     # acesso
     senha = db.Column(db.String(30))
     dtregistro = db.Column(db.DateTime, default=datetime.datetime.today())
-    superuser = db.Column(db.Boolean, default=False)
+    superuser = db.Column(db.String(12), default='False')
     token = db.Column(db.String(100))
 
     def set_password(self, password):

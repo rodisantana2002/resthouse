@@ -104,6 +104,20 @@
                               {% endif %}
                           </div>
                         </div>
+                       {% if adm=='True' %}
+                        <div class="panel panel-default" id="pane" style="margin-bottom:15px; margin-left:30px; margin-right:30px; background:#fcf8ef">                                                  
+                          <div class="panel-body" style="margin-top:-20px">
+                              <h6 style="color:#F58634; text-align:center; margin-top:20px">acompanhe e gerencie as operações da plataforma</h6>
+                              <h4 style="color:white; text-align:center">
+                                  <span class="pull-center" >     
+                                      <a id="btn-dashboard" style="font-size:18px; color:white; color:#F58634" href="{{ url_for('views.carregarDashboard')}}" type="link" class="btn btn-link btn-lg" ><i class="material-icons" style="font-size:45px">dashboard</i><br>Dashboard</a>                                                
+                                  </span>
+                              </h4>
+
+                          </div>
+                        </div>                          
+                       {% endif %} 
+                       
 
                     </div> 
                 </div> 

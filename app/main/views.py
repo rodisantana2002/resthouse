@@ -25,8 +25,10 @@ def index():
 def home():
     if 'email' in session:    
         nome = session.get("nome")
+        adm = session.get("superuser")
         pedidos = oper.obterPedidosSemAvaliacao(session.get('id'))
-        return render_template('index.html', nome=nome, pedidos=pedidos)
+        print(adm)
+        return render_template('index.html', nome=nome, pedidos=pedidos, adm=adm)
     else:
         return render_template('login.html', page=None)
 
@@ -36,6 +38,10 @@ def sair():
     session.pop('id', None)
     session.pop('nome', None)
     session.pop('token', None)
+    session.pop('adm', None)
+    session.pop('msg', None)
+    session.pop('value', None)
+    session.pop('superuser', None)
     return redirect(url_for('views.index'))
 
 
@@ -88,6 +94,7 @@ def user():
                 session['token'] = result.get("token")
                 session['nome'] = result.get("nome")
                 session['id'] = result.get("id")
+                session['superuser'] = result.get("superuser")
                 return redirect(url_for('views.home'))
             else:
                 return render_template('login.html', page=result)
@@ -428,3 +435,13 @@ def atualizarAcesso():
         return render_template('login.html', page=None)
 
 
+@views.route('/dashboard', methods=['GET'])
+def carregarDashboard():
+    if 'email' in session:
+        Usuario = auth.obterUsuario(session.get('id'))
+        if Usuario.superuser=='True':
+            return render_template('dashboard.html', Usuario=Usuario, page=None)
+        else:
+            return render_template('login.html', page=None)
+    else:
+        return render_template('login.html', page=None)

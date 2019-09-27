@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 class Autenticacao():
     def __init__(self):
         self.usuario = Usuario()
-        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": "", "value":""}
+        self.authentic = {"code": "", "msg": "", "email": "", "token":"", "nome":"", "id": "", "value":"", "superuser":""}
         self.alphabets = string.digits + string.ascii_letters
 
     def autenticarUsuario(self, email, password):
@@ -31,6 +31,8 @@ class Autenticacao():
                     self.authentic["token"] = user.token
                     self.authentic["nome"] = user.nomecompleto
                     self.authentic["id"] = user.id
+                    self.authentic["superuser"] = user.superuser
+                
                 else:
                     self.authentic["code"] = "404"
                     self.authentic["msg"] = "Senha informada esta incorreta!"

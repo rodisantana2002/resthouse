@@ -13,8 +13,7 @@ operacoes = Blueprint("operacoes", __name__)
 class Operacoes():
 
     def __init__(self):
-        self.authentic = {"code": "", "msg": "", "email": "",
-                          "token": "", "nome": "", "id": "", "value": ""}
+        self.authentic = {"code": "", "msg": "", "email": "", "token": "", "nome": "", "id": "", "value": "", "superuser":""}
         self.associado = Associado()
         self.tags = TagAssociado()
         self.associado_categoria = AssociadoCategoria()
