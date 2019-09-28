@@ -34,6 +34,9 @@ class Operacoes():
 
     def obterAssociadosByNomeResumo(self, valor):
         return self.associado.query.filter(Associado.nomefantasia.contains(valor.upper()) | Associado.resumo.contains(valor.lower())).all()
+    
+    def obterAssociadoByCategorias(self, categorias):
+        return self.associado.query.filter(Associado.categorias_associado.any(AssociadoCategoria.categoria_id.in_(categorias))).all()
 
     def obterTagsAssociadoByUser(self, usuario_id):
         return self.tags.query.filter_by(usuario_id=usuario_id).all()
@@ -101,6 +104,10 @@ class Operacoes():
 
     def obterPedidos(self, usuario_id):
         return self.pedido.query.filter_by(usuario_id=usuario_id).order_by(Pedido.numero.desc()).all()
+
+    def obterTodosPedidos(self):
+        status = [2,3,4,5]
+        return self.pedido.query.filter(Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
 
     def obterPedidosByStatus(self, usuario_id, status):
         lst = []
@@ -209,3 +216,5 @@ class Operacoes():
         except:
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"        
+            
+                        

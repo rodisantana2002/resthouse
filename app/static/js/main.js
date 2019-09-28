@@ -20,7 +20,7 @@
 
 $(document).ready(function () {
     //var url_base = "http://localhost:5000/";
-    var url_base = "https://resthouse.herokuapp.com/";
+   var url_base = "https://resthouse.herokuapp.com/";
 
 
     var $star_rating = $('.star-rating .fa');
@@ -260,38 +260,38 @@ $(document).ready(function () {
     //Funcoes referentes aos pedidos
     $("#btn-pesquisar").click(function () {
         bootbox.prompt({
-            title: "Filtrar pedidos",
+            title: "Filtrar pedidos - por status",
             size: "small",
-            message: '<p>Selecine os status desejados</p>',
+            message: 'Selecine os status desejados',
             inputType: 'checkbox',
             inputOptions: [
                 {
-                    text: 'Iniciado',
+                    text: 'INICIADO',
                     value: '1',
                 },
                 {
-                    text: 'Em Análise',
+                    text: 'EM ANÁLISE',
                     value: '2',
                 },
                 {
-                    text: 'Entrega',
+                    text: 'ENTREGA',
                     value: '3',
                 },
                 {
-                    text: 'Finalizado',
+                    text: 'FINALIZADO',
                     value: '4',
                 },
                 {
-                    text: 'Cancelado',
+                    text: 'CANCELADO',
                     value: '5',
                 },
                 {
-                    text: 'Todos',
+                    text: 'TODOS',
                     value: '0',
                 },
             ],
             callback: function (result) {
-                if (result != null && result != '0'&& result.length>0) {
+                if (result != null && result != '0' && result.length>0) {
                     $(location).attr('href', url_base + 'pedido/' + result);
                 }
                 else {
@@ -501,15 +501,33 @@ $(document).ready(function () {
 
     // filtra associados
     $("#btnAssociadoFiltrar").click(function () {
-        bootbox.prompt({
+        categorias= [{value: '1',  text: 'BEBIDAS',},
+                     {value: '2',  text: 'BOLOS',},
+                     {value: '5',  text: 'CACHORROS-QUENTES',},
+                     {value: '4',  text: 'HAMBURGUER',},
+                     {value: '6',  text: 'KITS FESTA',},
+                     {value: '7',  text: 'LANCHES',},
+                     {value: '10', text: 'OUTROS',},
+                     {value: '8',  text: 'PIZZAS',},
+                     {value: '9',  text: 'PORÇÕES',},
+                     {value: '3',  text: 'SOBREMESAS',},
+                     {value: '0',  text: 'TODAS',},
+                    ]
+                     bootbox.prompt({
+            title: "Filtrar Vendedores - por categoria",
             size: "small",
-            title: "Informe um valor para ser pesquisado",
+            inputType: 'checkbox',
+            inputOptions: categorias,
             callback: function (result) {
-                if (result != null && result.trim() !="") {
-                    $(location).attr('href', url_base + 'associado/' + result);
+                if (result != null && result != '0' && result.length>0) {
+                    $(location).attr('href', url_base + 'pedido/' + result);
+                    $(location).attr('href', url_base + 'associado/' + result);                    
+                }
+                else {
+                    $(location).attr('href', url_base + 'associado');
                 }
             }
-        });        
+        });
     });
 
     $("#btnAvaliarPedido").click(function () {

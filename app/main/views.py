@@ -154,7 +154,7 @@ def carregarAssociados(valor=None):
         if valor==None:
             associados = oper.obterAssociados()
         else:    
-            associados = oper.obterAssociadosByNomeResumo(valor)    
+            associados = oper.obterAssociadoByCategorias(valor)    
         
         return render_template('associado.html', associados=associados)
 
@@ -256,7 +256,6 @@ def limparCarrinho():
 @views.route('/pedido/<status>', methods=['GET'])
 def obterPedidos(status=None):
     if 'email' in session:
-        print(status)
         if status==None:
             Pedidos = oper.obterPedidos(session.get('id'))
         else: 
@@ -438,9 +437,13 @@ def atualizarAcesso():
 @views.route('/dashboard', methods=['GET'])
 def carregarDashboard():
     if 'email' in session:
-        Usuario = auth.obterUsuario(session.get('id'))
-        if Usuario.superuser=='True':
-            return render_template('dashboard.html', Usuario=Usuario, page=None)
+        usuario = auth.obterUsuario(session.get('id'))
+        associados = oper.obterAssociados()
+        pedidos = oper.obterTodosPedidos()
+        clientes = auth.obterClientes()
+        
+        if usuario.superuser=='True':
+            return render_template('dashboard.html', usuario=usuario, associados=associados, clientes=clientes, pedidos=pedidos)
         else:
             return render_template('login.html', page=None)
     else:

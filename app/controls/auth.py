@@ -79,7 +79,10 @@ class Autenticacao():
 
     def obterUsuario(self, id):
         return self.usuario.query.filter_by(id=id).first()
-
+    
+    def obterClientes(self):
+        return self.usuario.query.order_by(Usuario.nomecompleto).all()
+    
     def enviar_senha(self, email):
         try:
             # localiza o usuario    
