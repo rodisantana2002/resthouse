@@ -438,8 +438,8 @@ def atualizarAcesso():
 def carregarDashboard():
     if 'email' in session:
         usuario = auth.obterUsuario(session.get('id'))
-        associados = None #oper.obterAssociados()
-        pedidos = None #oper.obterTodosPedidos()
+        associados = oper.obterAssociados()
+        pedidos = oper.obterTodosPedidos()
         clientes = None # auth.obterClientes()
         
         if usuario.superuser=='True':
