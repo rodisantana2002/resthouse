@@ -106,7 +106,7 @@ class Operacoes():
         return self.pedido.query.filter_by(usuario_id=usuario_id).order_by(Pedido.numero.desc()).all()
 
     def obterTodosPedidos(self):
-        status = [2,3,4,5]
+        status = ['2','3','4','5']
         return self.pedido.query.filter(Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
 
     def obterPedidosByStatus(self, usuario_id, status):
