@@ -440,7 +440,7 @@ def carregarDashboard():
         usuario = auth.obterUsuario(session.get('id'))
         associados = oper.obterAssociados()
         pedidos = oper.obterTodosPedidos()
-        clientes = None # auth.obterClientes()
+        clientes = auth.obterClientes()
         
         if usuario.superuser=='True':
             return render_template('dashboard.html', usuario=usuario, associados=associados, clientes=clientes, pedidos=pedidos)
