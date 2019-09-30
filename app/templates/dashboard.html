@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt">
   <head>
-  	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">       
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">      
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    
+
+    <link href="{{ url_for('static', filename='css/myStyle.css') }}" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>    
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>      
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>  
     <script src="{{ url_for('static', filename='js/main.js') }}" type='text/javascript'></script>
   </head>
 
@@ -245,9 +249,9 @@
                                     <hr>        
                                     <h4 style="text-align:right; margin-top:-20px">                      
                                       {% if associado.situacao == "Disponivel" %}
-                                        <a class="btnDesativarAssociado btn btn-warning btn-lg" style="margin-right:-10px;color:red;border-color:white; background-color:white"> <i class="material-icons">phone_disabled</i> Desativar </a>                             
+                                        <button class="btnDesativarAssociado btn btn-warning btn-lg" value='{"id":"{{associado.id}}", "situacao": "Indisponivel"}'  style="margin-right:-10px;color:red;border-color:white; background-color:white"> <i class="material-icons">phone_disabled</i> Desativar </button>                             
                                       {% else %}  
-                                        <a class="btnAtivarAssociado btn btn-warning btn-lg" style="margin-right:-8px;color:black;border-color:white; background-color:white"><i class="material-icons">phone_enabled</i>  Ativar</a>                                                           
+                                        <button class="btnAtivarAssociado btn btn-warning btn-lg" value='{"id":"{{associado.id}}", "situacao": "Disponivel"}' style="margin-right:-8px;color:black;border-color:white; background-color:white"><i class="material-icons">phone_enabled</i>  Ativar</button>                                                           
                                       {% endif %}
                                     </h4>
                                   </div>  

@@ -37,6 +37,19 @@ class Operacoes():
     
     def obterAssociadoByCategorias(self, categorias):
         return self.associado.query.filter(Associado.categorias_associado.any(AssociadoCategoria.categoria_id.in_(categorias))).all()
+    
+    def atualizarAssociado(self, associado):
+        try:
+            self.associado = associado
+            self.associado.update()
+
+            self.authentic["code"] = "200"
+            self.authentic["msg"] = "Registro atualizado com sucesso!"
+            return self.authentic
+
+        except:
+            self.authentic["code"] = "500"
+            self.authentic["msg"] = "Erro desconhecido"        
 
     def obterTagsAssociadoByUser(self, usuario_id):
         return self.tags.query.filter_by(usuario_id=usuario_id).all()

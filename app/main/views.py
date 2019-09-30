@@ -161,6 +161,22 @@ def carregarAssociados(valor=None):
     else:
         return render_template('login.html', page=None)
 
+@views.route('/associado/atualizar', methods=['POST'])
+def atualizarAssociado():
+    id = request.values.get('id')
+    situacao = request.values.get('situacao')
+
+    if 'email' in session:      
+        associado = oper.obterAssociadoById(id)
+        associado.situacao = situacao
+        result = oper.atualizarAssociado(associado)
+
+        return result.get("code")
+
+    else:
+        return render_template('login.html', page=None)
+
+
 @views.route('/associado/cardapio/<associado_id>')
 def carregar_cardapio(associado_id):
     if 'email' in session:

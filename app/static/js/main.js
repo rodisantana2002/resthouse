@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-    //var url_base = "http://localhost:5000/";
+   // var url_base = "http://localhost:5000/";
    var url_base = "https://resthouse.herokuapp.com/";
 
 
@@ -554,6 +554,78 @@ $(document).ready(function () {
             });     
         }
     });
+
+
+    $(".btnAtivarAssociado").click(function(){
+        var associado = jQuery.parseJSON($(this).val());
+
+        bootbox.confirm({
+            message: "Confirma a Ativação do Vendedor?",
+            size: "small",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "associado/atualizar",
+                        data:{id: associado.id, situacao: associado.situacao},
+                        async: false,
+                        success: function (data) { 
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });    
+    });
+
+    $(".btnDesativarAssociado").click(function(){
+        var associado = jQuery.parseJSON($(this).val());
+
+        bootbox.confirm({
+            message: "Confirma a Desativação do Vendedor?",
+            size: "small",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "associado/atualizar",
+                        data:{id: associado.id, situacao: associado.situacao},
+                        async: false,
+                        success: function (data) { 
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });    
+    });
+    
+
+
 
     // Atualiza precos conforme mudança de tamanh
     function ExibirPrecos() {

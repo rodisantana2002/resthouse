@@ -78,7 +78,7 @@ class Associado(db.Model):
     # dados essenciais
     id = db.Column(db.Integer, primary_key=True)
 
-    situacao = db.Column(db.String(30), default="Ativa")
+    situacao = db.Column(db.String(30), default="Disponivel")
     email = db.Column(db.String(100))
     nomefantasia = db.Column(db.String(100))
     resumo = db.Column(db.String(400))
