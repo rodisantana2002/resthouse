@@ -19,14 +19,39 @@
 
 
 $(document).ready(function () {
-   // var url_base = "http://localhost:5000/";
+   //var url_base = "http://localhost:5000/";
    var url_base = "https://resthouse.herokuapp.com/";
+   var urlCEP = "https://viacep.com.br/ws/"
 
 
     var $star_rating = $('.star-rating .fa');
     var numSabores = 0;
     var lstProdutos = []
     var linha = 0;
+
+   
+    // Select first tab
+    $("a[name='observacao']").tab('show')
+
+    if ($("#login-alerta").html() === "") {
+        $("#login-alerta").hide();
+    } else {
+        $("#login-alerta").show();
+    };
+
+    // exibe alerta regsitro
+    if ($("#registro-alerta").html() === "") {
+        $("#registro-alerta").hide();
+    } else {
+        $("#registro-alerta").show();
+    };
+
+    // exibe alerta envioemail
+    if ($("#recupera-senha").html() === "") {
+        $("#recupera-senha").hide();
+    } else {
+        $("#recupera-senha").show();
+    };
 
     $("#ex19").change(function () {
         numSabores = $("#ex19").val();
@@ -301,6 +326,42 @@ $(document).ready(function () {
         });
     });
 
+    //Funcoes referentes aos pedidos
+    $("#btnPesquisarPedidosDashboard").click(function () {
+        bootbox.prompt({
+            title: "Filtrar pedidos - por status",
+            size: "small",
+            message: 'Selecine os status desejados',
+            inputType: 'checkbox',
+            inputOptions: [
+                {
+                    text: 'EM ANÁLISE',
+                    value: '2',
+                },
+                {
+                    text: 'ENTREGA',
+                    value: '3',
+                },
+                {
+                    text: 'FINALIZADO',
+                    value: '4',
+                },
+                {
+                    text: 'CANCELADO',
+                    value: '5',
+                },
+            ],
+            callback: function (result) {
+                if (result != null && result != '0' && result.length>0) {
+                    $(location).attr('href', url_base + 'dashboard/' + result);
+                }
+                else {
+                    $(location).attr('href', url_base + 'dashboard');
+                }
+            }
+        });
+    });
+
     $(".btnAdicionarComentario").click(function () {
         var pedido = jQuery.parseJSON($(this).val());
 
@@ -357,6 +418,7 @@ $(document).ready(function () {
             }           
         });
     });
+
 
     $(".btnFinalizarPedido").click(function () {
         var pedido = jQuery.parseJSON($(this).val());
@@ -430,6 +492,74 @@ $(document).ready(function () {
                 }
             });        
         }
+    });
+
+    $(".btnEntregarPedido").click(function () {
+        var pedido = jQuery.parseJSON($(this).val());
+
+        bootbox.confirm({
+            message: "Confirma saída para entrega do Pedido?",
+            size: "small",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "pedido/entregar",
+                        data:{id: pedido.id},
+                        async: false,
+                        success: function (data) { 
+                            $(location).attr('href', url_base + 'dashboard');
+                        }
+                    });
+                }
+            }           
+        });
+    });
+    
+    $(".btnEncerrarPedido").click(function () {
+        var pedido = jQuery.parseJSON($(this).val());
+
+        bootbox.confirm({
+            message: "Confirma a finalização do Pedido?",
+            size: "small",
+            buttons: {
+                confirm: {
+                    label: 'Sim',
+                    label: '<i class="fa fa-check"></i> Confirm',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Não',
+                    label: '<i class="fa fa-times"></i> Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url_base + "pedido/encerrar",
+                        data:{id: pedido.id},
+                        async: false,
+                        success: function (data) { 
+                            $(location).attr('href', url_base + 'dashboard');
+                        }
+                    });
+                }
+            }           
+        });
     });
 
 
@@ -625,6 +755,82 @@ $(document).ready(function () {
     });
     
 
+    // carrega cep no formulario de registro usuario
+    $("#cep").change(function () {
+        var cep_code = $(this).val();
+        if (cep_code.length <= 0) return;
+
+        $.get(urlCEP + cep_code + "/json/",
+            function (result) {
+                if (("erro" in result)) {
+                    bootbox.alert("CEP informado não foi encontrado!");
+                    return;
+                } 
+                else {
+                    $("#cep").val(result.cep);
+                    $("#logradouro").val(result.logradouro);
+                    $("#bairro").val(result.bairro);
+                    $("#cidade").val(result.localidade);
+                    $("#estado").val(result.uf);
+                    $("#numero").focus();
+                }
+            }
+        );
+    });
+
+    $("#cep").mask("99999-999");
+
+    $("#btn-signup").click(function () {
+        if (validar()) {
+            $.ajax({
+                type: "POST",
+                url: url_base + "registro/envio",
+                data:{nomecompleto: $("#nomecompleto").val(),
+                    email: $("#email").val(),
+                    celular: $("#celular").val(),
+                    dtnascimento: $("#dtnascimento").val(),
+                    sexo: $("#sexo").val(),
+                    senha: $("#senha").val(),
+                    cep: $("#cep").val(),
+                    logradouro: $("#logradouro").val(),
+                    numero: $("#numero").val(),
+                    complemento: $("#complemento").val(),
+                    bairro: $("#bairro").val(),
+                    cidade: $("#cidade").val(),
+                    estado: $("#estado").val()
+                    },
+                async: false,
+                success: function (data) { 
+                    bootbox.alert({
+                        message: "Registro efetuado com sucesso",
+                        size: 'small'
+                    });    
+
+                    $("#nomecompleto").val("");
+                    $("#email").val("");
+                    $("#celular").val("");
+                    $("#dtnascimento").val("");
+                    $("#sexo").val("Sexo *");
+                    $("#senha").val("");
+                    $("#resenha").val("");
+                    $("#cep").val("");
+                    $("#logradouro").val("");
+                    $("#numero").val("");
+                    $("#complemento").val("");
+                    $("#bairro").val("");
+                    $("#cidade").val("");
+                    $("#estado").val("Estado *");
+
+                }
+            });            
+        }
+    });
+
+    $("#btn-enviar-email").click(function () {
+        if (validaremail()) {
+            $("#recuperaform").submit();
+        }
+    });
 
 
     // Atualiza precos conforme mudança de tamanh
@@ -715,106 +921,7 @@ $(document).ready(function () {
     }
 
 
-    // Select first tab
-    $("a[name='observacao']").tab('show')
-
-    if ($("#login-alerta").html() === "") {
-        $("#login-alerta").hide();
-    } else {
-        $("#login-alerta").show();
-    };
-
-    // exibe alerta regsitro
-    if ($("#registro-alerta").html() === "") {
-        $("#registro-alerta").hide();
-    } else {
-        $("#registro-alerta").show();
-    };
-
-    // exibe alerta envioemail
-    if ($("#recupera-senha").html() === "") {
-        $("#recupera-senha").hide();
-    } else {
-        $("#recupera-senha").show();
-    };
-
-    // carrega cep no formulario de registro usuario
-    $("#cep").change(function () {
-        var cep_code = $(this).val();
-        if (cep_code.length <= 0) return;
-
-        $.get("https://viacep.com.br/ws/" + cep_code + "/json/",
-            function (result) {
-                if (("erro" in result)) {
-                    bootbox.alert("CEP informado não foi encontrado!");
-                    return;
-                } 
-                else {
-                    $("#cep").val(result.cep);
-                    $("#logradouro").val(result.logradouro);
-                    $("#bairro").val(result.bairro);
-                    $("#cidade").val(result.localidade);
-                    $("#estado").val(result.uf);
-                    $("#numero").focus();
-                }
-            }
-        );
-    });
-
-    $("#cep").mask("99999-999");
-
-    $("#btn-signup").click(function () {
-        if (validar()) {
-            $.ajax({
-                type: "POST",
-                url: url_base + "registro/envio",
-                data:{nomecompleto: $("#nomecompleto").val(),
-                      email: $("#email").val(),
-                      celular: $("#celular").val(),
-                      dtnascimento: $("#dtnascimento").val(),
-                      sexo: $("#sexo").val(),
-                      senha: $("#senha").val(),
-                      cep: $("#cep").val(),
-                      logradouro: $("#logradouro").val(),
-                      numero: $("#numero").val(),
-                      complemento: $("#complemento").val(),
-                      bairro: $("#bairro").val(),
-                      cidade: $("#cidade").val(),
-                      estado: $("#estado").val()
-                    },
-                async: false,
-                success: function (data) { 
-                    bootbox.alert({
-                        message: "Registro efetuado com sucesso",
-                        size: 'small'
-                    });    
-
-                    $("#nomecompleto").val("");
-                    $("#email").val("");
-                    $("#celular").val("");
-                    $("#dtnascimento").val("");
-                    $("#sexo").val("Sexo *");
-                    $("#senha").val("");
-                    $("#resenha").val("");
-                    $("#cep").val("");
-                    $("#logradouro").val("");
-                    $("#numero").val("");
-                    $("#complemento").val("");
-                    $("#bairro").val("");
-                    $("#cidade").val("");
-                    $("#estado").val("Estado *");
-
-                }
-            });            
-        }
-    });
-
-    $("#btn-enviar-email").click(function () {
-        if (validaremail()) {
-            $("#recuperaform").submit();
-        }
-    });
-
+   
     // functions
     function validaremail() {
         var msg = "O campo deve ser informado!"

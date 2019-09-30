@@ -24,7 +24,7 @@ class Operacoes():
         self.pedido_avaliacao = PedidoAvaliacao()
 
     def obterAssociados(self):
-        return self.associado.query.all()
+        return self.associado.query.order_by(Associado.nomefantasia).all()
 
     def obterAssociadoById(self, valor):
         return self.associado.query.filter_by(id=valor).first()
@@ -119,13 +119,16 @@ class Operacoes():
         return self.pedido.query.filter_by(usuario_id=usuario_id).order_by(Pedido.numero.desc()).all()
 
     def obterTodosPedidos(self):
-        status = ['2','3','4','5']
+        status = ['2','3']
         return self.pedido.query.filter(Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
 
     def obterPedidosByStatus(self, usuario_id, status):
         lst = []
         lst.append(usuario_id)
         return self.pedido.query.filter(Pedido.usuario_id.in_(lst), Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
+
+    def obterPedidosDashboardByStatus(self, status):
+        return self.pedido.query.filter(Pedido.situacao.in_(status)).order_by(Pedido.numero.desc()).all()
 
     def obterPedidosSemAvaliacao(self, usuario_id):
         return self.pedido.query.filter_by(usuario_id=usuario_id, situacao='4', avaliacao_pontos=None).order_by(Pedido.numero.desc()).all()

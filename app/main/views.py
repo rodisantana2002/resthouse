@@ -170,7 +170,7 @@ def atualizarAssociado():
         associado = oper.obterAssociadoById(id)
         associado.situacao = situacao
         result = oper.atualizarAssociado(associado)
-
+        print(associado.__str__())
         return result.get("code")
 
     else:
@@ -304,6 +304,34 @@ def atualizarSituacaoCancelado():
     if 'email' in session:      
         pedido = oper.obterPedidoById(id)
         pedido.situacao = "5"
+        result = oper.atualizarPedido(pedido)
+
+        return result.get("code")
+
+    else:
+        return render_template('login.html', page=None)
+
+@views.route('/pedido/entregar', methods=['POST'])
+def atualizarSituacaoEmEntrega():
+    id = request.values.get('id')
+
+    if 'email' in session:      
+        pedido = oper.obterPedidoById(id)
+        pedido.situacao = "3"
+        result = oper.atualizarPedido(pedido)
+
+        return result.get("code")
+
+    else:
+        return render_template('login.html', page=None)
+
+@views.route('/pedido/encerrar', methods=['POST'])
+def atualizarSituacaoEncerrado():
+    id = request.values.get('id')
+
+    if 'email' in session:      
+        pedido = oper.obterPedidoById(id)
+        pedido.situacao = "4"
         result = oper.atualizarPedido(pedido)
 
         return result.get("code")
@@ -451,16 +479,22 @@ def atualizarAcesso():
 
 
 @views.route('/dashboard', methods=['GET'])
-def carregarDashboard():
+@views.route('/dashboard/<status>', methods=['GET'])
+def carregarDashboard(status=None):
     if 'email' in session:
         usuario = auth.obterUsuario(session.get('id'))
-        associados = oper.obterAssociados()
-        pedidos = oper.obterTodosPedidos()
-        clientes = auth.obterClientes()
-        
         if usuario.superuser=='True':
+            associados = oper.obterAssociados()
+            clientes = auth.obterClientes()
+                    
+            if status==None:
+                pedidos = oper.obterTodosPedidos()
+            else:
+                pedidos = oper.obterPedidosDashboardByStatus(status)    
+            
             return render_template('dashboard.html', usuario=usuario, associados=associados, clientes=clientes, pedidos=pedidos)
         else:
             return render_template('login.html', page=None)
     else:
         return render_template('login.html', page=None)
+    
