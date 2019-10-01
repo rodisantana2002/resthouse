@@ -520,10 +520,10 @@ $(document).ready(function () {
                         data:{id: pedido.id},
                         async: false,
                         success: function (data) { 
-                            $(location).attr('href', url_base + 'dashboard');
                         }
                     });
                 }
+                location.reload();
             }           
         });
     });
@@ -554,9 +554,9 @@ $(document).ready(function () {
                         data:{id: pedido.id},
                         async: false,
                         success: function (data) { 
-                            $(location).attr('href', url_base + 'dashboard');
                         }
                     });
+                    location.reload();
                 }
             }           
         });
