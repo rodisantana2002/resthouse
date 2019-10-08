@@ -19,7 +19,7 @@
 
 
 $(document).ready(function () {
-   //var url_base = "http://localhost:5000/";
+//    var url_base = "http://localhost:5000/";
    var url_base = "https://resthouse.herokuapp.com/";
    var urlCEP = "https://viacep.com.br/ws/"
 
@@ -169,22 +169,30 @@ $(document).ready(function () {
         var categoria = $("#lblCategoria").html().trim().replace('<b>', "").replace('</b>', "");
         var quantidade = $("input[class=quantity" + produto.id + "]").val();
 
-        $.ajax({
-            type: "POST",
-            data: { produto_id: produto.id, resumo: produto.descricao, quantidade: quantidade, valor_unitario: "R$ " + produto.valor, tamanho: "", associado_id: produto.associado_id, ids: "", categoria: categoria },
-            url: url_base + "carrinho",
-            async: false,
-            success: function (data) {
-                if (data === "200") {
-                    bootbox.alert({
-                        message: "Produto adicionado ao carrinho com sucesso!",
-                        size: 'small'
-                    });
+        if(quantidade>0){   
+            $.ajax({
+                type: "POST",
+                data: { produto_id: produto.id, resumo: produto.descricao, quantidade: quantidade, valor_unitario: "R$ " + produto.valor, tamanho: "", associado_id: produto.associado_id, ids: "", categoria: categoria },
+                url: url_base + "carrinho",
+                async: false,
+                success: function (data) {
+                    if (data === "200") {
+                        bootbox.alert({
+                            message: "Produto adicionado ao carrinho com sucesso!",
+                            size: 'small'
+                        });
 
+                    }
                 }
-            }
-        });
-        $("input[class=quantity" + produto.id + "]").val("1");
+            });
+            $("input[class=quantity" + produto.id + "]").val("0");
+        }
+        else{
+            bootbox.alert({
+                message: "Informe a quantidade desejada!",
+                size: 'small'
+            });
+        }     
     });
 
     $(".btnDeleteItemCarrinho").click(function () {

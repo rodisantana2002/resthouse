@@ -134,7 +134,7 @@
 
                                                             <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
-                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
+                                                              <button type="button" class="c btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
                                                                 adicionar <br>sabor
                                                               </button>       
                                                             </span>                                                                                                                                         
@@ -186,7 +186,7 @@
                                           <i class="glyphicon glyphicon-minus"></i>
                                         </button>                                
 
-                                        <input class="quantity{{produto.id}}" min="1" name="txtQuantity" value="1" type="number"  style="color:#563A2D;height:3rem; width:3rem; text-align:center; background:white; border:1px solid #c0c0c0" disabled>
+                                        <input class="quantity{{produto.id}}" min="0" name="txtQuantity" value="0" type="number"  style="color:#563A2D;height:3rem; width:3rem; text-align:center; background:white; border:1px solid #c0c0c0" disabled>
 
                                         <button id="btnPlus" type="button" class="btn btn-secondary btn-sm" style="border-color:white;background:white" onclick="this.parentNode.querySelector('input[name=txtQuantity]').stepUp()">
                                           <i class="glyphicon glyphicon-plus" ></i>
