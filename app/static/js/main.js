@@ -437,7 +437,7 @@ $(document).ready(function () {
                 inputType: 'date',
                 callback: function (result) {
                     if (result!=null && result!=''){
-                        if (result) {
+                        if (result) {                            
                             $.ajax({
                                 type: "POST",
                                 url: url_base + "pedido/finalizar",
