@@ -1,5 +1,6 @@
 import os
 import string
+import csv
 
 from flask import Flask, Blueprint
 from app.model.models import *
@@ -8,7 +9,6 @@ from sqlalchemy import DateTime, func
 from decimal import Decimal
 
 operacoes = Blueprint("operacoes", __name__)
-
 
 class Operacoes():
 
@@ -22,7 +22,43 @@ class Operacoes():
         self.pedido = Pedido()
         self.pedido_item = PedidoItem()
         self.pedido_avaliacao = PedidoAvaliacao()
-
+        self.destino = 'app/bd/dados.csv' 
+        self.FIELD_NAMES = ['pedido_id',
+                            'numero',
+                            'situacao',
+                            'vendedor_id',
+                            'vendedor_nomefantasia',
+                            'agenda_entrega',
+                            'total_itens',
+                            'taxa_entrega',
+                            'total_pedido',
+                            'observacao',
+                            'avaliacao_pontos',
+                            'avaliacao_comentarios',
+                            'item_id',
+                            'produto_id',    
+                            'produto_descricao',
+                            'resumo',
+                            'categoria',                            
+                            'tamanho',
+                            'quantidade',
+                            'medida',
+                            'valor_unitario',
+                            'total_item',
+                            'ids',
+                            'cliente_id',
+                            'cliente_nome',
+                            'cliente_email',
+                            'cliente_fone',
+                            'cliente_logradouro',
+                            'cliente_numero',
+                            'cliente_complemento',
+                            'cliente_bairro',
+                            'cliente_cidade',
+                            'cliente_estado',
+                            'cliente_cep'
+                            ]                    
+        
     def obterAssociados(self):
         return self.associado.query.order_by(Associado.nomefantasia).all()
 
@@ -233,10 +269,51 @@ class Operacoes():
             self.authentic["code"] = "500"
             self.authentic["msg"] = "Erro desconhecido"        
             
-                        
-                        
-    def obterArquivoCSV(self):
-       pathOrigem = 'app/bd/'              
-       with open(pathOrigem + "dados.csv") as fp:
-            csv = fp.read()
-       return csv
+    def obterArquivoCSV(self):                       
+        with open(self.destino, 'w+') as source:
+            writer = csv.DictWriter(source, fieldnames=self.FIELD_NAMES)
+            writer.writeheader()
+            pedidos = self.obterPedidosDashboardByStatus(['2','3','4','5'])
+            
+            for pedido in pedidos:
+                for item in pedido.itens:
+                    writer.writerow({'pedido_id': item.ped.id,
+                                    'numero': item.ped.numero,
+                                    'situacao': item.ped.status,
+                                    'vendedor_id': item.ped.assoc.id,
+                                    'vendedor_nomefantasia': item.ped.assoc.nomefantasia,
+                                    'agenda_entrega':item.ped.assoc.agenda_entrega,
+                                    'total_itens': item.ped.total_itens,
+                                    'taxa_entrega': item.ped.taxa_entrega,
+                                    'total_pedido': item.ped.total_pedido,
+                                    'observacao': item.ped.observacao,
+                                    'avaliacao_pontos': item.ped.avaliacao_pontos,
+                                    'avaliacao_comentarios': item.ped.avaliacao_comentarios,
+                                    'item_id': item.id,
+                                    'produto_id': item.produto_id,    
+                                    'produto_descricao': item.prods.descricao,    
+                                    'resumo': item.resumo,
+                                    'categoria': item.categoria,                                    
+                                    'tamanho': item.tamanho,
+                                    'quantidade': item.quantidade,
+                                    'medida':item.prods.medida,
+                                    'valor_unitario': item.valor_unitario,
+                                    'total_item': item.total_item,
+                                    'ids': item.ids,
+                                    'cliente_id': item.ped.user.id,
+                                    'cliente_nome': item.ped.user.nomecompleto,
+                                    'cliente_email': item.ped.user.email,
+                                    'cliente_fone': item.ped.user.fonecelular,
+                                    'cliente_logradouro':item.ped.user.logradouro,
+                                    'cliente_numero':item.ped.user.numero,
+                                    'cliente_complemento':item.ped.user.complemento,
+                                    'cliente_bairro': item.ped.user.bairro,
+                                    'cliente_cidade': item.ped.user.cidade,
+                                    'cliente_estado': item.ped.user.estado,
+                                    'cliente_cep': item.ped.user.cep                                    
+                                })
+                                
+        with open(self.destino) as fp:
+            arq_csv = fp.read()
+        
+        return arq_csv

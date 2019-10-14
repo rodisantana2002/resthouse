@@ -500,4 +500,7 @@ def carregarDashboard(status=None):
     
 @views.route('/dashboard/download', methods=['GET'])    
 def gerarDownload():
-    return Response(oper.obterArquivoCSV(), mimetype="text/csv", headers={"Content-disposition":"attachment; filename=dados.csv"})
+    if 'email' in session:
+        return Response(oper.obterArquivoCSV(), mimetype="text/csv", headers={"Content-disposition":"attachment; filename=dados.csv"})        
+    else:
+        return render_template('login.html', page=None)            

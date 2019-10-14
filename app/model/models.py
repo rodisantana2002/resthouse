@@ -235,8 +235,7 @@ class Produto(db.Model):
 
     id = db.Column('id', db.Integer, primary_key=True)
 
-    associado_categoria_id = db.Column(
-        db.Integer, db.ForeignKey('associado_categorias.id'))
+    associado_categoria_id = db.Column(db.Integer, db.ForeignKey('associado_categorias.id'))
     descricao = db.Column(db.String(200))
     valor = db.Column(db.String(30))
     tipo = db.Column(db.String(30))
@@ -479,6 +478,7 @@ class PedidoItem(db.Model):
     total_item = db.Column(db.String(30))
     ids = db.Column(db.String(100))
 
+    ped = relationship('Pedido', backref=backref("pedido_item"))
     prods = relationship('Produto', backref=backref("pedido_item"))
 
     def add(self, pedido_item):
