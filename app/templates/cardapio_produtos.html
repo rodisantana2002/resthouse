@@ -52,11 +52,13 @@
                 {% if associado_categoria.catego.descricao=='PIZZAS'%}
                     <div class="panel panel-default" style="margin-top:5px; margin-left:5px; margin-right:5px">                    
                       <div class="panel-body">
+                          <h4 style="text-align:center; margin-top:-5px; margin-bottom:-10px; color:#F58634;">Monte sua pizza escolhendo o tamanho e os sabores desejados</h4>
+                          <hr>
                           <h5 style="text-align:center; margin-top:-5px; margin-bottom:5px; color:gray;">Escolha um Tamanho</h5>
                           
                           <h6 style="text-align:center; margin-top:10px; margin-bottom:15px;color:#F58634">
                             <span id="ex18-label-1" class="hidden" ></span>
-                                    <input id="ex19" type="text" style="width:30rem"
+                                    <input id="ex19" type="text" style="width:28rem"
                                           data-provide="slider"
                                           data-slider-ticks="[0, 1, 2, 3, 4]"
                                           data-slider-ticks-labels='["Nenhum", "Pequena", "Média", "Grande", "Big"]'
@@ -89,8 +91,8 @@
 
                           </div>                                                                                                                                                                                                           
 
-                          <div class="panel panel-default" style="margin-top:10px; display:none" id="divSelecaoSabores" >
-                            <div class="panel-heading" style="color:#F58634 " id="divSelecaoSaboresTitulo"> </div>
+                          <div class="panel panel-warning" style="margin-top:10px; display:none" id="divSelecaoSabores" >
+                            <div class="panel-heading" style="color:#563A2D; text-align:center " id="divSelecaoSaboresTitulo"> </div>
                             
                             <div class="panel-body" style="margin-top:-5px; margin-bottom:-20px">
                                <!--Accordion wrapper-->
@@ -134,7 +136,7 @@
 
                                                             <span class="badge badge-pill pull-right" style="font-size:10px; margin-top:-5px; color:white; background:#F58634">
                                                               <i class="material-icons">add</i><br>                                            
-                                                              <button type="button" class="c btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
+                                                              <button type="button" class="adicionaSabor btn-link"  style="color:white" name="adicionaSabor" value='{"id":"{{produto.id}}", "descricao":"{{produto.descricao}}", "resumo":"{{produto.resumo}}", "tipo":"{{produto.tipo}}", "valor":"{{produto.valor}}", "associado_id":"{{associado_categoria.associado_id}}", "associado_categoria":{{associado_categoria.id}} }'>
                                                                 adicionar <br>sabor
                                                               </button>       
                                                             </span>                                                                                                                                         

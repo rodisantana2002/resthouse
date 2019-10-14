@@ -846,7 +846,13 @@ $(document).ready(function () {
         if (numSabores > 0) {
             LimparTabela();
             $("#divSelecaoSabores").show();
-            $("#divSelecaoSaboresTitulo").html("<b>Escolha até " + numSabores + " sabor(es)</b>")
+
+            if (numSabores==1){
+                $("#divSelecaoSaboresTitulo").html("<b>O tamanho selecionado permite apenas a escolha de " + numSabores + " sabor</b>")
+            }
+            else{
+                $("#divSelecaoSaboresTitulo").html("<b>O tamanho selecionado permite a escolha de " + numSabores + " sabores</b>")
+            }
 
             if (numSabores === '4') {
                 $("span[name='4']").show();
