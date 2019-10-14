@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, Blueprint, render_template, session, request, redirect, url_for, send_from_directory
+from flask import Flask, Blueprint, render_template, session, request, redirect, url_for, send_from_directory, Response
 from app.controls.auth import *
 from app.controls.operacoes import *
 from app.controls.utils import *
@@ -498,3 +498,6 @@ def carregarDashboard(status=None):
     else:
         return render_template('login.html', page=None)
     
+@views.route('/dashboard/download', methods=['GET'])    
+def gerarDownload():
+    return Response(oper.obterArquivoCSV(), mimetype="text/csv", headers={"Content-disposition":"attachment; filename=dados.csv"})

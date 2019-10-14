@@ -234,3 +234,9 @@ class Operacoes():
             self.authentic["msg"] = "Erro desconhecido"        
             
                         
+                        
+    def obterArquivoCSV(self):
+       pathOrigem = 'app/bd/'              
+       with open(pathOrigem + "dados.csv") as fp:
+            csv = fp.read()
+       return csv
