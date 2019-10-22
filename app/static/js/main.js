@@ -652,7 +652,7 @@ $(document).ready(function () {
                      {value: '0',  text: 'TODAS',},
                     ]
                      bootbox.prompt({
-            title: "Filtrar Vendedores - por categoria",
+            title: "Filtrar Produtos-Ofertas - por categoria",
             size: "small",
             inputType: 'checkbox',
             inputOptions: categorias,
