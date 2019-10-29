@@ -72,7 +72,7 @@ class Operacoes():
         return self.associado.query.filter(Associado.nomefantasia.contains(valor.upper()) | Associado.resumo.contains(valor.lower())).all()
     
     def obterAssociadoByCategorias(self, categorias):
-        return self.associado.query.filter(Associado.categorias_associado.any(AssociadoCategoria.categoria_id.in_(categorias))).all()
+        return self.associado.query.filter(Associado.categorias_associado.any(AssociadoCategoria.categoria_id.in_([categorias]))).all()
     
     def atualizarAssociado(self, associado):
         try:

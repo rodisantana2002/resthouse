@@ -1,472 +1,147 @@
--- DELETE FROM produto;        
--- DELETE FROM associado_categorias;
--- DELETE FROM associado;
--- DELETE FROM associado_usuario_tags;
--- DELETE FROM categoria;
-
--- Associados
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '1@gmail.com', 'DOG OSTENTA', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Lanches', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/dog_ostenta.jpg');
-            
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '2@gmail.com', 'DOGÃO TIA JU', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Lanches', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/dogao_tia_ju.jpg');
-            
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '3@gmail.com', 'GISA DOCES', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Doces, Bolos, Salgados', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/gisa_doces.jpg');
-            
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '4gmail.com', 'PIZZARIA DOM JUAN', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Lanches', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/dom_juam.jpg');
-            
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '5@gmail.com', 'PIZZARIA TOP 20', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Pizzaria, Lanches, Porções', 'Seg a Dom', '19:00', '23:59', 'S', '2,50','Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
-
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '6@gmail.com', 'ART NY – ATELIÊ DE DOCES', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Doces, Bolos, Sobremesas', 'Seg a Sáb', '08:00', '21:00', 'S', '3,00','Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/art_ny.jpg');
-
-INSERT INTO associado (situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
-	VALUES ('Disponivel', '7@gmail.com', 'BURGER TORRES', 'Atualmente a correria diária das grandes cidades, aliada a certa dose de comodidade, tem alterado os hábitos das famílias que procuram cada vez mais os serviços de fast foods e entregas á domicílio.', 
-            'Hambúrguer, Lanche', 'Seg a Sáb', '08:00', '21:00', 'N', '0,00','Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/burger_torres.jpg');
+DELETE FROM produto;        
+DELETE FROM associado_categorias;
+DELETE FROM associado;
+DELETE FROM associado_usuario_tags;
+DELETE FROM categoria;
 
 
--- -- -- Categoria
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('BEBIDAS', NULL, 'categorias/bebidas.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('BOLOS', NULL, 'categorias/bolos.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('SOBREMESAS', NULL, 'categorias/sobremesas.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('HAMBURGUER', NULL, 'categorias/hamburguer.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('CACHORROS-QUENTES', NULL, 'categorias/hotdogs.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('KITS FESTA', NULL, 'categorias/doces.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('LANCHES', NULL, 'categorias/lanches.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PIZZAS', NULL, 'categorias/pizzas.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('PORÇÕES', NULL, 'categorias/porcoes.jpg');
-INSERT INTO categoria (descricao, dtregistro, logo)  VALUES ('OUTROS', NULL, 'categorias/300x200.jpg');
+-- Categoria (OK)
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (1, 'BEBIDAS', NULL, 'categorias/bebidas.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (2, 'BOLOS', NULL, 'categorias/bolos.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (3, 'DOCES', NULL, 'categorias/300x200.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (4, 'CACHORROS-QUENTES', NULL, 'categorias/hotdogs.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (5, 'HAMBURGUER', NULL, 'categorias/300x200.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (6, 'KITS FESTA', NULL, 'categorias/doces.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (7, 'LANCHES', NULL, 'categorias/lanches.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (8, 'PIZZAS', NULL, 'categorias/pizzas.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (9, 'PORÇÕES', NULL, 'categorias/porcoes.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (10, 'REFEIÇÕES', NULL, 'categorias/300x200.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (11, 'SOBREMESAS', NULL, 'categorias/sobremesas.jpg');
+INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (12, 'SALGADOS', NULL, 'categorias/300x200.jpg');
 
+-- -- Associados
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+	VALUES (1, 'Disponivel', '1@gmail.com', 'Art Ny', 'Ateliê de Doces', 'Doces, Bolos, Sobremesas', 'Seg a Sáb', '08:00', '23:00', 'S', '3,00', 'Fisica', 'Rua Chile', '67', NULL, 'Rebouças', NULL, NULL, NULL, NULL, 'associados/1.jpg');
 
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+	VALUES (2, 'Disponivel', '2@gmail.com', 'Burger Time Torres', 'Delivery de hamburger artesanal', 'Lanches, Hamburger', 'Qua a Dom', '18:30', '23:30', 'N', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/2.jpg');
 
--- -- 
--- --categoriaxassociado
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+ 	VALUES (3, 'Disponivel', '3@gmail.com', 'Dogão Tia Jú', '', 'Lanches, Cachorro Quente', 'Seg a Dom', '19:00', '00:00', 'S', '3,00', 'Juridica', 'Rua dorival Almir Zagonel', '101', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/3.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='PORÇÕES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+        VALUES (4, 'Disponivel', '4@gmail.com', 'Dog Ostenta', '', 'Lanches, Cachorro Quente', 'Seg a Dom', '19:00', '00:00', 'N', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/4.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='PIZZAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA DOM JUAN'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (5, 'Disponivel', '5@gmail.com', 'Gisa Doces', '', 'Doces, Bolos, Salgados', 'Seg a Sáb', '08:00', '20:00', 'X', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/5.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='PORÇÕES'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (6, 'Disponivel', '6@gmail.com', 'Beijoca', 'Ateliê de Doces', 'Doces, Bolos, Sobremesas', 'Seg a Sáb', '08:00', '21:00', 'S', '3,00', 'Juridica', 'Rua Chile', '67', NULL, 'Rebouças', NULL, NULL, NULL, NULL, 'associados/6.jpg');
 
--- ********
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+    	VALUES (7, 'Disponivel', '7@gmail.com', 'Irmãos P.D.J', '', 'Lanches, Porções, Refeições', 'Seg a Dom', '19:00', '00:00', 'N', '0,00', 'Juridica', 'Rua Pedro Costa Cunha', '37', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='PIZZAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+    	VALUES (8, 'Disponivel', '8@gmail.com', 'Val Bebidas', '',  'Bebidas', 'Seg a Sex', '09:30', '20:30', 'S', '3,00', 'Juridica', 'Rua Manoel Martins de Abreu', '158', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='PIZZARIA TOP 20'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (9, 'Disponivel', '9@gmail.com', 'Rei dos Salgados', 'A melhor comida caseira da região.', 'Salgados, Refeições', 'Seg a Sex', '06:30', '18:30', 'X', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/9.jpg');
 
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='LANCHES'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (10, 'Disponivel', '10@gmail.com', 'Lisa Salgados', '', 'Doces, Bolos, Salgados', 'Seg a Dom', '08:00', '20:00', 'X', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/10.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='CACHORROS-QUENTES'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (11, 'Disponivel', '11@gmail.com', 'Feijoada da Dona Rosa', '', 'Refeições, Feijoada', 'Sáb', '11:30', '14:30', 'X', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (12, 'Disponivel', '12@gmail.com', 'Jeu Panquecas', '',  'Panquecas, Refeições', 'Seg a Sex', '18:00', '21:00', 'X', '0,00', 'Juridica', 'Rua Manoel Freire', '137', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='DOGÃO TIA JU'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (13, 'Disponivel', '13@gmail.com', 'Confeitaria da Cris', '', 'Lanches, Hamburger, Porcões', 'Seg a Dom', '', '', 'N', '0,00', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/13.jpg');
 
-
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='DOG OSTENTA'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
-
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='CACHORROS-QUENTES'), (SELECT ID FROM associado WHERE nomefantasia='DOG OSTENTA'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
-
-
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
-
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='OUTROS'), (SELECT ID FROM associado WHERE nomefantasia='GISA DOCES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+     	VALUES (14, 'Disponivel', '14@gmail.com', 'Eparry Pastel', '', 'Pastel, Bebidas', 'Ter a Sáb', '18:00', '00:00', 'X', '0,00', 'Juridica', 'Rua Manoel Martins de Abreu', '129', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
 
 
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='KITS FESTA'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+--categoriaxassociado
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(1, 2, 1,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(2, 3, 1,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(3, 11, 1,  '', '', NULL);
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='SOBREMESAS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(5, 1, 2,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(6, 5, 2,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(7, 11, 2,  '', '', NULL);
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BOLOS'), (SELECT ID FROM associado WHERE nomefantasia='ART NY – ATELIÊ DE DOCES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(8, 1, 3,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(9, 4, 3,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(10, 7, 3,  '', '', NULL);
 
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(11, 1, 4,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(12, 4, 4,  '', '', NULL);
 
--- ********
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='HAMBURGUER'), (SELECT ID FROM associado WHERE nomefantasia='BURGER TORRES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(13, 2, 5,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(14, 3, 5,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(15, 6, 5,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(16, 12, 5,  '', '', NULL);
 
-INSERT INTO associado_categorias(categoria_id, associado_id, resumo, logo, dtregistro)
-    VALUES((SELECT ID FROM categoria WHERE descricao='BEBIDAS'), (SELECT ID FROM associado WHERE nomefantasia='BURGER TORRES'),  
-            'Trata-se de um tipo de painel que facilita a navegação de um usuário/consumidor e a localização de um produto em um site e-commerce.',    
-            '',
-            NULL);
-
-
--- Produtos x CategoriasAssociados (LANCHES x PIZZARIA DOM JUAN)
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Burguer', 'Pão, maionese, hambúrguer, queijo cheddar', '5,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Egg', 'Pão, maionese, hambúrguer, queijo cheddar, presunto e ovo', '6,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Salada', 'Pão, maionese, hambúrguer, queijo cheddar, presunto, alface e tomate', '5,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Bacon', 'Pão, maionese, hambúrguer, queijo cheddar, presunto, alface e tomate, bacon', '8,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Calabresa', 'Pão, maionese, hambúrguer, queijo cheddar, presunto, alface e tomate, calabresa',  '8,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Frango', 'Pão, maionese, hambúrguer, queijo cheddar, presunto, alface e tomate, filé de peito de frango',  '9,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('X-Tudo', 'Pão, maionese, hambúrguer, queijo cheddar, presunto, alface e tomate, filé de peito de frango, bacon, calabresa e milho', '12,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='LANCHES'), NULL, 'Default'); 
-
-
-
--- Produtos x CategoriasAssociados (PORÇÕES x PIZZARIA DOM JUAN)
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de batata', 'não informado', '13,50', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default');
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de polenta',  'não informado', '13,50', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de aipim',  'não informado', '13,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de frango a passarinho', 'não informado',  '14,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de anéis de cebola',  'não informado', '14,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default'); 
-
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Porção de tiras de frango empanado', 'não informado', '14,00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PORÇÕES'), NULL, 'Default');
-
-   
--- Produtos x CategoriasAssociados (PIZZAS x PIZZARIA DOM JUAN)
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Mussarela', 'Molho, mussarela, azeitona e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)    
-    VALUES('Alho e Óleo', 'Molho, mussarela, alho, óleo e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)    
-    VALUES('Napolitano', 'Molho, mussarela, tomate, parmesão e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Marguerita', 'Molho, mussarela, tomate, manjericão e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Milho', 'Molho, mussarela, milho e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Calabresa', 'Molho, mussarela, calabresa, cebola, azeitona e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Milho com Bacon', 'Molho, mussarela, milho, bacon e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Presunto', 'Molho, mussarela, presunto e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Toscana', 'Molho, mussarela, presunto, tomate e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Lombo', 'Molho, mussarela, lombo e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Catupiry', 'Molho, mussarela, catupiry e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Palmito', 'Molho, mussarela, palmito e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Bacon', 'Molho, mussarela, bacon e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Crocante I', 'Molho, mussarela, calabresa, batata-palha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Crocante II', 'Molho, mussarela, bacon, batata-palha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Frango', 'Molho, mussarela, frango e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Portuguesa', 'Molho, mussarela, presunto, cebola, azeitona, ovo e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Parmegiana', 'Molho, mussarela, presunto, molho, parmesão e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Americana', 'Molho, mussarela, tomate, bacon, pimentão, palmito e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Hot-Dog', 'Molho, mussarela, vina, milho, ervilha, batata-palha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Tradicionais');
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(17, 3, 6,  '', '', NULL);
+ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(18, 6, 6,  '', '', NULL);
  
--- 
--- PIZZAS Especiais 
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Atum', 'Molho, mussarela, atum, cebola e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Brasileira', ' Molho, mussarela, bacon, calabresa, cheddar, azeitona e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Caipira', ' Molho, mussarela, frango, milho,bacon e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Romanesca', ' Molho, mussarela, frango, milho, tomate, palmito e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Peruana', ' Molho, mussarela, atun, ervilha, cebola e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Queijos', ' Molho, mussarela, catupiry, parmesão e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Frango com Catupiry/Cheddar', ' Molho, mussarela, frango, catupiry/cheddar e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Especial', ' Molho, mussarela, calabresa, milho, ovo e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Lombo com Bacon', ' Molho, mussarela, lombo, bacon, cheddar e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Lombo com Champignon', ' Molho, mussarela, lombo, champignon, catupiry e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Paulista', ' Molho, mussarela, milho, ervilha, palmito e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Baiana', ' Molho, mussarela, calabresa, palmito, ovo, pimenta calabresa e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Especiais');
--- 
--- PIZZAS Premium 
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('A Moda', 'Molho, mussarela, champignon, pepperone, azeitona e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('A Moda II', ' Molho, mussarela, calabresa, tomate, ovo, milho, ervilha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('A Moda da Casa I', ' Molho, mussarela, calabresa, presunto, bacon, cheddar e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('A Moda da Casa II', ' Molho, mussarela, lombo, champignon, bacon, ovo, catupiry, azeitona e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Imperial', ' Molho, mussarela, frango, palmito, bacon, cream cheese e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Salame', ' Molho, mussarela, salame, cheddar e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Pepperone', ' Molho, mussarela, pepperone, cream cheese e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Strogonofe de Carne', ' Molho, mussarela, estrogonofe de carne, champignon, batata-palha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Strogonofe de Frango', ' Molho, mussarela, estrogonofe de frango, champignon, batata-palha e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Queijos', ' Molho, mussarela, provolone, parmesão, catupiry e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Queijos', ' Molho, mussarela, provolone, parmesão, catupiry, gongorzola e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Queijos', ' Molho, mussarela, provolone, parmesão, catupiry, gongorzola, cheddar e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Queijos', ' Molho, mussarela, provolone, parmesão, catupiry, gongorzola, cheddar, cream cheese e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Florença', ' Molho, mussarela, calabresa, bacon, ovos, tomate, parmesão, manjericão e orégano', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Do Cliente', 'Até 5 ingredientes', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Premium');
---  
--- 
--- PIZZAS Doces 
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Banana', 'Creme de leite, mussarela, banana e canela', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Banana com Chocolate', 'Creme de leite, mussarela, banana, chocolate preto ou branco', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Morango', 'Creme de leite, mussarela', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Confet', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Ele e Ela', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Brigadeiro', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Dois Amores', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Sensação', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Floresta negra', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Beijinho', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Sonho de Valsa', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Prestígio', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Chocolate Preto', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
-INSERT INTO produto(descricao, resumo, valor, medida, logo, associado_categoria_id, dtregistro, tipo)
-    VALUES('Chocolate Branco', 'não informado', '0.00', 'UN', 'produtos/100x100.jpg', (SELECT associado_categorias.id FROM associado_categorias INNER JOIN associado ON associado.id = associado_id INNER JOIN categoria ON categoria.id = categoria_id WHERE associado.nomefantasia='PIZZARIA DOM JUAN' AND categoria.descricao='PIZZAS'), NULL, 'Doces');
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(19, 7, 7,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(20, 9, 7,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(21, 10, 7,  '', '', NULL);
 
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(22, 1, 8,  '', '', NULL);
 
---PRECOS POR PRODUTO E TAMANHO
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Mussarela')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(23, 10, 9,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Alho e Óleo')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Alho e Óleo')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Alho e Óleo')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Alho e Óleo')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(24, 2, 10,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(25, 3, 10,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(26, 6, 10,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(27, 12, 10,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Napolitano')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Napolitano')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Napolitano')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Napolitano')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(28, 10, 11,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Marguerita')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Marguerita')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Marguerita')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Marguerita')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(29, 10, 12,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(30, 1, 13,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(31, 5, 13,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(32, 9, 13,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Calabresa')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Calabresa')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Calabresa')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Calabresa')));
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(33, 1, 14,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(34, 12, 14,  '', '', NULL);
 
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '34,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho com Bacon')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '29,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho com Bacon')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '23,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho com Bacon')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '17,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Milho com Bacon')));
-    
--- Especiais
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '36,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Atum')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '32,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Atum')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '28,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Atum')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '22,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Atum')));
-
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '36,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Brasileira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '32,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Brasileira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '28,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Brasileira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '22,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Brasileira')));
-
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '36,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Caipira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '32,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Caipira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '28,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Caipira')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '22,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Caipira')));
-
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '36,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Romanesca')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '32,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Romanesca')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '28,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Romanesca')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '22,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Romanesca')));
-
-
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('4', '36,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Peruana')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('3', '32,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Peruana')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('2', '28,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Peruana')));
-INSERT INTO produto_tamanho(tamanho, valor, dtregistro, produto_id)
-    VALUES('1', '22,90', NULL, (SELECT id FROM produto WHERE descricao IN ('Peruana')));

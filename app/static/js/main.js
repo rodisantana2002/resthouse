@@ -638,17 +638,19 @@ $(document).ready(function () {
     });
 
     // filtra associados
-    $("#btnAssociadoFiltrar").click(function () {
+    $("#btnAssociadoFiltrar").click(function () {      
         categorias= [{value: '1',  text: 'BEBIDAS',},
                      {value: '2',  text: 'BOLOS',},
-                     {value: '5',  text: 'CACHORROS-QUENTES',},
-                     {value: '4',  text: 'HAMBURGUER',},
+                     {value: '3',  text: 'DOCES',},
+                     {value: '4',  text: 'CACHORROS-QUENTES',},
+                     {value: '5',  text: 'HAMBURGUER',},
                      {value: '6',  text: 'KITS FESTA',},
                      {value: '7',  text: 'LANCHES',},
-                     {value: '10', text: 'OUTROS',},
                      {value: '8',  text: 'PIZZAS',},
                      {value: '9',  text: 'PORÇÕES',},
-                     {value: '3',  text: 'SOBREMESAS',},
+                     {value: '10',  text: 'REFEIÇÕES',},
+                     {value: '11',  text: 'SOBREMESAS',},
+                     {value: '12',  text: 'SALGADOS',},
                      {value: '0',  text: 'TODAS',},
                     ]
                      bootbox.prompt({
@@ -658,7 +660,6 @@ $(document).ready(function () {
             inputOptions: categorias,
             callback: function (result) {
                 if (result != null && result != '0' && result.length>0) {
-                    $(location).attr('href', url_base + 'pedido/' + result);
                     $(location).attr('href', url_base + 'associado/' + result);                    
                 }
                 else {

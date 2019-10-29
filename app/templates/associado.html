@@ -54,6 +54,8 @@
                       <h6>                      
                         {% if associado.taxaentrega == "S" %}
                           <i class="material-icons" style="font-size:17px">directions_bike</i> Entrega - R$ {{associado.valortaxaentrega}}
+                        {% elif associado.taxaentrega == "X" %}  
+                          <i class="material-icons" style="font-size:17px">directions_bike</i> Não realiza entrega
                         {% else %}
                           <i class="material-icons" style="font-size:17px">directions_bike</i> Entrega grátis
                         {% endif %}
@@ -65,6 +67,10 @@
                         {% endif %}                        
                         <br>
                         <i style="margin-top:5px" class="glyphicon glyphicon-time"> </i> {{associado.funcionamentodias}} - {{associado.funcionamentohorarioinicio}}h às {{associado.funcionamentohorariotermino}}h
+                        <br>
+                        {% if associado.logradouro != None %}
+                            <i style="margin-top:5px" class="glyphicon glyphicon-map-marker"> </i> {{associado.logradouro}}, {{associado.numero}} - {{associado.bairro}}
+                        {% endif %}  
                       </h6>
                      
                       <hr>        

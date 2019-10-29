@@ -1,38 +1,38 @@
--- DROP TABLE pedido_avaliacao;
--- DROP TABLE pedido_item;
--- DROP TABLE pedido;
--- DROP TABLE carrinho;
+ DROP TABLE pedido_avaliacao;
+ DROP TABLE pedido_item;
+ DROP TABLE pedido;
+ DROP TABLE carrinho;
 -- DROP TABLE usuario;
--- DROP TABLE produto_tamanho;
--- DROP TABLE associado_usuario_tags; 
--- DROP TABLE associado_categorias;
--- DROP TABLE associado;
--- DROP TABLE categoria;
--- DROP TABLE produto;
+ DROP TABLE produto_tamanho;
+ DROP TABLE associado_usuario_tags; 
+ DROP TABLE associado_categorias;
+ DROP TABLE associado;
+ DROP TABLE categoria;
+ DROP TABLE produto;
 -- -- -- 
 -- -- SQLLite
-CREATE TABLE usuario (  id SERIAL NOT NULL PRIMARY KEY,
-                        situacao VARCHAR(30) NULL,
-                        email VARCHAR(100) NULL UNIQUE,
-                        nomecompleto VARCHAR(100) NULL,
-                        sexo VARCHAR(30) NULL,
-                        fonecelular VARCHAR(20) NULL UNIQUE,
-                        dtnascimento VARCHAR(30) NULL,
-                        logradouro VARCHAR(100) NULL,
-                        numero VARCHAR(10) NULL,
-                        complemento VARCHAR(50) NULL,
-                        bairro VARCHAR(50) NULL,
-                        cidade VARCHAR(60) NULL,
-                        estado VARCHAR(30) NULL,
-                        cep VARCHAR(20) NULL,
-                        senha VARCHAR(300) NULL,
-                        dtregistro VARCHAR(30)  NULL,
-                        token VARCHAR(100) NULL,
-                        superuser VARCHAR(12) NULL);
-CREATE INDEX idx_Usuario_nomeCompleto ON usuario (nomecompleto);
+-- CREATE TABLE usuario (  id SERIAL NOT NULL PRIMARY KEY,
+--                         situacao VARCHAR(30) NULL,
+--                         email VARCHAR(100) NULL UNIQUE,
+--                         nomecompleto VARCHAR(100) NULL,
+--                         sexo VARCHAR(30) NULL,
+--                         fonecelular VARCHAR(20) NULL UNIQUE,
+--                         dtnascimento VARCHAR(30) NULL,
+--                         logradouro VARCHAR(100) NULL,
+--                         numero VARCHAR(10) NULL,
+--                         complemento VARCHAR(50) NULL,
+--                         bairro VARCHAR(50) NULL,
+--                         cidade VARCHAR(60) NULL,
+--                         estado VARCHAR(30) NULL,
+--                         cep VARCHAR(20) NULL,
+--                         senha VARCHAR(300) NULL,
+--                         dtregistro VARCHAR(30)  NULL,
+--                         token VARCHAR(100) NULL,
+--                         superuser VARCHAR(12) NULL);
+-- CREATE INDEX idx_Usuario_nomeCompleto ON usuario (nomecompleto);
 
 -- Associado
-CREATE TABLE associado (id SERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE associado (id INTEGER NOT NULL PRIMARY KEY,
                         situacao VARCHAR(30) NULL,
                         email VARCHAR(100) NULL UNIQUE,
                         nomefantasia VARCHAR(100) NULL,
@@ -65,13 +65,13 @@ CREATE TABLE associado_usuario_tags (id SERIAL NOT NULL PRIMARY KEY,
                                      dtregistro VARCHAR(30)  NULL);  
 
 --Tabela Categorias
-CREATE TABLE categoria (id SERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE categoria (id INTEGER NOT NULL PRIMARY KEY,
                         descricao VARCHAR(60) NULL, 
                         logo VARCHAR(100) NULL,
                         dtregistro VARCHAR(30)  NULL);  
 
 -- Categoria - Associados
-CREATE TABLE associado_categorias (id SERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE associado_categorias (id INTEGER NOT NULL PRIMARY KEY,
                                    categoria_id INTEGER NOT NULL,
                                    associado_id INTEGER NOT NULL,
                                    resumo VARCHAR(400) NULL,  
