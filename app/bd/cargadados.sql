@@ -1,3 +1,4 @@
+DELETE FROM produto_tamanho;
 DELETE FROM produto;        
 DELETE FROM associado_categorias;
 DELETE FROM associado;
@@ -62,7 +63,8 @@ INSERT INTO categoria (id, descricao, dtregistro, logo)  VALUES (12, 'SALGADOS',
  INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
      	VALUES (14, 'Disponivel', '14@gmail.com', 'Eparry Pastel', '', 'Pastel, Bebidas', 'Ter a Sáb', '18:00', '00:00', 'X', '0,00', 'Juridica', 'Rua Manoel Martins de Abreu', '129', NULL, 'Prado Velho', NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
-
+ INSERT INTO associado (id, situacao, email, nomefantasia, resumo, categoria, funcionamentodias, funcionamentohorarioinicio, funcionamentohorariotermino, taxaentrega, valortaxaentrega, tipopessoa, logradouro, numero, complemento, bairro, cidade, estado, cep, dtregistro, logo) 
+	VALUES (15, 'Disponivel', '15gmail.com', 'Pizzaria Dom Juan', '', 'Pizzas, Lanches', 'Seg a Dom', '19:00', '23:59', 'S', '2,50', 'Juridica', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'associados/500x300.jpg');
 
 --categoriaxassociado
  INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
@@ -144,4 +146,13 @@ INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, d
         VALUES(33, 1, 14,  '', '', NULL);
 INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
         VALUES(34, 12, 14,  '', '', NULL);
+
+
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(35, 7, 15,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(36, 8, 15,  '', '', NULL);
+INSERT INTO associado_categorias(id, categoria_id, associado_id, resumo, logo, dtregistro)
+        VALUES(37, 9, 15,  '', '', NULL);
+
 
